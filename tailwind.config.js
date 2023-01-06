@@ -8,7 +8,7 @@ module.exports = {
     extend: {
       colors: {
         primary: "#5865F2",
-        secondry: "3BA55D",
+        secondry: "#3BA55D",
         gray: {
           900: "#202225",
           800: "#2f3136",
@@ -23,6 +23,10 @@ module.exports = {
       spacing: {
         88: "22rem",
       },
+    },
+    fontFamily: {
+      open: ["Open Sans", "sans-serif"],
+      demo: ["Boiling Demo Black", "sans-serif"],
     },
   },
   plugins: [],
