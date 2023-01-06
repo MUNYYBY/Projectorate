@@ -1,6 +1,7 @@
 import Image from "next/image";
 import LoginBox from "../components/Login/loginBox";
 import BG_IMAGE from "../public/Assets/login_bg_image.svg";
+import { motion } from "framer-motion";
 
 export default function Auth() {
   return (
@@ -15,8 +16,14 @@ export default function Auth() {
           />
         </div>
       </div>
-      <div className="primary-section w-full h-full z-1 absolute flex justify-end items-center lg:pr-40 md:pr-20 sm:10">
-        <LoginBox />
+      <div className="primary-section w-full h-full z-1 absolute flex justify-end items-center lg:pr-40 md:pr-20 sm:10 ">
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.2 }}
+        >
+          <LoginBox />
+        </motion.div>
       </div>
     </div>
   );
