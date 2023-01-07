@@ -1,6 +1,8 @@
 import { FiHome } from "react-icons/fi";
 import { AiOutlineFileDone } from "react-icons/ai";
 import { RxLapTimer } from "react-icons/rx";
+import ProjectTab from "./ProjectsTabs/ProjectTab";
+import TabDevider from "../Devider/Devider";
 
 export default function SubPanel() {
   return (
@@ -14,24 +16,12 @@ export default function SubPanel() {
         />
       </div>
       <div className="sub-panels-tabs flex flex-col my-3">
-        <div className="hover:bg-gray-700 opacity-40 hover:opacity-100 rounded-sm py-2 px-2 mx-4 flex flex-row ">
-          <div className="mr-2">
-            <FiHome size={22} />
-          </div>
-          <h1 className="text-md">Project Home</h1>
-        </div>
-        <div className="hover:bg-gray-700 opacity-40 hover:opacity-100 rounded-sm py-2 px-2 mx-4  flex flex-row ">
-          <div className="mr-2">
-            <AiOutlineFileDone size={22} />
-          </div>
-          <h1 className="text-md">Completed</h1>
-        </div>
-        <div className="hover:bg-gray-700 opacity-40 hover:opacity-100 rounded-sm py-2 px-2 mx-4  flex flex-row ">
-          <div className="mr-2">
-            <RxLapTimer size={22} />
-          </div>
-          <h1 className="text-md">In-progress</h1>
-        </div>
+        <ProjectTab icon={<FiHome size={20} />} title="Project Home" />
+        <ProjectTab icon={<AiOutlineFileDone size={20} />} title="Completed" />
+        <ProjectTab icon={<RxLapTimer size={20} />} title="In-progress" />
+      </div>
+      <div className="px-2 mx-4">
+        <TabDevider width="w-full" />
       </div>
     </div>
   );

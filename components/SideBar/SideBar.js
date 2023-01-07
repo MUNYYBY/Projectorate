@@ -4,6 +4,7 @@ import { IoIosAdd } from "react-icons/io";
 import { FaRegUser, FaDragon } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
 import { Tooltip } from "antd";
+import TabDevider from "../Devider/Devider";
 
 export default function SideBar() {
   return (
@@ -17,7 +18,7 @@ export default function SideBar() {
             type="logo"
           />
         </div>
-        <div className="h-0.5 w-8 rounded-sm bg-gray-800"></div>
+        <TabDevider />
         <div className="Projects">
           <SideBarIcon icon={<AiOutlineTeam size={28} />} tooltip="Projects" />
         </div>
@@ -30,7 +31,7 @@ export default function SideBar() {
             tooltip="Notifications"
           />
         </div>
-        <div className="h-0.5 w-8 rounded-sm bg-gray-800"></div>
+        <TabDevider />
         <div className="User Profile">
           <SideBarIcon icon={<FaRegUser size={24} />} tooltip="User Profile " />
         </div>
