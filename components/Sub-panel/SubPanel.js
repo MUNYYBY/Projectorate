@@ -7,7 +7,7 @@ import ProjectsTabContainer from "./ProjectsTabs/ProjectTabsContainer";
 
 export default function SubPanel() {
   return (
-    <div className="Sub-panel-dahboard ml-20 w-60 h-screen bg-gray-800">
+    <div className="Sub-panel-dahboard ml-20 w-72 h-screen bg-gray-800">
       <div className="bg-gray-700 p-4 rounded-b-xl">
         <h1 className=" font-semibold mb-2">Projects Panel</h1>
         <input
