@@ -3,6 +3,7 @@ import { AiOutlineFileDone } from "react-icons/ai";
 import { RxLapTimer } from "react-icons/rx";
 import ProjectTab from "./ProjectsTabs/ProjectTab";
 import TabDevider from "../Devider/Devider";
+import ProjectsTabContainer from "./ProjectsTabs/ProjectTabsContainer";
 
 export default function SubPanel() {
   return (
@@ -22,6 +23,9 @@ export default function SubPanel() {
       </div>
       <div className="px-2 mx-4">
         <TabDevider width="w-full" />
+      </div>
+      <div className="Projects-tab-container">
+        <ProjectsTabContainer />
       </div>
     </div>
   );
