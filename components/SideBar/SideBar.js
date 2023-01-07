@@ -1,11 +1,9 @@
 import { AiOutlineTeam, AiOutlineBlock } from "react-icons/ai";
-import { GrProjects } from "react-icons/gr";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { IoIosAdd } from "react-icons/io";
 import { FaRegUser, FaDragon } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
-
-import { Tooltip, Divider } from "antd";
+import { Tooltip } from "antd";
 
 export default function SideBar() {
   return (
@@ -34,7 +32,7 @@ export default function SideBar() {
         </div>
         <div className="h-0.5 w-8 rounded-sm bg-gray-800"></div>
         <div className="User Profile">
-          <SideBarIcon icon={<FaRegUser size={28} />} tooltip="User Profile " />
+          <SideBarIcon icon={<FaRegUser size={24} />} tooltip="User Profile " />
         </div>
         <div className="Add New...">
           <SideBarIcon icon={<IoIosAdd size={32} />} tooltip="Add new..." />
