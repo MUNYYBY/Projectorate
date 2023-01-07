@@ -3,7 +3,7 @@ export default function InformationTag({
   type = "primary",
 }) {
   var classStringParent =
-    "mr-2 px-2 py-1 w-fit rounded-full flex flex-col justify-center items-center ";
+    "mr-1 px-2 py-1 w-fit rounded-full flex flex-col justify-center items-center ";
   var classStringChild = "font-light text-xs ";
 
   if (type == "primary") {

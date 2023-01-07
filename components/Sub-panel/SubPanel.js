@@ -16,24 +16,26 @@ export default function SubPanel() {
           type="text"
         />
       </div>
-      <div className="sub-panels-tabs flex flex-col my-3">
-        <ProjectTab icon={<FiHome size={20} />} title="Project Home" />
-        <ProjectTab icon={<AiOutlineFileDone size={20} />} title="Completed" />
-        <ProjectTab icon={<RxLapTimer size={20} />} title="In-progress" />
-      </div>
-      <div className="px-2 mx-4 mb-4">
-        <TabDevider width="w-full" />
-      </div>
-      <div className="Projects-tab-container">
-        <ProjectsTabContainer CompanyName="Image Converter" />
-        <ProjectsTabContainer CompanyName="Image Converter" />
-        <ProjectsTabContainer CompanyName="Image Converter" />
-        <ProjectsTabContainer CompanyName="Image Converter" />
-        <ProjectsTabContainer CompanyName="Image Converter" />
-        <ProjectsTabContainer CompanyName="Image Converter" />
-        <ProjectsTabContainer CompanyName="Image Converter" />
-        <ProjectsTabContainer CompanyName="Image Converter" />
-        <ProjectsTabContainer CompanyName="Image Converter" />
+      {/* fix inner div to scroll */}
+      <div className="">
+        <div className="sub-panels-tabs flex flex-col my-3">
+          <ProjectTab icon={<FiHome size={20} />} title="Project Home" />
+          <ProjectTab
+            icon={<AiOutlineFileDone size={20} />}
+            title="Completed"
+          />
+          <ProjectTab icon={<RxLapTimer size={20} />} title="In-progress" />
+        </div>
+        <div className="px-2 mx-4 mb-4">
+          <TabDevider width="w-full" />
+        </div>
+        <div className="Projects-tab-container">
+          <ProjectsTabContainer CompanyName="Maverik Corp" />
+          <ProjectsTabContainer CompanyName="Subvision LTD" />
+          <ProjectsTabContainer CompanyName="Vyro.ai" />
+          <ProjectsTabContainer CompanyName="Always Remembered" />
+          <ProjectsTabContainer CompanyName="Farevet" />
+        </div>
       </div>
     </div>
   );
