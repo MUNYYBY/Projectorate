@@ -21,11 +21,19 @@ export default function SubPanel() {
         <ProjectTab icon={<AiOutlineFileDone size={20} />} title="Completed" />
         <ProjectTab icon={<RxLapTimer size={20} />} title="In-progress" />
       </div>
-      <div className="px-2 mx-4">
+      <div className="px-2 mx-4 mb-4">
         <TabDevider width="w-full" />
       </div>
       <div className="Projects-tab-container">
-        <ProjectsTabContainer />
+        <ProjectsTabContainer CompanyName="Image Converter" />
+        <ProjectsTabContainer CompanyName="Image Converter" />
+        <ProjectsTabContainer CompanyName="Image Converter" />
+        <ProjectsTabContainer CompanyName="Image Converter" />
+        <ProjectsTabContainer CompanyName="Image Converter" />
+        <ProjectsTabContainer CompanyName="Image Converter" />
+        <ProjectsTabContainer CompanyName="Image Converter" />
+        <ProjectsTabContainer CompanyName="Image Converter" />
+        <ProjectsTabContainer CompanyName="Image Converter" />
       </div>
     </div>
   );
