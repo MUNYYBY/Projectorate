@@ -1,3 +1,9 @@
+import SideBar from "../../../components/SideBar/SideBar";
+
 export default function SuperAdminDashboard() {
-  return <div>this is super-admin dashboard</div>;
+  return (
+    <div className="Dashboard">
+      <SideBar />
+    </div>
+  );
 }
