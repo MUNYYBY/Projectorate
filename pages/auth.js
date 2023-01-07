@@ -11,7 +11,7 @@ export default function Auth() {
 
   useEffect(() => {
     if (isClicked) {
-      router.push("app/super-admin/dashboard");
+      router.push("app/super-admin");
     }
   }, [isClicked]);
   return (
