@@ -1,4 +1,8 @@
-export default function LoginBox() {
+export default function LoginBox({ setIsClicked }) {
+  const handleClick = (e) => {
+    e.preventDefault();
+    setIsClicked(true);
+  };
   return (
     <div
       className="bg-gray-900 rounded-lg shadow-xl p-9 border-black"
@@ -36,7 +40,11 @@ export default function LoginBox() {
               By logging in you are agreeing to the company user terms and
               conditions
             </p>
-            <button className="bg-secondry px-5 py-3 rounded-sm" type="submit">
+            <button
+              className="bg-secondry px-5 py-3 rounded-sm"
+              type="submit"
+              onClick={handleClick}
+            >
               LOGIN
             </button>
           </div>

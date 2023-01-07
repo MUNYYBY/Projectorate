@@ -1,9 +1,19 @@
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import LoginBox from "../components/Login/loginBox";
 import BG_IMAGE from "../public/Assets/login_bg_image.svg";
 import { motion } from "framer-motion";
 
 export default function Auth() {
+  const [isClicked, setIsClicked] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isClicked) {
+      router.push("app/super-admin/dashboard");
+    }
+  }, [isClicked]);
   return (
     <div className="h-screen bg-primary">
       <div className="secondry-section h-screen w-screen absolute z-0">
@@ -22,7 +32,7 @@ export default function Auth() {
           animate={{ scale: 1 }}
           transition={{ duration: 0.2 }}
         >
-          <LoginBox />
+          <LoginBox setIsClicked={setIsClicked} />
         </motion.div>
       </div>
     </div>
