@@ -1,6 +1,6 @@
 import { AiOutlineTeam, AiOutlineBlock } from "react-icons/ai";
 import { IoMdNotificationsOutline } from "react-icons/io";
-import { IoIosAdd } from "react-icons/io";
+import { IoIosAdd, IoMdGitNetwork } from "react-icons/io";
 import { FaRegUser, FaDragon } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
 import { Tooltip } from "antd";
@@ -19,8 +19,11 @@ export default function SideBar() {
           />
         </div>
         <TabDevider />
+        <div className="Employees">
+          <SideBarIcon icon={<AiOutlineTeam size={28} />} tooltip="Employees" />
+        </div>
         <div className="Projects">
-          <SideBarIcon icon={<AiOutlineTeam size={28} />} tooltip="Projects" />
+          <SideBarIcon icon={<IoMdGitNetwork size={28} />} tooltip="Projects" />
         </div>
         <div className="Teams">
           <SideBarIcon icon={<AiOutlineBlock size={28} />} tooltip="Teams" />

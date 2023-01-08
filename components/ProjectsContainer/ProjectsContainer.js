@@ -24,11 +24,11 @@ export default function ProjectsContainer({ CompanyName = "Company Name" }) {
         </div>
         <div className="flex flex-col items-center">
           <h1 className="text-pOrange font-bold text-2xl">46</h1>
-          <p className="text-sm opacity-80">Members</p>
+          <p className="text-sm opacity-80">Teams</p>
         </div>
         <div className="flex flex-col items-center">
           <h1 className="text-intermediate font-bold text-2xl">46</h1>
-          <p className="text-sm opacity-80">Members</p>
+          <p className="text-sm opacity-80">Tickets</p>
         </div>
       </div>
     </div>
