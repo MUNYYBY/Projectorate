@@ -1,10 +1,11 @@
 export default function InformationTag({
   title = "Mobile App",
   type = "primary",
+  size = "xs",
 }) {
   var classStringParent =
     "mr-1 px-2 py-1 w-fit rounded-full flex flex-col justify-center items-center ";
-  var classStringChild = "font-light text-xs ";
+  var classStringChild = "font-light text-" + size + " ";
 
   if (type == "primary") {
     classStringParent += "bg-primary bg-opacity-20";
