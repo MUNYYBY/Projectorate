@@ -1,5 +1,7 @@
 import SideBar from "../../../components/SideBar/SideBar";
 import SubPanel from "../../../components/Sub-panel/SubPanel";
+import SearchModule from "../../../components/Search/SearchModule";
+import TabDevider from "../../../components/Devider/Devider";
 import { SlSocialSteam } from "react-icons/sl";
 import { IoIosAdd, IoIosHelpCircle } from "react-icons/io";
 import { CgInbox } from "react-icons/cg";
@@ -37,6 +39,13 @@ export default function SuperAdminDashboard({ children }) {
             </div>
           </div>
         </header>
+        <div className="Search-projects-section px-4 my-4">
+          <SearchModule
+            title="Search Projects"
+            description="Take a dive in to the project and its attributes. Find anything you are looking for in this project"
+          />
+        </div>
+        <TabDevider color="bg-gray-900" width="w-full" opacity="opacity-1" />
       </div>
     </div>
   );
