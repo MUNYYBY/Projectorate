@@ -1,5 +1,5 @@
 export default function SearchModule({
-  title = "Search",
+  title = "SEARCH",
   description = "Take a dive in to the project and its attributes. Find anything you are looking for in this project",
 }) {
   return (
