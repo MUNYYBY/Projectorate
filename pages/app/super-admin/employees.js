@@ -7,6 +7,7 @@ import { Tooltip } from "antd";
 import SuperAdminDashboard from ".";
 import EmployeesContainer from "../../../components/Employees/EmployeesContainer";
 import AddEmployee from "../../../components/AddEmployee/AddEmployee";
+import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader";
 import { useState, useEffect } from "react";
 export default function SuperAdminEmployees() {
   const [addEmployees, setAddEmployees] = useState(false);
@@ -17,35 +18,12 @@ export default function SuperAdminEmployees() {
   return (
     <SuperAdminDashboard>
       <div className="Employees-panel ml-[calc(5rem+18rem)]">
-        <header className="flex flex-row items-center justify-between border-b-2 border-b-gray-900 px-4 py-4">
-          <div className="flex flex-row items-center">
-            <div className="project-panel-icon mr-3">
-              <BsPeople size={30} />
-            </div>
-            <h1 className="text-lg font-bold">Employees Panel</h1>
-          </div>
-          <div className="flex flex-row items-center">
-            <Tooltip
-              placement="bottom"
-              title="Add Employees for your projects workforce"
-              mouseEnterDelay={0.05}
-            >
-              <button
-                className="bg-secondry py-1 px-3 rounded-md flex flex-row justify-center items-center"
-                onClick={addEmployeesHandler}
-              >
-                <IoIosAdd size={26} />
-                <p>Add Employees</p>
-              </button>
-            </Tooltip>
-            <div className="help-icon px-2">
-              <CgInbox size={28} />
-            </div>
-            <div className="inbox-icon px-2">
-              <IoIosHelpCircle size={30} />
-            </div>
-          </div>
-        </header>
+        <DashboardHeader
+          title="Employees Panel"
+          type="employees"
+          icon={<BsPeople size={30} />}
+          addEmployeesHandler={addEmployeesHandler}
+        />
         <div className="Search-employees-section px-4 my-4">
           <SearchModule
             title="SEARCH EMPLOYEES"

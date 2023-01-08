@@ -75,10 +75,6 @@ const SideBarIcon = ({
   type = "nav",
 }) => {
   const { route } = useRouteCheck();
-  useEffect(() => {
-    console.log(route);
-  }, [route]);
-  console.log(route?.includes(tooltip.toLowerCase()), tooltip);
   return (
     <>
       {route?.includes(tooltip.toLowerCase()) ? (
