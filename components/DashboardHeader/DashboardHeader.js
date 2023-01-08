@@ -5,9 +5,18 @@ import { BiHomeAlt } from "react-icons/bi";
 import { Tooltip } from "antd";
 
 export default function DashboardHeader(
-  { title = "Home", type = "home", icon = <BiHomeAlt size={30} /> },
+  {
+    title = "Home",
+    type = "home",
+    icon = <BiHomeAlt size={30} />,
+    setAddEmployees = "",
+  },
   props
 ) {
+  const handleSetEmployees = (e) => {
+    e.preventDefault();
+    props.setAddEmployees(true);
+  };
   return (
     <div className="dashboard-header">
       <header className="flex flex-row items-center justify-between border-b-2 border-b-gray-900 px-4 py-4">
@@ -38,7 +47,7 @@ export default function DashboardHeader(
             >
               <button
                 className="bg-secondry py-1 px-3 rounded-md flex flex-row justify-center items-center"
-                onClick={props.addEmployeesHandler}
+                onClick={() => setAddEmployees(true)}
               >
                 <IoIosAdd size={26} />
                 <p>Add Employees</p>

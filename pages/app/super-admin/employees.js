@@ -11,8 +11,9 @@ import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader
 import { useState, useEffect } from "react";
 export default function SuperAdminEmployees() {
   const [addEmployees, setAddEmployees] = useState(false);
-  const addEmployeesHandler = (e) => {
-    e.preventDefault();
+  const addEmployeesHandler = () => {
+    // e.preventDefault();
+    console.log("hello");
     setAddEmployees(true);
   };
   return (
@@ -22,7 +23,7 @@ export default function SuperAdminEmployees() {
           title="Employees Panel"
           type="employees"
           icon={<BsPeople size={30} />}
-          addEmployeesHandler={addEmployeesHandler}
+          setAddEmployees={setAddEmployees}
         />
         <div className="Search-employees-section px-4 my-4">
           <SearchModule
