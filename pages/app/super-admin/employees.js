@@ -6,7 +6,14 @@ import { CgInbox } from "react-icons/cg";
 import { Tooltip } from "antd";
 import SuperAdminDashboard from ".";
 import EmployeesContainer from "../../../components/Employees/EmployeesContainer";
+import AddEmployee from "../../../components/AddEmployee/AddEmployee";
+import { useState, useEffect } from "react";
 export default function SuperAdminEmployees() {
+  const [addEmployees, setAddEmployees] = useState(false);
+  const addEmployeesHandler = (e) => {
+    e.preventDefault();
+    setAddEmployees(true);
+  };
   return (
     <SuperAdminDashboard>
       <div className="Employees-panel ml-[calc(5rem+18rem)]">
@@ -23,7 +30,10 @@ export default function SuperAdminEmployees() {
               title="Add Employees for your projects workforce"
               mouseEnterDelay={0.05}
             >
-              <button className="bg-secondry py-1 px-3 rounded-md flex flex-row justify-center items-center">
+              <button
+                className="bg-secondry py-1 px-3 rounded-md flex flex-row justify-center items-center"
+                onClick={addEmployeesHandler}
+              >
                 <IoIosAdd size={26} />
                 <p>Add Employees</p>
               </button>
@@ -74,6 +84,14 @@ export default function SuperAdminEmployees() {
           </div>
         </div>
       </div>
+      {addEmployees ? (
+        <AddEmployee
+          setAddEmployees={setAddEmployees}
+          addEmployees={addEmployees}
+        />
+      ) : (
+        ""
+      )}
     </SuperAdminDashboard>
   );
 }
