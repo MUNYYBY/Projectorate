@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { AiOutlineTeam, AiOutlineBlock } from "react-icons/ai";
+import { AiOutlineTeam, AiOutlineBlock, AiOutlineLogout } from "react-icons/ai";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { IoIosAdd, IoMdGitNetwork } from "react-icons/io";
 import { FaRegUser, FaDragon } from "react-icons/fa";
@@ -8,10 +8,22 @@ import { FiSettings } from "react-icons/fi";
 import { Tooltip } from "antd";
 import TabDevider from "../Devider/Devider";
 import { useRouteCheck } from "../../context/routesContext";
+import { Popover } from "antd";
+import { useSession, signOut } from "next-auth/react";
 
 const NAV_URL = "/app/super-admin/";
 
 export default function SideBar() {
+  const [settingsOpen, setSettingsOpen] = useState(false);
+
+  const LogoutSettingsPopOverOnClick = () => {
+    setSettingsOpen(false);
+    signOut({ redirect: true, callbackUrl: "/auth" });
+  };
+
+  const handleSettingsOpenChange = (newOpen) => {
+    setSettingsOpen(newOpen);
+  };
   return (
     <nav className="fixed bg-gray-900 h-screen w-20 flex flex-col items-center justify-between">
       <div className="primary-nav flex flex-col items-center">
@@ -60,9 +72,28 @@ export default function SideBar() {
         </div>
       </div>
       <div className="secondry-nav">
-        <div className="Settings">
-          <SideBarIcon icon={<FiSettings size={28} />} tooltip="Settings" />
-        </div>
+        <Popover
+          content={
+            <a
+              onClick={LogoutSettingsPopOverOnClick}
+              className="logout-popover-option flex flex-row items-center hover:text-secondry"
+            >
+              <div className="logout-icon mr-1">
+                <AiOutlineLogout size={20} />
+              </div>
+              <p className="text-lg">Logout</p>
+            </a>
+          }
+          title="Settings"
+          trigger="click"
+          placement="topRight"
+          open={settingsOpen}
+          onOpenChange={handleSettingsOpenChange}
+        >
+          <div className="Settings">
+            <SideBarIcon icon={<FiSettings size={28} />} tooltip="Settings" />
+          </div>
+        </Popover>
       </div>
     </nav>
   );

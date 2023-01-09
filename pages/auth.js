@@ -22,6 +22,7 @@ export default function Auth() {
     console.log(result);
     if (!result.error) {
       //sucessfully logged in
+      router.replace("/app/super-admin");
     } else {
       setErrorMessage(result.error);
       setLoading(false);

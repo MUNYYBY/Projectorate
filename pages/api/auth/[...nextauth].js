@@ -41,6 +41,7 @@ const authOptions = {
   ],
   pages: {
     signIn: "/auth",
+    signOut: "/auth",
   },
   callbacks: {
     async session({ session, token, user }) {
