@@ -1,4 +1,5 @@
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect } from "react";
+import { useSession, signIn, signOut, getSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import LoginBox from "../components/Login/loginBox";
@@ -10,13 +11,24 @@ export default function Auth() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const router = useRouter();
-  useEffect(() => {
-    console.log("Email: " + email + "----" + "password: " + password);
-  }, [email, password]);
+
+  const LoginApp = async () => {
+    const payload = { email, password };
+    const result = await signIn("credentials", { ...payload, redirect: false });
+    console.log(result);
+    if (!result.error) {
+      // router.replace('/user');
+    } else {
+      // setErrorMessage(result.error);
+    }
+    const session = await getSession();
+    console.log(result);
+    console.log({ session });
+  };
 
   useEffect(() => {
     if (isClicked) {
-      router.push("app/super-admin");
+      LoginApp();
     }
   }, [isClicked]);
   return (

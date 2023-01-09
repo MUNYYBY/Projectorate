@@ -1,7 +1,8 @@
 import "../styles/globals.css";
 import NextNProgress from "nextjs-progressbar";
+import { SessionProvider } from "next-auth/react";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, session }) {
   return (
     <>
       <NextNProgress
@@ -10,7 +11,9 @@ function MyApp({ Component, pageProps }) {
         height={4}
         options={{ easing: "ease", speed: 500 }}
       />
-      <Component {...pageProps} />
+      <SessionProvider session={session}>
+        <Component {...pageProps} />
+      </SessionProvider>
     </>
   );
 }
