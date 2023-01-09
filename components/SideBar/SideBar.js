@@ -9,7 +9,7 @@ import { Tooltip } from "antd";
 import TabDevider from "../Devider/Devider";
 import { useRouteCheck } from "../../context/routesContext";
 import { Popover } from "antd";
-import { useSession, signOut } from "next-auth/react";
+import { signOut } from "next-auth/react";
 
 const NAV_URL = "/app/super-admin/";
 

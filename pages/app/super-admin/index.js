@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import SideBar from "../../../components/SideBar/SideBar";
 import SubPanel from "../../../components/Sub-panel/SubPanel";
 import SearchModule from "../../../components/Search/SearchModule";
@@ -5,7 +6,19 @@ import { RouteContextProvider } from "../../../context/routesContext";
 import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader";
 import TabDevider from "../../../components/Devider/Devider";
 import { Player, Controls } from "@lottiefiles/react-lottie-player";
+import { getSession, useSession } from "next-auth/react";
 export default function SuperAdminDashboard({ children }) {
+  const { data: session } = useSession;
+  const [userInfo, setUserInfo] = useState(null);
+  const getInfo = async () => {
+    setUserInfo(await getSession());
+  };
+  useEffect(() => {
+    getInfo();
+  }, []);
+  useEffect(() => {
+    console.log(userInfo);
+  }, [userInfo]);
   return (
     <RouteContextProvider>
       <div className="Dashboard">
@@ -32,7 +45,13 @@ export default function SuperAdminDashboard({ children }) {
                 src="https://assets4.lottiefiles.com/packages/lf20_4ll9qg6q.json"
                 style={{ height: "300px", width: "300px" }}
               ></Player>
-              <h1 className="font-demo text-xl">Hi there...Welcome</h1>
+              <h1 className="font-demo text-xl text-center">
+                Hi there...Welcome my sweet bunny <br />{" "}
+                <span className="font-open">
+                  {" "}
+                  {userInfo ? userInfo?.user.name : ""}{" "}
+                </span>
+              </h1>
             </div>
           </div>
         ) : (
