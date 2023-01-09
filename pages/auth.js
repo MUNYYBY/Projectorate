@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import LoginBox from "../components/Login/loginBox";
@@ -7,7 +7,12 @@ import { motion } from "framer-motion";
 
 export default function Auth() {
   const [isClicked, setIsClicked] = useState(false);
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
   const router = useRouter();
+  useEffect(() => {
+    console.log("Email: " + email + "----" + "password: " + password);
+  }, [email, password]);
 
   useEffect(() => {
     if (isClicked) {
@@ -32,7 +37,11 @@ export default function Auth() {
           animate={{ scale: 1 }}
           transition={{ duration: 0.2 }}
         >
-          <LoginBox setIsClicked={setIsClicked} />
+          <LoginBox
+            setIsClicked={setIsClicked}
+            setEmail={setEmail}
+            setPassword={setPassword}
+          />
         </motion.div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-export default function LoginBox({ setIsClicked }) {
+export default function LoginBox({ setIsClicked, setEmail, setPassword }) {
   const handleClick = (e) => {
     e.preventDefault();
     setIsClicked(true);
@@ -22,6 +22,7 @@ export default function LoginBox({ setIsClicked }) {
               placeholder=""
               className="h-12 bg-gray-700 rounded-sm border-black px-3"
               type="email"
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="input-container flex flex-col my-5">
@@ -30,6 +31,7 @@ export default function LoginBox({ setIsClicked }) {
               placeholder=""
               className="h-12 bg-gray-700 rounded-sm border-black px-3"
               type="password"
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className="forgot-password ">
