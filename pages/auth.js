@@ -10,16 +10,21 @@ export default function Auth() {
   const [isClicked, setIsClicked] = useState(false);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
   const router = useRouter();
 
   const LoginApp = async () => {
+    setLoading(true);
+    setErrorMessage(null);
     const payload = { email, password };
     const result = await signIn("credentials", { ...payload, redirect: false });
     console.log(result);
     if (!result.error) {
-      // router.replace('/user');
+      //sucessfully logged in
     } else {
-      // setErrorMessage(result.error);
+      setErrorMessage(result.error);
+      setLoading(false);
     }
     const session = await getSession();
     console.log(result);
@@ -53,6 +58,8 @@ export default function Auth() {
             setIsClicked={setIsClicked}
             setEmail={setEmail}
             setPassword={setPassword}
+            loading={loading}
+            errorMessage={errorMessage}
           />
         </motion.div>
       </div>
