@@ -5,10 +5,10 @@ export default function SearchModule({
   return (
     <div className="Search-module">
       <div className="Search-contents">
-        <h1 className="font-bold text-2xl">{title}</h1>
+        <h1 className="font-semibold text-xl opacity-80">{title}</h1>
         <p className="text-sm opacity-60 mt-1">{description}</p>
       </div>
-      <div className="Search-bar bg-gray-900 h-16 border-2 border-black rounded-md flex flex-row justify-between items-center px-4 mt-4">
+      <div className="Search-bar bg-gray-900 h-14 border-2 border-black rounded-md flex flex-row justify-between items-center px-4 mt-4">
         <input
           placeholder="Type attributes for projects..."
           type="text"

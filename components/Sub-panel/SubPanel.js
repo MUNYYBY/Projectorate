@@ -19,7 +19,7 @@ export default function SubPanel() {
     else setPanelName("Home");
   }, [route]);
   return (
-    <div className="Sub-panel-dahboard fixed ml-20 w-72 h-screen bg-gray-800">
+    <div className="Sub-panel-dahboard fixed ml-[4.5rem] w-64 h-screen bg-gray-800">
       <div className="bg-gray-700 p-4 rounded-b-xl">
         <h1 className=" font-semibold mb-2">{panelName} Panel</h1>
         <input
@@ -31,12 +31,12 @@ export default function SubPanel() {
       {/* fix inner div to scroll */}
       <div className="">
         <div className="sub-panels-tabs flex flex-col my-3">
-          <ProjectTab icon={<FiHome size={20} />} title="Project Home" />
+          <ProjectTab icon={<FiHome size={16} />} title="Project Home" />
           <ProjectTab
-            icon={<AiOutlineFileDone size={20} />}
+            icon={<AiOutlineFileDone size={16} />}
             title="Completed"
           />
-          <ProjectTab icon={<RxLapTimer size={20} />} title="In-progress" />
+          <ProjectTab icon={<RxLapTimer size={16} />} title="In-progress" />
         </div>
         <div className="px-2 mx-4 mb-4">
           <TabDevider width="w-full" />

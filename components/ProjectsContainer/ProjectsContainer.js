@@ -4,7 +4,7 @@ import Temp from "../../public/Uploads/temp.png";
 
 export default function ProjectsContainer({ CompanyName = "Company Name" }) {
   return (
-    <div className="h-40 w-80 bg-gray-900 rounded-md shadow-sm p-4 flex flex-col justify-between">
+    <div className="h-36 w-72 bg-gray-900 rounded-md shadow-sm p-4 flex flex-col justify-between">
       <div className="flex flex-row">
         <div className="Project-main-Image">
           <Image src={Temp} width={55} height={55} className="rounded-lg" />

@@ -15,11 +15,11 @@ export default function SuperAdminEmployees() {
   };
   return (
     <SuperAdminDashboard>
-      <div className="Employees-panel ml-[calc(5rem+18rem)]">
+      <div className="Employees-panel ml-[calc(4.5rem+16rem)]">
         <DashboardHeader
           title="Employees Panel"
           type="employees"
-          icon={<BsPeople size={30} />}
+          icon={<BsPeople size={26} />}
           setAddEmployees={setAddEmployees}
         />
         <div className="Search-employees-section px-4 my-4">

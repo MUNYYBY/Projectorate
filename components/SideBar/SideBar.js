@@ -28,12 +28,12 @@ export default function SideBar() {
     setSettingsOpen(newOpen);
   };
   return (
-    <nav className="fixed bg-gray-900 h-screen w-20 flex flex-col items-center justify-between">
+    <nav className="fixed bg-gray-900 h-screen w-[4.5rem] flex flex-col items-center justify-between">
       <div className="primary-nav flex flex-col items-center">
         <Link href="/">
           <div className="Projectorate">
             <SideBarIcon
-              icon={<FaDragon size={28} />}
+              icon={<FaDragon size={26} />}
               tooltip="Projectorate: A companies personal collaboration and software management platform 🔥"
               placement="leftBottom"
               type="logo"
@@ -44,7 +44,7 @@ export default function SideBar() {
         <Link href={NAV_URL + "employees"}>
           <div className="Employees">
             <SideBarIcon
-              icon={<AiOutlineTeam size={28} />}
+              icon={<AiOutlineTeam size={26} />}
               tooltip="Employees"
             />
           </div>
@@ -52,17 +52,17 @@ export default function SideBar() {
         <Link href={NAV_URL + "projects"}>
           <div className="Projects">
             <SideBarIcon
-              icon={<IoMdGitNetwork size={28} />}
+              icon={<IoMdGitNetwork size={26} />}
               tooltip="Projects"
             />
           </div>
         </Link>
         <div className="Teams">
-          <SideBarIcon icon={<AiOutlineBlock size={28} />} tooltip="Teams" />
+          <SideBarIcon icon={<AiOutlineBlock size={26} />} tooltip="Teams" />
         </div>
         <div className="Notifications">
           <SideBarIcon
-            icon={<IoMdNotificationsOutline size={28} />}
+            icon={<IoMdNotificationsOutline size={26} />}
             tooltip="Notifications"
           />
         </div>
@@ -82,7 +82,7 @@ export default function SideBar() {
               className="logout-popover-option flex flex-row items-center hover:text-secondry"
             >
               <div className="logout-icon mr-1">
-                <AiOutlineLogout size={20} />
+                <AiOutlineLogout size={16} />
               </div>
               <p className="text-lg">Logout</p>
             </a>
@@ -94,7 +94,7 @@ export default function SideBar() {
           onOpenChange={handleSettingsOpenChange}
         >
           <div className="Settings">
-            <SideBarIcon icon={<FiSettings size={28} />} tooltip="Settings" />
+            <SideBarIcon icon={<FiSettings size={26} />} tooltip="Settings" />
           </div>
         </Popover>
       </div>
@@ -114,7 +114,7 @@ const SideBarIcon = ({
       {route?.includes(tooltip.toLowerCase()) ? (
         <div
           className="relative flex items-center justify-center 
-        h-14 w-14 mt-2 mb-2 mx-auto  
+        h-12 w-12 mt-2 mb-2 mx-auto  
       bg-green-600
       rounded-2xl text-white"
         >

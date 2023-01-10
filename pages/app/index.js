@@ -10,13 +10,14 @@ export default function AppDashboard({ children }) {
     //   "This is the app-wise-global status checker for auth: ",
     //   status
     // );
-    if (status == "authenticated") {
-      router.replace("/app/super-admin");
-    } else if (status == "unauthenticated") {
+    if (status == "unauthenticated") {
       router.replace("/auth");
     }
   }, [status]);
 
+  useEffect(() => {
+    if (router.pathname == "/app") router.replace("/app/super-admin");
+  }, []);
   return (
     <div className="App">
       <div className="loading h-screen w-screen absolute top-0">
