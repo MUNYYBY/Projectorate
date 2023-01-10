@@ -32,7 +32,7 @@ export default function Auth() {
     if (signInResponse) {
       if (!signInResponse.error) {
         //sucessfully logged in
-        router.replace("/app/super-admin");
+        router.replace("/app");
       } else {
         setErrorMessage(signInResponse.error);
         setLoading(false);

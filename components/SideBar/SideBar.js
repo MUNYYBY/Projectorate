@@ -18,7 +18,10 @@ export default function SideBar() {
 
   const LogoutSettingsPopOverOnClick = () => {
     setSettingsOpen(false);
-    signOut({ redirect: true, callbackUrl: "/auth" });
+    // if you want to redirect the page hard-coded set
+    // redirect to true and set the callbackurl to something
+    // e.g callbackUrl: "/auth"
+    signOut({ redirect: false });
   };
 
   const handleSettingsOpenChange = (newOpen) => {
