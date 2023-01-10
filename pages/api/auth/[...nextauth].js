@@ -54,6 +54,7 @@ const authOptions = {
         id: userDatabase.id,
         name: userDatabase.name,
         email: userDatabase.email,
+        role: userDatabase.role,
       }; // creating payload
 
       session.user = userData; //sending payload as session

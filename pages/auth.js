@@ -12,26 +12,34 @@ export default function Auth() {
   const [password, setPassword] = useState(null);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [signInResponse, setSignInResponse] = useState(null);
   const router = useRouter();
 
   const LoginApp = async () => {
     setLoading(true);
     setErrorMessage(null);
     const payload = { email, password };
-    const result = await signIn("credentials", { ...payload, redirect: false });
-    console.log(result);
-    if (!result.error) {
-      //sucessfully logged in
-      router.replace("/app/super-admin");
-    } else {
-      setErrorMessage(result.error);
-      setLoading(false);
-    }
+    setSignInResponse(
+      await signIn("credentials", { ...payload, redirect: false })
+    );
+  };
+  const getSessionFromAuth = async () => {
     const session = await getSession();
-    console.log(result);
+    console.log(signInResponse);
     console.log({ session });
   };
-
+  useEffect(() => {
+    if (signInResponse) {
+      if (!signInResponse.error) {
+        //sucessfully logged in
+        router.replace("/app/super-admin");
+      } else {
+        setErrorMessage(signInResponse.error);
+        setLoading(false);
+      }
+      getSessionFromAuth();
+    }
+  }, [signInResponse]);
   useEffect(() => {
     if (isClicked) {
       LoginApp();
