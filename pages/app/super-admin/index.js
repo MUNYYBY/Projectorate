@@ -7,6 +7,7 @@ import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader
 import TabDevider from "../../../components/Devider/Devider";
 import { Player, Controls } from "@lottiefiles/react-lottie-player";
 import { getSession, useSession } from "next-auth/react";
+import { motion } from "framer-motion";
 import AppDashboard from "..";
 export default function SuperAdminDashboard({ children }) {
   const { data: session } = useSession;
@@ -23,7 +24,13 @@ export default function SuperAdminDashboard({ children }) {
   return (
     <AppDashboard>
       <RouteContextProvider>
-        <div className="Dashboard">
+        <motion.div
+          initial={{ x: 1000 }}
+          animate={{ x: 0 }}
+          transition={{ duration: 0.2, ease: "easeInOut" }}
+          className="Dashboard w-screen h-screen absolute z-10"
+          style={{ backgroundColor: "#2c2e33" }}
+        >
           <SideBar />
           <SubPanel />
           {!children ? (
@@ -60,7 +67,7 @@ export default function SuperAdminDashboard({ children }) {
             ""
           )}
           {children}
-        </div>
+        </motion.div>
       </RouteContextProvider>
     </AppDashboard>
   );
