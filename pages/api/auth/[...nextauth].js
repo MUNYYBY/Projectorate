@@ -44,6 +44,16 @@ const authOptions = {
     signOut: "/auth",
   },
   callbacks: {
+    // async redirect({ user, url, baseUrl }) {
+    //   // Allows relative callback URLs
+    //   if (!user.id) {
+    //     if (url.startsWith("/auth")) return "/app";
+    //   }
+    //   // // Allows callback URLs on the same origin
+    //   // else if (new URL(url).origin === baseUrl) return url;
+    //   // return baseUrl;
+    // },
+
     async session({ session, token, user }) {
       const userDatabase = await PrismaDB.user.findFirst({
         where: {

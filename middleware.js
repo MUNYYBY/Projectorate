@@ -9,6 +9,8 @@ export default withAuth({
       console.log(pathname);
       if (pathname.startsWith("/app")) {
         return token?.id;
+      } else if (pathname.startsWith("/auth")) {
+        return !token?.id;
       }
       // `/me` only requires the user to be logged in
       return !!token;
@@ -18,6 +20,7 @@ export default withAuth({
 
 export const config = {
   matcher: [
+    "/auth",
     "/app",
     "/app/super-admin",
     "/app/super-admin/projects",
