@@ -4,7 +4,7 @@ import ProjectsContainer from "../../../components/ProjectsContainer/ProjectsCon
 import { SlSocialSteam } from "react-icons/sl";
 import { IoIosAdd, IoIosHelpCircle } from "react-icons/io";
 import { CgInbox } from "react-icons/cg";
-import { Tooltip } from "antd";
+import { Tooltip, Col, Row } from "antd";
 import SuperAdminDashboard from ".";
 
 export default function SuperAdminProjectPanel() {
@@ -43,6 +43,7 @@ export default function SuperAdminProjectPanel() {
             description="Take a dive in to the project and its attributes. Find anything you are looking for in this project"
           />
         </div>
+
         <TabDevider color="bg-gray-900" width="w-full" opacity="opacity-1" />
         <div className="All-projects-stack mt-4 px-4">
           <div className="">
@@ -51,13 +52,27 @@ export default function SuperAdminProjectPanel() {
               A complete list of all the projects in Projectorate.
             </p>
           </div>
-          <div className="Projects py-4 grid gap-4 2xl:grid-cols-3 xl:grid-cols-3  lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1">
-            <ProjectsContainer CompanyName="Mavarik Corp" />
-            <ProjectsContainer CompanyName="Subvision LTD" />
-            <ProjectsContainer CompanyName="Vyro.ai" />
-            <ProjectsContainer CompanyName="Always Remembered" />
-            <ProjectsContainer CompanyName="Farevet" />
-            <ProjectsContainer CompanyName="Gemmo LTC" />
+          <div className="Projects py-4">
+            <Row>
+              <Col xs={24} md={10} lg={8} xl={6} xxl={4}>
+                <ProjectsContainer CompanyName="Mavarik Corp" />
+              </Col>
+              <Col xs={24} md={10} lg={8} xl={6} xxl={4}>
+                <ProjectsContainer CompanyName="Subvision LTD" />
+              </Col>
+              <Col xs={24} md={10} lg={8} xl={6} xxl={4}>
+                <ProjectsContainer CompanyName="Vyro.ai" />
+              </Col>
+              <Col xs={24} md={10} lg={8} xl={6} xxl={4}>
+                <ProjectsContainer CompanyName="Always Remembered" />
+              </Col>
+              <Col xs={24} md={10} lg={8} xl={6} xxl={4}>
+                <ProjectsContainer CompanyName="Farevet" />
+              </Col>
+              <Col xs={24} md={10} lg={8} xl={6} xxl={4}>
+                <ProjectsContainer CompanyName="Gemmo LTC" />
+              </Col>
+            </Row>
           </div>
         </div>
       </div>

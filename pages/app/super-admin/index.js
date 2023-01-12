@@ -30,7 +30,7 @@ export default function SuperAdminDashboard({ children }) {
           <SideBar />
           <SubPanel />
           {!children ? (
-            <div className="ml-[calc(5rem+18rem)]">
+            <div className="ml-[calc(4.5rem+16rem)]">
               <DashboardHeader />
               <div className="p-4">
                 <SearchModule
