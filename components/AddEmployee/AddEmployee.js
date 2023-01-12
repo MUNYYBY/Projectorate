@@ -1,6 +1,9 @@
 import { DatePicker } from "antd";
 import { motion } from "framer-motion";
 import { AnimatePresence } from "framer-motion";
+import { UploadOutlined } from "@ant-design/icons";
+import { Button, Upload } from "antd";
+import { Col, Row } from "antd";
 
 export default function AddEmployee(props) {
   return (
@@ -13,7 +16,7 @@ export default function AddEmployee(props) {
             transition={{ duration: 0.3 }}
             exit={{ opacity: 0 }}
           >
-            <div className="bg-gray-300 p-6 w-[28rem] rounded-md ">
+            <div className="bg-gray-300 p-6 m-2 min-w-[20rem] max-w-[50rem] rounded-md ">
               <div className="flex flex-col justify-center items-center mb-4">
                 <h1 className="font-demo text-3xl text-gray-900">
                   Add Employee
@@ -24,55 +27,79 @@ export default function AddEmployee(props) {
                 </p>
               </div>
               <form onSubmit={() => props.setAddEmployees(false)}>
-                <div className="Input-stack">
-                  <div className="employee_name py-1">
-                    <input
-                      placeholder="< Employee Name >"
-                      type="text"
-                      name="employee_name"
-                      className="bg-gray-900 h-12 rounded-md w-full p-4 focus:outline-0 border-2 border-black"
-                    />
-                  </div>
-                  <div className="employee_email py-1">
-                    <input
-                      placeholder="< Employee Email >"
-                      type="email"
-                      name="employee_email"
-                      className="bg-gray-900 h-12 rounded-md w-full p-4 focus:outline-0 border-2 border-black"
-                    />
-                  </div>
-                  <div className="phone_number py-1">
-                    <input
-                      placeholder="< Phone Number >"
-                      type="phone"
-                      name="phone_number"
-                      className="bg-gray-900 h-12 rounded-md w-full p-4 focus:outline-0 border-2 border-black"
-                    />
-                  </div>
-
-                  <div className="date_of_birth py-1">
-                    <DatePicker
-                      className="bg-gray-900 h-12 rounded-md w-full p-4 border-2 border-black"
-                      style={{ color: "white !important" }}
-                      placeholder="< Date of Birth >"
-                    />
-                  </div>
-                  <div className="expertise py-1">
-                    <input
-                      placeholder="< Expertise >"
-                      type="text"
-                      name="expertise"
-                      className="bg-gray-900 h-12 rounded-md w-full p-4 focus:outline-0 border-2 border-black"
-                    />
-                  </div>
-                  <div className="designation py-1">
-                    <input
-                      placeholder="< Designation >"
-                      type="text"
-                      name="designation"
-                      className="bg-gray-900 h-12 rounded-md w-full p-4 focus:outline-0 border-2 border-black"
-                    />
-                  </div>
+                <div className="Input-stack w-full">
+                  <Row gutter={[8, 8]}>
+                    <Col xs={24} lg={12}>
+                      <div className="employee_name">
+                        <input
+                          placeholder="< Employee Name >"
+                          type="text"
+                          name="employee_name"
+                          className="bg-gray-900 h-12 rounded-md w-full p-4 focus:outline-0 border-2 border-black"
+                        />
+                      </div>
+                    </Col>
+                    <Col xs={24} lg={12}>
+                      <div className="employee_email">
+                        <input
+                          placeholder="< Employee Email >"
+                          type="email"
+                          name="employee_email"
+                          className="bg-gray-900 h-12 rounded-md w-full p-4 focus:outline-0 border-2 border-black"
+                        />
+                      </div>
+                    </Col>
+                    <Col xs={24} lg={12}>
+                      <div className="phone_number ">
+                        <input
+                          placeholder="< Phone Number >"
+                          type="text"
+                          name="phone_number"
+                          className="bg-gray-900 h-12 rounded-md w-full p-4 focus:outline-0 border-2 border-black"
+                        />
+                      </div>
+                    </Col>
+                    <Col xs={24} lg={12}>
+                      <div className="date_of_birth">
+                        <DatePicker
+                          className="text-gray-50 bg-gray-900 h-12 rounded-md w-full p-4 border-2 border-black"
+                          placeholder="< Date of Birth >"
+                        />
+                      </div>
+                    </Col>
+                    <Col xs={24} lg={12}>
+                      <div className="expertise">
+                        <input
+                          placeholder="< Expertise >"
+                          type="text"
+                          name="expertise"
+                          className="bg-gray-900 h-12 rounded-md w-full p-4 focus:outline-0 border-2 border-black"
+                        />
+                      </div>
+                    </Col>
+                    <Col xs={24} lg={12}>
+                      <div className="designation">
+                        <input
+                          placeholder="< Designation >"
+                          type="text"
+                          name="designation"
+                          className="bg-gray-900 h-12 rounded-md w-full p-4 focus:outline-0 border-2 border-black"
+                        />
+                      </div>
+                    </Col>
+                    <Col xs={24} lg={12}>
+                      <div className="upload-image">
+                        <Upload accept="image/png, image/jpeg">
+                          <Button
+                            icon={<UploadOutlined />}
+                            className="bg-gray-700 h-10 text-gray-50 d-flex flex-row justify-items-center items-center"
+                          >
+                            Upload
+                          </Button>
+                        </Upload>
+                      </div>
+                    </Col>
+                  </Row>
                   <div className="flex flex-col justify-center items-center mt-6">
                     <p className="text-sm text-gray-900 text-center">
                       Before clicking Add employee please verify the details

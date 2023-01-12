@@ -52,3 +52,12 @@ a {
   margin: 0;
   padding: 0;
 }
+
+/* Overriding Ant-design defualt styles */
+
+.ant-picker-input > input {
+  color: white !important;
+}
+.ant-picker-suffix {
+  color: white !important;
+}
