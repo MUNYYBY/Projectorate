@@ -30,11 +30,21 @@ export default function AddEmployee(props) {
                 <div className="Input-stack w-full">
                   <Row gutter={[8, 8]}>
                     <Col xs={24} lg={12}>
-                      <div className="employee_name">
+                      <div className="employee_first_name">
                         <input
-                          placeholder="< Employee Name >"
+                          placeholder="< Employee First Name >"
                           type="text"
-                          name="employee_name"
+                          name="employee_first_name"
+                          className="bg-gray-900 h-12 rounded-md w-full p-4 focus:outline-0 border-2 border-black"
+                        />
+                      </div>
+                    </Col>
+                    <Col xs={24} lg={12}>
+                      <div className="employee_last_name">
+                        <input
+                          placeholder="< Employee Last Name >"
+                          type="text"
+                          name="employee_last_name"
                           className="bg-gray-900 h-12 rounded-md w-full p-4 focus:outline-0 border-2 border-black"
                         />
                       </div>
@@ -83,6 +93,24 @@ export default function AddEmployee(props) {
                           placeholder="< Designation >"
                           type="text"
                           name="designation"
+                          className="bg-gray-900 h-12 rounded-md w-full p-4 focus:outline-0 border-2 border-black"
+                        />
+                      </div>
+                    </Col>
+                    <Col xs={24} lg={12}>
+                      <div className="date_of_joining">
+                        <DatePicker
+                          className="text-gray-50 bg-gray-900 h-12 rounded-md w-full p-4 border-2 border-black"
+                          placeholder="< Date of Joining >"
+                        />
+                      </div>
+                    </Col>
+                    <Col xs={24} lg={12}>
+                      <div className="years_of_experience">
+                        <input
+                          placeholder="< Years of Experience >"
+                          type="number"
+                          name="years_of_experience"
                           className="bg-gray-900 h-12 rounded-md w-full p-4 focus:outline-0 border-2 border-black"
                         />
                       </div>
