@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,14 +8,67 @@ datasource db {
 }
 
 model User {
-  id            String         @id @default(cuid())
-  name          String?
-  email         String?        @unique
-  password      String?
-  image         String?
-  phone_number  String?
-  status        String         @default("Active")
-  role          String?        @default("employee")
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
+  id         Int          @id @default(autoincrement())
+  email      String       @unique
+  password   String
+  status     String?      @default("Active")
+  superAdmin SuperAdmin?   @relation(fields: [superAdminId], references: [id])
+  superAdminId Int?          
+  admin      Admin?        @relation(fields: [adminId], references: [id])
+  adminId    Int?          
+  employee   Employee?        @relation(fields: [employeeId], references: [id])
+  employeeId Int?          
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime?    @updatedAt
+}
+
+model SuperAdmin {
+  id         Int       @id @default(autoincrement())
+  email      String    @unique
+  first_name String
+  last_name  String
+  user       User[]
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime? @updatedAt
+}
+
+model Admin {
+  id                  Int       @id @default(autoincrement())
+  first_name          String
+  last_name           String
+  email               String    @unique
+  phone_number        String
+  date_of_birth       String
+  expertise           String?
+  designation         String
+  date_of_joining     String?
+  years_of_experience Int?
+  image_url           String?
+  user                User[]
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime? @updatedAt
+}
+
+model Employee {
+  id                  Int         @id @default(autoincrement())
+  first_name          String
+  last_name           String
+  email               String      @unique
+  phone_number        String
+  date_of_birth       String
+  expertise           String?
+  designationId       Int
+  date_of_joining     String?
+  years_of_experience Int?
+  image_url           String?
+  user                User[]
+  createdAt           DateTime    @default(now())
+  updatedAt           DateTime?   @updatedAt
+}
+
+model Designation {
+  id        Int       @id @default(autoincrement())
+  title     String    @default("Team Member")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
 }
