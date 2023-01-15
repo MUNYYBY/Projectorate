@@ -13,7 +13,7 @@ export default withAuth({
         return !token?.id;
       }
       // `/me` only requires the user to be logged in
-      return !!token;
+      return !token;
     },
   },
 });

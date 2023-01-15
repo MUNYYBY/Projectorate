@@ -62,9 +62,9 @@ const authOptions = {
       });
       const userData = {
         id: userDatabase.id,
-        name: userDatabase.name,
+        // name: userDatabase.name,
         email: userDatabase.email,
-        role: userDatabase.role,
+        // role: userDatabase.role,
       }; // creating payload
 
       session.user = userData; //sending payload as session

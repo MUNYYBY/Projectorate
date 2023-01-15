@@ -4,8 +4,24 @@ import { AnimatePresence } from "framer-motion";
 import { UploadOutlined } from "@ant-design/icons";
 import { Button, Upload } from "antd";
 import { Col, Row } from "antd";
+import { useState, useEffect } from "react";
 
 export default function AddEmployee(props) {
+  const [employeePayload, setEmployeePayload] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    dateOfBirth: "",
+    expertise: "",
+    designation: "",
+    dateOfJoining: "",
+    yearsOfExperience: "",
+  });
+
+  useEffect(() => {
+    console.log(employeePayload);
+  }, [employeePayload]);
   return (
     <div className="Add-Employees w-screen h-screen absolute top-0 z-50">
       <div className="w-full h-full flex flex-col justify-center items-center absolute top-0 z-20">
@@ -36,6 +52,12 @@ export default function AddEmployee(props) {
                           type="text"
                           name="employee_first_name"
                           className="bg-gray-900 h-12 rounded-md w-full p-4 focus:outline-0 border-2 border-black"
+                          onChange={(e) =>
+                            setEmployeePayload({
+                              ...employeePayload,
+                              firstName: e.target.value,
+                            })
+                          }
                         />
                       </div>
                     </Col>
@@ -46,6 +68,12 @@ export default function AddEmployee(props) {
                           type="text"
                           name="employee_last_name"
                           className="bg-gray-900 h-12 rounded-md w-full p-4 focus:outline-0 border-2 border-black"
+                          onChange={(e) =>
+                            setEmployeePayload({
+                              ...employeePayload,
+                              lastName: e.target.value,
+                            })
+                          }
                         />
                       </div>
                     </Col>
@@ -56,6 +84,12 @@ export default function AddEmployee(props) {
                           type="email"
                           name="employee_email"
                           className="bg-gray-900 h-12 rounded-md w-full p-4 focus:outline-0 border-2 border-black"
+                          onChange={(e) =>
+                            setEmployeePayload({
+                              ...employeePayload,
+                              email: e.target.value,
+                            })
+                          }
                         />
                       </div>
                     </Col>
@@ -66,6 +100,12 @@ export default function AddEmployee(props) {
                           type="text"
                           name="phone_number"
                           className="bg-gray-900 h-12 rounded-md w-full p-4 focus:outline-0 border-2 border-black"
+                          onChange={(e) =>
+                            setEmployeePayload({
+                              ...employeePayload,
+                              phoneNumber: e.target.value,
+                            })
+                          }
                         />
                       </div>
                     </Col>
@@ -84,6 +124,12 @@ export default function AddEmployee(props) {
                           type="text"
                           name="expertise"
                           className="bg-gray-900 h-12 rounded-md w-full p-4 focus:outline-0 border-2 border-black"
+                          onChange={(e) =>
+                            setEmployeePayload({
+                              ...employeePayload,
+                              expertise: e.target.value,
+                            })
+                          }
                         />
                       </div>
                     </Col>
@@ -94,6 +140,12 @@ export default function AddEmployee(props) {
                           type="text"
                           name="designation"
                           className="bg-gray-900 h-12 rounded-md w-full p-4 focus:outline-0 border-2 border-black"
+                          onChange={(e) =>
+                            setEmployeePayload({
+                              ...employeePayload,
+                              designation: e.target.value,
+                            })
+                          }
                         />
                       </div>
                     </Col>
@@ -112,6 +164,12 @@ export default function AddEmployee(props) {
                           type="number"
                           name="years_of_experience"
                           className="bg-gray-900 h-12 rounded-md w-full p-4 focus:outline-0 border-2 border-black"
+                          onChange={(e) =>
+                            setEmployeePayload({
+                              ...employeePayload,
+                              yearsOfExperience: e.target.value,
+                            })
+                          }
                         />
                       </div>
                     </Col>

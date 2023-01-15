@@ -29,6 +29,7 @@ export default function Auth() {
     console.log({ session });
   };
   useEffect(() => {
+    console.log(signInResponse);
     if (signInResponse) {
       if (!signInResponse.error) {
         //sucessfully logged in
