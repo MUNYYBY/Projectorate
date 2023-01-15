@@ -75,9 +75,13 @@ export default function SuperAdminEmployees({ data }) {
 // This gets called on every server-side render
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`api/employee/get-employee`);
-  const data = await res.json();
+  const res = await fetch(
+    process.env.NEXT_PUBLIC_BASE_URL + `/employee/get-employee`
+  );
+  console.log("server-side:", res);
+  const data = res.json();
+  console.log("server-side:", data);
 
   // Pass data to the page via props
-  return { props: { data } };
+  return { props: data };
 }
