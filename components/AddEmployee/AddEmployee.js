@@ -5,7 +5,7 @@ import { UploadOutlined } from "@ant-design/icons";
 import { Button, Upload } from "antd";
 import { Col, Row } from "antd";
 import { useState, useEffect } from "react";
-import { AddEmployee } from "../../client/requests";
+import { createEmployee } from "../../client/requests";
 
 export default function AddEmployee(props) {
   const [employeePayload, setEmployeePayload] = useState({
@@ -21,10 +21,14 @@ export default function AddEmployee(props) {
     yearsOfExperience: "",
   });
 
-  const handleEmployeeSubmission = () => {
-    if (employeePayload.email != "" && employeePayload.pass)
-      AddEmployee(employeePayload);
-    props.setAddEmployees(false);
+  const handleEmployeeSubmission = async (e) => {
+    e.preventDefault();
+    console.log(employeePayload);
+    if (employeePayload.email != "" && employeePayload.password) {
+      let res = createEmployee(employeePayload);
+      console.log(res);
+    }
+    // props.setAddEmployees(false);
   };
 
   // useEffect(() => {
