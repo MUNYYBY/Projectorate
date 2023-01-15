@@ -5,12 +5,14 @@ import { UploadOutlined } from "@ant-design/icons";
 import { Button, Upload } from "antd";
 import { Col, Row } from "antd";
 import { useState, useEffect } from "react";
+import { AddEmployee } from "../../client/requests";
 
 export default function AddEmployee(props) {
   const [employeePayload, setEmployeePayload] = useState({
     firstName: "",
     lastName: "",
     email: "",
+    password: "",
     phoneNumber: "",
     dateOfBirth: "",
     expertise: "",
@@ -19,9 +21,15 @@ export default function AddEmployee(props) {
     yearsOfExperience: "",
   });
 
-  useEffect(() => {
-    console.log(employeePayload);
-  }, [employeePayload]);
+  const handleEmployeeSubmission = () => {
+    if (employeePayload.email != "" && employeePayload.pass)
+      AddEmployee(employeePayload);
+    props.setAddEmployees(false);
+  };
+
+  // useEffect(() => {
+  //   console.log(employeePayload);
+  // }, [employeePayload]);
   return (
     <div className="Add-Employees w-screen h-screen absolute top-0 z-50">
       <div className="w-full h-full flex flex-col justify-center items-center absolute top-0 z-20">
@@ -42,7 +50,7 @@ export default function AddEmployee(props) {
                   portfolio...
                 </p>
               </div>
-              <form onSubmit={() => props.setAddEmployees(false)}>
+              <form onSubmit={handleEmployeeSubmission}>
                 <div className="Input-stack w-full">
                   <Row gutter={[8, 8]}>
                     <Col xs={24} lg={12}>
@@ -94,6 +102,22 @@ export default function AddEmployee(props) {
                       </div>
                     </Col>
                     <Col xs={24} lg={12}>
+                      <div className="employee_password">
+                        <input
+                          placeholder="< Employee Password >"
+                          type="password"
+                          name="employee_password"
+                          className="bg-gray-900 h-12 rounded-md w-full p-4 focus:outline-0 border-2 border-black"
+                          onChange={(e) =>
+                            setEmployeePayload({
+                              ...employeePayload,
+                              password: e.target.value,
+                            })
+                          }
+                        />
+                      </div>
+                    </Col>
+                    <Col xs={24} lg={12}>
                       <div className="phone_number ">
                         <input
                           placeholder="< Phone Number >"
@@ -114,6 +138,12 @@ export default function AddEmployee(props) {
                         <DatePicker
                           className="text-gray-50 bg-gray-900 h-12 rounded-md w-full p-4 border-2 border-black"
                           placeholder="< Date of Birth >"
+                          onChange={(date) =>
+                            setEmployeePayload({
+                              ...employeePayload,
+                              dateOfBirth: date.$d,
+                            })
+                          }
                         />
                       </div>
                     </Col>
@@ -154,6 +184,12 @@ export default function AddEmployee(props) {
                         <DatePicker
                           className="text-gray-50 bg-gray-900 h-12 rounded-md w-full p-4 border-2 border-black"
                           placeholder="< Date of Joining >"
+                          onChange={(date) =>
+                            setEmployeePayload({
+                              ...employeePayload,
+                              dateOfJoining: date.$d,
+                            })
+                          }
                         />
                       </div>
                     </Col>

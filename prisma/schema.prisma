@@ -57,7 +57,7 @@ model Employee {
   phone_number        String
   date_of_birth       String
   expertise           String?
-  designationId       Int
+  designationId       Int?
   date_of_joining     String?
   years_of_experience Int?
   image_url           String?
