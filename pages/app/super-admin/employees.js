@@ -6,13 +6,14 @@ import EmployeesContainer from "../../../components/Employees/EmployeesContainer
 import AddEmployee from "../../../components/AddEmployee/AddEmployee";
 import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader";
 import { useState, useEffect } from "react";
-export default function SuperAdminEmployees() {
+export default function SuperAdminEmployees({ data }) {
   const [addEmployees, setAddEmployees] = useState(false);
   const addEmployeesHandler = () => {
     // e.preventDefault();
     console.log("hello");
     setAddEmployees(true);
   };
+  console.log("Server-side data: ", data);
   return (
     <SuperAdminDashboard>
       <div className="Employees-panel ml-[calc(4.5rem+16rem)]">
@@ -70,4 +71,13 @@ export default function SuperAdminEmployees() {
       )}
     </SuperAdminDashboard>
   );
+}
+// This gets called on every server-side render
+export async function getServerSideProps() {
+  // Fetch data from external API
+  const res = await fetch(`api/employee/get-employee`);
+  const data = await res.json();
+
+  // Pass data to the page via props
+  return { props: { data } };
 }

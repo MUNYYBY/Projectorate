@@ -5,7 +5,7 @@ import { UploadOutlined } from "@ant-design/icons";
 import { Button, Upload } from "antd";
 import { Col, Row } from "antd";
 import { useState, useEffect } from "react";
-import { createEmployee } from "../../client/requests";
+import { createEmployee, getEmployees } from "../../client/requests";
 
 export default function AddEmployee(props) {
   const [employeePayload, setEmployeePayload] = useState({
