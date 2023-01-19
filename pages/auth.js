@@ -14,7 +14,7 @@ export default function Auth() {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [signInResponse, setSignInResponse] = useState(null);
-  const [notificationWindow, setNotificationWindow] = useState(<></>);
+
   const router = useRouter();
 
   const { notifications, setNotifications } = useNotificationsHandler();

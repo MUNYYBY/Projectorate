@@ -43,7 +43,6 @@ export const NotificationsContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log("notification:", notifications);
     if (notifications) {
       openNotification(
         notifications.placement,

@@ -6,6 +6,7 @@ import { Button, Upload } from "antd";
 import { Col, Row } from "antd";
 import { useState, useEffect } from "react";
 import { createEmployee, getEmployees } from "../../client/requests";
+import { useNotificationsHandler } from "../../context/notificationContext";
 
 export default function AddEmployee(props) {
   const [employeePayload, setEmployeePayload] = useState({
@@ -21,12 +22,22 @@ export default function AddEmployee(props) {
     yearsOfExperience: "",
   });
 
+  const { notifications, setNotifications } = useNotificationsHandler();
+
   const handleEmployeeSubmission = async (e) => {
     e.preventDefault();
     console.log(employeePayload);
     if (employeePayload.email != "" && employeePayload.password) {
       let res = createEmployee(employeePayload);
       console.log(res);
+      if (res) {
+        setNotifications({
+          placement: "bottomRight",
+          message: "New Employee Added to the Projectorate",
+          description: "",
+          type: "sucess",
+        });
+      }
     }
     props.setAddEmployees(false);
     props.setCheckForNewEmployees(true);
