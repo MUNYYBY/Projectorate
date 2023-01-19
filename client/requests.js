@@ -23,6 +23,6 @@ export async function deleteEmployee(id) {
     const res = await axios.delete("/api/employee/delete-employees?id=" + id);
     return res;
   } catch (error) {
-    console.log("Error While getting employee: ", error);
+    console.log("Error While deleting employee: ", error);
   }
 }

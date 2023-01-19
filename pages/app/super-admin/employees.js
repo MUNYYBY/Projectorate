@@ -7,7 +7,7 @@ import EmployeesContainerSkelton from "../../../components/Employees/EmployeesCo
 import AddEmployee from "../../../components/AddEmployee/AddEmployee";
 import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader";
 import { useState, useEffect } from "react";
-import { deleteEmployee } from "../../../client/requests";
+import { deleteEmployee, getEmployees } from "../../../client/requests";
 import axios from "axios";
 
 export default function SuperAdminEmployees({ data }) {
@@ -25,23 +25,31 @@ export default function SuperAdminEmployees({ data }) {
   }, 2500);
   const deleteEmployeeClient = (id) => {
     const delRes = deleteEmployee(id);
-    console.log(delRes);
+    if (delRes) {
+      setCheckForNewEmployees(true);
+      getNewEmployees();
+      console.log(delRes);
+    }
   };
-  // const getNewEmployees = async () => {
-  //   if (checkForNewEmployees) {
-  //     setLoading(true);
-  //     const data = await fetch(
-  //       process.env.NEXT_PUBLIC_BASE_URL + `/employee/get-employee`
-  //     );
-  //     const res = data.json();
-  //     console.log(res);
-  //     // setEmployeesData(res);
-  //     setLoading(false);
-  //   }
-  // };
-  // useEffect(() => {
-  //   getNewEmployees();
-  // }, [checkForNewEmployees]);
+  const getNewEmployees = async () => {
+    if (checkForNewEmployees) {
+      setLoading(true);
+      const res = await getEmployees();
+      const data = res.data;
+      setCheckForNewEmployees(false);
+      setEmployeesData(data);
+    }
+  };
+  useEffect(() => {
+    getNewEmployees();
+  }, [checkForNewEmployees]);
+  useEffect(() => {
+    if (loading) {
+      setInterval(() => {
+        setLoading(false);
+      }, 2500);
+    }
+  }, [loading]);
   return (
     <SuperAdminDashboard>
       <div className="Employees-panel ml-[calc(4.5rem+16rem)]">
@@ -108,10 +116,15 @@ export default function SuperAdminEmployees({ data }) {
 // This gets called on every server-side render
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(
-    process.env.NEXT_PUBLIC_BASE_URL + `/employee/get-employee`
-  );
-  const data = res.json();
+  let data;
+  try {
+    const res = await fetch(
+      process.env.NEXT_PUBLIC_BASE_URL + `/employee/get-employees`
+    );
+    data = res.json();
+  } catch (error) {
+    console.log("Error at server-side for employees: ", error);
+  }
   // Pass data to the page via props
   return { props: data };
 }
