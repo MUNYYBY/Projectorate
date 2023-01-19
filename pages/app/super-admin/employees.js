@@ -24,7 +24,8 @@ export default function SuperAdminEmployees({ data }) {
     setLoading(false);
   }, 2500);
   const deleteEmployeeClient = (id) => {
-    deleteEmployee(id);
+    const delRes = deleteEmployee(id);
+    console.log(delRes);
   };
   // const getNewEmployees = async () => {
   //   if (checkForNewEmployees) {

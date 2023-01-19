@@ -20,7 +20,8 @@ export async function getEmployees() {
 
 export async function deleteEmployee(id) {
   try {
-    const res = await axios.delete("/api/employee/delete-employees", { id });
+    const res = await axios.delete("/api/employee/delete-employees?id=" + id);
+    return res;
   } catch (error) {
     console.log("Error While getting employee: ", error);
   }
