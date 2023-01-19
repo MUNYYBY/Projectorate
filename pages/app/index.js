@@ -6,17 +6,14 @@ export default function AppDashboard({ children }) {
   const { data: session, status } = useSession();
   const router = useRouter();
   useEffect(() => {
-    // console.log(
-    //   "This is the app-wise-global status checker for auth: ",
-    //   status
-    // );
     if (status == "unauthenticated") {
       router.replace("/auth");
     }
   }, [status]);
 
   useEffect(() => {
-    if (router.pathname == "/app") router.replace("/app/super-admin");
+    if (router.pathname == "/app" && status == "authenticated")
+      router.replace("/app/super-admin");
   }, []);
   return (
     <div className="App">

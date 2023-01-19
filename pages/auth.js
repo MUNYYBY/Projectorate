@@ -15,6 +15,13 @@ export default function Auth() {
   const [signInResponse, setSignInResponse] = useState(null);
   const router = useRouter();
 
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (router.pathname == "/auth" && status == "authenticated")
+      router.replace("/app");
+  }, []);
+
   const LoginApp = async () => {
     setLoading(true);
     setErrorMessage(null);

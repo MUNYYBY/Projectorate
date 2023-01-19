@@ -3,17 +3,41 @@ import TabDevider from "../../../components/Devider/Devider";
 import { BsPeople } from "react-icons/bs";
 import SuperAdminDashboard from ".";
 import EmployeesContainer from "../../../components/Employees/EmployeesContainer";
+import EmployeesContainerSkelton from "../../../components/Employees/EmployeesContainerSkelton";
 import AddEmployee from "../../../components/AddEmployee/AddEmployee";
 import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader";
 import { useState, useEffect } from "react";
+import axios from "axios";
+
 export default function SuperAdminEmployees({ data }) {
   const [addEmployees, setAddEmployees] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [employeesData, setEmployeesData] = useState(data);
+  const [checkForNewEmployees, setCheckForNewEmployees] = useState(false);
   const addEmployeesHandler = () => {
     // e.preventDefault();
     console.log("hello");
     setAddEmployees(true);
   };
-  console.log("Server-side data: ", data);
+  // console.log("Server-side data: ", data);
+  setInterval(() => {
+    setLoading(false);
+  }, 2500);
+  // const getNewEmployees = async () => {
+  //   if (checkForNewEmployees) {
+  //     setLoading(true);
+  //     const data = await fetch(
+  //       process.env.NEXT_PUBLIC_BASE_URL + `/employee/get-employee`
+  //     );
+  //     const res = data.json();
+  //     console.log(res);
+  //     // setEmployeesData(res);
+  //     setLoading(false);
+  //   }
+  // };
+  // useEffect(() => {
+  //   getNewEmployees();
+  // }, [checkForNewEmployees]);
   return (
     <SuperAdminDashboard>
       <div className="Employees-panel ml-[calc(4.5rem+16rem)]">
@@ -38,26 +62,28 @@ export default function SuperAdminEmployees({ data }) {
             </p>
           </div>
           <div className="Projects py-4 flex flex-col">
-            <EmployeesContainer
-              employeeName="Muneeb ur rehman"
-              designation="Full-Stack Developer & UI/UX Designer"
-              informationTag="Executive Senior Consultant"
-            />
-            <EmployeesContainer
-              employeeName="Areeha Ahmed"
-              designation="Front-end Developer"
-              informationTag="Senior Developer"
-            />
-            <EmployeesContainer
-              employeeName="Umer Nadeem"
-              designation="Artificial Intelligence Expert"
-              informationTag="Junior Developer"
-            />
-            <EmployeesContainer
-              employeeName="Jahagir Ahmed"
-              designation="SEO Expert"
-              informationTag="Junior Consultant"
-            />
+            {!loading ? (
+              employeesData?.map((employee) => {
+                return (
+                  <div key={employee.id}>
+                    <EmployeesContainer
+                      employeeName={
+                        employee.first_name + " " + employee.last_name
+                      }
+                      designation={employee.expertise}
+                      informationTag={employee.email}
+                    />
+                  </div>
+                );
+              })
+            ) : (
+              <>
+                <EmployeesContainerSkelton />
+                <EmployeesContainerSkelton />
+                <EmployeesContainerSkelton />
+                <EmployeesContainerSkelton />
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -65,6 +91,7 @@ export default function SuperAdminEmployees({ data }) {
         <AddEmployee
           setAddEmployees={setAddEmployees}
           addEmployees={addEmployees}
+          setCheckForNewEmployees={setCheckForNewEmployees}
         />
       ) : (
         ""

@@ -28,7 +28,8 @@ export default function AddEmployee(props) {
       let res = createEmployee(employeePayload);
       console.log(res);
     }
-    // props.setAddEmployees(false);
+    props.setAddEmployees(false);
+    props.setCheckForNewEmployees(true);
   };
 
   // useEffect(() => {
