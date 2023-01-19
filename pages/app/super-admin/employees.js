@@ -8,29 +8,40 @@ import AddEmployee from "../../../components/AddEmployee/AddEmployee";
 import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader";
 import { useState, useEffect } from "react";
 import { deleteEmployee, getEmployees } from "../../../client/requests";
-import axios from "axios";
+import { useNotificationsHandler } from "../../../context/notificationContext";
 
 export default function SuperAdminEmployees({ data }) {
   const [addEmployees, setAddEmployees] = useState(false);
   const [loading, setLoading] = useState(true);
   const [employeesData, setEmployeesData] = useState(data);
+
+  //Global Notificatiosn handler
+  const { notifications, setNotifications } = useNotificationsHandler();
+
+  //A bool state to check for employees change
   const [checkForNewEmployees, setCheckForNewEmployees] = useState(false);
-  const addEmployeesHandler = () => {
-    // e.preventDefault();
-    setAddEmployees(true);
-  };
-  // console.log("Server-side data: ", data);
+
+  //Initial Skelton Animation for employees
   setInterval(() => {
     setLoading(false);
   }, 2500);
+  //Delete employees function
   const deleteEmployeeClient = (id) => {
     const delRes = deleteEmployee(id);
     if (delRes) {
       setCheckForNewEmployees(true);
+      setNotifications({
+        placement: "bottomRight",
+        message: "Employee deleted sucessfully!",
+        description: "",
+        type: "warning",
+      });
       getNewEmployees();
       console.log(delRes);
     }
   };
+  //This function get the new employees when
+  //CheckforNewEmployees gets true
   const getNewEmployees = async () => {
     if (checkForNewEmployees) {
       setLoading(true);
@@ -40,8 +51,12 @@ export default function SuperAdminEmployees({ data }) {
       setEmployeesData(data);
     }
   };
+
+  //Call the getNewEmployees function when needed
   useEffect(() => {
-    getNewEmployees();
+    if (checkForNewEmployees) {
+      getNewEmployees();
+    }
   }, [checkForNewEmployees]);
   useEffect(() => {
     if (loading) {

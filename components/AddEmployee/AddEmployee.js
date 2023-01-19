@@ -37,10 +37,10 @@ export default function AddEmployee(props) {
           description: "",
           type: "sucess",
         });
+        props.setAddEmployees(false);
+        props.setCheckForNewEmployees(true);
       }
     }
-    props.setAddEmployees(false);
-    props.setCheckForNewEmployees(true);
   };
 
   // useEffect(() => {
