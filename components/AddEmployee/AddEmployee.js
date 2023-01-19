@@ -22,6 +22,7 @@ export default function AddEmployee(props) {
     yearsOfExperience: "",
   });
 
+  const [isSubmitClicked, setIsSubmitClicked] = useState(false);
   const { notifications, setNotifications } = useNotificationsHandler();
 
   const handleEmployeeSubmission = async (e) => {
@@ -37,8 +38,11 @@ export default function AddEmployee(props) {
           description: "",
           type: "sucess",
         });
-        props.setAddEmployees(false);
-        props.setCheckForNewEmployees(true);
+        setIsSubmitClicked(true);
+        setTimeout(() => {
+          props.setAddEmployees(false);
+          props.setCheckForNewEmployees(true);
+        }, 2000);
       }
     }
   };
@@ -243,7 +247,14 @@ export default function AddEmployee(props) {
                       Before clicking Add employee please verify the details
                       that you have entered!
                     </p>
-                    <button className="bg-primary px-4 py-3 rounded-lg mt-1">
+                    <button
+                      className={
+                        !isSubmitClicked
+                          ? "bg-primary px-4 py-3 rounded-lg mt-1"
+                          : "bg-primary px-4 py-3 rounded-lg mt-1 opacity-60"
+                      }
+                      disabled={isSubmitClicked}
+                    >
                       ADD EMPLOYEE
                     </button>
                   </div>
