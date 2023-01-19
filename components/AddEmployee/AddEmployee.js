@@ -26,7 +26,7 @@ export default function AddEmployee(props) {
 
   const handleEmployeeSubmission = async (e) => {
     e.preventDefault();
-    console.log(employeePayload);
+    // console.log(employeePayload);
     if (employeePayload.email != "" && employeePayload.password) {
       let res = createEmployee(employeePayload);
       console.log(res);

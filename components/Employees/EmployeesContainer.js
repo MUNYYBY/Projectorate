@@ -2,11 +2,14 @@ import Image from "next/image";
 import Temp from "../../public/Uploads/temp.png";
 import InformationTag from "../InformationTag/InformationTag";
 import { HiOutlineTicket } from "react-icons/hi";
+import { BiTrash } from "react-icons/bi";
 
 export default function EmployeesContainer({
   employeeName = "Employee Name",
   designation = "Designation Name",
   informationTag = "Web Dev",
+  deleteEmployeeClient,
+  employeeId,
 }) {
   return (
     <div className="Employees-container bg-gray-700 h-20 w-full px-4 mt-2 rounded-md shadow-sm flex flex-row justify-between items-center ">
@@ -23,8 +26,16 @@ export default function EmployeesContainer({
         <InformationTag title={informationTag} type="intermediate" size="md" />
       </div>
       <div className="Employee-tickets-stat flex flex-row justify-center items-center">
-        <HiOutlineTicket size={32} className="opacity-80 mr-2" />
-        <p className="text-xl">15 / 21</p>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            deleteEmployeeClient(employeeId);
+          }}
+        >
+          <div className="bg-red-900 p-3 rounded-2xl bg-opacity-30">
+            <BiTrash size={26} className="text-red-400" />
+          </div>
+        </button>
       </div>
     </div>
   );

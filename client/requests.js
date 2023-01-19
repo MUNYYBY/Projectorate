@@ -17,3 +17,11 @@ export async function getEmployees() {
     console.log("Error While getting employee: ", error);
   }
 }
+
+export async function deleteEmployee(id) {
+  try {
+    const res = await axios.delete("/api/employee/delete-employees", { id });
+  } catch (error) {
+    console.log("Error While getting employee: ", error);
+  }
+}

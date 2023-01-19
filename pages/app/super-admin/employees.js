@@ -7,6 +7,7 @@ import EmployeesContainerSkelton from "../../../components/Employees/EmployeesCo
 import AddEmployee from "../../../components/AddEmployee/AddEmployee";
 import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader";
 import { useState, useEffect } from "react";
+import { deleteEmployee } from "../../../client/requests";
 import axios from "axios";
 
 export default function SuperAdminEmployees({ data }) {
@@ -16,13 +17,15 @@ export default function SuperAdminEmployees({ data }) {
   const [checkForNewEmployees, setCheckForNewEmployees] = useState(false);
   const addEmployeesHandler = () => {
     // e.preventDefault();
-    console.log("hello");
     setAddEmployees(true);
   };
   // console.log("Server-side data: ", data);
   setInterval(() => {
     setLoading(false);
   }, 2500);
+  const deleteEmployeeClient = (id) => {
+    deleteEmployee(id);
+  };
   // const getNewEmployees = async () => {
   //   if (checkForNewEmployees) {
   //     setLoading(true);
@@ -67,11 +70,13 @@ export default function SuperAdminEmployees({ data }) {
                 return (
                   <div key={employee.id}>
                     <EmployeesContainer
+                      employeeId={employee.id}
                       employeeName={
                         employee.first_name + " " + employee.last_name
                       }
                       designation={employee.expertise}
                       informationTag={employee.email}
+                      deleteEmployeeClient={deleteEmployeeClient}
                     />
                   </div>
                 );
@@ -105,10 +110,7 @@ export async function getServerSideProps() {
   const res = await fetch(
     process.env.NEXT_PUBLIC_BASE_URL + `/employee/get-employee`
   );
-  console.log("server-side:", res);
   const data = res.json();
-  console.log("server-side:", data);
-
   // Pass data to the page via props
   return { props: data };
 }
