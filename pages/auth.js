@@ -22,9 +22,16 @@ export default function Auth() {
   const { data: session, status } = useSession();
 
   useEffect(() => {
-    if (router.pathname == "/auth" && status == "authenticated")
+    if (status == "authenticated") {
+      setNotifications({
+        placement: "bottomRight",
+        message: "You are already logged in!",
+        description: "",
+        type: "warning",
+      });
       router.replace("/app");
-  }, []);
+    }
+  }, [status]);
 
   const LoginApp = async () => {
     setLoading(true);
@@ -46,7 +53,7 @@ export default function Auth() {
         //sucessfully logged in
         setNotifications({
           placement: "bottomRight",
-          message: "Login sucessfully",
+          message: "Login sucess",
           description: "You have been logged in to the Projectorate!!!",
           type: "sucess",
         });
