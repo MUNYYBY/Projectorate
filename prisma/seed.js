@@ -3,14 +3,26 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 async function seed() {
-  await prisma.user.createMany({
-    data: [
-      {
-        email: "munyyb@gmail.com",
-        password: "admin1234",
-      },
-    ],
-  });
+  try {
+    await prisma.user.deleteMany();
+    console.log("All users destroyed!");
+    await prisma.user.createMany({
+      data: [
+        {
+          email: "munyyb@gmail.com",
+          password: "admin1234",
+        },
+        {
+          email: "areesha@gmail.com",
+          password: "admin1234",
+        },
+      ],
+    });
+    console.log("Users Added in super-admin!\n");
+  } catch (error) {
+    console.log(error);
+  }
+
   try {
     await prisma.Designation.deleteMany();
     console.log("All designations destroyed!");

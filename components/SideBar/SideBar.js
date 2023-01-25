@@ -10,11 +10,15 @@ import TabDevider from "../Devider/Devider";
 import { useRouteCheck } from "../../context/routesContext";
 import { Popover } from "antd";
 import { signOut } from "next-auth/react";
+import { useNotificationsHandler } from "../../context/notificationContext";
 
 const NAV_URL = "/app/super-admin/";
 
 export default function SideBar() {
   const [settingsOpen, setSettingsOpen] = useState(false);
+
+  //Global Notificatiosn handler
+  const { notifications, setNotifications } = useNotificationsHandler();
 
   const LogoutSettingsPopOverOnClick = () => {
     setSettingsOpen(false);
@@ -22,6 +26,12 @@ export default function SideBar() {
     // redirect to true and set the callbackurl to something
     // e.g callbackUrl: "/auth"
     signOut({ redirect: false });
+    setNotifications({
+      placement: "bottomRight",
+      message: "You have been logged out!",
+      description: "",
+      type: "sucess",
+    });
   };
 
   const handleSettingsOpenChange = (newOpen) => {
@@ -30,7 +40,7 @@ export default function SideBar() {
   return (
     <nav className="fixed bg-gray-900 h-screen w-[4.5rem] flex flex-col items-center justify-between">
       <div className="primary-nav flex flex-col items-center">
-        <Link href="/">
+        <Link href={NAV_URL}>
           <div className="Projectorate">
             <SideBarIcon
               icon={<FaDragon size={26} />}
