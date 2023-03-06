@@ -9,7 +9,7 @@ export default function DashboardHeader(
     title = "Home",
     type = "home",
     icon = <BiHomeAlt size={30} />,
-    setAddEmployees = "",
+    setIsEmployeePanel = false,
   },
   props
 ) {
@@ -47,7 +47,7 @@ export default function DashboardHeader(
             >
               <button
                 className="bg-secondry py-1 px-3 rounded-md flex flex-row justify-center items-center"
-                onClick={() => setAddEmployees(true)}
+                onClick={() => setIsEmployeePanel(true)}
               >
                 <IoIosAdd size={26} />
                 <p>Employees Management</p>
