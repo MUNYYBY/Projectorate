@@ -42,7 +42,7 @@ export default function DashboardHeader(
           {type == "employees" ? (
             <Tooltip
               placement="bottom"
-              title="Add Employees for your projects workforce"
+              title="A panel in which admin can manage all of their employees"
               mouseEnterDelay={0.05}
             >
               <button
@@ -50,7 +50,7 @@ export default function DashboardHeader(
                 onClick={() => setAddEmployees(true)}
               >
                 <IoIosAdd size={26} />
-                <p>Add Employees</p>
+                <p>Employees Management</p>
               </button>
             </Tooltip>
           ) : (
