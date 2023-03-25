@@ -54,7 +54,7 @@ a {
 }
 
 /* Overriding Ant-design defualt styles */
-
+/* 
 .ant-picker-input > input::placeholder {
   color: white !important;
 }
@@ -63,4 +63,4 @@ a {
 }
 .ant-picker-suffix {
   color: white !important;
-}
+} */

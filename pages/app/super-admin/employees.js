@@ -9,19 +9,8 @@ import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader
 import { useState, useEffect } from "react";
 import { deleteEmployee, getEmployees } from "../../../client/requests";
 import { useNotificationsHandler } from "../../../context/notificationContext";
-import { PlusOutlined } from "@ant-design/icons";
-import {
-  Button,
-  Col,
-  DatePicker,
-  Drawer,
-  Form,
-  Input,
-  Row,
-  Select,
-  Space,
-} from "antd";
-import EmployeesPanel from "../../../components/EmployeesPanel/EmployeesPanel";
+import { Select } from "antd";
+import EmployeesPanelContainer from "../../../components/EmployeesPanel/EmployeesPanelContainer";
 
 const { Option } = Select;
 
@@ -140,20 +129,10 @@ export default function SuperAdminEmployees({ data }) {
       ) : (
         ""
       )} */}
-      <Drawer
-        title="Employees Panel"
-        onClose={() => setIsEmployeePanel(false)}
-        open={isEmployeePanel}
-        bodyStyle={{ paddingBottom: 80 }}
-        width="100%"
-        extra={
-          <Space>
-            <Button type="primary">Add A New Employee</Button>
-          </Space>
-        }
-      >
-        <EmployeesPanel />
-      </Drawer>
+      <EmployeesPanelContainer
+        isEmployeePanel={isEmployeePanel}
+        setIsEmployeePanel={setIsEmployeePanel}
+      />
     </SuperAdminDashboard>
   );
 }
