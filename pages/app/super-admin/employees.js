@@ -145,6 +145,7 @@ export default function SuperAdminEmployees({ data }) {
         onClose={() => setIsEmployeePanel(false)}
         open={isEmployeePanel}
         bodyStyle={{ paddingBottom: 80 }}
+        width="100%"
         extra={
           <Space>
             <Button onClick={() => setIsEmployeePanel(false)}>Cancel</Button>
