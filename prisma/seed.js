@@ -22,15 +22,15 @@ async function seed() {
   } catch (error) {
     console.log(error);
   }
-
+  //the following code seeds the roles
   try {
-    await prisma.Designation.deleteMany();
-    console.log("All designations destroyed!");
+    await prisma.Role.deleteMany();
+    console.log("All Role destroyed!");
   } catch (error) {
-    console.log("Error at designations destroy!", error);
+    console.log("Error at Role destroy!", error);
   }
   try {
-    await prisma.Designation.createMany({
+    await prisma.Role.createMany({
       data: [
         {
           title: "Admin",
@@ -49,9 +49,37 @@ async function seed() {
         },
       ],
     });
-    console.log("All Designation Added!");
+    console.log("All Role Added!");
   } catch (error) {
-    console.log("Error at adding all designations! ", error);
+    console.log("Error at adding all Role! ", error);
+  }
+  //the following code seeds the designations
+  try {
+    await prisma.Designation.deleteMany();
+    console.log("All Designation destroyed!");
+  } catch (error) {
+    console.log("Error at Designation destroy!", error);
+  }
+  try {
+    await prisma.Designation.createMany({
+      data: [
+        {
+          title: "Senior",
+        },
+        {
+          title: "Associate",
+        },
+        {
+          title: "Beginner",
+        },
+        {
+          title: "Intern",
+        },
+      ],
+    });
+    console.log("All Role Added!");
+  } catch (error) {
+    console.log("Error at adding all Role! ", error);
   }
 }
 seed();

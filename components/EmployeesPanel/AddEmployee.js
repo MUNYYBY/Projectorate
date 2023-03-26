@@ -11,7 +11,8 @@ import {
   Row,
   Select,
 } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getDesignations, getRoles } from "../../client/requests";
 const { Option } = Select;
 const formItemLayout = {
   labelCol: {
@@ -60,6 +61,9 @@ export default function AddEmployee() {
     gender: "",
     address: "",
   });
+  const [designations, setDesignations] = useState(null);
+  const [roles, setRoles] = useState(null);
+  const [loading, setLoading] = useState(true);
   const handleEmployeeSubmission = async (e) => {
     e.preventDefault();
     // console.log(employeePayload);
@@ -97,6 +101,27 @@ export default function AddEmployee() {
       </Select>
     </Form.Item>
   );
+  //get all the designations in the db
+  const getAllDesignations = async () => {
+    const designationsResponse = await getDesignations();
+    setDesignations(designationsResponse.data);
+  };
+  //get all the roles in the db
+  const getAllRoles = async () => {
+    const rolesResponse = await getRoles();
+    setRoles(rolesResponse.data);
+  };
+  useEffect(() => {
+    getAllDesignations();
+    getAllRoles();
+  }, []);
+  useEffect(() => {
+    if (designations && roles) {
+      setLoading(false);
+    }
+    console.log(designations);
+    console.log(roles);
+  }, [designations, roles]);
   return (
     <div className="flex justify-center w-full">
       <div className="container flex w-full flex-col justify-center items-center">
@@ -117,6 +142,7 @@ export default function AddEmployee() {
               width: "100%",
             }}
             scrollToFirstError
+            disabled={loading}
           >
             <Row>
               <Col span={12}>
@@ -255,10 +281,13 @@ export default function AddEmployee() {
                   ]}
                 >
                   <Select placeholder="select your A designation for employee">
-                    <Option value="senior">Senior</Option>
-                    <Option value="associate">Associate</Option>
-                    <Option value="beginner">Beginner</Option>
-                    <Option value="intern">Intern</Option>
+                    {designations?.map((designation) => {
+                      return (
+                        <Option key={designation.key} value={designation.id}>
+                          {designation.title}
+                        </Option>
+                      );
+                    })}
                   </Select>
                 </Form.Item>
                 <Form.Item
@@ -272,12 +301,13 @@ export default function AddEmployee() {
                   ]}
                 >
                   <Select placeholder="select your A role for employee">
-                    <Option value="admin">Admin</Option>
-                    <Option value="project manager">Project Manager</Option>
-                    <Option value="operations manager">
-                      Operations Manger
-                    </Option>
-                    <Option value="employee">Employee</Option>
+                    {roles?.map((role) => {
+                      return (
+                        <Option key={role.key} value={role.id}>
+                          {role.title}
+                        </Option>
+                      );
+                    })}
                   </Select>
                 </Form.Item>
                 <Form.Item

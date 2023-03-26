@@ -26,3 +26,23 @@ export async function deleteEmployee(id) {
     console.log("Error While deleting employee: ", error);
   }
 }
+
+//get all the designations in the database
+export async function getDesignations() {
+  try {
+    const res = await axios.get("/api/designations/get-designations");
+    return res.data;
+  } catch (error) {
+    console.log("Error While getting designations at front-end: ", error);
+  }
+}
+
+//get all the roles in the database
+export async function getRoles() {
+  try {
+    const res = await axios.get("/api/roles/get-roles");
+    return res.data;
+  } catch (error) {
+    console.log("Error While getting roles at front-end: ", error);
+  }
+}
