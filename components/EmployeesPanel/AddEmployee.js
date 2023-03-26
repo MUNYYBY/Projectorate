@@ -44,6 +44,43 @@ const tailFormItemLayout = {
   },
 };
 export default function AddEmployee() {
+  const [employeePayload, setEmployeePayload] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    phoneNumber: "",
+    dateOfBirth: "",
+    expertise: "",
+    designation: "",
+    role: "",
+    dateOfJoining: "",
+    dateOfBirth: "",
+    yearsOfExperience: "",
+    gender: "",
+    address: "",
+  });
+  const handleEmployeeSubmission = async (e) => {
+    e.preventDefault();
+    // console.log(employeePayload);
+    if (employeePayload.email != "" && employeePayload.password) {
+      let res = createEmployee(employeePayload);
+      console.log(res);
+      if (res) {
+        setNotifications({
+          placement: "bottomRight",
+          message: "New Employee Added to the Projectorate",
+          description: "",
+          type: "sucess",
+        });
+        setIsSubmitClicked(true);
+        setTimeout(() => {
+          props.setAddEmployees(false);
+          props.setCheckForNewEmployees(true);
+        }, 2000);
+      }
+    }
+  };
   const [form] = Form.useForm();
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
@@ -153,13 +190,26 @@ export default function AddEmployee() {
                     }}
                   />
                 </Form.Item>
+
                 <Form.Item
                   name="date_of_birth"
                   label="Date of Birth"
                   rules={[
                     {
                       required: true,
-                      message: "Please input your phone number!",
+                      message: "Please input a date of birth!",
+                    },
+                  ]}
+                >
+                  <DatePicker />
+                </Form.Item>
+                <Form.Item
+                  name="date_of_joining"
+                  label="Date of Joining"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input a date of joing for employee!",
                     },
                   ]}
                 >
@@ -168,32 +218,66 @@ export default function AddEmployee() {
               </Col>
               <Col span={12}>
                 <Form.Item
-                  name="intro"
-                  label="Intro"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input Intro",
-                    },
-                  ]}
-                >
-                  <Input.TextArea showCount maxLength={100} />
-                </Form.Item>
-
-                <Form.Item
                   name="gender"
                   label="Gender"
                   rules={[
                     {
                       required: true,
-                      message: "Please select gender!",
+                      message: "Please a gender!",
                     },
                   ]}
                 >
-                  <Select placeholder="select your gender">
+                  <Select placeholder="select gender">
                     <Option value="male">Male</Option>
                     <Option value="female">Female</Option>
-                    <Option value="other">Other</Option>
+                  </Select>
+                </Form.Item>
+                <Form.Item
+                  name="expertise"
+                  label="Expertise"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input Expertise",
+                    },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  name="designation"
+                  label="Designation"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please select a designation!",
+                    },
+                  ]}
+                >
+                  <Select placeholder="select your A designation for employee">
+                    <Option value="senior">Senior</Option>
+                    <Option value="associate">Associate</Option>
+                    <Option value="beginner">Beginner</Option>
+                    <Option value="intern">Intern</Option>
+                  </Select>
+                </Form.Item>
+                <Form.Item
+                  name="role"
+                  label="Role"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please select a role!",
+                    },
+                  ]}
+                >
+                  <Select placeholder="select your A role for employee">
+                    <Option value="admin">Admin</Option>
+                    <Option value="project manager">Project Manager</Option>
+                    <Option value="operations manager">
+                      Operations Manger
+                    </Option>
+                    <Option value="employee">Employee</Option>
                   </Select>
                 </Form.Item>
                 <Form.Item
