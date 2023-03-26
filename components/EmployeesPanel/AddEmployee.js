@@ -60,6 +60,7 @@ export default function AddEmployee(props) {
     console.log(res);
     if (res?.error) {
       message.error("Employee submission failed!");
+      setLoading(false);
     } else {
       message.success("Employee added successfully!");
       form.resetFields();

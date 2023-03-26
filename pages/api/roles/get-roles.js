@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   console.log("Get all roles End-point hit!");
   try {
     const data = await PrismaDB.Role.findMany();
-    console.log("All Roles: ", data);
+    // console.log("All Roles: ", data);
     res.status(200).json({ data });
   } catch (error) {
     console.log("Error while getting Roles at the backend: ", error);

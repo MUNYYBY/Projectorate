@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   console.log("Get all designations End-point hit!");
   try {
     const data = await PrismaDB.Designation.findMany();
-    console.log("All Designations: ", data);
+    // console.log("All Designations: ", data);
     res.status(200).json({ data });
   } catch (error) {
     console.log("Error while getting designations at the backend: ", error);

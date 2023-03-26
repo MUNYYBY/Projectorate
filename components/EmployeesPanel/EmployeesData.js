@@ -1,88 +1,103 @@
-import { Table, Segmented } from "antd";
-import qs from "qs";
+import { Table, Segmented, message } from "antd";
 import { useEffect, useState } from "react";
+import { getEmployees } from "../../client/requests";
+import moment from "moment/moment";
+
 const columns = [
   {
     title: "Name",
-    dataIndex: "name",
+    width: 100,
+    dataIndex: "first_name" + "last_name",
+    key: "name",
+    fixed: "left",
+  },
+  {
+    title: "Age",
+    width: 100,
+    dataIndex: "date_of_birth",
+    key: "age",
     sorter: true,
-    render: (name) => `${name.first} ${name.last}`,
-    width: "20%",
+    render: (_, { date_of_birth }) => {
+      var age = moment().diff(date_of_birth, "years", false);
+      return <p>{age} years</p>;
+    },
   },
   {
     title: "Gender",
     dataIndex: "gender",
-    filters: [
-      {
-        text: "Male",
-        value: "male",
-      },
-      {
-        text: "Female",
-        value: "female",
-      },
-    ],
-    width: "20%",
+    key: "gender",
   },
   {
     title: "Email",
     dataIndex: "email",
+    key: "email",
+  },
+  {
+    title: "Phone Number",
+    dataIndex: "phone_number",
+    key: "phone_number",
+  },
+  {
+    title: "Designation",
+    dataIndex: "designation",
+    key: "designation",
+  },
+  {
+    title: "Role",
+    dataIndex: "role",
+    key: "role",
+  },
+  {
+    title: "Expertise",
+    dataIndex: "expertise",
+    key: "expertise",
+  },
+  {
+    title: "Years of Experince",
+    dataIndex: "years_of_experience",
+    key: "years_of_experience",
+    render: (_, { years_of_experience }) => <p>{years_of_experience} years</p>,
+  },
+  {
+    title: "Action",
+    key: "operation",
+    fixed: "right",
+    width: 100,
+    render: () => <a>action</a>,
   },
 ];
-const getRandomuserParams = (params) => ({
-  results: params.pagination?.pageSize,
-  page: params.pagination?.current,
-  ...params,
-});
 
 export default function employeesData() {
   const [tabValue, setTabValue] = useState("All");
-  const [data, setData] = useState();
+  const [employeesData, setEmployeesData] = useState();
   const [loading, setLoading] = useState(false);
-  const [tableParams, setTableParams] = useState({
-    pagination: {
-      current: 1,
-      pageSize: 10,
-    },
-  });
-  const fetchData = () => {
-    setLoading(true);
-    fetch(
-      `https://randomuser.me/api?${qs.stringify(
-        getRandomuserParams(tableParams)
-      )}`
-    )
-      .then((res) => res.json())
-      .then(({ results }) => {
-        setData(results);
-        setLoading(false);
-        setTableParams({
-          ...tableParams,
-          pagination: {
-            ...tableParams.pagination,
-            total: 200,
-            // 200 is mock data, you should read it from server
-            // total: data.totalCount,
-          },
-        });
-      });
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, [JSON.stringify(tableParams)]);
-  const handleTableChange = (pagination, filters, sorter) => {
-    setTableParams({
-      pagination,
-      filters,
-      ...sorter,
-    });
-
-    // `dataSource` is useless since `pageSize` changed
-    if (pagination.pageSize !== tableParams.pagination?.pageSize) {
-      setData([]);
+  //Delete employees function
+  const deleteEmployeeClient = (id) => {
+    const delRes = deleteEmployee(id);
+    if (delRes) {
+      setCheckForNewEmployees(true);
+      message.success("Employee deleted sucessfully!");
+      getEmployees();
+      console.log(delRes);
     }
   };
+  //This function get the new employees when
+  //CheckforNewEmployees gets true
+  const getEmployeesData = async () => {
+    setLoading(true);
+    const res = await getEmployees();
+    const data = res.data;
+    console.log("EmployeesData:", data);
+    if (data) {
+      setLoading(false);
+    }
+    setEmployeesData(data);
+  };
+
+  //Call the getNewEmployees function when needed
+  useEffect(() => {
+    getEmployeesData();
+  }, []);
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="py-4">
@@ -95,11 +110,10 @@ export default function employeesData() {
       <div className="employees_panel_data_table w-full">
         <Table
           columns={columns}
-          rowKey={(record) => record.login.uuid}
-          dataSource={data}
-          pagination={tableParams.pagination}
-          loading={loading}
-          onChange={handleTableChange}
+          dataSource={employeesData}
+          scroll={{
+            x: 1300,
+          }}
         />
       </div>
     </div>
