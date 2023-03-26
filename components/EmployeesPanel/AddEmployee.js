@@ -10,9 +10,14 @@ import {
   InputNumber,
   Row,
   Select,
+  message,
 } from "antd";
 import { useEffect, useState } from "react";
-import { getDesignations, getRoles } from "../../client/requests";
+import {
+  createEmployee,
+  getDesignations,
+  getRoles,
+} from "../../client/requests";
 const { Option } = Select;
 const formItemLayout = {
   labelCol: {
@@ -44,50 +49,26 @@ const tailFormItemLayout = {
     },
   },
 };
-export default function AddEmployee() {
-  const [employeePayload, setEmployeePayload] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    phoneNumber: "",
-    dateOfBirth: "",
-    expertise: "",
-    designation: "",
-    role: "",
-    dateOfJoining: "",
-    dateOfBirth: "",
-    yearsOfExperience: "",
-    gender: "",
-    address: "",
-  });
+export default function AddEmployee(props) {
   const [designations, setDesignations] = useState(null);
   const [roles, setRoles] = useState(null);
   const [loading, setLoading] = useState(true);
-  const handleEmployeeSubmission = async (e) => {
-    e.preventDefault();
-    // console.log(employeePayload);
-    if (employeePayload.email != "" && employeePayload.password) {
-      let res = createEmployee(employeePayload);
-      console.log(res);
-      if (res) {
-        setNotifications({
-          placement: "bottomRight",
-          message: "New Employee Added to the Projectorate",
-          description: "",
-          type: "sucess",
-        });
-        setIsSubmitClicked(true);
-        setTimeout(() => {
-          props.setAddEmployees(false);
-          props.setCheckForNewEmployees(true);
-        }, 2000);
-      }
+  const [form] = Form.useForm();
+  const handleEmployeeSubmission = async (payload) => {
+    setLoading(true);
+    let res = await createEmployee(payload);
+    console.log(res);
+    if (res?.error) {
+      message.error("Employee submission failed!");
+    } else {
+      message.success("Employee added successfully!");
+      form.resetFields();
+      props.setAddEmployee(false);
     }
   };
-  const [form] = Form.useForm();
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+    // console.log("Received values of form: ", values);
+    handleEmployeeSubmission(values);
   };
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
@@ -96,7 +77,7 @@ export default function AddEmployee() {
           width: 70,
         }}
       >
-        <Option value="93">+92</Option>
+        <Option value="92">+92</Option>
         <Option value="91">+91</Option>
       </Select>
     </Form.Item>
@@ -119,8 +100,8 @@ export default function AddEmployee() {
     if (designations && roles) {
       setLoading(false);
     }
-    console.log(designations);
-    console.log(roles);
+    // console.log(designations);
+    // console.log(roles);
   }, [designations, roles]);
   return (
     <div className="flex justify-center w-full">
@@ -147,7 +128,7 @@ export default function AddEmployee() {
             <Row>
               <Col span={12}>
                 <Form.Item
-                  name="first_name"
+                  name="firstName"
                   label="First Name"
                   rules={[
                     {
@@ -159,7 +140,7 @@ export default function AddEmployee() {
                   <Input />
                 </Form.Item>
                 <Form.Item
-                  name="last_name"
+                  name="lastName"
                   label="Last Name"
                   rules={[
                     {
@@ -200,7 +181,7 @@ export default function AddEmployee() {
                   <Input />
                 </Form.Item>
                 <Form.Item
-                  name="phone"
+                  name="phoneNumber"
                   label="Phone Number"
                   rules={[
                     {
@@ -218,7 +199,7 @@ export default function AddEmployee() {
                 </Form.Item>
 
                 <Form.Item
-                  name="date_of_birth"
+                  name="dateOfBirth"
                   label="Date of Birth"
                   rules={[
                     {
@@ -230,8 +211,8 @@ export default function AddEmployee() {
                   <DatePicker />
                 </Form.Item>
                 <Form.Item
-                  name="date_of_joining"
-                  label="Date of Joining"
+                  name="dateOfJoining"
+                  label="Date of Join"
                   rules={[
                     {
                       required: true,
@@ -243,6 +224,18 @@ export default function AddEmployee() {
                 </Form.Item>
               </Col>
               <Col span={12}>
+                <Form.Item
+                  name="yearsOfExperience"
+                  label="Years of experince"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please a add a year of experince!",
+                    },
+                  ]}
+                >
+                  <InputNumber className="w-full" />
+                </Form.Item>
                 <Form.Item
                   name="gender"
                   label="Gender"
@@ -283,7 +276,7 @@ export default function AddEmployee() {
                   <Select placeholder="select your A designation for employee">
                     {designations?.map((designation) => {
                       return (
-                        <Option key={designation.key} value={designation.id}>
+                        <Option key={designation.id} value={designation.id}>
                           {designation.title}
                         </Option>
                       );
@@ -303,7 +296,7 @@ export default function AddEmployee() {
                   <Select placeholder="select your A role for employee">
                     {roles?.map((role) => {
                       return (
-                        <Option key={role.key} value={role.id}>
+                        <Option key={role.id} value={role.id}>
                           {role.title}
                         </Option>
                       );

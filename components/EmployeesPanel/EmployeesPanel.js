@@ -26,7 +26,11 @@ export default function EmployeesPanel(props) {
           },
         ]}
       />
-      {props.addEmployee ? <AddEmployee /> : <EmployeesData />}
+      {props.addEmployee ? (
+        <AddEmployee setAddEmployee={props.setAddEmployee} />
+      ) : (
+        <EmployeesData />
+      )}
     </div>
   );
 }

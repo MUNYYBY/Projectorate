@@ -3,9 +3,11 @@ import axios from "axios";
 export async function createEmployee(payload) {
   try {
     const res = await axios.post("/api/employee/add-employee", payload);
+    console.log("hello ", res.data);
     return res.data;
   } catch (error) {
     console.log("Error While add employee: ", error);
+    return { error: error };
   }
 }
 

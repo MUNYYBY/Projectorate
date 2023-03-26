@@ -18,14 +18,18 @@ export default async function handler(req, res) {
         date_of_birth: employeeData.dateOfBirth,
         date_of_joining: employeeData.dateOfJoining,
         expertise: employeeData.expertise,
-        // designation: employeeData.designation,
+        designation: employeeData.designation,
+        role: employeeData.role,
+        gender: employeeData.gender,
+        address: employeeData.address,
+        years_of_experience: employeeData.yearsOfExperience,
       },
     });
     res.status(200).json(data);
   } catch (error) {
     console.log("Error while add new user at backend: ", error);
     return res
-      .status(422)
-      .json({ Message: "Error while add new user at backend: " });
+      .status(500)
+      .json({ error: "Error while add new user at backend" });
   }
 }

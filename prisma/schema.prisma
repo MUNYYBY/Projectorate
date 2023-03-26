@@ -58,10 +58,10 @@ model Employee {
   phone_number        String
   date_of_birth       String
   expertise           String
-  designation         String
-  role                String
+  designation         Int
+  role                Int
   date_of_joining     String
-  years_of_experience String
+  years_of_experience Int
   image_url           String?
   gender              String
   address             String
