@@ -7,7 +7,7 @@ const columns = [
   {
     title: "Name",
     width: 100,
-    dataIndex: "first_name" + "last_name",
+    dataIndex: "first_name",
     key: "name",
     fixed: "left",
   },
