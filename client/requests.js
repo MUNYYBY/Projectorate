@@ -19,6 +19,15 @@ export async function getEmployees() {
     console.log("Error While getting employee: ", error);
   }
 }
+export async function getEmployeeInfo(id) {
+  console.log(id);
+  try {
+    const res = await axios.get("/api/employee/get-employee-info?id=" + id);
+    return res.data;
+  } catch (error) {
+    console.log("Error While getting employee info: ", error);
+  }
+}
 
 export async function deleteEmployee(id) {
   try {

@@ -8,21 +8,28 @@ export default async function handler(req, res) {
   const employeeData = req.body;
   //   console.log(employeeData);
   try {
-    const data = await PrismaDB.employee.create({
+    const data = await PrismaDB.user.create({
       data: {
-        first_name: employeeData.firstName,
-        last_name: employeeData.lastName,
         email: employeeData.email,
         password: employeeData.password,
-        phone_number: employeeData.phoneNumber,
-        date_of_birth: employeeData.dateOfBirth,
-        date_of_joining: employeeData.dateOfJoining,
-        expertise: employeeData.expertise,
-        designation: employeeData.designation,
         role: employeeData.role,
-        gender: employeeData.gender,
-        address: employeeData.address,
-        years_of_experience: employeeData.yearsOfExperience,
+        status: "Active",
+        employee: {
+          create: {
+            first_name: employeeData.firstName,
+            last_name: employeeData.lastName,
+            email: employeeData.email,
+            phone_number: employeeData.phoneNumber,
+            date_of_birth: employeeData.dateOfBirth,
+            date_of_joining: employeeData.dateOfJoining,
+            expertise: employeeData.expertise,
+            designation: employeeData.designation,
+            role: employeeData.role,
+            gender: employeeData.gender,
+            address: employeeData.address,
+            years_of_experience: employeeData.yearsOfExperience,
+          },
+        },
       },
     });
     res.status(200).json(data);

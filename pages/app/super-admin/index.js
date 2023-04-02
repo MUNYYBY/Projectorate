@@ -6,20 +6,10 @@ import { RouteContextProvider } from "../../../context/routesContext";
 import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader";
 import TabDevider from "../../../components/Devider/Devider";
 import { Player, Controls } from "@lottiefiles/react-lottie-player";
-import { getSession, useSession } from "next-auth/react";
+import { useUserDataHandler } from "../../../context/userDataContext";
 import AppDashboard from "..";
 export default function SuperAdminDashboard({ children }) {
-  const { data: session } = useSession;
-  const [userInfo, setUserInfo] = useState(null);
-  const getInfo = async () => {
-    setUserInfo(await getSession());
-  };
-  useEffect(() => {
-    getInfo();
-  }, []);
-  useEffect(() => {
-    console.log(userInfo);
-  }, [userInfo]);
+  const { userData } = useUserDataHandler();
   return (
     <AppDashboard>
       <RouteContextProvider>
@@ -51,10 +41,10 @@ export default function SuperAdminDashboard({ children }) {
                   style={{ height: "300px", width: "300px" }}
                 ></Player>
                 <h1 className="font-demo text-xl text-center">
-                  Hi there...Welcome my sweet bunny <br />{" "}
+                  Hi there...Welcome <br />{" "}
                   <span className="font-open">
                     {" "}
-                    {userInfo ? userInfo?.user.name : ""}{" "}
+                    {userData ? userData.data.first_name : ""}{" "}
                   </span>
                 </h1>
               </div>

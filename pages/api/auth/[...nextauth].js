@@ -48,10 +48,9 @@ const authOptions = {
     //   // Allows relative callback URLs
     //   if (!user.id) {
     //     if (url.startsWith("/auth")) return "/app";
-    //   }
+    //   } else if (new URL(url).origin === baseUrl) return url;
+    //   return baseUrl;
     //   // // Allows callback URLs on the same origin
-    //   // else if (new URL(url).origin === baseUrl) return url;
-    //   // return baseUrl;
     // },
 
     async session({ session, token, user }) {
@@ -62,9 +61,9 @@ const authOptions = {
       });
       const userData = {
         id: userDatabase.id,
-        // name: userDatabase.name,
+        status: userDatabase.status,
         email: userDatabase.email,
-        // role: userDatabase.role,
+        role: userDatabase.role,
       }; // creating payload
 
       session.user = userData; //sending payload as session

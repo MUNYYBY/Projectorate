@@ -2,18 +2,45 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { FaDragon } from "react-icons/fa";
+import { useUserDataHandler } from "../../context/userDataContext";
+import { useNotificationsHandler } from "../../context/notificationContext";
 export default function AppDashboard({ children }) {
   const { data: session, status } = useSession();
+  const [check, setCheck] = useState(false); // this state wil check if all the initial data fetching has been done or not!
+  const { userData, fetchUserInfo } = useUserDataHandler();
+  const { setNotifications } = useNotificationsHandler();
+
   const router = useRouter();
   useEffect(() => {
     if (status == "unauthenticated") {
       router.replace("/auth");
     }
   }, [status]);
-
+  async function getUserData(id) {
+    const res = await fetchUserInfo(id);
+  }
   useEffect(() => {
-    if (router.pathname == "/app" && status == "authenticated")
+    if (userData) {
+      console.log("App fetch: ", userData);
+      if (userData.data) {
+        setCheck(true);
+      } else {
+        setNotifications({
+          placement: "bottomRight",
+          message: "Info",
+          description: "Something went wrong!",
+          type: "error",
+        });
+      }
+    }
+  }, [userData]);
+  useEffect(() => {
+    console.log("This is app component");
+    if (status == "authenticated" && !check && !userData) {
+      const id = session.user.id;
+      getUserData(id);
       router.replace("/app/super-admin");
+    }
   }, []);
   return (
     <div className="App">
@@ -27,7 +54,7 @@ export default function AppDashboard({ children }) {
         </div>
       </div>
 
-      {children}
+      {check ? children : ""}
     </div>
   );
 }

@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import NextNProgress from "nextjs-progressbar";
 import { SessionProvider } from "next-auth/react";
 import { NotificationsContextProvider } from "../context/notificationContext";
+import { UserDataContextProvider } from "../context/userDataContext";
 
 function MyApp({ Component, pageProps, session }) {
   return (
@@ -13,9 +14,11 @@ function MyApp({ Component, pageProps, session }) {
         options={{ easing: "ease", speed: 500 }}
       />
       <SessionProvider session={session}>
-        <NotificationsContextProvider>
-          <Component {...pageProps} />
-        </NotificationsContextProvider>
+        <UserDataContextProvider>
+          <NotificationsContextProvider>
+            <Component {...pageProps} />
+          </NotificationsContextProvider>
+        </UserDataContextProvider>
       </SessionProvider>
     </>
   );
