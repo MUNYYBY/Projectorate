@@ -32,5 +32,5 @@ module.exports = {
       demo: ["Boiling Demo Black", "sans-serif"],
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 };
