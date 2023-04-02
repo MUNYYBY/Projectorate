@@ -22,33 +22,6 @@ model User {
   updatedAt  DateTime?    @updatedAt
 } 
 
-model SuperAdmin {
-  id         Int       @id @default(autoincrement())
-  email      String    @unique
-  first_name String
-  last_name  String
-  // user       User?
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime? @updatedAt
-}
-
-model Admin {
-  id                  Int       @id @default(autoincrement())
-  first_name          String
-  last_name           String
-  email               String    @unique
-  phone_number        String
-  date_of_birth       String
-  expertise           String?
-  designation         String
-  date_of_joining     String?
-  years_of_experience Int?
-  image_url           String?
-  // user                User?
-  createdAt           DateTime  @default(now())
-  updatedAt           DateTime? @updatedAt
-}
-
 model Employee {
   id                  Int         @id @default(autoincrement())
   first_name          String
