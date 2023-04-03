@@ -35,6 +35,7 @@ export async function deleteEmployee(id) {
     return res;
   } catch (error) {
     console.log("Error While deleting employee: ", error);
+    return error.response.data;
   }
 }
 
@@ -55,5 +56,49 @@ export async function getRoles() {
     return res.data;
   } catch (error) {
     console.log("Error While getting roles at front-end: ", error);
+  }
+}
+//get Analytics
+export async function getAllEmployeesAnalytics() {
+  try {
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL + "/analytics/all-employees"
+    );
+    return res.data;
+  } catch (error) {
+    console.log(
+      "Error While getting all employees count at front-end: ",
+      error
+    );
+  }
+}
+export async function getSeniorEmployeesAnalytics() {
+  try {
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL + "/analytics/senior-employees"
+    );
+    return res.data;
+  } catch (error) {
+    console.log("Error While getting Senior Count at front-end: ", error);
+  }
+}
+export async function getAssociateEmployeesAnalytics() {
+  try {
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL + "/analytics/associate-employees"
+    );
+    return res.data;
+  } catch (error) {
+    console.log("Error While getting associate Count at front-end: ", error);
+  }
+}
+export async function getInternEmployeesAnalytics() {
+  try {
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL + "/analytics/interns-employees"
+    );
+    return res.data;
+  } catch (error) {
+    console.log("Error While getting intern Count at front-end: ", error);
   }
 }

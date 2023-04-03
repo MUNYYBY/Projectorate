@@ -8,7 +8,14 @@ import TabDevider from "../../../components/Devider/Devider";
 import { Player, Controls } from "@lottiefiles/react-lottie-player";
 import { useUserDataHandler } from "../../../context/userDataContext";
 import AppDashboard from "..";
-export default function SuperAdminDashboard({ children }) {
+import axios from "axios";
+import {
+  getAllEmployeesAnalytics,
+  getAssociateEmployeesAnalytics,
+  getInternEmployeesAnalytics,
+  getSeniorEmployeesAnalytics,
+} from "../../../client/requests";
+export default function SuperAdminDashboard({ children, data }) {
   const { userData } = useUserDataHandler();
   return (
     <AppDashboard>
@@ -35,17 +42,19 @@ export default function SuperAdminDashboard({ children }) {
               />
               <div className="flex flex-col m-6 mt-10">
                 <div className="flex flex-col">
-                  <h1 className="font-bold text-xl">Projectorate Statistics</h1>
+                  <h1 className="font-bold text-2xl">
+                    Projectorate Statistics
+                  </h1>
                   <p className="opacity-50">A brief analytics of the system</p>
                 </div>
-                <div class="stats shadow mt-8 bg-gray-900 rounded-lg h-40">
-                  <div class="stat">
-                    <div class="stat-figure text-pOrange">
+                <div className="stats shadow mt-8 bg-gray-900 rounded-lg h-40">
+                  <div className="stat">
+                    <div className="stat-figure text-pOrange">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        class="inline-block w-8 h-8 stroke-current"
+                        className="inline-block w-8 h-8 stroke-current"
                       >
                         <path
                           stroke-linecap="round"
@@ -55,18 +64,18 @@ export default function SuperAdminDashboard({ children }) {
                         ></path>
                       </svg>
                     </div>
-                    <div class="stat-title">Downloads</div>
-                    <div class="stat-value">31K</div>
-                    <div class="stat-desc">Jan 1st - Feb 1st</div>
+                    <div className="stat-title">All Employees</div>
+                    <div className="stat-value">{data.all_employees_count}</div>
+                    <div className="stat-desc">March 1st - present</div>
                   </div>
 
-                  <div class="stat">
-                    <div class="stat-figure text-pOrange">
+                  <div className="stat">
+                    <div className="stat-figure text-pOrange">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        class="inline-block w-8 h-8 stroke-current"
+                        className="inline-block w-8 h-8 stroke-current"
                       >
                         <path
                           stroke-linecap="round"
@@ -76,18 +85,20 @@ export default function SuperAdminDashboard({ children }) {
                         ></path>
                       </svg>
                     </div>
-                    <div class="stat-title">New Users</div>
-                    <div class="stat-value">4,200</div>
-                    <div class="stat-desc">↗︎ 400 (22%)</div>
+                    <div className="stat-title">Senior</div>
+                    <div className="stat-value">
+                      {data.senior_employees_count}
+                    </div>
+                    <div className="stat-desc">March 1st - present</div>
                   </div>
 
-                  <div class="stat">
-                    <div class="stat-figure text-pOrange">
+                  <div className="stat">
+                    <div className="stat-figure text-pOrange">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        class="inline-block w-8 h-8 stroke-current"
+                        className="inline-block w-8 h-8 stroke-current"
                       >
                         <path
                           stroke-linecap="round"
@@ -97,51 +108,53 @@ export default function SuperAdminDashboard({ children }) {
                         ></path>
                       </svg>
                     </div>
-                    <div class="stat-title">New Registers</div>
-                    <div class="stat-value">1,200</div>
-                    <div class="stat-desc">↘︎ 90 (14%)</div>
+                    <div className="stat-title">Associate</div>
+                    <div className="stat-value">
+                      {data.associate_employees_count}
+                    </div>
+                    <div className="stat-desc">March 1st - present</div>
                   </div>
                 </div>
                 {/* the second row for stats */}
-                <div className="flex flex-row w-full mt-4 h-40">
-                  <div class="stats bg-primary text-primary-content rounded-xl">
-                    <div class="stat">
-                      <div class="stat-title">Account balance</div>
-                      <div class="stat-value">$89,400</div>
-                      <div class="stat-actions">
-                        <button class="btn btn-sm btn-success">
+                <div className="flex flex-row justify-between w-full mt-4 h-40">
+                  <div className="stats bg-primary text-primary-content rounded-xl">
+                    <div className="stat">
+                      <div className="stat-title">Account balance</div>
+                      <div className="stat-value">$89,400</div>
+                      <div className="stat-actions">
+                        <button className="btn btn-sm btn-success">
                           Add funds
                         </button>
                       </div>
                     </div>
 
-                    <div class="stat">
-                      <div class="stat-title">Current balance</div>
-                      <div class="stat-value">$89,400</div>
-                      <div class="stat-actions">
-                        <button class="btn btn-sm">Withdrawal</button>
+                    <div className="stat">
+                      <div className="stat-title">Current balance</div>
+                      <div className="stat-value">$89,400</div>
+                      <div className="stat-actions">
+                        <button className="btn btn-sm">Withdrawal</button>
                       </div>
                     </div>
                   </div>
-                  <div class="stats shadow bg-gray-900 ml-4 rounded-xl">
-                    <div class="stat">
-                      <div class="stat-title">Total Page Views</div>
-                      <div class="stat-value">89,400</div>
-                      <div class="stat-desc">21% more than last month</div>
+                  <div className="stats shadow bg-gray-900 ml-4 rounded-xl">
+                    <div className="stat">
+                      <div className="stat-title">Total Page Views</div>
+                      <div className="stat-value">89,400</div>
+                      <div className="stat-desc">21% more than last month</div>
                     </div>
                   </div>
-                  <div class="stats shadow bg-gray-900 ml-4 rounded-xl">
-                    <div class="stat">
-                      <div class="stat-title">Total Page Views</div>
-                      <div class="stat-value">89,400</div>
-                      <div class="stat-desc">21% more than last month</div>
+                  <div className="stats shadow bg-gray-900 ml-4 rounded-xl">
+                    <div className="stat">
+                      <div className="stat-title">Total Page Views</div>
+                      <div className="stat-value">89,400</div>
+                      <div className="stat-desc">21% more than last month</div>
                     </div>
                   </div>
-                  <div class="stats shadow bg-gray-900 ml-4 rounded-xl">
-                    <div class="stat">
-                      <div class="stat-title">Total Page Views</div>
-                      <div class="stat-value">89,400</div>
-                      <div class="stat-desc">21% more than last month</div>
+                  <div className="stats shadow bg-gray-900 ml-4 rounded-xl">
+                    <div className="stat">
+                      <div className="stat-title">Total Page Views</div>
+                      <div className="stat-value">89,400</div>
+                      <div className="stat-desc">21% more than last month</div>
                     </div>
                   </div>
                 </div>
@@ -155,4 +168,28 @@ export default function SuperAdminDashboard({ children }) {
       </RouteContextProvider>
     </AppDashboard>
   );
+}
+// This gets called on every server-side render
+export async function getServerSideProps() {
+  // Fetch data from external API
+  let data = null;
+  try {
+    const associateCountRes = await getAssociateEmployeesAnalytics();
+    const seniorCountRes = await getSeniorEmployeesAnalytics();
+    const internCountRes = await getInternEmployeesAnalytics();
+    const allCountRes = await getAllEmployeesAnalytics();
+
+    data = {
+      all_employees_count: allCountRes.count,
+      senior_employees_count: seniorCountRes.count,
+      associate_employees_count: associateCountRes.count,
+      intern_employees_count: internCountRes.count,
+    };
+  } catch (error) {
+    console.log("Error at server-side for Super-admin index: ", error);
+  }
+  // Pass data to the page via props
+  return {
+    props: { data },
+  };
 }
