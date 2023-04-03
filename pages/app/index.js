@@ -11,11 +11,6 @@ export default function AppDashboard({ children }) {
   const { setNotifications } = useNotificationsHandler();
 
   const router = useRouter();
-  useEffect(() => {
-    if (status == "unauthenticated") {
-      router.replace("/auth");
-    }
-  }, [status]);
   async function getUserData(id) {
     const res = await fetchUserInfo(id);
   }
@@ -35,13 +30,15 @@ export default function AppDashboard({ children }) {
     }
   }, [userData]);
   useEffect(() => {
-    console.log("This is app component");
-    if (status == "authenticated" && !check && !userData) {
+    console.log("This is app component 1");
+    console.log(status == "authenticated");
+    console.log(!userData);
+    if (status == "authenticated" && !userData) {
       const id = session.user.id;
       getUserData(id);
       router.replace("/app/super-admin");
     }
-  }, []);
+  }, [status]);
   return (
     <div className="App">
       <div className="loading h-screen w-screen absolute top-0">
