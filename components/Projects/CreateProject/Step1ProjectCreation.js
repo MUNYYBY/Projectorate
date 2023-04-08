@@ -6,8 +6,7 @@ export default function Step1ProjectCreation(props) {
   const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
   function onFinish(values) {
-    console.log(values);
-    props.setProjectName(values);
+    props.setProjectName(values.project_name);
     props.setCreationPhase(1);
   }
   return (

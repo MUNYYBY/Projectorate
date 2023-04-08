@@ -6,8 +6,7 @@ export default function Step2ProjectCreation(props) {
   const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
   function onFinish(values) {
-    console.log(values);
-    props.setProjectDetails(values);
+    props.setProjectDetails(values.project_description);
     props.setCreationPhase(2);
   }
   return (

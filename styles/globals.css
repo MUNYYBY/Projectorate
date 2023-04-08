@@ -53,6 +53,14 @@ a {
   padding: 0;
 }
 /* Overriding Ant-design defualt styles */
+
+.ant-input,
+.ant-select-selector,
+.ant-picker {
+  height: 2.5rem !important;
+  align-items: center;
+}
+
 /* 
 .ant-picker-input > input::placeholder {
   color: white !important;

@@ -11,13 +11,14 @@ export default function CreateProject(props) {
   const [projectDetails, setProjectDetails] = useState(null);
   const [creationPhase, setCreationPhase] = useState(0);
   return (
-    <div className="create-project-container h-screen w-screen absolute top-0 left-0 flex justify-center items-start">
+    <div className="create-project-container h-full w-full fixed overflow-hidden top-0 left-0 flex justify-center items-start">
       <div className="flex flex-col items-center z-10">
-        <div className="flex flex-col items-center p-6 bg-gray-900 w-[35rem] mt-20">
+        <div className="flex flex-col items-center p-6 bg-gray-900 w-[20rem] md:w-[25rem] lg:w-[35rem] mt-20 rounded-md">
           <div className="create-project-header flex flex-row justify-between w-full mb-6">
+            {/* show the back button only if the user is on phase 2 */}
             {creationPhase == 1 || creationPhase == 2 ? (
               <button
-                className="flex flex-row justify-center"
+                className="back-btn flex flex-row items-center opacity-60 hover:opacity-100"
                 onClick={() => setCreationPhase(0)}
               >
                 <BiArrowBack size={18} />
@@ -26,13 +27,13 @@ export default function CreateProject(props) {
             ) : (
               <></>
             )}
-
+            {/* cancel button to unmount the component*/}
             <h1 className="font-bold text-lg"></h1>
             <button
-              className="cancel-btn"
+              className="cancel-btn opacity-60 hover:opacity-100"
               onClick={() => props.setIsCreateProject(false)}
             >
-              <RxCross1 size={28} />
+              <RxCross1 size={24} />
             </button>
           </div>
           <div className="flex flex-col justify-center items-center">
@@ -85,18 +86,19 @@ export default function CreateProject(props) {
         <div className="w-4/5 mt-8">
           <Steps
             current={creationPhase}
+            labelPlacement="vertical"
             items={[
               {
-                title: "Add name",
+                title: "Name",
               },
               {
-                title: "Add description",
+                title: "Description",
               },
             ]}
           />
         </div>
       </div>
-      <div className="h-screen w-screen bg-black bg-opacity-75 absolute top-0 left-0 z-0"></div>
+      <div className="h-full w-full bg-black bg-opacity-75 absolute top-0 left-0 z-0"></div>
     </div>
   );
 }
