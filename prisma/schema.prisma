@@ -8,23 +8,25 @@ datasource db {
 }
 
 model User {
-  id         Int          @id @default(autoincrement())
-  email      String       @unique
-  password   String
-  status     String      @default("Active")
-  role       Int
-  employee   Employee?
-  createdAt  DateTime     @default(now())
-  updatedAt  DateTime?    @updatedAt
-} 
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  password  String
+  status    String    @default("Active")
+  role      Int
+  employee  Employee?
+  project   Project[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+}
 
 model Employee {
-  id                  Int         @id @default(autoincrement())
-  user                User        @relation(fields: [userId], references: [id])
-  userId              Int         @unique
+  id                  Int            @id @default(autoincrement())
+  user                User           @relation(fields: [userId], references: [id])
+  userId              Int            @unique
+  userProjects        UserProjects[]
   first_name          String
   last_name           String
-  email               String      @unique
+  email               String         @unique
   phone_number        String
   date_of_birth       String
   expertise           String
@@ -35,8 +37,30 @@ model Employee {
   image_url           String?
   gender              String
   address             String
-  createdAt           DateTime    @default(now())
-  updatedAt           DateTime?   @updatedAt
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime?      @updatedAt
+}
+
+model Project {
+  id           Int            @id @default(autoincrement())
+  user         User           @relation(fields: [ownerId], references: [id])
+  ownerId      Int            @unique
+  project_name String
+  description  String
+  userProjects UserProjects[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime?      @updatedAt
+}
+
+model UserProjects {
+  project     Project   @relation(fields: [project_id], references: [id])
+  project_id  Int
+  employee    Employee  @relation(fields: [employee_id], references: [id])
+  employee_id Int
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @updatedAt
+
+  @@id([project_id, employee_id])
 }
 
 model Role {
@@ -45,6 +69,7 @@ model Role {
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
 }
+
 model Designation {
   id        Int       @id @default(autoincrement())
   title     String    @default("Associate")
