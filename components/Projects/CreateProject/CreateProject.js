@@ -1,7 +1,13 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import { RxCross1 } from "react-icons/rx";
-import TabDevider from "../Devider/Devider";
+import TabDevider from "../../Devider/Devider";
+import { Cascader, Form, Input, InputNumber, message } from "antd";
+import styles from "./CreateProject.module.css";
 export default function CreateProject() {
+  const [loading, setLoading] = useState(false);
+  const [form] = Form.useForm();
+  function onFinish() {}
   return (
     <div className="create-project-container h-screen w-screen absolute top-0 left-0 flex justify-center items-start">
       <div className="flex flex-col items-center z-10 p-6 bg-gray-900 w-[35rem] mt-28">
@@ -44,6 +50,44 @@ export default function CreateProject() {
           <h1 className="font-bold text-xl my-4">Create a new Project</h1>
         </div>
         <TabDevider width="w-full" />
+        <div className="w-full my-4">
+          <Form
+            form={form}
+            layout="vertical"
+            name="create project - part 1"
+            onFinish={onFinish}
+            style={{
+              width: "100%",
+            }}
+            scrollToFirstError
+            disabled={loading}
+          >
+            <Form.Item
+              name="project_name"
+              label="Project Name"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter valid project name",
+                },
+                {
+                  min: 5,
+                  message: "Project name must be atleast 5 characters long!",
+                },
+                {
+                  whitespace: true,
+                  message:
+                    "Project name must be atleast 1 non-whitespace character!",
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+          </Form>
+          <button className="bg-primary p-2 rounded-md flex flex-row justify-center items-center w-full text-lg font-semibold">
+            <p>Next</p>
+          </button>
+        </div>
       </div>
       <div className="h-screen w-screen bg-black bg-opacity-50 absolute top-0 left-0 z-0"></div>
     </div>

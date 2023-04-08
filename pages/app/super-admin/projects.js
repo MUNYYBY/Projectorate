@@ -7,7 +7,7 @@ import { IoIosAdd, IoIosHelpCircle } from "react-icons/io";
 import { CgInbox } from "react-icons/cg";
 import { Tooltip, Col, Row } from "antd";
 import SuperAdminDashboard from ".";
-import CreateProject from "../../../components/Projects/CreateProject";
+import CreateProject from "../../../components/Projects/CreateProject/CreateProject";
 
 export default function SuperAdminProjectPanel() {
   const [isCreateProject, setIsCreateProject] = useState(false);
