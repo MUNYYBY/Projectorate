@@ -1,13 +1,16 @@
+import { useEffect, useState } from "react";
 import SearchModule from "../../../components/Search/SearchModule";
 import TabDevider from "../../../components/Devider/Devider";
-import ProjectsContainer from "../../../components/ProjectsContainer/ProjectsContainer";
+import ProjectsContainer from "../../../components/Projects/ProjectsContainer";
 import { SlSocialSteam } from "react-icons/sl";
 import { IoIosAdd, IoIosHelpCircle } from "react-icons/io";
 import { CgInbox } from "react-icons/cg";
 import { Tooltip, Col, Row } from "antd";
 import SuperAdminDashboard from ".";
+import CreateProject from "../../../components/Projects/CreateProject";
 
 export default function SuperAdminProjectPanel() {
+  const [isCreateProject, setIsCreateProject] = useState(false);
   return (
     <SuperAdminDashboard>
       <div className="Project-panel ml-[calc(4.5rem+16rem)]">
@@ -24,7 +27,10 @@ export default function SuperAdminProjectPanel() {
               title="Create a new project in your company and add a workforce"
               mouseEnterDelay={0.05}
             >
-              <button className="bg-secondry mr-2 py-1 px-3 rounded-md flex flex-row justify-center items-center">
+              <button
+                className="bg-secondry mr-2 py-1 px-3 rounded-md flex flex-row justify-center items-center"
+                onClick={() => !setIsCreateProject(!isCreateProject)}
+              >
                 <IoIosAdd size={26} />
                 <p>Create Project</p>
               </button>
@@ -75,6 +81,8 @@ export default function SuperAdminProjectPanel() {
             </Row>
           </div>
         </div>
+        {/* render create project component if required */}
+        {isCreateProject ? <CreateProject /> : <></>}
       </div>
     </SuperAdminDashboard>
   );
