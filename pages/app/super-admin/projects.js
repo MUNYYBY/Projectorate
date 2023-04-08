@@ -82,7 +82,11 @@ export default function SuperAdminProjectPanel() {
           </div>
         </div>
         {/* render create project component if required */}
-        {isCreateProject ? <CreateProject /> : <></>}
+        {isCreateProject ? (
+          <CreateProject setIsCreateProject={setIsCreateProject} />
+        ) : (
+          <></>
+        )}
       </div>
     </SuperAdminDashboard>
   );
