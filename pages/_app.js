@@ -15,6 +15,10 @@ function MyApp({ Component, pageProps, session }) {
       <ConfigProvider
         theme={{
           algorithm: darkAlgorithm,
+          token: {
+            colorPrimary: "#5865F2",
+            colorBgBase: "#202225",
+          },
         }}
       >
         <NextNProgress

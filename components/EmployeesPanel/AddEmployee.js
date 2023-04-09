@@ -107,7 +107,7 @@ export default function AddEmployee(props) {
   return (
     <div className="flex justify-center w-full">
       <div className="container flex w-full flex-col justify-center items-center">
-        <div className="mb-12 text-black flex flex-col justify-center items-center">
+        <div className="mb-12 text-base flex flex-col justify-center items-center">
           <h1 className="text-xl font-bold "> Add New Employee</h1>
           <p>Kindly fill out the following form carefully!</p>
         </div>
