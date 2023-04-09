@@ -102,3 +102,29 @@ export async function getInternEmployeesAnalytics() {
     console.log("Error While getting intern Count at front-end: ", error);
   }
 }
+//get all the project domains in the database
+export async function getProjectDomains() {
+  try {
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL + "/project-domains/get-project-domains"
+    );
+    return res.data;
+  } catch (error) {
+    console.log("Error While getting project domains at front-end: ", error);
+    return { error: error };
+  }
+}
+
+//Projects api calls
+export async function createProject(payload) {
+  try {
+    const res = await axios.post(
+      process.env.NEXT_PUBLIC_BASE_URL + "/projects/create-project",
+      payload
+    );
+    return res.data;
+  } catch (error) {
+    console.log("Error While creating project: ", error);
+    return { error: error };
+  }
+}

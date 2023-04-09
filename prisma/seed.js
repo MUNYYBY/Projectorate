@@ -62,5 +62,33 @@ async function seed() {
   } catch (error) {
     console.log("Error at adding all Role! ", error);
   }
+  //following are the seeds for project domains
+  try {
+    await prisma.ProjectDomains.deleteMany();
+    console.log("All ProjectDomains destroyed!");
+  } catch (error) {
+    console.log("Error at ProjectDomains destroy!", error);
+  }
+  try {
+    await prisma.ProjectDomains.createMany({
+      data: [
+        {
+          title: "Software Development",
+        },
+        {
+          title: "Testing",
+        },
+        {
+          title: "UI/UX Designing",
+        },
+        {
+          title: "Quality Assaurance",
+        },
+      ],
+    });
+    console.log("All Project Domains Added!");
+  } catch (error) {
+    console.log("Error at adding all Project Domains! ", error);
+  }
 }
 seed();

@@ -3,13 +3,60 @@ import { useState, useEffect } from "react";
 import { RxCross1 } from "react-icons/rx";
 import { BiArrowBack } from "react-icons/bi";
 import TabDevider from "../../Devider/Devider";
-import { Cascader, Steps, Form, Input, InputNumber, message } from "antd";
+import { Steps, message } from "antd";
 import Step1ProjectCreation from "./Step1ProjectCreation";
 import Step2ProjectCreation from "./Step2ProjectCreation";
+import { createProject, getProjectDomains } from "../../../client/requests";
+import { useSession } from "next-auth/react";
 export default function CreateProject(props) {
+  const { data: session, status } = useSession();
+  const [loading, setLoading] = useState(false);
   const [projectName, setProjectName] = useState(null);
   const [projectDetails, setProjectDetails] = useState(null);
+  const [projectDomainSelected, setProjectDomainSelected] = useState(null);
   const [creationPhase, setCreationPhase] = useState(0);
+  const [projectDomains, setProjectDomains] = useState(null);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const createProjectCall = () => {
+    const payload = {
+      project_name: projectName,
+      description: projectDetails,
+      project_domain_id: projectDomainSelected,
+      user_id: session.user.id,
+    };
+    console.log("Project Payload: ", payload);
+    createProject(payload).then((res) => {
+      console.log("Create:", res);
+      if (res?.error) {
+        message.error("Project Creation failed!");
+        setLoading(false);
+      } else {
+        message.success("Project Created successfully!");
+        props.setIsCreateProject(false);
+      }
+    });
+  };
+
+  //get all the project domains on component mount
+  useEffect(() => {
+    setLoading(true);
+    getProjectDomains().then((res) => {
+      console.log("Project Domains: ", res);
+      setProjectDomains(res.data);
+      setLoading(false);
+    });
+  }, []);
+
+  //call the api
+  useEffect(() => {
+    if (isSubmitted) {
+      setCreationPhase(2);
+      setLoading(true);
+      createProjectCall();
+      setIsSubmitted(false);
+    }
+  }, [isSubmitted]);
   return (
     <div className="create-project-container h-full w-full fixed overflow-hidden top-0 left-0 flex justify-center items-start">
       <div className="flex flex-col items-center z-10">
@@ -74,11 +121,16 @@ export default function CreateProject(props) {
                 setProjectName={setProjectName}
                 projectName={projectName}
                 setCreationPhase={setCreationPhase}
+                loading={loading}
               />
             ) : (
               <Step2ProjectCreation
+                loading={loading}
                 setProjectDetails={setProjectDetails}
                 setCreationPhase={setCreationPhase}
+                projectDomains={projectDomains}
+                setProjectDomainSelected={setProjectDomainSelected}
+                setIsSubmitted={setIsSubmitted}
               />
             )}
           </div>
@@ -92,7 +144,10 @@ export default function CreateProject(props) {
                 title: "Name",
               },
               {
-                title: "Description",
+                title: "Details",
+              },
+              {
+                title: "Create",
               },
             ]}
           />

@@ -3,7 +3,6 @@ import { Cascader, Steps, Form, Input, InputNumber, message } from "antd";
 import { useState, useEffect } from "react";
 
 export default function Step1ProjectCreation(props) {
-  const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
   function onFinish(values) {
     props.setProjectName(values.project_name);
@@ -20,7 +19,6 @@ export default function Step1ProjectCreation(props) {
           width: "100%",
         }}
         scrollToFirstError
-        disabled={loading}
       >
         <Form.Item
           name="project_name"
@@ -43,7 +41,10 @@ export default function Step1ProjectCreation(props) {
         >
           <Input placeholder="Enter a project name" value={props.projectName} />
         </Form.Item>
-        <button className="bg-primary p-2 rounded-md flex flex-row justify-center items-center w-full text-lg font-semibold mt-4">
+        <button
+          className="bg-primary h-12 p-2 rounded-md flex flex-row justify-center items-center w-full text-lg font-semibold mt-4 disabled:opacity-50"
+          disabled={props.loading}
+        >
           <p>Next</p>
         </button>
       </Form>
