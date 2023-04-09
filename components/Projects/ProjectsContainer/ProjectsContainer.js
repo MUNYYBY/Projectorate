@@ -1,19 +1,17 @@
-import Image from "next/image";
-import InformationTag from "../InformationTag/InformationTag";
-import Temp from "../../public/Uploads/temp.png";
+import InformationTag from "../../InformationTag/InformationTag";
 
 export default function ProjectsContainer({
-  CompanyName = "Company Name",
+  ProjectName = "Project Name",
   tagTitle = "Software Dev",
 }) {
   return (
-    <div className="h-36 w-72 mt-2 bg-gray-900 rounded-md shadow-sm p-4 flex flex-col justify-between">
+    <div className="h-44 w-96 bg-gray-900 rounded-md shadow-sm p-6 flex flex-col justify-between">
       <div className="flex flex-row">
         <div className="Project-main-Image rounded-lg w-14 h-14 bg-gray-700 flex justify-center items-center">
-          <h1 className="font-bold text-5xl">{CompanyName[0]}</h1>
+          <h1 className="font-bold text-5xl">{ProjectName[0]}</h1>
         </div>
         <div className="projects-container-main-info ml-3">
-          <h4 className="pb-1">{CompanyName}</h4>
+          <h4 className="pb-1 text-xl font-semibold">{ProjectName}</h4>
           <div className="project-tags flex flex-row">
             <InformationTag title={tagTitle} type="intermediate" />
           </div>

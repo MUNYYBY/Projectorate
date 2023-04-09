@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SearchModule from "../../../components/Search/SearchModule";
 import TabDevider from "../../../components/Devider/Devider";
-import ProjectsContainer from "../../../components/Projects/ProjectsContainer";
+import ProjectsContainer from "../../../components/Projects/ProjectsContainer/ProjectsContainer";
 import { SlSocialSteam } from "react-icons/sl";
 import { IoIosAdd, IoIosHelpCircle } from "react-icons/io";
 import { CgInbox } from "react-icons/cg";
@@ -9,9 +9,26 @@ import { Tooltip, Col, Row } from "antd";
 import SuperAdminDashboard from ".";
 import CreateProject from "../../../components/Projects/CreateProject/CreateProject";
 import { getAllProjects, getProjectDomains } from "../../../client/requests";
+import ProjectsContainerSkelton from "../../../components/Projects/ProjectsContainer/ProjectsContainerSkelton";
 
-export default function SuperAdminProjectPanel({ projects, projectDomains }) {
+export default function SuperAdminProjectPanel({
+  projectsData,
+  projectDomains,
+}) {
+  const [projects, setProjects] = useState(projectsData);
   const [isCreateProject, setIsCreateProject] = useState(false);
+  const [isRefreshProjects, setIsRefreshProjects] = useState(false);
+  const fetchAllProjects = async () => {
+    await getAllProjects().then((res) => {
+      setProjects(res.data);
+      setIsRefreshProjects(false);
+    });
+  };
+  useEffect(() => {
+    if (isRefreshProjects) {
+      fetchAllProjects();
+    }
+  }, [isRefreshProjects]);
   return (
     <SuperAdminDashboard>
       <div className="Project-panel ml-[calc(4.5rem+16rem)]">
@@ -60,26 +77,40 @@ export default function SuperAdminProjectPanel({ projects, projectDomains }) {
             </p>
           </div>
           <div className="Projects py-4">
-            <Row>
-              {projects.map((item) => {
-                const searchObject = projectDomains.find(
-                  (domain) => domain.id == item.id
-                );
-                return (
-                  <Col xs={24} md={10} lg={8} xl={6} xxl={4}>
-                    <ProjectsContainer
-                      CompanyName={item.project_name}
-                      tagTitle={searchObject.title}
-                    />
-                  </Col>
-                );
-              })}
-            </Row>
+            <div class="inline-grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 grid-flow-row gap-4">
+              {!isRefreshProjects ? (
+                projects.map((item) => {
+                  const searchObject = projectDomains.find(
+                    (domain) => domain.id == item.projectDomainsId
+                  );
+                  return (
+                    <div className="project_container">
+                      <ProjectsContainer
+                        ProjectName={item.project_name}
+                        tagTitle={searchObject.title}
+                      />
+                    </div>
+                  );
+                })
+              ) : (
+                <>
+                  <ProjectsContainerSkelton />
+                  <ProjectsContainerSkelton />
+                  <ProjectsContainerSkelton />
+                  <ProjectsContainerSkelton />
+                  <ProjectsContainerSkelton />
+                  <ProjectsContainerSkelton />
+                </>
+              )}
+            </div>
           </div>
         </div>
         {/* render create project component if required */}
         {isCreateProject ? (
-          <CreateProject setIsCreateProject={setIsCreateProject} />
+          <CreateProject
+            setIsRefreshProjects={setIsRefreshProjects}
+            setIsCreateProject={setIsCreateProject}
+          />
         ) : (
           <></>
         )}
@@ -110,6 +141,6 @@ export async function getServerSideProps() {
   }
   // Pass data to the page via props
   return {
-    props: { projects, projectDomains },
+    props: { projectsData: projects, projectDomains },
   };
 }

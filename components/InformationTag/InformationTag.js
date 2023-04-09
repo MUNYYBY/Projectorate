@@ -19,6 +19,9 @@ export default function InformationTag({
   } else if (type == "pOrange") {
     classStringParent += "bg-pOrange bg-opacity-20";
     classStringChild += "text-pOrange";
+  } else if (type == "base") {
+    classStringParent += "bg-gray-700 bg-opacity-20";
+    classStringChild += "bg-gray-700";
   }
   return (
     <div className={classStringParent}>

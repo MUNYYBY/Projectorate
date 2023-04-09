@@ -34,6 +34,7 @@ export default function CreateProject(props) {
       } else {
         message.success("Project Created successfully!");
         props.setIsCreateProject(false);
+        props.setIsRefreshProjects(true);
       }
     });
   };
