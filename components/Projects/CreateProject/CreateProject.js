@@ -62,9 +62,9 @@ export default function CreateProject(props) {
   return (
     <div className="create-project-container h-full w-full fixed overflow-hidden top-0 left-0 flex justify-center items-start">
       <motion.div
-        initial={{ y: -30, opacity: 0 }}
+        initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.1 }}
+        transition={{ duration: 0.15 }}
         className="flex flex-col items-center z-10"
       >
         <div className="flex flex-col items-center p-6 bg-gray-900 w-[20rem] md:w-[25rem] lg:w-[35rem] mt-20 rounded-md">
