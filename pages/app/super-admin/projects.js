@@ -8,8 +8,9 @@ import { CgInbox } from "react-icons/cg";
 import { Tooltip, Col, Row } from "antd";
 import SuperAdminDashboard from ".";
 import CreateProject from "../../../components/Projects/CreateProject/CreateProject";
+import { getAllProjects, getProjectDomains } from "../../../client/requests";
 
-export default function SuperAdminProjectPanel() {
+export default function SuperAdminProjectPanel({ projects, projectDomains }) {
   const [isCreateProject, setIsCreateProject] = useState(false);
   return (
     <SuperAdminDashboard>
@@ -60,24 +61,19 @@ export default function SuperAdminProjectPanel() {
           </div>
           <div className="Projects py-4">
             <Row>
-              <Col xs={24} md={10} lg={8} xl={6} xxl={4}>
-                <ProjectsContainer CompanyName="Mavarik Corp" />
-              </Col>
-              <Col xs={24} md={10} lg={8} xl={6} xxl={4}>
-                <ProjectsContainer CompanyName="Subvision LTD" />
-              </Col>
-              <Col xs={24} md={10} lg={8} xl={6} xxl={4}>
-                <ProjectsContainer CompanyName="Vyro.ai" />
-              </Col>
-              <Col xs={24} md={10} lg={8} xl={6} xxl={4}>
-                <ProjectsContainer CompanyName="Always Remembered" />
-              </Col>
-              <Col xs={24} md={10} lg={8} xl={6} xxl={4}>
-                <ProjectsContainer CompanyName="Farevet" />
-              </Col>
-              <Col xs={24} md={10} lg={8} xl={6} xxl={4}>
-                <ProjectsContainer CompanyName="Gemmo LTC" />
-              </Col>
+              {projects.map((item) => {
+                const searchObject = projectDomains.find(
+                  (domain) => domain.id == item.id
+                );
+                return (
+                  <Col xs={24} md={10} lg={8} xl={6} xxl={4}>
+                    <ProjectsContainer
+                      CompanyName={item.project_name}
+                      tagTitle={searchObject.title}
+                    />
+                  </Col>
+                );
+              })}
             </Row>
           </div>
         </div>
@@ -90,4 +86,30 @@ export default function SuperAdminProjectPanel() {
       </div>
     </SuperAdminDashboard>
   );
+}
+
+// This gets called on every server-side render
+export async function getServerSideProps() {
+  // Fetch data from external API
+  let projects = null;
+  let projectDomains = null;
+  //get all the projects
+  try {
+    const allProjects = await getAllProjects();
+    projects = allProjects.data;
+  } catch (error) {
+    console.log("Error at server-side for Super-admin projects: ", error);
+  }
+  //get all the projects domains
+  try {
+    const allProjectsDomains = await getProjectDomains();
+    projectDomains = allProjectsDomains.data;
+    console.log(projectDomains);
+  } catch (error) {
+    console.log("Error at server-side for Super-admin projects: ", error);
+  }
+  // Pass data to the page via props
+  return {
+    props: { projects, projectDomains },
+  };
 }

@@ -128,3 +128,13 @@ export async function createProject(payload) {
     return { error: error };
   }
 }
+export async function getAllProjects() {
+  try {
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL + "/projects/get-all-projects"
+    );
+    return res.data;
+  } catch (error) {
+    console.log("Error While getting employee: ", error);
+  }
+}
