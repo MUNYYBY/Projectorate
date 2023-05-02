@@ -6,18 +6,18 @@ import { RxLapTimer } from "react-icons/rx";
 import ProjectTab from "./ProjectsTabs/ProjectTab";
 import TabDevider from "../Devider/Devider";
 import ProjectsTabContainer from "./ProjectsTabs/ProjectTabsContainer";
-import { useRouteCheck } from "../../context/routesContext";
+import { useRouter } from "next/router";
 
 export default function SubPanel() {
-  const { route } = useRouteCheck();
+  const router = useRouter();
   const [panelName, setPanelName] = useState("");
 
   useEffect(() => {
-    if (route?.includes("projects")) setPanelName("Projects");
-    else if (route?.includes("employees")) setPanelName("Employees");
-    else if (route?.includes("teams")) setPanelName("Teams");
+    if (router.asPath?.includes("projects")) setPanelName("Projects");
+    else if (router.asPath?.includes("employees")) setPanelName("Employees");
+    else if (router.asPath?.includes("teams")) setPanelName("Teams");
     else setPanelName("Home");
-  }, [route]);
+  }, [router.asPath]);
   return (
     <div className="Sub-panel-dahboard fixed ml-[4.5rem] w-64 h-screen bg-gray-800">
       <div className="bg-gray-700 p-4 rounded-b-xl">

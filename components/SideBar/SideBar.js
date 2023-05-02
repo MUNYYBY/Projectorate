@@ -25,7 +25,7 @@ export default function SideBar() {
     // if you want to redirect the page hard-coded set
     // redirect to true and set the callbackurl to something
     // e.g callbackUrl: "/auth"
-    signOut({ redirect: false });
+    signOut({ redirect: true });
     setNotifications({
       placement: "bottomRight",
       message: "You have been logged out!",
@@ -67,9 +67,11 @@ export default function SideBar() {
             />
           </div>
         </Link>
-        <div className="Teams">
-          <SideBarIcon icon={<AiOutlineBlock size={26} />} tooltip="Teams" />
-        </div>
+        <Link href={NAV_URL + "teams"}>
+          <div className="Teams">
+            <SideBarIcon icon={<AiOutlineBlock size={26} />} tooltip="Teams" />
+          </div>
+        </Link>
         <div className="Notifications">
           <SideBarIcon
             icon={<IoMdNotificationsOutline size={26} />}
