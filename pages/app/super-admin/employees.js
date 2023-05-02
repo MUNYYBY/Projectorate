@@ -70,8 +70,8 @@ export default function SuperAdminEmployees({ data }) {
     }
   }, [loading]);
   return (
-    <SuperAdminDashboard>
-      <div className="Employees-panel ml-[calc(4.5rem+16rem)]">
+    <>
+      <div className="Employees-panel">
         <DashboardHeader
           title="Employees Panel"
           type="employees"
@@ -133,7 +133,7 @@ export default function SuperAdminEmployees({ data }) {
         isEmployeePanel={isEmployeePanel}
         setIsEmployeePanel={setIsEmployeePanel}
       />
-    </SuperAdminDashboard>
+    </>
   );
 }
 // This gets called on every server-side render

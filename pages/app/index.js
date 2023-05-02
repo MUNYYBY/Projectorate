@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { FaDragon } from "react-icons/fa";
 import { useUserDataHandler } from "../../context/userDataContext";
 import { useNotificationsHandler } from "../../context/notificationContext";
+import Loading from "../../components/Loading/loading";
 export default function AppDashboard({ children }) {
   const { data: session, status } = useSession();
   const [check, setCheck] = useState(false); // this state wil check if all the initial data fetching has been done or not!
@@ -41,17 +42,8 @@ export default function AppDashboard({ children }) {
   }, [status]);
   return (
     <div className="App">
-      <div className="loading h-screen w-screen absolute top-0">
-        <div className="w-full h-full flex flex-row justify-center items-center">
-          <div className="loading-app-icon">
-            <div className="p-4 bg-primary text-gray-300 rounded-3xl shadow-2xl animate-pulse animate-bounce ">
-              <FaDragon size={50} />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {check ? children : ""}
+      <Loading />
+      {/* {check ? children : ""} */}
     </div>
   );
 }

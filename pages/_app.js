@@ -5,11 +5,15 @@ import { NotificationsContextProvider } from "../context/notificationContext";
 import { UserDataContextProvider } from "../context/userDataContext";
 import { useState } from "react";
 import { ConfigProvider, theme, Button, Card } from "antd";
+import UserLayout from "../layout/UserLayout";
 
 function MyApp({ Component, pageProps, session }) {
   //for antd dark mode
   const { defaultAlgorithm, darkAlgorithm } = theme;
   const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // ** Layouts
+  const getLayout = (page) => <UserLayout>{page}</UserLayout>;
   return (
     <>
       <ConfigProvider
@@ -30,7 +34,7 @@ function MyApp({ Component, pageProps, session }) {
         <SessionProvider session={session}>
           <UserDataContextProvider>
             <NotificationsContextProvider>
-              <Component {...pageProps} />
+              {getLayout(<Component {...pageProps} />)}
             </NotificationsContextProvider>
           </UserDataContextProvider>
         </SessionProvider>

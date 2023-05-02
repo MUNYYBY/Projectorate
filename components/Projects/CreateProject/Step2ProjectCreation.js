@@ -35,9 +35,9 @@ export default function Step2ProjectCreation(props) {
           <Select placeholder="Select your a domain for the project">
             {props.projectDomains.map((item) => {
               return (
-                <Option key={item.id} value={item.id}>
+                <Select.Option key={item.id} value={item.id}>
                   {item.title}
-                </Option>
+                </Select.Option>
               );
             })}
           </Select>

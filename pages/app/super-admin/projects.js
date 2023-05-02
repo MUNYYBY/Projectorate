@@ -30,8 +30,8 @@ export default function SuperAdminProjectPanel({
     }
   }, [isRefreshProjects]);
   return (
-    <SuperAdminDashboard>
-      <div className="Project-panel ml-[calc(4.5rem+16rem)]">
+    <>
+      <div className="Project-panel">
         <header className="flex flex-row items-center justify-between border-b-2 border-b-gray-900 px-4 py-2">
           <div className="flex flex-row items-center">
             <div className="project-panel-icon mr-3">
@@ -84,7 +84,7 @@ export default function SuperAdminProjectPanel({
                     (domain) => domain.id == item.projectDomainsId
                   );
                   return (
-                    <div className="project_container">
+                    <div className="project_container" key={item.id}>
                       <ProjectsContainer
                         ProjectName={item.project_name}
                         tagTitle={searchObject.title}
@@ -115,7 +115,7 @@ export default function SuperAdminProjectPanel({
           <></>
         )}
       </div>
-    </SuperAdminDashboard>
+    </>
   );
 }
 

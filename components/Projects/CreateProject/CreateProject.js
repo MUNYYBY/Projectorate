@@ -44,7 +44,7 @@ export default function CreateProject(props) {
   useEffect(() => {
     setLoading(true);
     getProjectDomains().then((res) => {
-      console.log("Project Domains: ", res);
+      console.log("Project Domains: ", res.data);
       setProjectDomains(res.data);
       setLoading(false);
     });
