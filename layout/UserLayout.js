@@ -7,7 +7,7 @@ import HorizontalLayout from "./components/HorizontalLayout";
 
 export default function UserLayout({ children }) {
   //** States Initialization */
-  const [layoutType, setLayoutType] = useState(null);
+  const [layoutType, setLayoutType] = useState(-1);
 
   //** Router Initializtion  */
   const router = useRouter();

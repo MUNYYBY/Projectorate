@@ -92,7 +92,7 @@ async function seed() {
   }
   //following are the seeds for team domains
   try {
-    await prisma.ProjectDomains.deleteMany();
+    await prisma.TeamDomains.deleteMany();
     console.log("All Team Domain destroyed!");
   } catch (error) {
     console.log("Error at Team Domain destroy!", error);
