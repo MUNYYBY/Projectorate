@@ -17,6 +17,7 @@ model User {
   project   Project[]
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
+  Teams     Teams[]
 }
 
 model Employee {
@@ -52,6 +53,7 @@ model Project {
   createdAt        DateTime        @default(now())
   updatedAt        DateTime?       @updatedAt
   projectDomainsId Int?
+  Teams            Teams[]
 }
 
 model UserProjects {
@@ -63,6 +65,20 @@ model UserProjects {
   updatedAt   DateTime? @updatedAt
 
   @@id([project_id, employee_id])
+}
+
+model Teams {
+  id            Int          @id @default(autoincrement())
+  user          User         @relation(fields: [ownerId], references: [id])
+  project       Project      @relation(fields: [projectId], references: [id])
+  ownerId       Int
+  projectId     Int
+  team_name     String
+  description   String
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime?    @updatedAt
+  TeamDomains   TeamDomains? @relation(fields: [teamDomainsId], references: [id])
+  teamDomainsId Int?
 }
 
 model Role {
@@ -85,4 +101,12 @@ model ProjectDomains {
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
   Project   Project[]
+}
+
+model TeamDomains {
+  id        Int       @id @default(autoincrement())
+  title     String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+  Teams     Teams[]
 }

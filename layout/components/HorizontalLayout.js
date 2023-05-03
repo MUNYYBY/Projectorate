@@ -10,7 +10,7 @@ export default function HorizontalLayout({ children }) {
     >
       <SideBar />
       <SubPanel />
-      <div className="ml-[calc(4.5rem+16rem)]">{children}</div>
+      <div className="ml-[20.5rem]">{children}</div>
     </div>
   );
 }

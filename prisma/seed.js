@@ -90,5 +90,34 @@ async function seed() {
   } catch (error) {
     console.log("Error at adding all Project Domains! ", error);
   }
+  //following are the seeds for team domains
+  try {
+    await prisma.ProjectDomains.deleteMany();
+    console.log("All Team Domain destroyed!");
+  } catch (error) {
+    console.log("Error at Team Domain destroy!", error);
+  }
+  try {
+    await prisma.TeamDomains.createMany({
+      data: [
+        {
+          title: "Software Development",
+        },
+        {
+          title: "Testing",
+        },
+        {
+          title: "UI/UX Designing",
+        },
+        {
+          title: "Quality Assaurance",
+        },
+      ],
+    });
+    console.log("All Team Domains Added!");
+  } catch (error) {
+    console.log("Error at adding all Team Domains! ", error);
+  }
 }
+
 seed();
