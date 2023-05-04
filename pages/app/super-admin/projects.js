@@ -45,13 +45,27 @@ export default function SuperAdminProjectPanel({
   function handleActiveProject(project) {
     setActiveProject(project);
     router.push({
-      query: { keyword: "this way" },
+      pathname: "/app/super-admin/projects",
+      query: {
+        projectId: project.id,
+        projectName: project.name,
+      },
     });
   }
 
+  //** Listen for query params change */
+  useState(() => {
+    if (router.query.projectId && router.query.projectName) {
+      setActiveProject({
+        id: router.query.projectId,
+        name: router.query.projectName,
+      });
+    }
+  }, [router.query]);
+
   //** handle change of active project tab */
-  const onChange = (key) => {
-    console.log(key);
+  const onActiveProjectChange = (key) => {
+    setActiveProject(key);
   };
   return (
     <>
@@ -67,7 +81,10 @@ export default function SuperAdminProjectPanel({
             {activeProject ? (
               <div className="border-x-2 border-t-2 border-gray-900 bg-gray-900 rounded-t-md px-4 py-2 flex flex-row justify-between items-center">
                 <p>{activeProject.name}</p>
-                <div className="ml-4 opacity-30 hover:opacity-100 transition-all cursor-pointer">
+                <div
+                  className="ml-4 opacity-30 hover:opacity-100 transition-all cursor-pointer"
+                  onClick={() => onActiveProjectChange(null)}
+                >
                   <RxCross1 size={14} />
                 </div>
               </div>
