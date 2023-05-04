@@ -16,6 +16,12 @@ import {
 import ProjectsContainerSkelton from "../../../components/Projects/ProjectsContainer/ProjectsContainerSkelton";
 import { RxCross1 } from "react-icons/rx";
 import { useRouter } from "next/router";
+import InformationTag from "../../../components/InformationTag/InformationTag";
+import { AndroidOutlined, AppleOutlined } from "@ant-design/icons";
+import EmployeesData from "../../../components/EmployeesPanel/EmployeesData";
+import ProjectEmployees from "../../../components/Projects/ProjectEmployees.js/ProjectEmployees";
+
+const PROJECTS_TABS = ["Employees", "Tickets"];
 
 export default function SuperAdminProjectPanel({
   projectsData,
@@ -67,6 +73,7 @@ export default function SuperAdminProjectPanel({
       });
       //** Get project Information */
       GetSpecificProject(router.query.projectId).then((res) => {
+        console.log(res.data);
         setProjectInformation(res.data);
       });
     }
@@ -193,23 +200,51 @@ export default function SuperAdminProjectPanel({
             )}
           </>
         ) : (
-          <div
-            className={`${activeProject.name}-project bg-gray-900 bg-opacity-60`}
-          >
-            <div className="py-10 flex flex-row justify-between items-center px-6">
-              <div className="flex flex-row justify-center items-center">
-                <div className="bg-gray-700 p-24 rounded-lg relative">
-                  <p className="absolute bottom-[-10px] left-5 font-extrabold text-[10rem] opacity-40">
-                    {activeProject.name[0]}
-                  </p>
-                </div>
-                <div className="flex flex-col justify-center ml-4">
-                  <p>{projectInformation.project_name}</p>
-                  <p>hello world</p>
+          <>
+            <div
+              className={`${activeProject.name}-project bg-gray-900 bg-opacity-60`}
+            >
+              <div className="py-10 flex flex-row justify-between items-center px-6">
+                <div className="flex flex-row justify-start items-start">
+                  <div className="bg-gray-700 p-24 rounded-lg relative">
+                    <p className="absolute bottom-[-10px] left-5 font-extrabold text-[10rem] opacity-40">
+                      {activeProject.name[0]}
+                    </p>
+                  </div>
+                  <div className="flex flex-col justify-center ml-4">
+                    <h1 className="text-2xl font-bold">
+                      {projectInformation?.project_name}
+                    </h1>
+                    <p className="font-medium text-xl">
+                      {projectInformation?.description}
+                    </p>
+                    <div className="mt-4">
+                      <InformationTag
+                        title={projectInformation?.projectDomainsId}
+                        type="intermediate"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+            {/* Show tabs */}
+            <div className="mt-4">
+              <Tabs
+                defaultActiveKey="1"
+                type="card"
+                size={32}
+                items={PROJECTS_TABS.map((_, i) => {
+                  const id = String(i + 1);
+                  return {
+                    label: `${_}`,
+                    key: id,
+                  };
+                })}
+              />
+            </div>
+            <ProjectEmployees />
+          </>
         )}
         {/* show all project / show specific project ends here */}
       </div>
