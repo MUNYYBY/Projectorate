@@ -8,7 +8,11 @@ import { CgInbox } from "react-icons/cg";
 import { Tooltip, Col, Row, Tabs } from "antd";
 import SuperAdminDashboard from ".";
 import CreateProject from "../../../components/Projects/CreateProject/CreateProject";
-import { getAllProjects, getProjectDomains } from "../../../client/requests";
+import {
+  GetSpecificProject,
+  getAllProjects,
+  getProjectDomains,
+} from "../../../client/requests";
 import ProjectsContainerSkelton from "../../../components/Projects/ProjectsContainer/ProjectsContainerSkelton";
 import { RxCross1 } from "react-icons/rx";
 import { useRouter } from "next/router";
@@ -25,6 +29,7 @@ export default function SuperAdminProjectPanel({
   const [isCreateProject, setIsCreateProject] = useState(false);
   const [isRefreshProjects, setIsRefreshProjects] = useState(false);
   const [activeProject, setActiveProject] = useState(null);
+  const [projectInformation, setProjectInformation] = useState();
 
   //** Get All the projects in CSR */
   const fetchAllProjects = async () => {
@@ -59,6 +64,10 @@ export default function SuperAdminProjectPanel({
       setActiveProject({
         id: router.query.projectId,
         name: router.query.projectName,
+      });
+      //** Get project Information */
+      GetSpecificProject(router.query.projectId).then((res) => {
+        setProjectInformation(res.data);
       });
     }
   }, [router.query]);
@@ -184,7 +193,23 @@ export default function SuperAdminProjectPanel({
             )}
           </>
         ) : (
-          <p>hello worl</p>
+          <div
+            className={`${activeProject.name}-project bg-gray-900 bg-opacity-60`}
+          >
+            <div className="py-10 flex flex-row justify-between items-center px-6">
+              <div className="flex flex-row justify-center items-center">
+                <div className="bg-gray-700 p-24 rounded-lg relative">
+                  <p className="absolute bottom-[-10px] left-5 font-extrabold text-[10rem] opacity-40">
+                    {activeProject.name[0]}
+                  </p>
+                </div>
+                <div className="flex flex-col justify-center ml-4">
+                  <p>{projectInformation.project_name}</p>
+                  <p>hello world</p>
+                </div>
+              </div>
+            </div>
+          </div>
         )}
         {/* show all project / show specific project ends here */}
       </div>

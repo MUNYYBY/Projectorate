@@ -138,3 +138,16 @@ export async function getAllProjects() {
     console.log("Error While getting employee: ", error);
   }
 }
+
+export async function GetSpecificProject(propjectId) {
+  try {
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL +
+        "/projects/get-project?projectId=" +
+        propjectId
+    );
+    return res.data;
+  } catch (error) {
+    console.log("Error While getting employee: ", error);
+  }
+}
