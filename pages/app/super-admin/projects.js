@@ -4,11 +4,12 @@ import TabDevider from "../../../components/Devider/Devider";
 import ProjectsContainer from "../../../components/Projects/ProjectsContainer/ProjectsContainer";
 import { SlSocialSteam } from "react-icons/sl";
 import { IoIosAdd, IoIosHelpCircle } from "react-icons/io";
-import { CgInbox } from "react-icons/cg";
-import { Tooltip, Col, Row, Tabs } from "antd";
+import { CgInbox, CgTrash } from "react-icons/cg";
+import { Tooltip, Col, Row, Tabs, Popconfirm, message } from "antd";
 import SuperAdminDashboard from ".";
 import CreateProject from "../../../components/Projects/CreateProject/CreateProject";
 import {
+  DeleteProject,
   GetSpecificProject,
   getAllProjects,
   getProjectDomains,
@@ -21,7 +22,7 @@ import { AndroidOutlined, AppleOutlined } from "@ant-design/icons";
 import EmployeesData from "../../../components/EmployeesPanel/EmployeesData";
 import ProjectEmployees from "../../../components/Projects/ProjectEmployees.js/ProjectEmployees";
 
-const PROJECTS_TABS = ["Employees", "Tickets"];
+const PROJECTS_TABS = ["Employees", "Teams", "Tickets"];
 
 export default function SuperAdminProjectPanel({
   projectsData,
@@ -61,6 +62,17 @@ export default function SuperAdminProjectPanel({
         projectId: project.id,
         projectName: project.name,
       },
+      shallow: true,
+    });
+  }
+
+  function handleUnActiveProject() {
+    setActiveProject(null);
+    setProjectInformation(null);
+    router.replace({
+      pathname: "/app/super-admin/projects",
+      query: undefined,
+      shallow: true,
     });
   }
 
@@ -79,10 +91,19 @@ export default function SuperAdminProjectPanel({
     }
   }, [router.query]);
 
-  //** handle change of active project tab */
-  const onActiveProjectChange = (key) => {
-    setActiveProject(key);
-  };
+  //** Delete project */
+  function DeleteProjectConfirm() {
+    DeleteProject(activeProject.id).then((res) => {
+      if (!res.error) {
+        message.success("Project Sucessfully deleted!");
+        handleUnActiveProject();
+      } else {
+        message.error("Error deleting project!");
+      }
+    });
+  }
+  function OnProjectDeleteCancel() {}
+
   return (
     <>
       <div className="Project-panel">
@@ -99,7 +120,7 @@ export default function SuperAdminProjectPanel({
                 <p>{activeProject.name}</p>
                 <div
                   className="ml-4 opacity-30 hover:opacity-100 transition-all cursor-pointer"
-                  onClick={() => onActiveProjectChange(null)}
+                  onClick={() => handleUnActiveProject()}
                 >
                   <RxCross1 size={14} />
                 </div>
@@ -114,13 +135,17 @@ export default function SuperAdminProjectPanel({
               title="Create a new project in your company and add a workforce"
               mouseEnterDelay={0.05}
             >
-              <button
-                className="bg-secondry mr-2 py-1 px-3 rounded-md flex flex-row justify-center items-center"
-                onClick={() => !setIsCreateProject(!isCreateProject)}
-              >
-                <IoIosAdd size={26} />
-                <p>Create Project</p>
-              </button>
+              {!activeProject || !projectInformation ? (
+                <button
+                  className="bg-secondry mr-2 py-1 px-3 rounded-md flex flex-row justify-center items-center"
+                  onClick={() => !setIsCreateProject(!isCreateProject)}
+                >
+                  <IoIosAdd size={26} />
+                  <p>Create Project</p>
+                </button>
+              ) : (
+                <></>
+              )}
             </Tooltip>
             <div className="help-icon px-2">
               <CgInbox size={24} />
@@ -131,7 +156,7 @@ export default function SuperAdminProjectPanel({
           </div>
         </header>
         {/* show all project / show specific project starts here */}
-        {!activeProject ? (
+        {!activeProject || !projectInformation ? (
           <>
             <div className="Search-projects-section px-4 my-4">
               <SearchModule
@@ -204,7 +229,7 @@ export default function SuperAdminProjectPanel({
             <div
               className={`${activeProject.name}-project bg-gray-900 bg-opacity-60`}
             >
-              <div className="py-10 flex flex-row justify-between items-center px-6">
+              <div className="py-10 flex flex-row justify-between items-start px-6">
                 <div className="flex flex-row justify-start items-start">
                   <div className="bg-gray-700 p-24 rounded-lg relative">
                     <p className="absolute bottom-[-10px] left-5 font-extrabold text-[10rem] opacity-40">
@@ -226,6 +251,33 @@ export default function SuperAdminProjectPanel({
                     </div>
                   </div>
                 </div>
+                <div className="project-actions flex flex-row">
+                  <button
+                    className="bg-primary mr-2 py-1 px-3 rounded-md flex flex-row justify-center items-center"
+                    // onClick={() => !setIsCreateProject(!isCreateProject)}
+                  >
+                    <IoIosAdd size={26} />
+                    <p>Assign Employee</p>
+                  </button>
+                  <Popconfirm
+                    title={`Remove project Projectorate?`}
+                    description="Are you sure to remove this project from projectorate?"
+                    onConfirm={() => {
+                      DeleteProjectConfirm(activeProject.id);
+                    }}
+                    onCancel={OnProjectDeleteCancel}
+                    okText="Confirm"
+                    cancelText="No"
+                    placement="bottomLeft"
+                  >
+                    <button
+                      className="bg-red-500 mr-2 py-1 px-3 rounded-md flex flex-row justify-center items-center"
+                      // onClick={() => !setIsCreateProject(!isCreateProject)}
+                    >
+                      <CgTrash size={26} />
+                    </button>
+                  </Popconfirm>
+                </div>
               </div>
             </div>
             {/* Show tabs */}
@@ -243,7 +295,7 @@ export default function SuperAdminProjectPanel({
                 })}
               />
             </div>
-            <ProjectEmployees />
+            <ProjectEmployees projectId={activeProject.id} />
           </>
         )}
         {/* show all project / show specific project ends here */}
