@@ -5,7 +5,7 @@ import ProjectsContainer from "../../../components/Projects/ProjectsContainer/Pr
 import { SlSocialSteam } from "react-icons/sl";
 import { IoIosAdd, IoIosHelpCircle } from "react-icons/io";
 import { CgInbox, CgTrash } from "react-icons/cg";
-import { Tooltip, Col, Row, Tabs, Popconfirm, message } from "antd";
+import { Tooltip, Col, Row, Tabs, Popconfirm, message, Result } from "antd";
 import SuperAdminDashboard from ".";
 import CreateProject from "../../../components/Projects/CreateProject/CreateProject";
 import {
@@ -21,6 +21,7 @@ import InformationTag from "../../../components/InformationTag/InformationTag";
 import { AndroidOutlined, AppleOutlined } from "@ant-design/icons";
 import EmployeesData from "../../../components/EmployeesPanel/EmployeesData";
 import ProjectEmployees from "../../../components/Projects/ProjectEmployees.js/ProjectEmployees";
+import AssignEmployee from "../../../components/Projects/AssignEmployee/AssignEmployee";
 
 const PROJECTS_TABS = ["Employees", "Teams", "Tickets"];
 
@@ -37,6 +38,8 @@ export default function SuperAdminProjectPanel({
   const [isRefreshProjects, setIsRefreshProjects] = useState(false);
   const [activeProject, setActiveProject] = useState(null);
   const [projectInformation, setProjectInformation] = useState();
+  const [assignEmployeesPanel, setAssignEmployeesPanel] = useState(false);
+  const [isNewEmployee, setisNewEmployee] = useState(false);
 
   //** Get All the projects in CSR */
   const fetchAllProjects = async () => {
@@ -178,6 +181,17 @@ export default function SuperAdminProjectPanel({
                 </p>
               </div>
               <div className="Projects py-4">
+                {projects.length == 0 ? (
+                  <div className="w-full flex justify-center items-center">
+                    <Result
+                      status="404"
+                      title="There are no projects yet!"
+                      subTitle="Please create new project in you workspace."
+                    />
+                  </div>
+                ) : (
+                  <></>
+                )}
                 <div class="inline-grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 grid-flow-row gap-4">
                   {!isRefreshProjects ? (
                     projects.map((item) => {
@@ -226,13 +240,19 @@ export default function SuperAdminProjectPanel({
           </>
         ) : (
           <>
+            <AssignEmployee
+              assignEmployeesPanel={assignEmployeesPanel}
+              setAssignEmployeesPanel={setAssignEmployeesPanel}
+              setisNewEmployee={setisNewEmployee}
+              projectId={activeProject.id}
+            />
             <div
               className={`${activeProject.name}-project bg-gray-900 bg-opacity-60`}
             >
               <div className="py-10 flex flex-row justify-between items-start px-6">
                 <div className="flex flex-row justify-start items-start">
-                  <div className="bg-gray-700 p-24 rounded-lg relative">
-                    <p className="absolute bottom-[-10px] left-5 font-extrabold text-[10rem] opacity-40">
+                  <div className="bg-gray-700 h-52 w-52 rounded-lg flex justify-center items-center">
+                    <p className="font-extrabold text-[10rem] opacity-40">
                       {activeProject.name[0]}
                     </p>
                   </div>
@@ -252,31 +272,43 @@ export default function SuperAdminProjectPanel({
                   </div>
                 </div>
                 <div className="project-actions flex flex-row">
-                  <button
-                    className="bg-primary mr-2 py-1 px-3 rounded-md flex flex-row justify-center items-center"
-                    // onClick={() => !setIsCreateProject(!isCreateProject)}
-                  >
-                    <IoIosAdd size={26} />
-                    <p>Assign Employee</p>
-                  </button>
-                  <Popconfirm
-                    title={`Remove project Projectorate?`}
-                    description="Are you sure to remove this project from projectorate?"
-                    onConfirm={() => {
-                      DeleteProjectConfirm(activeProject.id);
-                    }}
-                    onCancel={OnProjectDeleteCancel}
-                    okText="Confirm"
-                    cancelText="No"
-                    placement="bottomLeft"
+                  <Tooltip
+                    placement="top"
+                    title="Add employees to work on this project"
+                    mouseEnterDelay={0.05}
                   >
                     <button
-                      className="bg-red-500 mr-2 py-1 px-3 rounded-md flex flex-row justify-center items-center"
-                      // onClick={() => !setIsCreateProject(!isCreateProject)}
+                      className="bg-primary mr-2 py-1 px-3 rounded-md flex flex-row justify-center items-center"
+                      onClick={() => setAssignEmployeesPanel(true)}
                     >
-                      <CgTrash size={26} />
+                      <IoIosAdd size={26} />
+                      <p>Assign Employee</p>
                     </button>
-                  </Popconfirm>
+                  </Tooltip>
+                  <Tooltip
+                    placement="topRight"
+                    title="Remove this project from projectorate"
+                    mouseEnterDelay={0.05}
+                  >
+                    <Popconfirm
+                      title={`Remove project Projectorate?`}
+                      description="Are you sure to remove this project from projectorate?"
+                      onConfirm={() => {
+                        DeleteProjectConfirm(activeProject.id);
+                      }}
+                      onCancel={OnProjectDeleteCancel}
+                      okText="Confirm"
+                      cancelText="No"
+                      placement="bottomLeft"
+                    >
+                      <button
+                        className="bg-red-500 mr-2 py-1 px-3 rounded-md flex flex-row justify-center items-center"
+                        // onClick={() => !setIsCreateProject(!isCreateProject)}
+                      >
+                        <CgTrash size={26} />
+                      </button>
+                    </Popconfirm>
+                  </Tooltip>
                 </div>
               </div>
             </div>
@@ -295,7 +327,11 @@ export default function SuperAdminProjectPanel({
                 })}
               />
             </div>
-            <ProjectEmployees projectId={activeProject.id} />
+            <ProjectEmployees
+              projectId={activeProject.id}
+              isNewEmployee={isNewEmployee}
+              setisNewEmployee={setisNewEmployee}
+            />
           </>
         )}
         {/* show all project / show specific project ends here */}

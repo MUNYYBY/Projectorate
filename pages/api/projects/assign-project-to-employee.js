@@ -20,13 +20,11 @@ export default async function handler(req, res) {
       })
       .then((result) => {
         if (!result) {
-          res
-            .status(404)
-            .json({
-              error: 404,
-              type: "Project",
-              message: "Project does not exist!",
-            });
+          res.status(404).json({
+            error: 404,
+            type: "Project",
+            message: "Project does not exist!",
+          });
         }
       })
       .catch((err) => {
@@ -40,13 +38,11 @@ export default async function handler(req, res) {
       })
       .then((result) => {
         if (!result) {
-          res
-            .status(404)
-            .json({
-              error: 404,
-              type: "Employee",
-              message: "Employee does not exist!",
-            });
+          res.status(404).json({
+            error: 404,
+            type: "Employee",
+            message: "Employee does not exist!",
+          });
         }
       })
       .catch((err) => {

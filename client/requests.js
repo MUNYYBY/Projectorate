@@ -191,3 +191,29 @@ export async function DeleteEmployeeFromProject(employeeId, projectId) {
     return { error: error.response.data };
   }
 }
+
+export async function SearchEmployee(search) {
+  try {
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL +
+        `/employee/search-employee?search=${search}`
+    );
+    return res;
+  } catch (error) {
+    console.log("Error While deleting employee from project: ", error);
+    return { error: error.response };
+  }
+}
+
+export async function AssignEmployeeToProject(projectId, employeeId) {
+  try {
+    const res = await axios.post(
+      process.env.NEXT_PUBLIC_BASE_URL +
+        `/projects/assign-project-to-employee?projectId=${projectId}&userId=${employeeId}`
+    );
+    return res;
+  } catch (error) {
+    console.log("Error While assigning employee to project: ", error);
+    return { error: error.response };
+  }
+}

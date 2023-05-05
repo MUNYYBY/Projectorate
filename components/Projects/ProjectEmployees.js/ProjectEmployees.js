@@ -8,7 +8,11 @@ import {
 import moment from "moment/moment";
 import { getProjectEmployees } from "../../../client/requests";
 
-export default function ProjectEmployees({ projectId }) {
+export default function ProjectEmployees({
+  projectId,
+  isNewEmployee,
+  setisNewEmployee,
+}) {
   const [employeesData, setEmployeesData] = useState();
   const [loading, setLoading] = useState(false);
 
@@ -116,6 +120,14 @@ export default function ProjectEmployees({ projectId }) {
     console.log(e);
     message.error("Click on No");
   };
+
+  //fetch employee if a new employee has been added
+  useEffect(() => {
+    if (isNewEmployee) {
+      getEmployeesData();
+      setisNewEmployee(false);
+    }
+  }, [isNewEmployee]);
 
   //Call the getNewEmployees function when needed
   useEffect(() => {
