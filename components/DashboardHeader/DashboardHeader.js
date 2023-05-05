@@ -56,12 +56,12 @@ export default function DashboardHeader(
           ) : (
             ""
           )}
-          <div className="help-icon px-2">
+          <div className="help-icon px-2 sm:flex hidden">
             <Tooltip placement="bottom" title="Help" mouseEnterDelay={0.05}>
               <CgInbox size={28} />
             </Tooltip>
           </div>
-          <div className="inbox-icon px-2">
+          <div className="help-icon px-2 sm:flex hidden">
             <Tooltip placement="bottom" title="Inbox" mouseEnterDelay={0.05}>
               <IoIosHelpCircle size={30} />
             </Tooltip>

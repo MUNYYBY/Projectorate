@@ -127,7 +127,7 @@ export default function AddEmployee(props) {
             disabled={loading}
           >
             <Row>
-              <Col span={12}>
+              <Col xs={{ span: 22, offset: 1 }} lg={{ span: 11, offset: 1 }}>
                 <Form.Item
                   name="firstName"
                   label="First Name"
@@ -209,7 +209,7 @@ export default function AddEmployee(props) {
                     },
                   ]}
                 >
-                  <DatePicker />
+                  <DatePicker className="w-full" />
                 </Form.Item>
                 <Form.Item
                   name="dateOfJoining"
@@ -221,10 +221,10 @@ export default function AddEmployee(props) {
                     },
                   ]}
                 >
-                  <DatePicker />
+                  <DatePicker className="w-full" />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col xs={{ span: 22, offset: 1 }} lg={{ span: 11, offset: 1 }}>
                 <Form.Item
                   name="yearsOfExperience"
                   label="Years of experince"
@@ -347,24 +347,8 @@ export default function AddEmployee(props) {
               </Col>
             </Row>
             <div className="flex flex-col justify-center items-center w-full">
-              {/* <Form.Item
-                name="agreement"
-                valuePropName="checked"
-                rules={[
-                  {
-                    validator: (_, value) =>
-                      value
-                        ? Promise.resolve()
-                        : Promise.reject(new Error("Should accept agreement")),
-                  },
-                ]}
-              >
-                <Checkbox>
-                  I have read the <a href="">agreement</a>
-                </Checkbox>
-              </Form.Item> */}
               <button
-                className="bg-secondry py-2 px-3 rounded-md transition-all text-white "
+                className="bg-secondry py-2 px-3 rounded-md transition-all text-white mt-10"
                 type="submit"
               >
                 <p>Add Employee</p>

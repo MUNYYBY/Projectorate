@@ -5,7 +5,7 @@ export default function ProjectsContainer({
   tagTitle = "Software Dev",
 }) {
   return (
-    <div className="h-44 w-96 bg-gray-900 rounded-md shadow-sm p-6 flex flex-col justify-between">
+    <div className="h-44 w-full md:w-96 bg-gray-900 rounded-md shadow-sm p-6 flex flex-col justify-between">
       <div className="flex flex-row">
         <div className="Project-main-Image rounded-lg w-14 h-14 bg-gray-700 flex justify-center items-center">
           <h1 className="font-bold text-5xl">{ProjectName[0]}</h1>

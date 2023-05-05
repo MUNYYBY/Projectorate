@@ -1,6 +1,6 @@
 export default function ProjectsContainerSkelton() {
   return (
-    <div className="animate-pulse h-44 w-96 bg-gray-700 rounded-md shadow-sm p-6 flex flex-col justify-between">
+    <div className="animate-pulse h-44 w-full md:w-96 bg-gray-700 rounded-md shadow-sm p-6 flex flex-col justify-between">
       <div className="flex flex-row">
         <div className="rounded-lg w-14 h-14 bg-gray-600 flex justify-center items-center"></div>
         <div className="projects-container-main-info ml-3">

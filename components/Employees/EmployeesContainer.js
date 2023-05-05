@@ -15,14 +15,20 @@ export default function EmployeesContainer({
     <div className="Employees-container bg-gray-700 h-20 w-full px-4 mt-2 rounded-md shadow-sm flex flex-row justify-between items-center ">
       <div className="flex flex-row justify-between items-center ">
         <div className="Employee-Image flex flex-row items-center">
-          <Image src={Temp} width={50} height={50} className="rounded-full" />
+          <Image
+            src={Temp}
+            width={50}
+            height={50}
+            className="rounded-full"
+            alt="employee image"
+          />
         </div>
-        <div className="Employee-information pl-4 w-80">
+        <div className="Employee-information pl-4 lg:w-72 md:w-52">
           <h1 className="">{employeeName}</h1>
           <p className="text-pOrange text-sm">{designation}</p>
         </div>
       </div>
-      <div className="Employee-work-info-tag">
+      <div className="Employee-work-info-tag sm:flex hidden">
         <InformationTag title={informationTag} type="intermediate" size="md" />
       </div>
       <div className="Employee-tickets-stat flex flex-row justify-center items-center">

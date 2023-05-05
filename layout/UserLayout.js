@@ -25,7 +25,6 @@ export default function UserLayout({ children }) {
       const i = Users.findIndex((route) =>
         router.asPath.includes("app/" + route.userType)
       );
-      console.log("Index found:", i, "for ", router.asPath);
       if (i > -1) {
         setLayoutType(i);
       } else {

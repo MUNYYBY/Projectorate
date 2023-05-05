@@ -12,7 +12,7 @@ export default function EmployeesPanelContainer(props) {
       title="Employees Panel"
       onClose={() => props.setIsEmployeePanel(false)}
       open={props.isEmployeePanel}
-      bodyStyle={{ paddingBottom: 80 }}
+      bodyStyle={{ paddingBottom: 80, paddingRight: 10, paddingLeft: 10 }}
       width="100%"
       extra={
         <Tooltip

@@ -9,11 +9,11 @@ export default function SearchModule({
         <h1 className="font-semibold text-xl opacity-80">{title}</h1>
         <p className="text-sm opacity-60 mt-1">{description}</p>
       </div>
-      <div className="Search-bar bg-gray-900 h-14 border-2 border-black rounded-md flex flex-row justify-between items-center px-4 mt-4">
+      <div className="Search-bar bg-gray-900 py-2 border-2 border-black rounded-md flex flex-row justify-between items-center px-4 mt-4">
         <input
-          placeholder={`Type attributes for ${type}...`}
+          placeholder={`Search ${type}...`}
           type="text"
-          className="bg-transparent w-4/6 focus:outline-0"
+          className="bg-transparent md:w-4/6 sm:w-[8rem] w-[6rem] focus:outline-0"
         />
         <button className="bg-primary py-2 px-3 rounded-md">
           Find in “{type}”

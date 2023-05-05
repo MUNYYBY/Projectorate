@@ -11,7 +11,7 @@ export default function EmployeesContainerSkelton() {
           className="Employee-Image flex flex-row items-center bg-gray-600 rounded-full"
           style={{ height: 50, width: 50 }}
         ></div>
-        <div className="Employee-information pl-4 w-80">
+        <div className="Employee-information pl-4 lg:w-80 md:w-52">
           <h1 className="bg-gray-600" style={{ height: 16, width: 150 }}></h1>
           <p
             className="mt-2 rounded-2 bg-gray-600"

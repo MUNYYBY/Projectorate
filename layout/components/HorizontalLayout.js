@@ -5,12 +5,15 @@ import SubPanel from "../../components/Sub-panel/SubPanel";
 export default function HorizontalLayout({ children }) {
   return (
     <div
-      className="app-layout Dashboard w-full h-full absolute z-10"
+      className="app-layout Dashboard w-full min-h-[100vh]"
       style={{ backgroundColor: "#2c2e33" }}
     >
       <SideBar />
-      <SubPanel />
-      <div className="ml-[20.5rem]">{children}</div>
+      <div className="sidepanel md:visible invisible">
+        <SubPanel />
+      </div>
+
+      <div className="md:ml-[20.5rem] ml-[4.5rem]">{children}</div>
     </div>
   );
 }

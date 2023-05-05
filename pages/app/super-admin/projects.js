@@ -107,6 +107,11 @@ export default function SuperAdminProjectPanel({
   }
   function OnProjectDeleteCancel() {}
 
+  //** Handle project domains information */
+  function handleProjectDomainsInfo(id) {
+    return projectDomains.find((domain) => domain.id == id);
+  }
+
   return (
     <>
       <div className="Project-panel">
@@ -138,7 +143,7 @@ export default function SuperAdminProjectPanel({
               title="Create a new project in your company and add a workforce"
               mouseEnterDelay={0.05}
             >
-              {!activeProject || !projectInformation ? (
+              {!activeProject ? (
                 <button
                   className="bg-secondry mr-2 py-1 px-3 rounded-md flex flex-row justify-center items-center"
                   onClick={() => !setIsCreateProject(!isCreateProject)}
@@ -150,10 +155,10 @@ export default function SuperAdminProjectPanel({
                 <></>
               )}
             </Tooltip>
-            <div className="help-icon px-2">
+            <div className="help-icon px-2 sm:flex hidden">
               <CgInbox size={24} />
             </div>
-            <div className="inbox-icon px-2">
+            <div className="inbox-icon px-2 sm:flex hidden">
               <IoIosHelpCircle size={26} />
             </div>
           </div>
@@ -192,12 +197,9 @@ export default function SuperAdminProjectPanel({
                 ) : (
                   <></>
                 )}
-                <div class="inline-grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 grid-flow-row gap-4">
+                <div class="inline-grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 grid-flow-row gap-4 w-full">
                   {!isRefreshProjects ? (
                     projects.map((item) => {
-                      const searchObject = projectDomains.find(
-                        (domain) => domain.id == item.projectDomainsId
-                      );
                       return (
                         <div
                           className="project_container cursor-pointer"
@@ -211,7 +213,10 @@ export default function SuperAdminProjectPanel({
                         >
                           <ProjectsContainer
                             ProjectName={item.project_name}
-                            tagTitle={searchObject.title}
+                            tagTitle={
+                              handleProjectDomainsInfo(item.projectDomainsId)
+                                .title
+                            }
                           />
                         </div>
                       );
@@ -249,29 +254,33 @@ export default function SuperAdminProjectPanel({
             <div
               className={`${activeProject.name}-project bg-gray-900 bg-opacity-60`}
             >
-              <div className="py-10 flex flex-row justify-between items-start px-6">
+              <div className="py-10 flex flex-col sm:flex-row justify-between sm:items-start px-3 sm:px-6">
                 <div className="flex flex-row justify-start items-start">
-                  <div className="bg-gray-700 h-52 w-52 rounded-lg flex justify-center items-center">
-                    <p className="font-extrabold text-[10rem] opacity-40">
+                  <div className="bg-gray-700 md:flex hidden lg:h-52 lg:w-52 md:h-32 md:w-32 h-24 w-24 rounded-lg flex justify-center items-center">
+                    <p className="font-extrabold lg:text-[10rem] md:text-6xl text-3xl opacity-40">
                       {activeProject.name[0]}
                     </p>
                   </div>
-                  <div className="flex flex-col justify-center ml-4">
-                    <h1 className="text-2xl font-bold">
-                      {projectInformation?.project_name}
+                  <div className="flex flex-col justify-center sm:ml-4">
+                    <h1 className="text-3xl font-bold text-secondry ">
+                      {projectInformation?.project_name.toUpperCase()}
                     </h1>
-                    <p className="font-medium text-xl">
+                    <p className="font-medium mt-2 text-sm md:text-md lg:text-xl sm:w-32 lg:w-96 md:w-32 w-full">
                       {projectInformation?.description}
                     </p>
                     <div className="mt-4">
                       <InformationTag
-                        title={projectInformation?.projectDomainsId}
+                        title={
+                          handleProjectDomainsInfo(
+                            projectInformation?.projectDomainsId
+                          ).title
+                        }
                         type="intermediate"
                       />
                     </div>
                   </div>
                 </div>
-                <div className="project-actions flex flex-row">
+                <div className="project-actions flex flex-row mt-4 sm:mt-0">
                   <Tooltip
                     placement="top"
                     title="Add employees to work on this project"
@@ -301,10 +310,7 @@ export default function SuperAdminProjectPanel({
                       cancelText="No"
                       placement="bottomLeft"
                     >
-                      <button
-                        className="bg-red-500 mr-2 py-1 px-3 rounded-md flex flex-row justify-center items-center"
-                        // onClick={() => !setIsCreateProject(!isCreateProject)}
-                      >
+                      <button className="bg-red-500 mr-2 py-1 px-3 rounded-md flex flex-row justify-center items-center">
                         <CgTrash size={26} />
                       </button>
                     </Popconfirm>

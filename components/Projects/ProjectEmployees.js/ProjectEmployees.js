@@ -140,7 +140,7 @@ export default function ProjectEmployees({
           columns={columns}
           dataSource={employeesData}
           scroll={{
-            x: 100,
+            x: 1000,
           }}
           className="rounded-none"
           style={{ borderRadius: "0 !impotant" }}
