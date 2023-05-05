@@ -57,9 +57,9 @@ model Project {
 }
 
 model UserProjects {
-  project     Project   @relation(fields: [project_id], references: [id])
+  project     Project   @relation(fields: [project_id], references: [id], onDelete: Cascade)
   project_id  Int
-  employee    Employee  @relation(fields: [employee_id], references: [id])
+  employee    Employee  @relation(fields: [employee_id], references: [id], onDelete: Cascade)
   employee_id Int
   createdAt   DateTime  @default(now())
   updatedAt   DateTime? @updatedAt

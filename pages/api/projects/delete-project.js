@@ -11,28 +11,36 @@ export default async function handler(req, res) {
       where: {
         id: parseInt(projectId),
       },
-    });
-    if (checkget) {
-      const data = await PrismaDB.Project.delete({
-        where: {
-          id: parseInt(projectId),
-        },
-      });
-      if (data) {
-        res.status(200).json({
-          message: `Project successfully deleted with id: ${projectId}`,
-          data,
-        });
-      } else {
-        res.status(500).json({
-          message: `Error while deleting with id: ${projectId}`,
+    }).then((result) => {
+      if (!result) {
+        res.status(404).json({
+          error: 404,
+          type: "Project",
+          message: "Project does not exist!",
         });
       }
-    } else {
-      res.status(404).json({
-        message: `Project not found`,
+    });
+    const data = await PrismaDB.Project.delete({
+      where: {
+        id: parseInt(projectId),
+      },
+    })
+      .then(async (result) => {
+        if (result) {
+          res.status(200).json({
+            code: 200,
+            type: "Project and Userproject deletion!",
+            message1: `Project successfully deleted with id: ${projectId}`,
+          });
+        }
+      })
+      .catch((err) => {
+        res.status(500).json({
+          error: 500,
+          type: "Project",
+          message: `Error while deleting Project with id ${projectId}: ${err.message}`,
+        });
       });
-    }
   } catch (error) {
     console.log("Delete while getting single project at backend: ", error);
     return res.status(422).json({

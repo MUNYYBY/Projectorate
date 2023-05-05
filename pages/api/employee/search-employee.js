@@ -7,14 +7,38 @@ export default async function handler(req, res) {
   console.log("Get Search Employee End-point hit!");
   const { search } = req.query;
   try {
-    const result = await PrismaDB.employee.findMany({
-      where: {
-        body: {
-          search: search,
+    const result = await PrismaDB.employee
+      .findMany({
+        where: {
+          OR: [
+            {
+              first_name: {
+                contains: search,
+              },
+            },
+            {
+              last_name: {
+                contains: search,
+              },
+            },
+            {
+              email: {
+                contains: search,
+              },
+            },
+          ],
         },
-      },
-    });
-    res.status(200).json({ data });
+      })
+      .then((result) => {
+        res.status(200).json({ result });
+      })
+      .catch((err) => {
+        return res.status(500).json({
+          error: 500,
+          message:
+            "Error while getting Search employees at backend: " + err.message,
+        });
+      });
   } catch (error) {
     console.log("Error while getting Search employees at backedn: ", error);
     return res
