@@ -3,6 +3,7 @@ import InformationTag from "../../InformationTag/InformationTag";
 export default function ProjectsContainer({
   ProjectName = "Project Name",
   tagTitle = "Software Dev",
+  employeesCount = "000",
 }) {
   return (
     <div className="h-44 w-full md:w-96 bg-gray-900 rounded-md shadow-sm p-6 flex flex-col justify-between">
@@ -19,7 +20,9 @@ export default function ProjectsContainer({
       </div>
       <div className="projects-attributes flex flex-row justify-between">
         <div className="flex flex-col items-center">
-          <h1 className="text-secondry font-bold text-2xl">000</h1>
+          <h1 className="text-secondry font-bold text-2xl">
+            {employeesCount == 0 ? "000" : employeesCount}
+          </h1>
           <p className="text-sm opacity-80">Members</p>
         </div>
         <div className="flex flex-col items-center">

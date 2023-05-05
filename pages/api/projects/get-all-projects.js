@@ -6,11 +6,15 @@ export default async function handler(req, res) {
   }
   console.log("Get all projects End-point hit!");
   try {
-    const data = await PrismaDB.Project.findMany();
+    const data = await PrismaDB.Project.findMany({
+      include: {
+        _count: { select: { userProjects: true } },
+      },
+    });
     console.log("All Projects: ", data);
     res.status(200).json({ data });
   } catch (error) {
-    console.log("Error while getting all Projects at backedn: ", error);
+    console.log("Error while getting all Projects at backend: ", error);
     return res
       .status(422)
       .json({ error: "Error while getting all Projects at backend: ", error });

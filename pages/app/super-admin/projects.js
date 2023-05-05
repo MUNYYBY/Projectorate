@@ -213,6 +213,7 @@ export default function SuperAdminProjectPanel({
                         >
                           <ProjectsContainer
                             ProjectName={item.project_name}
+                            employeesCount={item._count.userProjects}
                             tagTitle={
                               handleProjectDomainsInfo(item.projectDomainsId)
                                 .title
