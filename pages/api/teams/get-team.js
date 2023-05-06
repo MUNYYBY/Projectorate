@@ -11,6 +11,9 @@ export default async function handler(req, res) {
       where: {
         id: parseInt(teamId),
       },
+      include: {
+        project: true,
+      },
     });
     if (data) {
       res.status(200).json({ data });

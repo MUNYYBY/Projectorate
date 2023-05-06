@@ -140,12 +140,12 @@ export default function SuperAdminProjectPanel({
             )}
           </div>
           <div className="flex flex-row items-center">
-            <Tooltip
-              placement="bottom"
-              title="Create a new project in your company and add a workforce"
-              mouseEnterDelay={0.05}
-            >
-              {!activeProject ? (
+            {!activeProject ? (
+              <Tooltip
+                placement="bottom"
+                title="Create a new project in your company and add a workforce"
+                mouseEnterDelay={0.05}
+              >
                 <button
                   className="bg-secondry mr-2 py-1 px-3 rounded-md flex flex-row justify-center items-center"
                   onClick={() => !setIsCreateProject(!isCreateProject)}
@@ -153,10 +153,10 @@ export default function SuperAdminProjectPanel({
                   <IoIosAdd size={26} />
                   <p>Create Project</p>
                 </button>
-              ) : (
-                <></>
-              )}
-            </Tooltip>
+              </Tooltip>
+            ) : (
+              <></>
+            )}
             <div className="help-icon px-2 sm:flex hidden">
               <CgInbox size={24} />
             </div>
@@ -285,7 +285,7 @@ export default function SuperAdminProjectPanel({
                 </div>
                 <div className="project-actions flex flex-row mt-4 sm:mt-0">
                   <Tooltip
-                    placement="top"
+                    placement="topRight"
                     title="Add employees to work on this project"
                     mouseEnterDelay={0.05}
                   >
@@ -298,7 +298,7 @@ export default function SuperAdminProjectPanel({
                   </Tooltip>
                   <Tooltip
                     placement="topRight"
-                    title="Remove this project from projectorate"
+                    title="Remove this project"
                     mouseEnterDelay={0.05}
                   >
                     <Popconfirm

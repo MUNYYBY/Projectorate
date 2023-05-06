@@ -251,3 +251,64 @@ export async function createTeam(payload) {
     return { error: error };
   }
 }
+
+export async function GetSpecificTeam(teamId) {
+  try {
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL + "/teams/get-team?teamId=" + teamId
+    );
+    return res.data;
+  } catch (error) {
+    console.log("Error While getting specific team: ", error);
+  }
+}
+
+export async function DeleteTeam(teamId) {
+  try {
+    const res = await axios.delete(
+      process.env.NEXT_PUBLIC_BASE_URL + `/teams/delete-team?teamId=${teamId}`
+    );
+    return res;
+  } catch (error) {
+    console.log("Error While deleting team: ", error);
+    return { error: error.response.data };
+  }
+}
+
+export async function getTeamEmployees(teamId) {
+  try {
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL +
+        "/teams/get-team-employees?teamId=" +
+        teamId
+    );
+    return res.data;
+  } catch (error) {
+    console.log("Error While getting employee: ", error);
+    return { error: error.response.data };
+  }
+}
+export async function DeleteEmployeeFromTeam(employeeId, teamId) {
+  try {
+    const res = await axios.delete(
+      process.env.NEXT_PUBLIC_BASE_URL +
+        `/teams/remove-employee-from-team?employeeId=${employeeId}&teamId=${teamId}`
+    );
+    return res;
+  } catch (error) {
+    console.log("Error While deleting employee from teams: ", error);
+    return { error: error.response.data };
+  }
+}
+export async function AssignEmployeeToTeam(teamId, employeeId) {
+  try {
+    const res = await axios.post(
+      process.env.NEXT_PUBLIC_BASE_URL +
+        `/teams/assign-team-to-employee?teamId=${teamId}&userId=${employeeId}`
+    );
+    return res;
+  } catch (error) {
+    console.log("Error While assigning employee to team: ", error);
+    return { error: error.response };
+  }
+}

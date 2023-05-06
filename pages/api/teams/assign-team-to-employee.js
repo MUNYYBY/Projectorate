@@ -91,9 +91,11 @@ export default async function handler(req, res) {
         },
       }).then(async (result) => {
         if (result) {
-          res
-            .status(403)
-            .json({ message: "Employee is already added to the Team" });
+          res.status(403).json({
+            error: 403,
+            type: "Employee already in team",
+            message: "Employee is already added to the Team",
+          });
         } else {
           const data = await PrismaDB.userTeams
             .create({
