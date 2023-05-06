@@ -217,3 +217,37 @@ export async function AssignEmployeeToProject(projectId, employeeId) {
     return { error: error.response };
   }
 }
+//get all the Team domains in the database
+export async function getTeamDomains() {
+  try {
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL + "/team-domains/get-team-domains"
+    );
+    return res.data;
+  } catch (error) {
+    console.log("Error While getting Team domains at front-end: ", error);
+    return { error: error };
+  }
+}
+export async function getAllTeams() {
+  try {
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL + "/teams/get-all-teams"
+    );
+    return res.data;
+  } catch (error) {
+    console.log("Error While getting all teams: ", error);
+  }
+}
+export async function createTeam(payload) {
+  try {
+    const res = await axios.post(
+      process.env.NEXT_PUBLIC_BASE_URL + "/teams/create-team",
+      payload
+    );
+    return res.data;
+  } catch (error) {
+    console.log("Error While creating team: ", error);
+    return { error: error };
+  }
+}

@@ -4,6 +4,8 @@ import TabDevider from "../../../components/Devider/Devider";
 import ProjectsContainer from "../../../components/Projects/ProjectsContainer/ProjectsContainer";
 import { SlSocialSteam } from "react-icons/sl";
 import { IoIosAdd, IoIosHelpCircle } from "react-icons/io";
+import { AiOutlineUsergroupAdd } from "react-icons/ai";
+
 import { CgInbox, CgTrash } from "react-icons/cg";
 import { Tooltip, Col, Row, Tabs, Popconfirm, message, Result } from "antd";
 import SuperAdminDashboard from ".";
@@ -288,11 +290,10 @@ export default function SuperAdminProjectPanel({
                     mouseEnterDelay={0.05}
                   >
                     <button
-                      className="bg-primary mr-2 py-1 px-3 rounded-md flex flex-row justify-center items-center"
+                      className="bg-white bg-opacity-10 hover:bg-opacity-25 transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center"
                       onClick={() => setAssignEmployeesPanel(true)}
                     >
-                      <IoIosAdd size={26} />
-                      <p>Assign Employee</p>
+                      <AiOutlineUsergroupAdd size={24} />
                     </button>
                   </Tooltip>
                   <Tooltip
@@ -311,8 +312,8 @@ export default function SuperAdminProjectPanel({
                       cancelText="No"
                       placement="bottomLeft"
                     >
-                      <button className="bg-red-500 mr-2 py-1 px-3 rounded-md flex flex-row justify-center items-center">
-                        <CgTrash size={26} />
+                      <button className="bg-white bg-opacity-10 hover:bg-opacity-25 transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center">
+                        <CgTrash size={24} />
                       </button>
                     </Popconfirm>
                   </Tooltip>

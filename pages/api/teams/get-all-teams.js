@@ -6,7 +6,11 @@ export default async function handler(req, res) {
   }
   console.log("Get all Teams End-point hit!");
   try {
-    const data = await PrismaDB.Teams.findMany({});
+    const data = await PrismaDB.Teams.findMany({
+      include: {
+        _count: { select: { UserTeams: true } },
+      },
+    });
     console.log("All Projects: ", data);
     res.status(200).json({ data });
   } catch (error) {
