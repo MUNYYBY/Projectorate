@@ -144,6 +144,8 @@ export default function ProjectEmployees({
           }}
           className="rounded-none"
           style={{ borderRadius: "0 !impotant" }}
+          loading={loading}
+          rowClassName={() => "team-employees"}
         />
       </div>
     </div>

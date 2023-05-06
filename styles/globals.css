@@ -60,14 +60,3 @@ a {
   height: 2.5rem !important;
   align-items: center;
 }
-
-/* 
-.ant-picker-input > input::placeholder {
-  color: white !important;
-}
-.ant-picker-input > input {
-  color: white !important;
-}
-.ant-picker-suffix {
-  color: white !important;
-} */

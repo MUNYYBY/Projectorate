@@ -144,8 +144,8 @@ export default function TeamEmployees({
           scroll={{
             x: 1000,
           }}
-          className="rounded-none"
-          style={{ borderRadius: "0 !impotant" }}
+          className="rounded-t-none"
+          loading={loading}
         />
       </div>
     </div>
