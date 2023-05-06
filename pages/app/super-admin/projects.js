@@ -24,6 +24,8 @@ import { AndroidOutlined, AppleOutlined } from "@ant-design/icons";
 import EmployeesData from "../../../components/EmployeesPanel/EmployeesData";
 import ProjectEmployees from "../../../components/Projects/ProjectEmployees.js/ProjectEmployees";
 import AssignEmployee from "../../../components/Projects/AssignEmployee/AssignEmployee";
+import CreateTicketBtn from "../../../components/Tickets/CreateTicketBtn";
+import CreateTicketModel from "../../../components/Tickets/CreateTicketModel";
 
 const PROJECTS_TABS = ["Employees", "Teams", "Tickets"];
 
@@ -42,6 +44,7 @@ export default function SuperAdminProjectPanel({
   const [projectInformation, setProjectInformation] = useState();
   const [assignEmployeesPanel, setAssignEmployeesPanel] = useState(false);
   const [isNewEmployee, setisNewEmployee] = useState(false);
+  const [isCreateTicket, setIsCreateTicket] = useState(false);
 
   //** Get All the projects in CSR */
   const fetchAllProjects = async () => {
@@ -123,6 +126,13 @@ export default function SuperAdminProjectPanel({
 
   return (
     <>
+      <div className="absolute bottom-4 right-4">
+        {isCreateTicket ? <CreateTicketModel /> : <></>}
+
+        <div className="Create-ticket" onClick={() => setIsCreateTicket(true)}>
+          <CreateTicketBtn />
+        </div>
+      </div>
       <div className="Project-panel">
         <header className="flex flex-row items-center justify-between border-b-2 border-b-gray-900 px-4 py-2 relative">
           <div className="flex flex-row items-center">
