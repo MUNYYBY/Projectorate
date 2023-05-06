@@ -3,15 +3,13 @@ import {
   getAllProjects,
   getAllTeams,
   getEmployees,
+  getTicketsPiority,
+  getTicketsStatus,
 } from "../../client/requests";
 
-export default function CreateTicketModel({
-  projectsData = [],
-  teamsData = [],
-}) {
+export default function CreateTicketModel({ teamsData = [] }) {
   //** States */
   const { data: session, status } = useSession();
-  const [projects, setProjects] = useState(projectsData);
   const [teams, setTeams] = useState(teamsData);
   const [employees, setEmployees] = useState([]);
   const [ticketStatus, setTicketStatus] = useState([]);
@@ -21,19 +19,32 @@ export default function CreateTicketModel({
 
   //** Check which among states are empty and fetch those */
   useEffect(() => {
-    if (projects.length == 0) {
-      getAllProjects().then((res) => {
-        setProjects(res.data);
-      });
-    }
     if (teams.length == 0) {
+      setLoading(true);
       getAllTeams().then((res) => {
         setTeams(res.data);
+        setLoading(false);
       });
     }
     if (employees.length == 0) {
+      setLoading(true);
       getEmployees().then((res) => {
         setEmployees(res.data);
+        setLoading(false);
+      });
+    }
+    if (ticketStatus.length == 0) {
+      setLoading(true);
+      getTicketsStatus.then((res) => {
+        setTicketStatus(res.data);
+        setLoading(false);
+      });
+    }
+    if (ticketPiority.length == 0) {
+      setLoading(true);
+      getTicketsPiority.then((res) => {
+        setTicketPiority(res.data);
+        setLoading(false);
       });
     }
   }, []);

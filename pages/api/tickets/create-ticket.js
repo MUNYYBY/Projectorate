@@ -10,7 +10,6 @@ export default async function handler(req, res) {
   const reqBody = req.body;
   if (
     !reqBody.userId ||
-    !reqBody.projectId ||
     !reqBody.teamId ||
     !reqBody.employeeId ||
     !reqBody.ticketStatusId ||
@@ -22,7 +21,7 @@ export default async function handler(req, res) {
     return res.status(500).json({
       error: 500,
       message:
-        "Title, description, deadline, userId, projectId, TeamId, employeeId, ticketStatusId, ticketPiorityId are madatory!",
+        "Title, description, deadline, userId, TeamId, employeeId, ticketStatusId, ticketPiorityId are madatory!",
     });
   }
   try {
@@ -38,25 +37,6 @@ export default async function handler(req, res) {
             error: 404,
             type: "Employee",
             message: "Employee does not exist!",
-          });
-        } else {
-          return result;
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    const proj = await PrismaDB.Project.findUnique({
-      where: {
-        id: parseInt(reqBody.projectId),
-      },
-    })
-      .then((result) => {
-        if (!result) {
-          res.status(404).json({
-            error: 404,
-            type: "Project",
-            message: "Project does not exist!",
           });
         } else {
           return result;
@@ -92,7 +72,7 @@ export default async function handler(req, res) {
 
     let userTeam = null;
 
-    if (employee && team && proj) {
+    if (employee && team) {
       userTeam = await PrismaDB.userTeams
         .findUnique({
           where: {
@@ -107,8 +87,7 @@ export default async function handler(req, res) {
             res.status(404).json({
               error: 404,
               type: "Employee and Teams",
-              message:
-                "Employee must join this team and project where adding to the team!",
+              message: "Employee must join this team where adding to the team!",
             });
           } else {
             return result;
@@ -121,7 +100,7 @@ export default async function handler(req, res) {
 
     //** If all above checks completes then create a ticket */
 
-    if (employee && team && proj && userTeam) {
+    if (employee && team && userTeam) {
       await PrismaDB.Tickets.create({
         data: {
           title: reqBody.title,
@@ -130,11 +109,6 @@ export default async function handler(req, res) {
           user: {
             connect: {
               id: parseInt(reqBody.userId),
-            },
-          },
-          project: {
-            connect: {
-              id: parseInt(reqBody.projectId),
             },
           },
           team: {
