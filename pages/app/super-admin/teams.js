@@ -35,6 +35,7 @@ export default function Teams({ teamsData, teamDomains }) {
   const [teamInformation, setTeamInformation] = useState();
   const [isNewEmployee, setisNewEmployee] = useState(false);
   const [assignEmployeesPanel, setAssignEmployeesPanel] = useState(false);
+  const [callbackExecuted, setCallbackExecuted] = useState(false); // to control multiple callbacks of usestate based on query params
 
   //** Get All the Teams in CSR */
   const fetchAllTeams = async () => {
@@ -68,7 +69,6 @@ export default function Teams({ teamsData, teamDomains }) {
     setActiveTeam(null);
     setTeamInformation(null);
     router.replace({
-      pathname: "/app/super-admin/teams",
       query: undefined,
       shallow: true,
     });
@@ -76,20 +76,27 @@ export default function Teams({ teamsData, teamDomains }) {
 
   //** Listen for query params change */
   useState(() => {
-    if (router.query.teamId && router.query.teamName) {
-      if (!activeTeam) {
-      }
+    if (router.query.teamId && router.query.teamName && !callbackExecuted) {
+      // Update the flag to indicate that the callback has been executed
+      setCallbackExecuted(true);
       setActiveTeam({
         id: router.query.teamId,
         name: router.query.teamName,
       });
       //** Get project Information */
       GetSpecificTeam(router.query.teamId).then((res) => {
-        console.log(res.data);
-        setTeamInformation(res.data);
+        if (!res.error) {
+          console.log(res.data);
+          setTeamInformation(res.data);
+        } else {
+          if (res.error.error == 404) {
+            message.error("Team not found!");
+          }
+          handleUnActiveTeam();
+        }
       });
     }
-  }, [router.query]);
+  }, [router.query, callbackExecuted]);
 
   //** Delete project */
   function DeleteTeamConfirm() {
@@ -200,12 +207,12 @@ export default function Teams({ teamsData, teamDomains }) {
                       <div
                         className="team_container cursor-pointer"
                         key={item.id}
-                        onClick={() =>
+                        onClick={() => {
                           handleActiveTeam({
                             name: item.team_name,
                             id: item.id,
-                          })
-                        }
+                          });
+                        }}
                       >
                         <TeamsContainer
                           teamName={item.team_name}

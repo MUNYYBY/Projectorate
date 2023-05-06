@@ -18,6 +18,7 @@ model User {
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
   Teams     Teams[]
+  Tickets   Tickets[]
 }
 
 model Employee {
@@ -41,6 +42,7 @@ model Employee {
   createdAt           DateTime       @default(now())
   updatedAt           DateTime?      @updatedAt
   UserTeams           UserTeams[]
+  Tickets             Tickets[]
 }
 
 model Project {
@@ -55,6 +57,7 @@ model Project {
   updatedAt        DateTime?       @updatedAt
   projectDomainsId Int?
   Teams            Teams[]
+  Tickets          Tickets[]
 }
 
 model Teams {
@@ -70,6 +73,28 @@ model Teams {
   TeamDomains   TeamDomains? @relation(fields: [teamDomainsId], references: [id])
   teamDomainsId Int?
   UserTeams     UserTeams[]
+  Tickets       Tickets[]
+}
+
+model Tickets {
+  id              Int            @id @default(autoincrement())
+  user            User           @relation(fields: [ownerId], references: [id])
+  project         Project        @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  team            Teams          @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  employee        Employee       @relation(fields: [assigneeId], references: [id])
+  TicketStatus    TicketStatus?  @relation(fields: [ticketStatusId], references: [id])
+  TicketPiority   TicketPiority? @relation(fields: [ticketPiorityId], references: [id])
+  ownerId         Int
+  projectId       Int
+  teamId          Int
+  assigneeId      Int
+  ticketStatusId  Int?
+  ticketPiorityId Int?
+  title           String
+  description     String
+  deadline        String
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime?      @updatedAt
 }
 
 model UserProjects {
@@ -122,4 +147,21 @@ model TeamDomains {
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
   Teams     Teams[]
+}
+
+model TicketStatus {
+  id          Int       @id @default(autoincrement())
+  ticket      Tickets[]
+  title       String
+  description String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @updatedAt
+}
+
+model TicketPiority {
+  id        Int       @id @default(autoincrement())
+  ticket    Tickets[]
+  title     String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
 }

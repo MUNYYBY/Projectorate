@@ -3,13 +3,15 @@ import { message } from "antd";
 import { useEffect, useState } from "react";
 import React from "react";
 import { TiUserAddOutline } from "react-icons/ti";
+import { TbError404 } from "react-icons/tb";
 
 import {
   AssignEmployeeToTeam,
   getProjectEmployees,
 } from "../../../client/requests";
+import TabDevider from "../../Devider/Devider";
 export default function AssignEmployee(props) {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   function AssignEmployeeConfirm(employeeId) {
     AssignEmployeeToTeam(props.teamId, employeeId).then((res) => {
@@ -31,11 +33,15 @@ export default function AssignEmployee(props) {
 
   //** Fetch all avaible employees */
   useEffect(() => {
+    setLoading(true);
     getProjectEmployees(props.projectId).then((res) => {
       if (!res.error) {
         setSearchResults(res.result);
-        setLoading(true);
+        setLoading(false);
         console.log(res.result);
+      } else {
+        setLoading(false);
+        message.error("Some error occoured while fetching project employees!");
       }
     });
   }, []);
@@ -46,13 +52,14 @@ export default function AssignEmployee(props) {
       open={props.assignEmployeesPanel}
       bodyStyle={{ paddingBottom: 80 }}
     >
-      <h1 className="opacity-50">
+      <h1 className="opacity-50 mb-4">
         Note: Only the employees which are added in to project of this team are
         allowed to assign. If you want to add another employee to this team,
         first add him/her to this team's project!
       </h1>
+      <TabDevider color="bg-gray-600" width="w-full" opacity="opacity-1" />
       <div className="mt-4 search-results">
-        {searchResults.length == 0 && loading ? (
+        {loading ? (
           <div className="w-full flex flex-col justify-center items-center">
             <svg
               class="animate-spin -ml-1 h-10 w-10 text-white"
@@ -74,6 +81,11 @@ export default function AssignEmployee(props) {
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
               ></path>
             </svg>
+          </div>
+        ) : searchResults.length == 0 ? (
+          <div className="flex flex-col justify-center items-center">
+            <TbError404 size={100} />
+            <h1>No employees found in project!</h1>
           </div>
         ) : (
           <>

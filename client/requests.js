@@ -149,6 +149,7 @@ export async function GetSpecificProject(propjectId) {
     return res.data;
   } catch (error) {
     console.log("Error While getting employee: ", error);
+    return { error: error.response.data };
   }
 }
 
@@ -237,6 +238,7 @@ export async function getAllTeams() {
     return res.data;
   } catch (error) {
     console.log("Error While getting all teams: ", error);
+    return { error: error.response.data };
   }
 }
 export async function createTeam(payload) {
@@ -260,6 +262,7 @@ export async function GetSpecificTeam(teamId) {
     return res.data;
   } catch (error) {
     console.log("Error While getting specific team: ", error);
+    return { error: error.response.data };
   }
 }
 

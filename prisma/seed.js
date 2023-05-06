@@ -118,6 +118,74 @@ async function seed() {
   } catch (error) {
     console.log("Error at adding all Team Domains! ", error);
   }
+
+  //following are the seeds for ticket pre-requisites
+  try {
+    await prisma.TicketStatus.deleteMany();
+    console.log("All Ticket Status destroyed!");
+  } catch (error) {
+    console.log("Error at Ticket Status destroy!", error);
+  }
+  try {
+    await prisma.TicketStatus.createMany({
+      data: [
+        {
+          title: "Todo",
+          description: "This ticket has not been started",
+        },
+        {
+          title: "In-progress",
+          description: "This ticket is activily being worked on",
+        },
+        {
+          title: "Done",
+          description: "This ticket has been completed",
+        },
+        {
+          title: "Resolved",
+          description: "This issue is resolved",
+        },
+        {
+          title: "Tested but not resolved",
+          description: "This issue still exist",
+        },
+        {
+          title: "On Hold",
+          description: "This issue will be resolved later",
+        },
+      ],
+    });
+    console.log("All Ticket Status Added!");
+  } catch (error) {
+    console.log("Error at adding all Ticket Status! ", error);
+  }
+  try {
+    await prisma.TicketPiority.deleteMany();
+    console.log("All Ticket Piority destroyed!");
+  } catch (error) {
+    console.log("Error at Ticket Piority destroy:", error);
+  }
+  try {
+    await prisma.TicketPiority.createMany({
+      data: [
+        {
+          title: "Urgent",
+        },
+        {
+          title: "High",
+        },
+        {
+          title: "Normal",
+        },
+        {
+          title: "Low",
+        },
+      ],
+    });
+    console.log("All Ticket Piority Added!");
+  } catch (error) {
+    console.log("Error at adding all Ticket Piority: ", error);
+  }
 }
 
 seed();

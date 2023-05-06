@@ -90,8 +90,15 @@ export default function SuperAdminProjectPanel({
       });
       //** Get project Information */
       GetSpecificProject(router.query.projectId).then((res) => {
-        console.log(res.data);
-        setProjectInformation(res.data);
+        if (!res.error) {
+          console.log(res.data);
+          setProjectInformation(res.data);
+        } else {
+          if (res.error.error == 404) {
+            message.error("Team not found!");
+          }
+          handleUnActiveProject();
+        }
       });
     }
   }, [router.query]);
