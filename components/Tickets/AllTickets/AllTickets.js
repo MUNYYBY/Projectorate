@@ -26,10 +26,10 @@ export default function AllTickets({
     {
       title: "Title",
       width: 150,
-      render: (_, { title }) => (
+      render: (_, { title, id }) => (
         <div
           className="underline cursor-pointer"
-          onClick={() => setIsTicketInfo(true)}
+          onClick={() => setIsTicketInfo({ id })}
         >
           <h1>{title}</h1>
         </div>
@@ -118,21 +118,6 @@ export default function AllTickets({
       });
     }
   };
-
-  const confirm = (id) => {
-    console.log(id);
-    DeleteTeam(id).then((res) => {
-      console.log(res);
-      if (!res.error) {
-        //if employees is sucessfully deleted reload all employees and show message
-        getTicktsData();
-        message.success(`Sucessfully removed team from project!`);
-      } else {
-        message.error(`Error while removing team from project!`);
-      }
-    });
-  };
-  const cancel = (e) => {};
 
   //fetch employee if a new employee has been added
   useEffect(() => {

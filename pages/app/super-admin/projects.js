@@ -46,7 +46,7 @@ export default function SuperAdminProjectPanel({
   const [isNewEmployee, setisNewEmployee] = useState(false);
   const [isCreateTicket, setIsCreateTicket] = useState(false);
   const [activeTab, setActiveTab] = useState(1); // 1 is employees
-  const [isTicketInfo, setIsTicketInfo] = useState(false);
+  const [isTicketInfo, setIsTicketInfo] = useState({ id: null });
 
   //** Get All the projects in CSR */
   const fetchAllProjects = async () => {

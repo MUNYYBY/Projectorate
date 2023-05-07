@@ -340,6 +340,19 @@ export async function CreateTicket(payload) {
     return { error: error.response };
   }
 }
+export async function GetTicketInfo(ticketId) {
+  try {
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL +
+        `/tickets/get-ticket-info?ticketId=` +
+        ticketId
+    );
+    return res;
+  } catch (error) {
+    console.log("Error While getting ticket info at front-end: ", error);
+    return { error: error.response };
+  }
+}
 export async function getTicketsStatus() {
   try {
     const res = await axios.get(
