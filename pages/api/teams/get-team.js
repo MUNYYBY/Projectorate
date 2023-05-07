@@ -6,6 +6,10 @@ export default async function handler(req, res) {
   }
   console.log("Get single Team End-point hit!");
   const { teamId } = req.query;
+  if (!teamId) {
+    return res.status(500).json({ message: "TeamId is required!" });
+  }
+
   try {
     const data = await PrismaDB.Teams.findUnique({
       where: {

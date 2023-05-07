@@ -23,6 +23,7 @@ import ProjectEmployees from "../../../components/Projects/ProjectEmployees.js/P
 import AssignEmployee from "../../../components/Projects/AssignEmployee/AssignEmployee";
 import CreateTicketBtn from "../../../components/Tickets/CreateTicketBtn";
 import CreateTicketModel from "../../../components/Tickets/CreateTicketModel";
+import ProjectTeams from "../../../components/Projects/ProjectTeams/ProjectTeams.js";
 
 const PROJECTS_TABS = ["Employees", "Teams", "Tickets"];
 
@@ -42,6 +43,7 @@ export default function SuperAdminProjectPanel({
   const [assignEmployeesPanel, setAssignEmployeesPanel] = useState(false);
   const [isNewEmployee, setisNewEmployee] = useState(false);
   const [isCreateTicket, setIsCreateTicket] = useState(false);
+  const [activeTab, setActiveTab] = useState(1); // 1 is employees
 
   //** Get All the projects in CSR */
   const fetchAllProjects = async () => {
@@ -119,6 +121,10 @@ export default function SuperAdminProjectPanel({
   //** Handle project domains information */
   function handleProjectDomainsInfo(id) {
     return projectDomains.find((domain) => domain.id == id);
+  }
+
+  function handleOnTabChange(value) {
+    setActiveTab(value);
   }
 
   return (
@@ -346,6 +352,9 @@ export default function SuperAdminProjectPanel({
                 defaultActiveKey="1"
                 type="card"
                 size={32}
+                onChange={(value) => {
+                  handleOnTabChange(value);
+                }}
                 items={PROJECTS_TABS.map((_, i) => {
                   const id = String(i + 1);
                   return {
@@ -355,11 +364,21 @@ export default function SuperAdminProjectPanel({
                 })}
               />
             </div>
-            <ProjectEmployees
-              projectId={activeProject.id}
-              isNewEmployee={isNewEmployee}
-              setisNewEmployee={setisNewEmployee}
-            />
+            {activeTab == 1 ? (
+              <ProjectEmployees
+                projectId={activeProject.id}
+                isNewEmployee={isNewEmployee}
+                setisNewEmployee={setisNewEmployee}
+              />
+            ) : activeTab == 2 ? (
+              <ProjectTeams
+                projectId={activeProject.id}
+                isNewEmployee={isNewEmployee}
+                setisNewEmployee={setisNewEmployee}
+              />
+            ) : (
+              "tickets"
+            )}
           </>
         )}
         {/* show all project / show specific project ends here */}

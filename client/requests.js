@@ -179,6 +179,19 @@ export async function getProjectEmployees(projectId) {
     return { error: error.response.data };
   }
 }
+export async function getProjectTeams(projectId) {
+  try {
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL +
+        "/teams/get-project-teams?projectId=" +
+        projectId
+    );
+    return res.data;
+  } catch (error) {
+    console.log("Error While getting project teams: ", error);
+    return { error: error.response.data };
+  }
+}
 
 export async function DeleteEmployeeFromProject(employeeId, projectId) {
   try {
