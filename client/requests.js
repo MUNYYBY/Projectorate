@@ -315,24 +315,38 @@ export async function AssignEmployeeToTeam(teamId, employeeId) {
     return { error: error.response };
   }
 }
-export async function getTicketsStatus() {
+export async function CreateTicket(payload) {
   try {
     const res = await axios.post(
+      process.env.NEXT_PUBLIC_BASE_URL + `/tickets/create-ticket`,
+      payload
+    );
+    return res;
+  } catch (error) {
+    console.log("Error While assigning employee to team: ", error);
+    return { error: error.response };
+  }
+}
+export async function getTicketsStatus() {
+  try {
+    const res = await axios.get(
       process.env.NEXT_PUBLIC_BASE_URL + `/tickets-status/get-tickets-status`
     );
-    return res.data;
+    return res;
   } catch (error) {
     console.log("Error While getting tickets status at front-end: ", error);
+    return { error: error.response };
   }
 }
 
 export async function getTicketsPiority() {
   try {
-    const res = await axios.post(
+    const res = await axios.get(
       process.env.NEXT_PUBLIC_BASE_URL + `/tickets-piority/get-tickets-piority`
     );
-    return res.data;
+    return res;
   } catch (error) {
     console.log("Error While getting tickets status at front-end: ", error);
+    return { error: error.response };
   }
 }

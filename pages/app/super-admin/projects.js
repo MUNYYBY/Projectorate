@@ -126,8 +126,12 @@ export default function SuperAdminProjectPanel({
 
   return (
     <>
-      <div className="absolute bottom-4 right-4">
-        {isCreateTicket ? <CreateTicketModel /> : <></>}
+      <div className="absolute z-[999] bottom-4 right-4 flex flex-col items-end">
+        {isCreateTicket ? (
+          <CreateTicketModel setIsCreateTicket={setIsCreateTicket} />
+        ) : (
+          <></>
+        )}
 
         <div className="Create-ticket" onClick={() => setIsCreateTicket(true)}>
           <CreateTicketBtn />
