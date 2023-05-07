@@ -10,6 +10,7 @@ import {
 import moment from "moment/moment";
 import { getProjectEmployees } from "../../../client/requests";
 import InformationTag from "../../InformationTag/InformationTag";
+import Link from "next/link";
 
 export default function ProjectTeams({
   projectId,
@@ -23,7 +24,13 @@ export default function ProjectTeams({
     {
       title: "Team Name",
       width: 150,
-      dataIndex: "team_name",
+      render: (_, { team_name, id }) => (
+        <Link
+          href={`/app/super-admin/teams?teamId=${id}&teamName=${team_name}`}
+        >
+          <h1 className="cursor-pointer underline">{team_name}</h1>
+        </Link>
+      ),
       key: "team_name",
       fixed: "left",
     },

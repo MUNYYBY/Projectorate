@@ -7,10 +7,12 @@ import ProjectTab from "./ProjectsTabs/ProjectTab";
 import TabDevider from "../Devider/Devider";
 import ProjectsTabContainer from "./ProjectsTabs/ProjectTabsContainer";
 import { useRouter } from "next/router";
+import { getAllProjects } from "../../client/requests";
 
 export default function SubPanel() {
   const router = useRouter();
   const [panelName, setPanelName] = useState("");
+  const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     if (router.asPath?.includes("projects")) setPanelName("Projects");
@@ -18,6 +20,30 @@ export default function SubPanel() {
     else if (router.asPath?.includes("teams")) setPanelName("Teams");
     else setPanelName("Home");
   }, [router.asPath]);
+
+  //** Get All the projects in CSR */
+  const fetchAllProjects = async () => {
+    await getAllProjects().then((res) => {
+      setProjects(res.data);
+    });
+  };
+
+  //** When a new project has been added refresh all the projects */
+  useEffect(() => {
+    fetchAllProjects();
+    console.log("hello nav");
+  }, []);
+
+  function handleProjectNav(projectName, projectId) {
+    router.replace({
+      pathname: "/app/super-admin/projects",
+      query: {
+        projectId: projectId,
+        projectName: projectName,
+      },
+      shallow: true,
+    });
+  }
   return (
     <div className="Sub-panel-dahboard fixed ml-[4.5rem] w-64 h-screen bg-gray-800">
       <div className="bg-gray-700 p-4 rounded-b-xl">
@@ -42,11 +68,21 @@ export default function SubPanel() {
           <TabDevider width="w-full" />
         </div>
         <div className="Projects-tab-container">
-          <ProjectsTabContainer CompanyName="Maverik Corp" />
-          <ProjectsTabContainer CompanyName="Subvision LTD" />
-          <ProjectsTabContainer CompanyName="Vyro.ai" />
-          <ProjectsTabContainer CompanyName="Always Remembered" />
-          <ProjectsTabContainer CompanyName="Farevet" />
+          {projects.map((project, index) => {
+            return (
+              <div
+                key={project.id + index}
+                onClick={() =>
+                  handleProjectNav(project.project_name, project.id)
+                }
+              >
+                <ProjectsTabContainer
+                  projectId={project.id}
+                  CompanyName={project.project_name}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

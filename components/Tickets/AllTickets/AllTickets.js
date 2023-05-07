@@ -24,7 +24,7 @@ export default function AllTickets({
   const columns = [
     {
       title: "Title",
-      width: 200,
+      width: 150,
       dataIndex: "title",
       key: "title",
     },
