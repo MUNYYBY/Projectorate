@@ -4,6 +4,7 @@ import { AiOutlineTeam, AiOutlineBlock, AiOutlineLogout } from "react-icons/ai";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { IoIosAdd, IoMdGitNetwork } from "react-icons/io";
 import { FaRegUser, FaDragon } from "react-icons/fa";
+import { HiOutlineViewBoards } from "react-icons/hi";
 import { FiSettings } from "react-icons/fi";
 import { Tooltip } from "antd";
 import TabDevider from "../Devider/Devider";
@@ -72,12 +73,14 @@ export default function SideBar() {
             <SideBarIcon icon={<AiOutlineBlock size={26} />} tooltip="Teams" />
           </div>
         </Link>
-        <div className="Notifications">
-          <SideBarIcon
-            icon={<IoMdNotificationsOutline size={26} />}
-            tooltip="Notifications"
-          />
-        </div>
+        <Link href={NAV_URL + "board"}>
+          <div className="Board">
+            <SideBarIcon
+              icon={<HiOutlineViewBoards size={26} />}
+              tooltip="Board"
+            />
+          </div>
+        </Link>
         <TabDevider />
         <div className="User Profile">
           <SideBarIcon icon={<FaRegUser size={24} />} tooltip="User Profile " />

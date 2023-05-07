@@ -18,6 +18,7 @@ export default function SubPanel() {
     if (router.asPath?.includes("projects")) setPanelName("Projects");
     else if (router.asPath?.includes("employees")) setPanelName("Employees");
     else if (router.asPath?.includes("teams")) setPanelName("Teams");
+    else if (router.asPath?.includes("board")) setPanelName("Board");
     else setPanelName("Home");
   }, [router.asPath]);
 
@@ -47,12 +48,7 @@ export default function SubPanel() {
   return (
     <div className="Sub-panel-dahboard fixed ml-[4.5rem] w-64 h-screen bg-gray-800">
       <div className="bg-gray-700 p-4 rounded-b-xl">
-        <h1 className=" font-semibold mb-2">{panelName} Panel</h1>
-        <input
-          className="h-8 w-full bg-gray-900 rounded-sm text-xs border-black px-3"
-          placeholder="Search from all the projects..."
-          type="text"
-        />
+        <h1 className="text-xl font-semibold">{panelName} Panel</h1>
       </div>
       {/* fix inner div to scroll */}
       <div className="">
