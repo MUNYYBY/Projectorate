@@ -8,7 +8,6 @@ import { AiOutlineUsergroupAdd } from "react-icons/ai";
 
 import { CgInbox, CgTrash } from "react-icons/cg";
 import { Tooltip, Col, Row, Tabs, Popconfirm, message, Result } from "antd";
-import SuperAdminDashboard from ".";
 import CreateProject from "../../../components/Projects/CreateProject/CreateProject";
 import {
   DeleteProject,
@@ -20,8 +19,6 @@ import ProjectsContainerSkelton from "../../../components/Projects/ProjectsConta
 import { RxCross1 } from "react-icons/rx";
 import { useRouter } from "next/router";
 import InformationTag from "../../../components/InformationTag/InformationTag";
-import { AndroidOutlined, AppleOutlined } from "@ant-design/icons";
-import EmployeesData from "../../../components/EmployeesPanel/EmployeesData";
 import ProjectEmployees from "../../../components/Projects/ProjectEmployees.js/ProjectEmployees";
 import AssignEmployee from "../../../components/Projects/AssignEmployee/AssignEmployee";
 import CreateTicketBtn from "../../../components/Tickets/CreateTicketBtn";
@@ -237,6 +234,8 @@ export default function SuperAdminProjectPanel({
                           <ProjectsContainer
                             ProjectName={item.project_name}
                             employeesCount={item._count.userProjects}
+                            teamsCount={item._count.Teams}
+                            ticketsCount={item._count.Tickets}
                             tagTitle={
                               handleProjectDomainsInfo(item.projectDomainsId)
                                 .title

@@ -4,6 +4,8 @@ export default function ProjectsContainer({
   ProjectName = "Project Name",
   tagTitle = "Software Dev",
   employeesCount = "000",
+  teamsCount = "000",
+  ticketsCount = "000",
 }) {
   return (
     <div className="h-44 w-full md:w-96 bg-gray-900 rounded-md shadow-sm p-6 flex flex-col justify-between">
@@ -26,11 +28,15 @@ export default function ProjectsContainer({
           <p className="text-sm opacity-80">Members</p>
         </div>
         <div className="flex flex-col items-center">
-          <h1 className="text-pOrange font-bold text-2xl">000</h1>
+          <h1 className="text-pOrange font-bold text-2xl">
+            {teamsCount == 0 ? "000" : teamsCount}
+          </h1>
           <p className="text-sm opacity-80">Teams</p>
         </div>
         <div className="flex flex-col items-center">
-          <h1 className="text-intermediate font-bold text-2xl">000</h1>
+          <h1 className="text-intermediate font-bold text-2xl">
+            {ticketsCount == 0 ? "000" : ticketsCount}
+          </h1>
           <p className="text-sm opacity-80">Tickets</p>
         </div>
       </div>

@@ -116,6 +116,11 @@ export default async function handler(req, res) {
               id: parseInt(reqBody.teamId),
             },
           },
+          project: {
+            connect: {
+              id: parseInt(team.projectId),
+            },
+          },
           employee: {
             connect: {
               id: parseInt(reqBody.employeeId),

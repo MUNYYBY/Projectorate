@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   try {
     const data = await PrismaDB.Project.findMany({
       include: {
-        _count: { select: { userProjects: true, Teams: true } },
+        _count: { select: { userProjects: true, Teams: true, Tickets: true } },
       },
     });
     console.log("All Projects: ", data);
