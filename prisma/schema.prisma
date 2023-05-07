@@ -95,6 +95,16 @@ model Tickets {
   deadline        String
   createdAt       DateTime       @default(now())
   updatedAt       DateTime?      @updatedAt
+  Resource        Resource[]
+}
+
+model Resource {
+  id        Int       @id @default(autoincrement())
+  url       String
+  ticket    Tickets?  @relation(fields: [ticketsId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+  ticketsId Int?
 }
 
 model UserProjects {

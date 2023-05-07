@@ -7,10 +7,11 @@ import {
   getTicketsStatus,
 } from "../../client/requests";
 import { useSession } from "next-auth/react";
-import { DatePicker, Select, message } from "antd";
+import { DatePicker, Select, Tooltip, message } from "antd";
 import { RxCross1 } from "react-icons/rx";
 import { BsWindowDock } from "react-icons/bs";
 import { FaFlag } from "react-icons/fa";
+import { AiOutlineFileAdd } from "react-icons/ai";
 import { Cascader, Steps, Form, Input } from "antd";
 import TabDevider from "../Devider/Devider";
 import moment from "moment";
@@ -129,12 +130,23 @@ export default function CreateTicketModel({
               <BsWindowDock size={24} />
               <h1 className="ml-2 font-semibold text-lg">Create Ticket</h1>
             </div>
-            <button
-              className="cancel-btn opacity-60 hover:opacity-100"
-              onClick={() => setIsCreateTicket(false)}
-            >
-              <RxCross1 size={24} />
-            </button>
+            <div className="flex flex-row justify-center items-center">
+              <Tooltip
+                placement="top"
+                title="Add resource"
+                mouseEnterDelay={0.05}
+              >
+                <div className="bg-white bg-opacity-10 hover:bg-opacity-20 transition-all cursor-pointer p-2 rounded-full mr-3">
+                  <AiOutlineFileAdd size={18} />
+                </div>
+              </Tooltip>
+              <button
+                className="cancel-btn opacity-60 hover:opacity-100"
+                onClick={() => setIsCreateTicket(false)}
+              >
+                <RxCross1 size={24} />
+              </button>
+            </div>
           </header>
           <div className="my-4 w-full">
             <TabDevider
