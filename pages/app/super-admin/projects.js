@@ -24,6 +24,7 @@ import AssignEmployee from "../../../components/Projects/AssignEmployee/AssignEm
 import CreateTicketBtn from "../../../components/Tickets/CreateTicketBtn";
 import CreateTicketModel from "../../../components/Tickets/CreateTicketModel";
 import ProjectTeams from "../../../components/Projects/ProjectTeams/ProjectTeams.js";
+import AllTickets from "../../../components/Tickets/AllTickets/AllTickets";
 
 const PROJECTS_TABS = ["Employees", "Teams", "Tickets"];
 
@@ -377,7 +378,11 @@ export default function SuperAdminProjectPanel({
                 setisNewEmployee={setisNewEmployee}
               />
             ) : (
-              "tickets"
+              <AllTickets
+                projectId={activeProject.id}
+                isNewEmployee={isNewEmployee}
+                setisNewEmployee={setisNewEmployee}
+              />
             )}
           </>
         )}

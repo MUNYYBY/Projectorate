@@ -363,3 +363,29 @@ export async function getTicketsPiority() {
     return { error: error.response };
   }
 }
+export async function getProjectTickets(projectId) {
+  try {
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL +
+        `/tickets/get-project-tickets?projectId=` +
+        projectId
+    );
+    return res;
+  } catch (error) {
+    console.log("Error While getting project tickets at front-end: ", error);
+    return { error: error.response };
+  }
+}
+export async function getTeamTickets(teamId) {
+  try {
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL +
+        `/tickets/get-team-tickets?projectId=` +
+        teamId
+    );
+    return res;
+  } catch (error) {
+    console.log("Error While getting project tickets at front-end: ", error);
+    return { error: error.response };
+  }
+}

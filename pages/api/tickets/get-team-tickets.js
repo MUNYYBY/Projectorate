@@ -16,15 +16,7 @@ export default async function handler(req, res) {
       },
     })
       .then((result) => {
-        if (result.length != 0) {
-          res.status(200).json({ result });
-        } else {
-          res.status(404).json({
-            error: 404,
-            type: "Ticket",
-            message: "No tickets found matching teamId!",
-          });
-        }
+        res.status(200).json({ result });
       })
       .catch((err) => {
         res.status(500).json({

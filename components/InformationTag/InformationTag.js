@@ -20,8 +20,8 @@ export default function InformationTag({
     classStringParent += "bg-pOrange bg-opacity-20";
     classStringChild += "text-pOrange";
   } else if (type == "base") {
-    classStringParent += "bg-gray-700 bg-opacity-20";
-    classStringChild += "bg-gray-700";
+    classStringParent += "bg-gray-500 bg-opacity-20";
+    classStringChild += "";
   }
   return (
     <div className={classStringParent}>

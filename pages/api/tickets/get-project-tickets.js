@@ -14,17 +14,42 @@ export default async function handler(req, res) {
       where: {
         projectId: parseInt(projectId),
       },
+      include: {
+        project: {
+          select: {
+            project_name: true,
+            id: true,
+          },
+        },
+        team: {
+          select: {
+            team_name: true,
+            id: true,
+          },
+        },
+        employee: {
+          select: {
+            first_name: true,
+            last_name: true,
+            id: true,
+          },
+        },
+        TicketStatus: {
+          select: {
+            title: true,
+            id: true,
+          },
+        },
+        TicketPiority: {
+          select: {
+            title: true,
+            id: true,
+          },
+        },
+      },
     })
       .then((result) => {
-        if (result.length != 0) {
-          res.status(200).json({ result });
-        } else {
-          res.status(404).json({
-            error: 404,
-            type: "Ticket",
-            message: "No tickets found matching projectId!",
-          });
-        }
+        res.status(200).json({ result });
       })
       .catch((err) => {
         res.status(404).json({
