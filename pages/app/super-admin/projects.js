@@ -25,6 +25,7 @@ import CreateTicketBtn from "../../../components/Tickets/CreateTicketBtn";
 import CreateTicketModel from "../../../components/Tickets/CreateTicketModel";
 import ProjectTeams from "../../../components/Projects/ProjectTeams/ProjectTeams.js";
 import AllTickets from "../../../components/Tickets/AllTickets/AllTickets";
+import TicketInfo from "../../../components/Tickets/TicketInfo/TicketInfo";
 
 const PROJECTS_TABS = ["Employees", "Teams", "Tickets"];
 
@@ -45,6 +46,7 @@ export default function SuperAdminProjectPanel({
   const [isNewEmployee, setisNewEmployee] = useState(false);
   const [isCreateTicket, setIsCreateTicket] = useState(false);
   const [activeTab, setActiveTab] = useState(1); // 1 is employees
+  const [isTicketInfo, setIsTicketInfo] = useState(false);
 
   //** Get All the projects in CSR */
   const fetchAllProjects = async () => {
@@ -378,11 +380,18 @@ export default function SuperAdminProjectPanel({
                 setisNewEmployee={setisNewEmployee}
               />
             ) : (
-              <AllTickets
-                projectId={activeProject.id}
-                isNewEmployee={isNewEmployee}
-                setisNewEmployee={setisNewEmployee}
-              />
+              <>
+                <TicketInfo
+                  isTicketInfo={isTicketInfo}
+                  setIsTicketInfo={setIsTicketInfo}
+                />
+                <AllTickets
+                  projectId={activeProject.id}
+                  isNewEmployee={isNewEmployee}
+                  setisNewEmployee={setisNewEmployee}
+                  setIsTicketInfo={setIsTicketInfo}
+                />
+              </>
             )}
           </>
         )}

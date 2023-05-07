@@ -380,7 +380,7 @@ export async function getTeamTickets(teamId) {
   try {
     const res = await axios.get(
       process.env.NEXT_PUBLIC_BASE_URL +
-        `/tickets/get-team-tickets?projectId=` +
+        `/tickets/get-team-tickets?teamId=` +
         teamId
     );
     return res;

@@ -17,6 +17,7 @@ export default function AllTickets({
   teamId = null,
   isNewEmployee,
   setisNewEmployee,
+  setIsTicketInfo,
 }) {
   const [ticketsData, setTicketsData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -25,7 +26,14 @@ export default function AllTickets({
     {
       title: "Title",
       width: 150,
-      dataIndex: "title",
+      render: (_, { title }) => (
+        <div
+          className="underline cursor-pointer"
+          onClick={() => setIsTicketInfo(true)}
+        >
+          <h1>{title}</h1>
+        </div>
+      ),
       key: "title",
     },
     {

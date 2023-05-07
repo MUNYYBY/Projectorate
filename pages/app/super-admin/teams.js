@@ -22,6 +22,8 @@ import TeamEmployees from "../../../components/Teams/TeamEmployees/TeamEmployees
 import AssignEmployee from "../../../components/Teams/AssignEmployee/AssignEmployee";
 import CreateTicketModel from "../../../components/Tickets/CreateTicketModel";
 import CreateTicketBtn from "../../../components/Tickets/CreateTicketBtn";
+import AllTickets from "../../../components/Tickets/AllTickets/AllTickets";
+import TicketInfo from "../../../components/Tickets/TicketInfo/TicketInfo";
 
 const PROJECTS_TABS = ["Employees", "Tickets"];
 
@@ -39,6 +41,8 @@ export default function Teams({ teamsData, teamDomains }) {
   const [assignEmployeesPanel, setAssignEmployeesPanel] = useState(false);
   const [callbackExecuted, setCallbackExecuted] = useState(false); // to control multiple callbacks of usestate based on query params
   const [isCreateTicket, setIsCreateTicket] = useState(false);
+  const [activeTab, setActiveTab] = useState(1);
+  const [isTicketInfo, setIsTicketInfo] = useState(false);
 
   //** Get All the Teams in CSR */
   const fetchAllTeams = async () => {
@@ -117,6 +121,9 @@ export default function Teams({ teamsData, teamDomains }) {
   //** Handle project domains information */
   function handleTeamDomainsInfo(id) {
     return teamDomains.find((domain) => domain.id == id);
+  }
+  function handleOnTabChange(value) {
+    setActiveTab(value);
   }
 
   return (
@@ -347,6 +354,9 @@ export default function Teams({ teamsData, teamDomains }) {
                 defaultActiveKey="1"
                 type="card"
                 size={32}
+                onChange={(value) => {
+                  handleOnTabChange(value);
+                }}
                 items={PROJECTS_TABS.map((_, i) => {
                   const id = String(i + 1);
                   return {
@@ -356,11 +366,28 @@ export default function Teams({ teamsData, teamDomains }) {
                 })}
               />
             </div>
-            <TeamEmployees
-              teamId={activeTeam.id}
-              isNewEmployee={isNewEmployee}
-              setisNewEmployee={setisNewEmployee}
-            />
+            {activeTab == 1 ? (
+              <TeamEmployees
+                teamId={activeTeam.id}
+                isNewEmployee={isNewEmployee}
+                setisNewEmployee={setisNewEmployee}
+              />
+            ) : activeTab == 2 ? (
+              <>
+                <TicketInfo
+                  isTicketInfo={isTicketInfo}
+                  setIsTicketInfo={setIsTicketInfo}
+                />
+                <AllTickets
+                  teamId={activeTeam.id}
+                  isNewEmployee={isNewEmployee}
+                  setisNewEmployee={setisNewEmployee}
+                  setIsTicketInfo={setIsTicketInfo}
+                />
+              </>
+            ) : (
+              <></>
+            )}
           </>
         )}
       </div>
