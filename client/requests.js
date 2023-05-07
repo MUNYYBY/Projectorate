@@ -402,3 +402,30 @@ export async function getTeamTickets(teamId) {
     return { error: error.response };
   }
 }
+
+export async function ChangeTicketStatus(ticketId, statusId) {
+  try {
+    const res = await axios.post(
+      process.env.NEXT_PUBLIC_BASE_URL +
+        `/tickets/change-ticket-status?ticketId=${ticketId}&statusId=${statusId}`
+    );
+    return res;
+  } catch (error) {
+    console.log("Error While getting project tickets at front-end: ", error);
+    return { error: error.response };
+  }
+}
+
+export async function DeleteTicket(ticketId) {
+  try {
+    const res = await axios.delete(
+      process.env.NEXT_PUBLIC_BASE_URL +
+        `/tickets/delete-ticket?ticketId=` +
+        ticketId
+    );
+    return res;
+  } catch (error) {
+    console.log("Error While getting deleting ticket at front-end: ", error);
+    return { error: error.response };
+  }
+}

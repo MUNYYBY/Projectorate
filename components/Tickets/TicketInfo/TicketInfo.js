@@ -1,22 +1,31 @@
-import { Drawer, Popconfirm, Tooltip, Skeleton } from "antd";
+import { Drawer, Popconfirm, Tooltip, Skeleton, Select } from "antd";
 import { message } from "antd";
 import { useEffect, useState } from "react";
 import React from "react";
 import TabDevider from "../../Devider/Devider";
-import { GetTicketInfo } from "../../../client/requests";
+import {
+  ChangeTicketStatus,
+  DeleteTicket,
+  GetTicketInfo,
+  getTicketsStatus,
+} from "../../../client/requests";
 import { BiTask } from "react-icons/bi";
 import moment from "moment";
 import { FaFlag } from "react-icons/fa";
+import { FiTrash2 } from "react-icons/fi";
+
 import { RiAccountCircleFill } from "react-icons/ri";
 
 export default function TicketInfo(props) {
   const [loading, setLoading] = useState(true);
   const [ticketInfo, setTicketInfo] = useState(null);
+  const [ticketStatus, setTicketStatus] = useState([]);
   function AssignEmployeeConfirm(employeeId) {}
   function OnAssignEmployeeCancel() {}
 
   //** Fetch all avaible employees */
-  useEffect(() => {
+
+  function handleTicketFetching() {
     if (props.isTicketInfo.id) {
       setLoading(true);
       GetTicketInfo(props.isTicketInfo.id).then((res) => {
@@ -31,8 +40,46 @@ export default function TicketInfo(props) {
           );
         }
       });
+      getTicketsStatus().then((res) => {
+        if (!res.error) {
+          setTicketStatus(res.data.data);
+        } else {
+          message.error(
+            "Some error occoured while fetching project employees!"
+          );
+        }
+      });
     }
+  }
+  useEffect(() => {
+    handleTicketFetching();
   }, [props.isTicketInfo.id]);
+
+  //** Handle when ticket status changes */
+  function handleStatusChange(id) {
+    ChangeTicketStatus(ticketInfo.id, id).then((res) => {
+      if (!res.error) {
+        message.success("Ticket status has been changed!");
+        handleTicketFetching();
+      } else {
+        message.error("Error while changing status of ticket!");
+      }
+    });
+  }
+
+  //** Handle Ticket Delete */
+  function handleTicketDelete() {
+    setLoading(true);
+    DeleteTicket(ticketInfo.id).then((res) => {
+      if (!res.error) {
+        message.success("Ticket status has been deleted!");
+        props.setIsTicketInfo({ id: null });
+      } else {
+        message.error("Error while changing status of ticket!");
+        setLoading(false);
+      }
+    });
+  }
 
   //** check for ticket status */
   const TicketStatus = (status) => {
@@ -58,17 +105,50 @@ export default function TicketInfo(props) {
       bodyStyle={{ paddingBottom: 80 }}
       width="55%"
     >
-      {loading && !ticketInfo ? (
-        <Skeleton active />
+      {loading || !ticketInfo ? (
+        <>
+          <Skeleton active />
+          <div className="mt-4">
+            <Skeleton active />
+          </div>
+          <div className="mt-56">
+            <Skeleton active />
+          </div>
+        </>
       ) : (
         <>
           <div className="tickets-info">
             <header className="flex flex-row justify-between">
-              <div className="flex flex-col">
-                <div className="flex flex-row items-center opacity-75">
-                  <BiTask size={32} />
-                  <h1 className="text-4xl font-semibold ml-2">
-                    {ticketInfo.title}
+              <div className="flex flex-col w-full">
+                <div className="flex flex-row justify-between items-center w-full">
+                  <div className="flex flex-row items-center opacity-75">
+                    <BiTask size={32} />
+                    <h1 className="text-4xl font-semibold ml-2">
+                      {ticketInfo.title}
+                    </h1>
+                  </div>
+                  <h1>
+                    <Select
+                      defaultValue={() => {
+                        const compute = ticketStatus.find(
+                          (status) => status.id == ticketInfo.ticketStatusId
+                        );
+                        console.log(compute);
+                        return compute.title;
+                      }}
+                      style={{
+                        width: 200,
+                      }}
+                      onChange={(id) => handleStatusChange(id)}
+                    >
+                      {ticketStatus.map((item) => {
+                        return (
+                          <Select.Option key={item.id} value={item.id}>
+                            {item.title}
+                          </Select.Option>
+                        );
+                      })}
+                    </Select>
                   </h1>
                 </div>
                 <div className="text-lg flex flex-row items-center">
@@ -127,7 +207,25 @@ export default function TicketInfo(props) {
                 </div>
               </div>
               <div className="tabdevider w-[1.5px] h-[10rem] mx-4 bg-opacity-10 bg-white rounded-lg"></div>
-              <div className="w-1/2">world</div>
+              <div className="w-1/2 flex flex-col">
+                <Popconfirm
+                  title={`Are you sure you want to delete this ticket?`}
+                  onConfirm={() => {
+                    handleTicketDelete();
+                  }}
+                  //   onCancel={cancel}
+                  okText="Confirm"
+                  cancelText="No"
+                  placement="top"
+                >
+                  <button className="py-2 bg-red-600 bg-opacity-20 hover:bg-opacity-30 transition-all w-full rounded-lg flex flex-row justify-center items-center">
+                    <FiTrash2 color="red" size={20} />
+                    <p className="text-red-600 tex-xl font-bold ml-2">
+                      Delete Ticket
+                    </p>
+                  </button>
+                </Popconfirm>
+              </div>
             </div>
           </div>
         </>
