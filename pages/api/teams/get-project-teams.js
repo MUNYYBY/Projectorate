@@ -1,3 +1,4 @@
+import { getTeamDomains } from "../../../client/requests";
 import PrismaDB from "../../../lib/prisma";
 
 export default async function handler(req, res) {
@@ -15,10 +16,22 @@ export default async function handler(req, res) {
         projectId: parseInt(projectId),
       },
       include: {
+        project: {
+          select: {
+            project_name: true,
+            id: true,
+          },
+        },
+        TeamDomains: {
+          select: {
+            title: true,
+            id: true,
+          },
+        },
         _count: { select: { UserTeams: true, Tickets: true } },
       },
     });
-    console.log("All Projects: ", data);
+    console.log("All Projec Domains: ", data);
     res.status(200).json({ data });
   } catch (error) {
     console.log("Error while getting Project Teams at backend: ", error);

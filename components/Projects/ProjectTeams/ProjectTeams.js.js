@@ -9,6 +9,7 @@ import {
 } from "../../../client/requests";
 import moment from "moment/moment";
 import { getProjectEmployees } from "../../../client/requests";
+import InformationTag from "../../InformationTag/InformationTag";
 
 export default function ProjectTeams({
   projectId,
@@ -34,12 +35,20 @@ export default function ProjectTeams({
     },
     {
       title: "Project",
-      dataIndex: "projectId",
+      render: (_, { project }) => (
+        <InformationTag
+          title={project.project_name}
+          type="secondry"
+          size="lg"
+        />
+      ),
       key: "projectId",
     },
     {
       title: "Team Domain",
-      dataIndex: "teamDomainsId",
+      render: (_, { TeamDomains }) => (
+        <InformationTag title={TeamDomains.title} type="pOrange" size="lg" />
+      ),
       key: "teamDomainsId",
     },
     {
