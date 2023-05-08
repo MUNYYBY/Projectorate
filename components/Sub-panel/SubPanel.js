@@ -25,14 +25,16 @@ export default function SubPanel() {
   //** Get All the projects in CSR */
   const fetchAllProjects = async () => {
     await getAllProjects().then((res) => {
-      setProjects(res.data);
+      console.log("Projects:", res);
+      if (res) {
+        setProjects(res.data);
+      }
     });
   };
 
   //** When a new project has been added refresh all the projects */
   useEffect(() => {
     fetchAllProjects();
-    console.log("hello nav");
   }, []);
 
   function handleProjectNav(projectName, projectId) {

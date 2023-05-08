@@ -135,7 +135,7 @@ export async function getAllProjects() {
     );
     return res.data;
   } catch (error) {
-    console.log("Error While getting employee: ", error);
+    console.log("Error While getting projects: ", error);
   }
 }
 
@@ -336,7 +336,7 @@ export async function CreateTicket(payload) {
     );
     return res;
   } catch (error) {
-    console.log("Error While assigning employee to team: ", error);
+    console.log("Error While creating ticket to team: ", error);
     return { error: error.response };
   }
 }

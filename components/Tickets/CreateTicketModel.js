@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   CreateTicket,
   getAllTeams,
@@ -7,7 +7,7 @@ import {
   getTicketsStatus,
 } from "../../client/requests";
 import { useSession } from "next-auth/react";
-import { DatePicker, Select, Tooltip, message } from "antd";
+import { Button, DatePicker, Select, Tooltip, Upload, message } from "antd";
 import { RxCross1 } from "react-icons/rx";
 import { BsWindowDock } from "react-icons/bs";
 import { FaFlag } from "react-icons/fa";
@@ -16,6 +16,7 @@ import { Cascader, Steps, Form, Input } from "antd";
 import TabDevider from "../Devider/Devider";
 import moment from "moment";
 import { motion } from "framer-motion";
+import { UploadOutlined } from "@ant-design/icons";
 
 export default function CreateTicketModel({
   teamsData = [],
@@ -30,6 +31,7 @@ export default function CreateTicketModel({
   const [loading, setLoading] = useState(true);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [selectedTeam, setSelectedTeam] = useState(false);
+  const [resource, setResource] = useState(null);
 
   //** Ant Design */
   const { TextArea } = Input;
@@ -48,6 +50,7 @@ export default function CreateTicketModel({
       employeeId: values.employee,
       ticketStatusId: values.ticket_status,
       ticketPiorityId: values.ticket_piority,
+      // resource: resource,
     };
     CreateTicket(payload).then((res) => {
       setLoading(true);
@@ -116,6 +119,15 @@ export default function CreateTicketModel({
     handleFetching();
   }, []);
 
+  const hiddenFileInput = useRef(null);
+  const handleChooseFileBtn = (event) => {
+    hiddenFileInput.current.click();
+  };
+  const handleFileInputChange = (e) => {
+    console.log(e.target.files[0]);
+    setResource(e.target.files[0]);
+  };
+
   return (
     <motion.div
       initial={{ y: 10, opacity: 0 }}
@@ -136,8 +148,19 @@ export default function CreateTicketModel({
                 title="Add resource"
                 mouseEnterDelay={0.05}
               >
-                <div className="bg-white bg-opacity-10 hover:bg-opacity-20 transition-all cursor-pointer p-2 rounded-full mr-3">
+                <div
+                  className="bg-white bg-opacity-10 hover:bg-opacity-20 transition-all cursor-pointer p-2 rounded-full mr-3"
+                  onClick={() => handleChooseFileBtn()}
+                >
                   <AiOutlineFileAdd size={18} />
+                  <input
+                    type="file"
+                    className="hidden"
+                    multiple={false}
+                    placeholder="Choose file"
+                    ref={hiddenFileInput}
+                    onChange={handleFileInputChange}
+                  />
                 </div>
               </Tooltip>
               <button
