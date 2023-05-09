@@ -24,6 +24,7 @@ import CreateTicketModel from "../../../components/Tickets/CreateTicketModel";
 import CreateTicketBtn from "../../../components/Tickets/CreateTicketBtn";
 import AllTickets from "../../../components/Tickets/AllTickets/AllTickets";
 import TicketInfo from "../../../components/Tickets/TicketInfo/TicketInfo";
+import EmployeeProfile from "../../../components/Employees/Profile/EmployeesProfile";
 
 const PROJECTS_TABS = ["Employees", "Tickets"];
 
@@ -43,6 +44,7 @@ export default function Teams({ teamsData, teamDomains }) {
   const [isCreateTicket, setIsCreateTicket] = useState(false);
   const [activeTab, setActiveTab] = useState(1);
   const [isTicketInfo, setIsTicketInfo] = useState(false);
+  const [isEmployeeProfile, setIsEmployeeProfile] = useState({ id: null });
 
   //** Get All the Teams in CSR */
   const fetchAllTeams = async () => {
@@ -367,11 +369,18 @@ export default function Teams({ teamsData, teamDomains }) {
               />
             </div>
             {activeTab == 1 ? (
-              <TeamEmployees
-                teamId={activeTeam.id}
-                isNewEmployee={isNewEmployee}
-                setisNewEmployee={setisNewEmployee}
-              />
+              <>
+                <EmployeeProfile
+                  isEmployeeProfile={isEmployeeProfile}
+                  setIsEmployeeProfile={setIsEmployeeProfile}
+                />
+                <TeamEmployees
+                  teamId={activeTeam.id}
+                  isNewEmployee={isNewEmployee}
+                  setisNewEmployee={setisNewEmployee}
+                  setIsEmployeeProfile={setIsEmployeeProfile}
+                />
+              </>
             ) : activeTab == 2 ? (
               <>
                 <TicketInfo

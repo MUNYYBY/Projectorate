@@ -2,11 +2,13 @@ import { Table, Segmented, message, Popconfirm } from "antd";
 import { useEffect, useState } from "react";
 import { deleteEmployee, getEmployees } from "../../client/requests";
 import moment from "moment/moment";
+import EmployeeProfile from "../Employees/Profile/EmployeesProfile";
 
 export default function EmployeesData() {
   const [tabValue, setTabValue] = useState("All");
   const [employeesData, setEmployeesData] = useState();
   const [loading, setLoading] = useState(false);
+  const [isEmployeeProfile, setIsEmployeeProfile] = useState({ id: null });
   //Delete employees function
   const deleteEmployeeClient = (id) => {
     const delRes = deleteEmployee(id);
@@ -34,7 +36,16 @@ export default function EmployeesData() {
     {
       title: "Name",
       width: 100,
-      dataIndex: "first_name",
+      render: (_, { first_name, last_name, id }) => (
+        <div
+          className="underline cursor-pointer"
+          onClick={() => setIsEmployeeProfile({ id })}
+        >
+          <h1>
+            {first_name} {last_name}
+          </h1>
+        </div>
+      ),
       key: "name",
       fixed: "left",
     },
@@ -136,23 +147,29 @@ export default function EmployeesData() {
     getEmployeesData();
   }, []);
   return (
-    <div className="flex flex-col justify-center items-center">
-      <div className="py-4">
-        <Segmented
-          options={["All", "Admins", "Employees", "Project Managers"]}
-          value={tabValue}
-          onChange={setTabValue}
-        />
+    <>
+      <EmployeeProfile
+        isEmployeeProfile={isEmployeeProfile}
+        setIsEmployeeProfile={setIsEmployeeProfile}
+      />
+      <div className="flex flex-col justify-center items-center">
+        <div className="py-4">
+          <Segmented
+            options={["All", "Admins", "Employees", "Project Managers"]}
+            value={tabValue}
+            onChange={setTabValue}
+          />
+        </div>
+        <div className="employees_panel_data_table w-full">
+          <Table
+            columns={columns}
+            dataSource={employeesData}
+            scroll={{
+              x: 1300,
+            }}
+          />
+        </div>
       </div>
-      <div className="employees_panel_data_table w-full">
-        <Table
-          columns={columns}
-          dataSource={employeesData}
-          scroll={{
-            x: 1300,
-          }}
-        />
-      </div>
-    </div>
+    </>
   );
 }

@@ -16,14 +16,17 @@ export default async function handler(req, res) {
         userProjects: {
           select: {
             project_id: true,
+            project: true,
           },
         },
         UserTeams: {
           select: {
             team_id: true,
+            team: true,
           },
         },
-        Designations: true,
+        Designation: true,
+        Role: true,
       },
     });
     console.log("Employee Profile: ", data);
