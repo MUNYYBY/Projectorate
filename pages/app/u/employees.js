@@ -18,6 +18,7 @@ export default function SuperAdminEmployees({ data }) {
   const [isEmployeePanel, setIsEmployeePanel] = useState(false);
   const [loading, setLoading] = useState(true);
   const [employeesData, setEmployeesData] = useState(data);
+  const [filteredEmployeesData, setFilteredEmployeesData] = useState(data);
 
   //Global Notificatiosn handler
   const { notifications, setNotifications } = useNotificationsHandler();
@@ -80,8 +81,11 @@ export default function SuperAdminEmployees({ data }) {
         />
         <div className="Search-employees-section px-4 my-4">
           <SearchModule
+            type="employees"
             title="SEARCH EMPLOYEES"
             description="Take a dive in to the employees and its attributes. Find anything you are looking for in this employees"
+            data={employeesData}
+            setFilteredData={setFilteredEmployeesData}
           />
         </div>
         <TabDevider color="bg-gray-900" width="w-full" opacity="opacity-1" />
@@ -94,7 +98,7 @@ export default function SuperAdminEmployees({ data }) {
           </div>
           <div className="Projects py-4 flex flex-col">
             {!loading ? (
-              employeesData?.map((employee) => {
+              filteredEmployeesData?.map((employee) => {
                 return (
                   <div key={employee.id}>
                     <EmployeesContainer

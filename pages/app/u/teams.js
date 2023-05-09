@@ -34,6 +34,7 @@ export default function Teams({ teamsData, teamDomains }) {
 
   //** React States */
   const [teams, setTeams] = useState(teamsData);
+  const [filteredTeams, setFilteredTeams] = useState(teamsData);
   const [isRefreshTeams, setIsRefreshTeams] = useState(false);
   const [isCreateTeam, setIsCreateTeam] = useState(false);
   const [activeTeam, setActiveTeam] = useState(null);
@@ -198,8 +199,10 @@ export default function Teams({ teamsData, teamDomains }) {
             <div className="Search-Teams-section px-4 my-4">
               <SearchModule
                 title="SEARCH TEAMS"
-                type="Teams"
+                type="teams"
                 description="Take a dive in to the teams and its attributes. Find anything you are looking for in this team"
+                data={teams}
+                setFilteredData={setFilteredTeams}
               />
             </div>
             <TabDevider
@@ -217,12 +220,12 @@ export default function Teams({ teamsData, teamDomains }) {
               </div>
 
               <div className="Projects py-4">
-                {teams.length == 0 ? (
+                {filteredTeams.length == 0 ? (
                   <div className="w-full flex justify-center items-center">
                     <Result
                       status="404"
-                      title="There are no teams yet!"
-                      subTitle="Please create new team for your in your workspace."
+                      title="No teams found!"
+                      subTitle="Could not found teams, please create new team for your in your workspace."
                     />
                   </div>
                 ) : (
@@ -230,7 +233,7 @@ export default function Teams({ teamsData, teamDomains }) {
                 )}
                 <div class="inline-grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 grid-flow-row gap-4 w-full">
                   {!isRefreshTeams ? (
-                    teams.map((item) => {
+                    filteredTeams.map((item) => {
                       return (
                         <div
                           className="team_container cursor-pointer"

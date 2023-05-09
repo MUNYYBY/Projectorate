@@ -18,6 +18,18 @@ export default async function handler(req, res) {
             team_id: true,
           },
         },
+        Designation: {
+          select: {
+            id: true,
+            title: true,
+          },
+        },
+        Role: {
+          select: {
+            id: true,
+            title: true,
+          },
+        },
       },
     });
     console.log("All employees: ", data);

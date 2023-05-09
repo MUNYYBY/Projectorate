@@ -18,7 +18,7 @@ export default function ProjectsContainer({
         <div className="Project-main-Image rounded-lg w-14 h-14 bg-gray-700 flex justify-center items-center">
           <h1 className="font-bold text-5xl">{ProjectName[0]}</h1>
         </div>
-        <div className="projects-container-main-info ml-3 flex flex-col justify-center items-center">
+        <div className="projects-container-main-info ml-3 flex flex-col justify-center items-start">
           <h4 className="pb-1 text-xl font-semibold">{ProjectName}</h4>
           {type == "normal" ? (
             <div className="project-tags flex flex-row">

@@ -39,6 +39,8 @@ export default function SuperAdminProjectPanel({
 
   //** React States */
   const [projects, setProjects] = useState(projectsData);
+  const [filteredProjectsData, setFilteredProjectsData] =
+    useState(projectsData);
   const [isCreateProject, setIsCreateProject] = useState(false);
   const [isRefreshProjects, setIsRefreshProjects] = useState(false);
   const [activeProject, setActiveProject] = useState(null);
@@ -54,6 +56,7 @@ export default function SuperAdminProjectPanel({
   const fetchAllProjects = async () => {
     await getAllProjects().then((res) => {
       setProjects(res.data);
+      setFilteredProjectsData(res.data);
       setIsRefreshProjects(false);
     });
   };
@@ -199,8 +202,11 @@ export default function SuperAdminProjectPanel({
           <>
             <div className="Search-projects-section px-4 my-4">
               <SearchModule
+                type="projects"
                 title="SEARCH PROJECTS"
                 description="Take a dive in to the project and its attributes. Find anything you are looking for in this project"
+                data={projects}
+                setFilteredData={setFilteredProjectsData}
               />
             </div>
 
@@ -217,12 +223,12 @@ export default function SuperAdminProjectPanel({
                 </p>
               </div>
               <div className="Projects py-4">
-                {projects.length == 0 ? (
+                {filteredProjectsData.length == 0 ? (
                   <div className="w-full flex justify-center items-center">
                     <Result
                       status="404"
-                      title="There are no projects yet!"
-                      subTitle="Please create new project in you workspace."
+                      title="No projects found!"
+                      subTitle="Could not found any projects, please create new project in you workspace."
                     />
                   </div>
                 ) : (
@@ -230,7 +236,7 @@ export default function SuperAdminProjectPanel({
                 )}
                 <div class="inline-grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 grid-flow-row gap-4 w-full">
                   {!isRefreshProjects ? (
-                    projects.map((item) => {
+                    filteredProjectsData.map((item) => {
                       return (
                         <div
                           className="project_container cursor-pointer"

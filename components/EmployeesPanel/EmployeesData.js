@@ -7,18 +7,10 @@ import EmployeeProfile from "../Employees/Profile/EmployeesProfile";
 export default function EmployeesData() {
   const [tabValue, setTabValue] = useState("All");
   const [employeesData, setEmployeesData] = useState();
+  const [filteredEmployeesData, setFilteredEmployeesData] = useState();
   const [loading, setLoading] = useState(false);
   const [isEmployeeProfile, setIsEmployeeProfile] = useState({ id: null });
-  //Delete employees function
-  const deleteEmployeeClient = (id) => {
-    const delRes = deleteEmployee(id);
-    if (delRes) {
-      setCheckForNewEmployees(true);
-      message.success("Employee deleted sucessfully!");
-      getEmployees();
-      console.log(delRes);
-    }
-  };
+
   //This function get the new employees when
   //CheckforNewEmployees gets true
   const getEmployeesData = async () => {
@@ -32,10 +24,59 @@ export default function EmployeesData() {
     setEmployeesData(data);
   };
 
+  //** Delete employee */
+  const confirm = (id) => {
+    deleteEmployee(id).then((res) => {
+      console.log(res);
+      if (!res.error) {
+        //if employees is sucessfully deleted reload all employees and show message
+        getEmployeesData();
+        message.success(
+          `Sucessfully removed: ${res.data.deleteEmployee.first_name}`
+        );
+      } else {
+        message.error(`Error while removing employee!`);
+      }
+    });
+  };
+  const cancel = (e) => {
+    console.log(e);
+    message.error("Click on No");
+  };
+
+  function filterData(id) {
+    setFilteredEmployeesData(
+      employeesData.filter((e) => {
+        return e.Role.title == id;
+      })
+    );
+  }
+
+  //Call the getNewEmployees function when needed
+  useEffect(() => {
+    getEmployeesData();
+  }, []);
+
+  useEffect(() => {
+    if (tabValue == "All") {
+      setFilteredEmployeesData(employeesData);
+    } else if (tabValue == "Admins") {
+      filterData("Admin");
+    } else if (tabValue == "Project Managers") {
+      filterData("Project Manager");
+    } else if (tabValue == "Operation Managers") {
+      filterData("Operation Manager");
+    } else if (tabValue == "Team Leads") {
+      filterData("Team Lead");
+    } else if (tabValue == "Team Members") {
+      filterData("Team Member");
+    }
+  }, [tabValue]);
+
   const columns = [
     {
       title: "Name",
-      width: 100,
+      width: 200,
       render: (_, { first_name, last_name, id }) => (
         <div
           className="underline cursor-pointer"
@@ -77,12 +118,12 @@ export default function EmployeesData() {
     },
     {
       title: "Designation",
-      dataIndex: "designation",
+      render: (_, { Designation }) => <p>{Designation.title}</p>,
       key: "designation",
     },
     {
       title: "Role",
-      dataIndex: "role",
+      render: (_, { Role }) => <p>{Role.title}</p>,
       key: "role",
     },
     {
@@ -123,29 +164,6 @@ export default function EmployeesData() {
     },
   ];
 
-  const confirm = (id) => {
-    deleteEmployee(id).then((res) => {
-      console.log(res);
-      if (!res.error) {
-        //if employees is sucessfully deleted reload all employees and show message
-        getEmployeesData();
-        message.success(
-          `Sucessfully removed: ${res.data.deleteEmployee.first_name}`
-        );
-      } else {
-        message.error(`Error while removing employee!`);
-      }
-    });
-  };
-  const cancel = (e) => {
-    console.log(e);
-    message.error("Click on No");
-  };
-
-  //Call the getNewEmployees function when needed
-  useEffect(() => {
-    getEmployeesData();
-  }, []);
   return (
     <>
       <EmployeeProfile
@@ -155,7 +173,14 @@ export default function EmployeesData() {
       <div className="flex flex-col justify-center items-center">
         <div className="py-4">
           <Segmented
-            options={["All", "Admins", "Employees", "Project Managers"]}
+            options={[
+              "All",
+              "Admins",
+              "Operation Managers",
+              "Project Managers",
+              "Team Lead",
+              "Team Member",
+            ]}
             value={tabValue}
             onChange={setTabValue}
           />
@@ -163,7 +188,7 @@ export default function EmployeesData() {
         <div className="employees_panel_data_table w-full">
           <Table
             columns={columns}
-            dataSource={employeesData}
+            dataSource={filteredEmployeesData}
             scroll={{
               x: 1300,
             }}
