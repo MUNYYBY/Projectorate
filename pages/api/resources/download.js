@@ -22,8 +22,7 @@ export default async function handler(req, res) {
     const dir = serverPath(rootDir);
     var fileUrl = dir + "/" + url;
 
-    console.log(fileUrl);
-    console.log("download started");
+    console.log("Downloading 🚀: ", url);
 
     const path = fileUrl;
     const file = fs.createReadStream(path);
@@ -35,7 +34,4 @@ export default async function handler(req, res) {
       .status(500)
       .json({ error: "Error while downloading file:" + error.message });
   }
-  // res
-  //   .status(200)
-  //   .json("This api route is dedicated to downloading converted Images!");
 }

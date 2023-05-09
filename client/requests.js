@@ -467,6 +467,7 @@ export async function DownloadFile(url) {
       console.log(response);
       fileDownload(response.data, `projectorate_resource_${url}`); //Change the image name to something usefull (maybe original)
     });
+    return { data: true };
   } catch (error) {
     console.log("While uploading file:", error);
     return { error: error.response };

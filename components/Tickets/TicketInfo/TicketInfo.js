@@ -20,6 +20,7 @@ import { BsWindowDock } from "react-icons/bs";
 
 export default function TicketInfo(props) {
   const [loading, setLoading] = useState(true);
+  const [downloadloading, setDownloadLoading] = useState(false);
   const [ticketInfo, setTicketInfo] = useState(null);
   const [ticketStatus, setTicketStatus] = useState([]);
   function AssignEmployeeConfirm(employeeId) {}
@@ -100,7 +101,16 @@ export default function TicketInfo(props) {
   };
 
   function downloadResource(url) {
-    DownloadFile(url);
+    setDownloadLoading(true);
+    DownloadFile(url).then((res) => {
+      if (!res.data) {
+        message.error("Error while downloading resouce!");
+        setDownloadLoading(false);
+      } else {
+        message.success("Resource download started!");
+        setDownloadLoading(false);
+      }
+    });
   }
 
   return (
@@ -216,8 +226,9 @@ export default function TicketInfo(props) {
               <div className="w-1/2 flex flex-col">
                 {ticketInfo.Resource[0].url ? (
                   <button
-                    className="py-2 mb-4 bg-green-600 bg-opacity-20 hover:bg-opacity-30 transition-all w-full rounded-lg flex flex-row justify-center items-center"
+                    className="py-2 mb-4 bg-green-600 bg-opacity-20 hover:bg-opacity-30 transition-all w-full rounded-lg flex flex-row justify-center items-center disabled:opacity-50"
                     onClick={() => downloadResource(ticketInfo.Resource[0].url)}
+                    disabled={downloadloading}
                   >
                     <BsWindowDock color="green" size={20} />
                     <p className="text-green-600 tex-xl font-bold ml-2">
@@ -225,7 +236,14 @@ export default function TicketInfo(props) {
                     </p>
                   </button>
                 ) : (
-                  <></>
+                  <>
+                    <div className="py-2 mb-4 bg-white bg-opacity-10 hover:bg-opacity-30 transition-all w-full rounded-lg flex flex-row justify-center items-center disabled:opacity-50">
+                      <BsWindowDock color="white" size={20} />
+                      <p className="text-white-600 tex-xl font-bold ml-2">
+                        No resource added!
+                      </p>
+                    </div>
+                  </>
                 )}
                 <Popconfirm
                   title={`Are you sure you want to delete this ticket?`}
