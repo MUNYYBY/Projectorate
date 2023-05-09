@@ -403,6 +403,17 @@ export async function getTeamTickets(teamId) {
     return { error: error.response };
   }
 }
+export async function getALlTickets() {
+  try {
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL + `/tickets/get-all-tickets`
+    );
+    return res;
+  } catch (error) {
+    console.log("Error While getting all tickets at front-end: ", error);
+    return { error: error.response };
+  }
+}
 
 export async function ChangeTicketStatus(ticketId, statusId) {
   try {
