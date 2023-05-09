@@ -39,7 +39,7 @@ export default function SubPanel() {
 
   function handleProjectNav(projectName, projectId) {
     router.replace({
-      pathname: "/app/super-admin/projects",
+      pathname: "/app/u/projects",
       query: {
         projectId: projectId,
         projectName: projectName,

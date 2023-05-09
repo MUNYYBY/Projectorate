@@ -25,9 +25,7 @@ export default function ProjectTeams({
       title: "Team Name",
       width: 150,
       render: (_, { team_name, id }) => (
-        <Link
-          href={`/app/super-admin/teams?teamId=${id}&teamName=${team_name}`}
-        >
+        <Link href={`/app/u/teams?teamId=${id}&teamName=${team_name}`}>
           <h1 className="cursor-pointer underline">{team_name}</h1>
         </Link>
       ),

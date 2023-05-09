@@ -26,6 +26,7 @@ import CreateTicketModel from "../../../components/Tickets/CreateTicketModel";
 import ProjectTeams from "../../../components/Projects/ProjectTeams/ProjectTeams.js";
 import AllTickets from "../../../components/Tickets/AllTickets/AllTickets";
 import TicketInfo from "../../../components/Tickets/TicketInfo/TicketInfo";
+import EmployeeProfile from "../../../components/Employees/Profile/EmployeesProfile";
 
 const PROJECTS_TABS = ["Employees", "Teams", "Tickets"];
 
@@ -47,6 +48,7 @@ export default function SuperAdminProjectPanel({
   const [isCreateTicket, setIsCreateTicket] = useState(false);
   const [activeTab, setActiveTab] = useState(1); // 1 is employees
   const [isTicketInfo, setIsTicketInfo] = useState({ id: null });
+  const [isEmployeeProfile, setIsEmployeeProfile] = useState({ id: null });
 
   //** Get All the projects in CSR */
   const fetchAllProjects = async () => {
@@ -67,7 +69,7 @@ export default function SuperAdminProjectPanel({
   function handleActiveProject(project) {
     setActiveProject(project);
     router.push({
-      pathname: "/app/super-admin/projects",
+      pathname: "/app/u/projects",
       query: {
         projectId: project.id,
         projectName: project.name,
@@ -80,7 +82,7 @@ export default function SuperAdminProjectPanel({
     setActiveProject(null);
     setProjectInformation(null);
     router.replace({
-      pathname: "/app/super-admin/projects",
+      pathname: "/app/u/projects",
       query: undefined,
       shallow: true,
     });
@@ -368,11 +370,18 @@ export default function SuperAdminProjectPanel({
               />
             </div>
             {activeTab == 1 ? (
-              <ProjectEmployees
-                projectId={activeProject.id}
-                isNewEmployee={isNewEmployee}
-                setisNewEmployee={setisNewEmployee}
-              />
+              <>
+                <EmployeeProfile
+                  isEmployeeProfile={isEmployeeProfile}
+                  setIsEmployeeProfile={setIsEmployeeProfile}
+                />
+                <ProjectEmployees
+                  projectId={activeProject.id}
+                  isNewEmployee={isNewEmployee}
+                  setisNewEmployee={setisNewEmployee}
+                  setIsEmployeeProfile={setIsEmployeeProfile}
+                />
+              </>
             ) : activeTab == 2 ? (
               <ProjectTeams
                 projectId={activeProject.id}
@@ -411,7 +420,7 @@ export async function getServerSideProps() {
     const allProjects = await getAllProjects();
     projects = allProjects.data;
   } catch (error) {
-    console.log("Error at server-side for Super-admin projects: ", error);
+    console.log("Error at server-side for users projects: ", error);
   }
   //get all the projects domains
   try {
@@ -419,7 +428,7 @@ export async function getServerSideProps() {
     projectDomains = allProjectsDomains.data;
     console.log(projectDomains);
   } catch (error) {
-    console.log("Error at server-side for Super-admin projects: ", error);
+    console.log("Error at server-side for users projects: ", error);
   }
   // Pass data to the page via props
   return {

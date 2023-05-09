@@ -37,7 +37,7 @@ export default function AppDashboard({ children }) {
     if (status == "authenticated" && !userData) {
       const id = session.user.id;
       getUserData(id);
-      router.replace("/app/super-admin");
+      router.replace("/app/u");
     }
   }, [status]);
   return (

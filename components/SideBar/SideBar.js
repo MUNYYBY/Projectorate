@@ -13,7 +13,7 @@ import { Popover } from "antd";
 import { signOut } from "next-auth/react";
 import { useNotificationsHandler } from "../../context/notificationContext";
 
-const NAV_URL = "/app/super-admin/";
+const NAV_URL = "/app/u/";
 
 export default function SideBar() {
   const [settingsOpen, setSettingsOpen] = useState(false);

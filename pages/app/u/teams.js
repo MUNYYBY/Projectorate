@@ -63,7 +63,7 @@ export default function Teams({ teamsData, teamDomains }) {
   function handleActiveTeam(team) {
     setActiveTeam(team);
     router.push({
-      pathname: "/app/super-admin/teams",
+      pathname: "/app/u/teams",
       query: {
         teamId: team.id,
         teamName: team.name,
@@ -412,7 +412,7 @@ export async function getServerSideProps() {
     const allTeamDomains = await getTeamDomains();
     teamDomains = allTeamDomains.data;
   } catch (error) {
-    console.log("Error at server-side for Super-admin projects: ", error);
+    console.log("Error at server-side for user projects: ", error);
   }
   // Pass data to the page via props
   return {

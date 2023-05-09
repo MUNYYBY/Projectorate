@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Users } from "../Config/User";
 import Loading from "../components/Loading/loading";
-import SuperAdminDashboard from "../pages/app/super-admin";
 import HorizontalLayout from "./components/HorizontalLayout";
 
 export default function UserLayout({ children }) {
@@ -22,9 +21,7 @@ export default function UserLayout({ children }) {
 
   useEffect(() => {
     if (router.asPath) {
-      const i = Users.findIndex((route) =>
-        router.asPath.includes("app/" + route.userType)
-      );
+      const i = Users.findIndex((route) => router.asPath.includes("app/u"));
       if (i > -1) {
         setLayoutType(i);
       } else {

@@ -12,6 +12,7 @@ export default function ProjectEmployees({
   projectId,
   isNewEmployee,
   setisNewEmployee,
+  setIsEmployeeProfile,
 }) {
   const [employeesData, setEmployeesData] = useState();
   const [loading, setLoading] = useState(false);
@@ -20,7 +21,16 @@ export default function ProjectEmployees({
     {
       title: "Name",
       width: 100,
-      dataIndex: "first_name",
+      render: (_, { first_name, last_name, id }) => (
+        <div
+          className="underline cursor-pointer"
+          onClick={() => setIsEmployeeProfile({ id })}
+        >
+          <h1>
+            {first_name} {last_name}
+          </h1>
+        </div>
+      ),
       key: "name",
       fixed: "left",
     },
