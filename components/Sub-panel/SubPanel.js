@@ -33,9 +33,9 @@ export default function SubPanel() {
   };
 
   //** When a new project has been added refresh all the projects */
-  useEffect(() => {
-    fetchAllProjects();
-  }, []);
+  // useEffect(() => {
+  //   fetchAllProjects();
+  // }, []);
 
   function handleProjectNav(projectName, projectId) {
     router.replace({

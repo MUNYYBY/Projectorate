@@ -1,0 +1,498 @@
+{
+	"info": {
+		"_postman_id": "4cb7c249-c08b-4597-9bb4-5488ca6e80f4",
+		"name": "verdictai_admin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "superadmin_signin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"superadmin\",\n  \"password\": \"sAdmin@VerdictAi\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/login",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_new_admin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJBdXRoVmVyZGljdEFpIiwiaWF0IjoxNjgxMjMyMTA1LCJleHAiOjE2ODEyMzU3MDV9.dTrYd1Bseaav-z0cLKInQwv2kuI4DEm1zU0TilAO32Y"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"newadmin\",\n  \"password\": \"temp@123\",\n  \"name\": \"admin testing\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/create-admin",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"create-admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_admin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN1cGVyYWRtaW4iLCJpYXQiOjE2ODI1MzE0MjQsImV4cCI6MTY4MjUzNTAyNH0.Of-XeCaHRZJR4RDJKhauT0flgRSC5NzRpo13cuu8aEw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"newadmin1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/delete-admin",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"delete-admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_admins",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN1cGVyYWRtaW4iLCJpYXQiOjE2ODI1MzE0MjQsImV4cCI6MTY4MjUzNTAyNH0.Of-XeCaHRZJR4RDJKhauT0flgRSC5NzRpo13cuu8aEw"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}",
+					"host": [
+						"{{BASE_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin_signin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"newadmin\",\n  \"password\": \"temp@123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/login",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "set_results_per_query",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN1cGVyYWRtaW4iLCJpYXQiOjE2ODMwMzE1NTUsImV4cCI6MTY4MzAzNTE1NX0.F5md4YfQAtJNBzebTE_An3UOTeVbn0YJh-kLZeyWSKE"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"no_of_results_per_query\": 7,\n  \"user_type\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/set-results-per-query",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"set-results-per-query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change_browser_for_unregistered",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN1cGVyYWRtaW4iLCJpYXQiOjE2ODE3NTU5ODUsImV4cCI6MTY4MTc1OTU4NX0.p2YwMaftwe8YdDB5o64I9-L6LAOxPhfOMi9emSeNrO0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"browser_id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/change-browser",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"change-browser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_query_limits",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN1cGVyYWRtaW4iLCJpYXQiOjE2ODMwMzE1NTUsImV4cCI6MTY4MzAzNTE1NX0.F5md4YfQAtJNBzebTE_An3UOTeVbn0YJh-kLZeyWSKE"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/query-limits",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"query-limits"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_user_types",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN1cGVyYWRtaW4iLCJpYXQiOjE2ODMwMzM0NzYsImV4cCI6MTY4MzAzNzA3Nn0.OUl_1JNepgqdOA-wfiqkZRi6cdb_9ZD5KXmqUHGTvXw"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/user-types",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"user-types"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_browsers",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN1cGVyYWRtaW4iLCJpYXQiOjE2ODE3NTU5ODUsImV4cCI6MTY4MTc1OTU4NX0.p2YwMaftwe8YdDB5o64I9-L6LAOxPhfOMi9emSeNrO0"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/browsers",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"browsers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "set_query_limit",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN1cGVyYWRtaW4iLCJpYXQiOjE2ODE3NTU5ODUsImV4cCI6MTY4MTc1OTU4NX0.p2YwMaftwe8YdDB5o64I9-L6LAOxPhfOMi9emSeNrO0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"limit_id\": 1,\n  \"no_of_queries\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/set-query-limit",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"set-query-limit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_abusers",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN1cGVyYWRtaW4iLCJpYXQiOjE2ODMwOTYzMTUsImV4cCI6MTY4MzA5OTkxNX0.4U5cK-5FNau5VfnoUZXZjl1pdarrBUfSGL92b9P7wSA"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/abusers",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"abusers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_abuse_searches_of_user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5ld2FkbWluIiwiaWF0IjoxNjgxOTg5NTQzLCJleHAiOjE2ODE5OTMxNDN9.eX8uuBHJlCXNvVYyEOHS3xKlSQF1kqhPLvXVhX1PTlk"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"dexter@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/abusers",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"abusers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "block_unblock_user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5ld2FkbWluIiwiaWF0IjoxNjgxOTg5NTQzLCJleHAiOjE2ODE5OTMxNDN9.eX8uuBHJlCXNvVYyEOHS3xKlSQF1kqhPLvXVhX1PTlk"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"dexter@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/block-unblock-user",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"block-unblock-user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_results_per_query",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN1cGVyYWRtaW4iLCJpYXQiOjE2ODMwMzM0NzYsImV4cCI6MTY4MzAzNzA3Nn0.OUl_1JNepgqdOA-wfiqkZRi6cdb_9ZD5KXmqUHGTvXw"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/results-per-query",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"results-per-query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get_default_browser_for_unregistered",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/default-browser",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"default-browser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change_admin_password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"newadmin\",\r\n    \"current_password\": \"temp@12\",\r\n    \"new_password\": \"temp@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/change-password",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"change-password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_all_users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/users",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"value": "",
+			"type": "default"
+		}
+	]
+}

@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   console.log("Create Ticket End-point hit!");
 
   const reqBody = req.body;
-  // console.log(reqBody);
+  console.log(reqBody);
   if (
     !reqBody.userId ||
     !reqBody.teamId ||
@@ -137,6 +137,11 @@ export default async function handler(req, res) {
               id: parseInt(reqBody.ticketPiorityId),
             },
           },
+          Resource: {
+            create: {
+              url: reqBody.resource,
+            },
+          },
         },
       })
         .then((result) => {
@@ -162,8 +167,3 @@ export default async function handler(req, res) {
     });
   }
 }
-// export const config = {
-//   api: {
-//     bodyParser: false,
-//   },
-// };

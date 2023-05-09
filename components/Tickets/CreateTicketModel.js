@@ -54,27 +54,48 @@ export default function CreateTicketModel({
       resource: "",
     };
     setLoading(true);
-    UploadFile(resource)
-      .then((res) => {
-        console.log(res);
-        payload.resource = res;
-        CreateTicket(payload).then((res) => {
+    if (resource) {
+      UploadFile(resource)
+        .then((res) => {
           if (!res.error) {
-            setLoading(false);
-            message.success(`Created and assigned a ticket to an employee!`);
-            setIsCreateTicket(false);
+            payload.resource = res.data.newName;
+            CreateTicket(payload).then((res) => {
+              if (!res.error) {
+                setLoading(false);
+                message.success(
+                  `Created and assigned a ticket to an employee!`
+                );
+                setIsCreateTicket(false);
+              } else {
+                message.error(
+                  `Error while Creating and assigning a ticket to an employee!`
+                );
+                setLoading(false);
+              }
+            });
           } else {
-            message.error(
-              `Error while Creating and assigning a ticket to an employee!`
-            );
+            message.error(`Error while uploading resource for ticket!`);
             setLoading(false);
           }
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
         });
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
+    } else {
+      CreateTicket(payload).then((res) => {
+        if (!res.error) {
+          setLoading(false);
+          message.success(`Created and assigned a ticket to an employee!`);
+          setIsCreateTicket(false);
+        } else {
+          message.error(
+            `Error while Creating and assigning a ticket to an employee!`
+          );
+          setLoading(false);
+        }
       });
+    }
   }
 
   //** Check which among states are empty and fetch those */

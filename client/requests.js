@@ -433,13 +433,21 @@ export async function DeleteTicket(ticketId) {
 export async function UploadFile(file) {
   const formData = new FormData();
   formData.append("file", file);
-  formData.append("upload_preset", "projectorate");
+  const config = {
+    headers: { "content-type": "multipart/form-data" },
+    onUploadProgress: (event) => {
+      console.log(
+        `Current progress:`,
+        Math.round((event.loaded * 100) / event.total)
+      );
+    },
+  };
   try {
-    const res = await axios
-      .post("https://api.cloudinary.com/v1_1/dsysfvrlj/image/upload", formData)
-      .then((res) => {
-        return res.data;
-      });
+    const res = await axios.post(
+      process.env.NEXT_PUBLIC_BASE_URL + `/resources/upload`,
+      formData
+    );
+    return res;
   } catch (error) {
     console.log("While uploading file:", error);
     return { error: error.response };
