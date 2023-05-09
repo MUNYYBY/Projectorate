@@ -6,6 +6,7 @@ import TabDevider from "../../Devider/Devider";
 import {
   ChangeTicketStatus,
   DeleteTicket,
+  DownloadFile,
   GetTicketInfo,
   getTicketsStatus,
 } from "../../../client/requests";
@@ -15,6 +16,7 @@ import { FaFlag } from "react-icons/fa";
 import { FiTrash2 } from "react-icons/fi";
 
 import { RiAccountCircleFill } from "react-icons/ri";
+import { BsWindowDock } from "react-icons/bs";
 
 export default function TicketInfo(props) {
   const [loading, setLoading] = useState(true);
@@ -96,6 +98,10 @@ export default function TicketInfo(props) {
       </div>
     );
   };
+
+  function downloadResource(url) {
+    DownloadFile(url);
+  }
 
   return (
     <Drawer
@@ -208,6 +214,19 @@ export default function TicketInfo(props) {
               </div>
               <div className="tabdevider w-[1.5px] h-[10rem] mx-4 bg-opacity-10 bg-white rounded-lg"></div>
               <div className="w-1/2 flex flex-col">
+                {ticketInfo.Resource[0].url ? (
+                  <button
+                    className="py-2 mb-4 bg-green-600 bg-opacity-20 hover:bg-opacity-30 transition-all w-full rounded-lg flex flex-row justify-center items-center"
+                    onClick={() => downloadResource(ticketInfo.Resource[0].url)}
+                  >
+                    <BsWindowDock color="green" size={20} />
+                    <p className="text-green-600 tex-xl font-bold ml-2">
+                      Downlaod Resource
+                    </p>
+                  </button>
+                ) : (
+                  <></>
+                )}
                 <Popconfirm
                   title={`Are you sure you want to delete this ticket?`}
                   onConfirm={() => {

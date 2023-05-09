@@ -58,6 +58,12 @@ export default async function handler(req, res) {
             id: true,
           },
         },
+        Resource: {
+          select: {
+            url: true,
+            id: true,
+          },
+        },
       },
     });
     if (data) {

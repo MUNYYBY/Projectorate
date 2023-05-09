@@ -1,4 +1,5 @@
 import axios from "axios";
+import fileDownload from "js-file-download";
 
 export async function createEmployee(payload) {
   try {
@@ -448,6 +449,24 @@ export async function UploadFile(file) {
       formData
     );
     return res;
+  } catch (error) {
+    console.log("While uploading file:", error);
+    return { error: error.response };
+  }
+}
+export async function DownloadFile(url) {
+  try {
+    axios({
+      url: process.env.NEXT_PUBLIC_BASE_URL + `/resources/download`,
+      method: "GET",
+      responseType: "blob", // Important
+      params: {
+        url: url, //which file to download?
+      },
+    }).then((response) => {
+      console.log(response);
+      fileDownload(response.data, `projectorate_resource_${url}`); //Change the image name to something usefull (maybe original)
+    });
   } catch (error) {
     console.log("While uploading file:", error);
     return { error: error.response };
