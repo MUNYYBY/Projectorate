@@ -20,6 +20,19 @@ export async function getEmployees() {
     console.log("Error While getting employee: ", error);
   }
 }
+export async function getEmployeeProfile(id) {
+  try {
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL +
+        "/employee/get-employee-profile?employeeId=" +
+        id
+    );
+    return res.data;
+  } catch (error) {
+    console.log("Error While getting Employee Profile: ", error);
+    return { error: error.response };
+  }
+}
 export async function getEmployeeInfo(id) {
   console.log(id);
   try {
