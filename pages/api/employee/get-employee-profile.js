@@ -23,6 +23,7 @@ export default async function handler(req, res) {
             team_id: true,
           },
         },
+        Designations: true,
       },
     });
     console.log("Employee Profile: ", data);

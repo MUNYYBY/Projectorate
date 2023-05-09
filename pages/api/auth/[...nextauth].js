@@ -46,11 +46,13 @@ const authOptions = {
   callbacks: {
     // async redirect({ user, url, baseUrl }) {
     //   // Allows relative callback URLs
-    //   if (!user.id) {
-    //     if (url.startsWith("/auth")) return "/app";
+    //   if (user) {
+    //     if (!user.id) {
+    //       if (url.startsWith("/auth")) return "/app";
+    //     }
     //   } else if (new URL(url).origin === baseUrl) return url;
     //   return baseUrl;
-    //   // // Allows callback URLs on the same origin
+    //   //  Allows callback URLs on the same origin
     // },
 
     async session({ session, token, user }) {
@@ -58,14 +60,27 @@ const authOptions = {
         where: {
           email: session.user.email,
         },
+        include: {
+          employee: {
+            select: {
+              id: true,
+            },
+          },
+          Role: {
+            select: {
+              id: true,
+              title: true,
+            },
+          },
+        },
       });
       const userData = {
         id: userDatabase.id,
+        employeeId: userDatabase.employee.id,
         status: userDatabase.status,
         email: userDatabase.email,
         role: userDatabase.role,
       }; // creating payload
-
       session.user = userData; //sending payload as session
       return Promise.resolve(session);
     },

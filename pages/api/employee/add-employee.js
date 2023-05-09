@@ -12,7 +12,11 @@ export default async function handler(req, res) {
       data: {
         email: employeeData.email,
         password: employeeData.password,
-        role: employeeData.role,
+        Role: {
+          connect: {
+            id: employeeData.role,
+          },
+        },
         status: "Active",
         employee: {
           create: {
@@ -23,8 +27,16 @@ export default async function handler(req, res) {
             date_of_birth: employeeData.dateOfBirth,
             date_of_joining: employeeData.dateOfJoining,
             expertise: employeeData.expertise,
-            designation: employeeData.designation,
-            role: employeeData.role,
+            Designation: {
+              connect: {
+                id: employeeData.designation,
+              },
+            },
+            Role: {
+              connect: {
+                id: employeeData.role,
+              },
+            },
             gender: employeeData.gender,
             address: employeeData.address,
             years_of_experience: employeeData.yearsOfExperience,

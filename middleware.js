@@ -22,8 +22,10 @@ export const config = {
   matcher: [
     "/auth",
     "/app",
-    "/app/super-admin",
-    "/app/super-admin/projects",
-    "/app/super-admin/employees",
+    "/app/u",
+    "/app/u/projects",
+    "/app/u/employees",
+    "/app/u/teams",
+    "/app/u/board",
   ],
 };

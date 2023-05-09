@@ -12,6 +12,7 @@ model User {
   email     String    @unique
   password  String
   status    String    @default("Active")
+  Role      Role      @relation(fields: [role], references: [id], onDelete: Cascade)
   role      Int
   employee  Employee?
   project   Project[]
@@ -23,7 +24,7 @@ model User {
 
 model Employee {
   id                  Int            @id @default(autoincrement())
-  user                User           @relation(fields: [userId], references: [id])
+  user                User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId              Int            @unique
   userProjects        UserProjects[]
   first_name          String
@@ -32,7 +33,9 @@ model Employee {
   phone_number        String
   date_of_birth       String
   expertise           String
+  Designation         Designation    @relation(fields: [designation], references: [id])
   designation         Int
+  Role                Role           @relation(fields: [role], references: [id])
   role                Int
   date_of_joining     String
   years_of_experience Int
@@ -130,17 +133,20 @@ model UserTeams {
 }
 
 model Role {
-  id        Int       @id @default(autoincrement())
-  title     String    @default("Team Member")
-  createdAt DateTime  @default(now())
-  updatedAt DateTime? @updatedAt
+  id        Int        @id @default(autoincrement())
+  title     String     @default("Team Member")
+  createdAt DateTime   @default(now())
+  updatedAt DateTime?  @updatedAt
+  User      User[]
+  Employee  Employee[]
 }
 
 model Designation {
-  id        Int       @id @default(autoincrement())
-  title     String    @default("Associate")
-  createdAt DateTime  @default(now())
-  updatedAt DateTime? @updatedAt
+  id        Int        @id @default(autoincrement())
+  title     String     @default("Associate")
+  createdAt DateTime   @default(now())
+  updatedAt DateTime?  @updatedAt
+  Employee  Employee[]
 }
 
 model ProjectDomains {

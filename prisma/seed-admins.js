@@ -22,7 +22,11 @@ async function seedAdmins() {
       data: {
         email: "munyyb@gmail.com",
         password: "admin1234",
-        role: roleRes.id,
+        Role: {
+          connect: {
+            id: roleRes.id,
+          },
+        },
         status: "Active",
         employee: {
           create: {
@@ -33,8 +37,16 @@ async function seedAdmins() {
             date_of_birth: "May 16th 2000",
             date_of_joining: `${date.getDate()}`,
             expertise: "CEO",
-            designation: designationRes.id,
-            role: roleRes.id,
+            Designation: {
+              connect: {
+                id: designationRes.id,
+              },
+            },
+            Role: {
+              connect: {
+                id: roleRes.id,
+              },
+            },
             gender: "Male",
             address: "XYZ",
             years_of_experience: 10,
@@ -46,7 +58,11 @@ async function seedAdmins() {
       data: {
         email: "areesha@gmail.com",
         password: "admin1234",
-        role: roleRes.id,
+        Role: {
+          connect: {
+            id: roleRes.id,
+          },
+        },
         status: "Active",
         employee: {
           create: {
@@ -57,8 +73,16 @@ async function seedAdmins() {
             date_of_birth: "May 16th 2000",
             date_of_joining: `${date.getDate()}`,
             expertise: "CTO",
-            designation: designationRes.id,
-            role: roleRes.id,
+            Designation: {
+              connect: {
+                id: designationRes.id,
+              },
+            },
+            Role: {
+              connect: {
+                id: roleRes.id,
+              },
+            },
             gender: "Female",
             address: "XYZ",
             years_of_experience: 10,

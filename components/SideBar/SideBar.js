@@ -26,7 +26,7 @@ export default function SideBar() {
     // if you want to redirect the page hard-coded set
     // redirect to true and set the callbackurl to something
     // e.g callbackUrl: "/auth"
-    signOut({ redirect: true });
+    signOut({ redirect: true, callbackUrl: "/auth" });
     setNotifications({
       placement: "bottomRight",
       message: "You have been logged out!",
