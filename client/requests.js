@@ -429,3 +429,19 @@ export async function DeleteTicket(ticketId) {
     return { error: error.response };
   }
 }
+
+export async function UploadFile(file) {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", "projectorate");
+  try {
+    const res = await axios
+      .post("https://api.cloudinary.com/v1_1/dsysfvrlj/image/upload", formData)
+      .then((res) => {
+        return res.data;
+      });
+  } catch (error) {
+    console.log("While uploading file:", error);
+    return { error: error.response };
+  }
+}

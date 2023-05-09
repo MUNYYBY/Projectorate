@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
   CreateTicket,
+  UploadFile,
   getAllTeams,
   getEmployees,
   getTicketsPiority,
@@ -50,21 +51,30 @@ export default function CreateTicketModel({
       employeeId: values.employee,
       ticketStatusId: values.ticket_status,
       ticketPiorityId: values.ticket_piority,
-      // resource: resource,
+      resource: "",
     };
-    CreateTicket(payload).then((res) => {
-      setLoading(true);
-      if (!res.error) {
+    setLoading(true);
+    UploadFile(resource)
+      .then((res) => {
+        console.log(res);
+        payload.resource = res;
+        CreateTicket(payload).then((res) => {
+          if (!res.error) {
+            setLoading(false);
+            message.success(`Created and assigned a ticket to an employee!`);
+            setIsCreateTicket(false);
+          } else {
+            message.error(
+              `Error while Creating and assigning a ticket to an employee!`
+            );
+            setLoading(false);
+          }
+        });
+      })
+      .catch((err) => {
+        console.log(err);
         setLoading(false);
-        message.success(`Created and assigned a ticket to an employee!`);
-        setIsCreateTicket(false);
-      } else {
-        message.error(
-          `Error while Creating and assigning a ticket to an employee!`
-        );
-        setLoading(false);
-      }
-    });
+      });
   }
 
   //** Check which among states are empty and fetch those */
