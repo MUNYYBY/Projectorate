@@ -23,6 +23,24 @@ export default function TicketInfo(props) {
   const [downloadloading, setDownloadLoading] = useState(false);
   const [ticketInfo, setTicketInfo] = useState(null);
   const [ticketStatus, setTicketStatus] = useState([]);
+
+  const [windowSize, setWindowSize] = useState([
+    window.innerWidth,
+    window.innerHeight,
+  ]);
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowSize([window.innerWidth, window.innerHeight]);
+    };
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
   function AssignEmployeeConfirm(employeeId) {}
   function OnAssignEmployeeCancel() {}
 
@@ -35,7 +53,6 @@ export default function TicketInfo(props) {
         if (!res.error) {
           setTicketInfo(res.data.data);
           setLoading(false);
-          console.log(res.data.data);
         } else {
           setLoading(false);
           message.error(
@@ -87,12 +104,6 @@ export default function TicketInfo(props) {
   //** check for ticket status */
   const TicketStatus = (status) => {
     let color = "orange";
-
-    // if (status == "In-progress") {
-    //   color = "orange";
-    // } else if (status == "Todo") {
-    //   color = "green";
-    // }else if(status == "")
     return (
       <div className={`rounded-full text-lg bg-opacity-25`}>
         <h1 style={{ color: color }}>{status}</h1>
@@ -119,7 +130,7 @@ export default function TicketInfo(props) {
       onClose={() => props.setIsTicketInfo({ id: null })}
       open={props.isTicketInfo.id}
       bodyStyle={{ paddingBottom: 80 }}
-      width="55%"
+      width={windowSize[0] > 1100 ? "70%" : "100%"}
     >
       {loading || !ticketInfo ? (
         <>
@@ -136,20 +147,21 @@ export default function TicketInfo(props) {
           <div className="tickets-info">
             <header className="flex flex-row justify-between">
               <div className="flex flex-col w-full">
-                <div className="flex flex-row justify-between items-center w-full">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full">
                   <div className="flex flex-row items-center opacity-75">
-                    <BiTask size={32} />
-                    <h1 className="text-4xl font-semibold ml-2">
+                    <div className="w-6">
+                      <BiTask size={28} />
+                    </div>
+                    <h1 className="text-xl md:text-3xl font-semibold ml-2">
                       {ticketInfo.title}
                     </h1>
                   </div>
-                  <h1>
+                  <div className="md:m-0 m-4">
                     <Select
                       defaultValue={() => {
                         const compute = ticketStatus.find(
                           (status) => status.id == ticketInfo.ticketStatusId
                         );
-                        console.log(compute);
                         return compute.title;
                       }}
                       style={{
@@ -165,7 +177,7 @@ export default function TicketInfo(props) {
                         );
                       })}
                     </Select>
-                  </h1>
+                  </div>
                 </div>
                 <div className="text-lg flex flex-row items-center">
                   {TicketStatus(ticketInfo.TicketStatus.title)}
@@ -188,8 +200,8 @@ export default function TicketInfo(props) {
               </div>
             </div>
             <div className="tabdevider h-[1.5px] my-4 bg-opacity-10 bg-white w-full rounded-lg"></div>
-            <div className="flex flex-row justify-between w-full h-full">
-              <div className="flex flex-col w-1/2">
+            <div className="flex flex-col md:flex-row justify-between w-full h-full">
+              <div className="flex flex-col w-full md:w-1/2">
                 <div className="flex justify-between w-full text-base mb-4">
                   <h1 className="opacity-50">Assigned to</h1>
                   <div className="flex items-center">
@@ -222,8 +234,8 @@ export default function TicketInfo(props) {
                   </div>
                 </div>
               </div>
-              <div className="tabdevider w-[1.5px] h-[10rem] mx-4 bg-opacity-10 bg-white rounded-lg"></div>
-              <div className="w-1/2 flex flex-col">
+              <div className="tabdevider w-[1.5px] md:flex hidden h-[10rem] mx-4 bg-opacity-10 bg-white rounded-lg"></div>
+              <div className="w-full md:w-1/2 flex flex-col">
                 {ticketInfo.Resource[0].url ? (
                   <button
                     className="py-2 mb-4 bg-green-600 bg-opacity-20 hover:bg-opacity-30 transition-all w-full rounded-lg flex flex-row justify-center items-center disabled:opacity-50"
@@ -237,7 +249,7 @@ export default function TicketInfo(props) {
                   </button>
                 ) : (
                   <>
-                    <div className="py-2 mb-4 bg-white bg-opacity-10 hover:bg-opacity-30 transition-all w-full rounded-lg flex flex-row justify-center items-center disabled:opacity-50">
+                    <div className="py-2 mb-4 bg-white bg-opacity-10 transition-all w-full rounded-lg flex flex-row justify-center items-center disabled:opacity-50">
                       <BsWindowDock color="white" size={20} />
                       <p className="text-white-600 tex-xl font-bold ml-2">
                         No resource added!
