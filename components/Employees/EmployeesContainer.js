@@ -8,20 +8,13 @@ export default function EmployeesContainer({
   employeeName = "Employee Name",
   designation = "Designation Name",
   informationTag = "Web Dev",
-  deleteEmployeeClient,
-  employeeId,
+  role,
 }) {
   return (
     <div className="Employees-container bg-gray-700 h-20 w-full px-4 mt-2 rounded-md shadow-sm flex flex-row justify-between items-center ">
       <div className="flex flex-row justify-between items-center ">
-        <div className="Employee-Image flex flex-row items-center">
-          <Image
-            src={Temp}
-            width={50}
-            height={50}
-            className="rounded-full"
-            alt="employee image"
-          />
+        <div className="Employee-Image flex flex-row items-center justify-center h-12 w-12 bg-white bg-opacity-10 rounded-xl">
+          <p className="text-xl font-bold">{employeeName[0]}</p>
         </div>
         <div className="Employee-information pl-4 lg:w-72 md:w-52">
           <h1 className="">{employeeName}</h1>
@@ -31,17 +24,8 @@ export default function EmployeesContainer({
       <div className="Employee-work-info-tag sm:flex hidden">
         <InformationTag title={informationTag} type="intermediate" size="md" />
       </div>
-      <div className="Employee-tickets-stat flex flex-row justify-center items-center">
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            deleteEmployeeClient(employeeId);
-          }}
-        >
-          <div className="bg-red-900 p-3 rounded-2xl bg-opacity-30">
-            <BiTrash size={26} className="text-red-400" />
-          </div>
-        </button>
+      <div className="Employee-work-info-tag sm:flex hidden">
+        <InformationTag title={role} type="base" size="md" />
       </div>
     </div>
   );

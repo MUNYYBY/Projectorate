@@ -11,6 +11,7 @@ import { deleteEmployee, getEmployees } from "../../../client/requests";
 import { useNotificationsHandler } from "../../../context/notificationContext";
 import { Select } from "antd";
 import EmployeesPanelContainer from "../../../components/EmployeesPanel/EmployeesPanelContainer";
+import EmployeeProfile from "../../../components/Employees/Profile/EmployeesProfile";
 
 const { Option } = Select;
 
@@ -19,6 +20,7 @@ export default function SuperAdminEmployees({ data }) {
   const [loading, setLoading] = useState(true);
   const [employeesData, setEmployeesData] = useState(data);
   const [filteredEmployeesData, setFilteredEmployeesData] = useState(data);
+  const [isEmployeeProfile, setIsEmployeeProfile] = useState({ id: null });
 
   //Global Notificatiosn handler
   const { notifications, setNotifications } = useNotificationsHandler();
@@ -30,21 +32,6 @@ export default function SuperAdminEmployees({ data }) {
   setInterval(() => {
     setLoading(false);
   }, 2500);
-  //Delete employees function
-  const deleteEmployeeClient = (id) => {
-    const delRes = deleteEmployee(id);
-    if (delRes) {
-      setCheckForNewEmployees(true);
-      setNotifications({
-        placement: "bottomRight",
-        message: "Employee deleted sucessfully!",
-        description: "",
-        type: "warning",
-      });
-      getNewEmployees();
-      console.log(delRes);
-    }
-  };
   //This function get the new employees when
   //CheckforNewEmployees gets true
   const getNewEmployees = async () => {
@@ -72,6 +59,10 @@ export default function SuperAdminEmployees({ data }) {
   }, [loading]);
   return (
     <>
+      <EmployeeProfile
+        isEmployeeProfile={isEmployeeProfile}
+        setIsEmployeeProfile={setIsEmployeeProfile}
+      />
       <div className="Employees-panel">
         <DashboardHeader
           title="Employees Panel"
@@ -98,21 +89,27 @@ export default function SuperAdminEmployees({ data }) {
           </div>
           <div className="Projects py-4 flex flex-col">
             {!loading ? (
-              filteredEmployeesData?.map((employee) => {
-                return (
-                  <div key={employee.id}>
-                    <EmployeesContainer
-                      employeeId={employee.id}
-                      employeeName={
-                        employee.first_name + " " + employee.last_name
-                      }
-                      designation={employee.expertise}
-                      informationTag={employee.email}
-                      deleteEmployeeClient={deleteEmployeeClient}
-                    />
-                  </div>
-                );
-              })
+              <>
+                {filteredEmployeesData?.map((employee) => {
+                  return (
+                    <div
+                      key={employee.id}
+                      onClick={() => setIsEmployeeProfile({ id: employee.id })}
+                      className="employee-container cursor-pointer"
+                    >
+                      <EmployeesContainer
+                        employeeId={employee.id}
+                        employeeName={
+                          employee.first_name + " " + employee.last_name
+                        }
+                        designation={employee.expertise}
+                        informationTag={employee.email}
+                        role={employee.Role.title}
+                      />
+                    </div>
+                  );
+                })}
+              </>
             ) : (
               <>
                 <EmployeesContainerSkelton />
