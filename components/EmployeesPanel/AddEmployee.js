@@ -18,6 +18,7 @@ import {
   getDesignations,
   getRoles,
 } from "../../client/requests";
+import moment from "moment";
 const { Option } = Select;
 const formItemLayout = {
   labelCol: {
@@ -91,7 +92,9 @@ export default function AddEmployee(props) {
   //get all the roles in the db
   const getAllRoles = async () => {
     const rolesResponse = await getRoles();
-    setRoles(rolesResponse.data);
+    const data = rolesResponse.data;
+    data.splice(0, 1); // remove super-admin from roles
+    setRoles(data);
   };
   useEffect(() => {
     getAllDesignations();
@@ -117,9 +120,6 @@ export default function AddEmployee(props) {
             form={form}
             name="register"
             onFinish={onFinish}
-            initialValues={{
-              prefix: "86",
-            }}
             style={{
               width: "100%",
             }}
@@ -136,6 +136,18 @@ export default function AddEmployee(props) {
                       required: true,
                       message: "Please input employee's first name",
                     },
+                    {
+                      min: 4,
+                      message: "First name must be minimum of 4 characters",
+                    },
+                    {
+                      max: 20,
+                      message: "First name must be maximum of 20 characters",
+                    },
+                    {
+                      whitespace: true,
+                      message: "Must be atleast one non-space character!",
+                    },
                   ]}
                 >
                   <Input />
@@ -147,6 +159,18 @@ export default function AddEmployee(props) {
                     {
                       required: true,
                       message: "Please input employee's last name",
+                    },
+                    {
+                      min: 4,
+                      message: "last name must be minimum of 4 characters",
+                    },
+                    {
+                      max: 20,
+                      message: "last name must be maximum of 20 characters",
+                    },
+                    {
+                      whitespace: true,
+                      message: "Must be atleast one non-space character!",
                     },
                   ]}
                 >
@@ -165,6 +189,10 @@ export default function AddEmployee(props) {
                       required: true,
                       message: "Please input your E-mail!",
                     },
+                    {
+                      whitespace: true,
+                      message: "Must be atleast one non-space character!",
+                    },
                   ]}
                 >
                   <Input />
@@ -176,6 +204,18 @@ export default function AddEmployee(props) {
                     {
                       required: true,
                       message: "Please add employee address",
+                    },
+                    {
+                      whitespace: true,
+                      message: "Must be atleast one non-space character!",
+                    },
+                    {
+                      min: 4,
+                      message: "Address must be minimum of 4 characters",
+                    },
+                    {
+                      max: 40,
+                      message: "Address must be maximum of 40 characters",
                     },
                   ]}
                 >
@@ -189,10 +229,17 @@ export default function AddEmployee(props) {
                       required: true,
                       message: "Please input your phone number!",
                     },
+                    {
+                      max: 11,
+                      message: "Number should be 11 digits long",
+                    },
+                    {
+                      min: 11,
+                      message: "Number should be 11 digits long",
+                    },
                   ]}
                 >
                   <Input
-                    addonBefore={prefixSelector}
                     style={{
                       width: "100%",
                     }}
@@ -209,7 +256,12 @@ export default function AddEmployee(props) {
                     },
                   ]}
                 >
-                  <DatePicker className="w-full" />
+                  <DatePicker
+                    className="w-full"
+                    disabledDate={(current) => {
+                      return moment().add(-18, "years") <= current;
+                    }}
+                  />
                 </Form.Item>
                 <Form.Item
                   name="dateOfJoining"
@@ -217,11 +269,19 @@ export default function AddEmployee(props) {
                   rules={[
                     {
                       required: true,
-                      message: "Please input a date of joing for employee!",
+                      message: "Please input a date of joining for employee!",
                     },
                   ]}
                 >
-                  <DatePicker className="w-full" />
+                  <DatePicker
+                    className="w-full"
+                    disabledDate={(current) => {
+                      return (
+                        moment().add(-1, "years") >= current ||
+                        moment().add(4, "months") <= current
+                      );
+                    }}
+                  />
                 </Form.Item>
               </Col>
               <Col xs={{ span: 22, offset: 1 }} lg={{ span: 11, offset: 1 }}>
@@ -231,11 +291,11 @@ export default function AddEmployee(props) {
                   rules={[
                     {
                       required: true,
-                      message: "Please a add a year of experince!",
+                      message: "Please add years of experience!",
                     },
                   ]}
                 >
-                  <InputNumber className="w-full" />
+                  <InputNumber className="w-full" type="number" />
                 </Form.Item>
                 <Form.Item
                   name="gender"
@@ -258,7 +318,22 @@ export default function AddEmployee(props) {
                   rules={[
                     {
                       required: true,
-                      message: "Please input Expertise",
+                      message:
+                        "Please input Expertise! E.g Front-end Developer",
+                    },
+                    {
+                      whitespace: true,
+                      message: "Must be atleast one non-space character!",
+                    },
+                    {
+                      max: 30,
+                      message:
+                        "Maximum length of expertise can be 30 characters long!",
+                    },
+                    {
+                      min: 4,
+                      message:
+                        "Minimum length of expertise can be 4 characters long!",
                     },
                   ]}
                 >
@@ -311,6 +386,10 @@ export default function AddEmployee(props) {
                     {
                       required: true,
                       message: "Please input your password!",
+                    },
+                    {
+                      min: 8,
+                      message: "Password must be 8 characters long!",
                     },
                   ]}
                   hasFeedback

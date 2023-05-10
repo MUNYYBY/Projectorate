@@ -22,6 +22,7 @@ export default function EmployeesData() {
       setLoading(false);
     }
     setEmployeesData(data);
+    setFilteredEmployeesData(data);
   };
 
   //** Delete employee */
