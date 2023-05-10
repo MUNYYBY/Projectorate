@@ -3,6 +3,8 @@ import { IoIosAdd, IoIosHelpCircle } from "react-icons/io";
 import { CgInbox } from "react-icons/cg";
 import { BiHomeAlt } from "react-icons/bi";
 import { Tooltip } from "antd";
+import useAuthority from "../../Permissions/useAuthority";
+import AuthorityCheck from "../../Permissions/AuthorityCheck";
 
 export default function DashboardHeader(
   {
@@ -26,33 +28,37 @@ export default function DashboardHeader(
         </div>
         <div className="flex flex-row items-center">
           {type == "project" ? (
-            <Tooltip
-              placement="bottom"
-              title="Create a new project in your company and add a workforce"
-              mouseEnterDelay={0.05}
-            >
-              <button className="bg-secondry py-1 px-3 rounded-md flex flex-row justify-center items-center">
-                <IoIosAdd size={26} />
-                <p>Create Project</p>
-              </button>
-            </Tooltip>
+            <AuthorityCheck grantPermissionFor="manage_projects">
+              <Tooltip
+                placement="bottom"
+                title="Create a new project in your company and add a workforce"
+                mouseEnterDelay={0.05}
+              >
+                <button className="bg-secondry py-1 px-3 rounded-md flex flex-row justify-center items-center">
+                  <IoIosAdd size={26} />
+                  <p>Create Project</p>
+                </button>
+              </Tooltip>
+            </AuthorityCheck>
           ) : (
             ""
           )}
           {type == "employees" ? (
-            <Tooltip
-              placement="bottom"
-              title="A panel in which admin can manage all of their employees"
-              mouseEnterDelay={0.05}
-            >
-              <button
-                className="bg-secondry py-1 px-3 rounded-md flex flex-row justify-center items-center"
-                onClick={() => setIsEmployeePanel(true)}
+            <AuthorityCheck grantPermissionFor="manage_employees">
+              <Tooltip
+                placement="bottom"
+                title="A panel in which admin can manage all of their employees"
+                mouseEnterDelay={0.05}
               >
-                <IoIosAdd size={26} />
-                <p>Employees Management</p>
-              </button>
-            </Tooltip>
+                <button
+                  className="bg-secondry py-1 px-3 rounded-md flex flex-row justify-center items-center"
+                  onClick={() => setIsEmployeePanel(true)}
+                >
+                  <IoIosAdd size={26} />
+                  <p>Employees Management</p>
+                </button>
+              </Tooltip>
+            </AuthorityCheck>
           ) : (
             ""
           )}

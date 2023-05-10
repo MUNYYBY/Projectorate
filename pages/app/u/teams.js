@@ -25,6 +25,7 @@ import CreateTicketBtn from "../../../components/Tickets/CreateTicketBtn";
 import AllTickets from "../../../components/Tickets/AllTickets/AllTickets";
 import TicketInfo from "../../../components/Tickets/TicketInfo/TicketInfo";
 import EmployeeProfile from "../../../components/Employees/Profile/EmployeesProfile";
+import AuthorityCheck from "../../../Permissions/AuthorityCheck";
 
 const PROJECTS_TABS = ["Employees", "Tickets"];
 
@@ -131,17 +132,22 @@ export default function Teams({ teamsData, teamDomains }) {
 
   return (
     <>
-      <div className="absolute z-[999] bottom-4 right-4 flex flex-col items-end">
-        {isCreateTicket ? (
-          <CreateTicketModel setIsCreateTicket={setIsCreateTicket} />
-        ) : (
-          <></>
-        )}
+      <AuthorityCheck grantPermissionFor="manage_tickets">
+        <div className="absolute z-[999] bottom-4 right-4 flex flex-col items-end">
+          {isCreateTicket ? (
+            <CreateTicketModel setIsCreateTicket={setIsCreateTicket} />
+          ) : (
+            <></>
+          )}
 
-        <div className="Create-ticket" onClick={() => setIsCreateTicket(true)}>
-          <CreateTicketBtn />
+          <div
+            className="Create-ticket"
+            onClick={() => setIsCreateTicket(true)}
+          >
+            <CreateTicketBtn />
+          </div>
         </div>
-      </div>
+      </AuthorityCheck>
       <div className="teams">
         <header className="flex flex-row items-center justify-between border-b-2 border-b-gray-900 px-4 py-2 relative">
           <div className="flex flex-row items-center">
@@ -167,21 +173,23 @@ export default function Teams({ teamsData, teamDomains }) {
           </div>
           <div className="flex flex-row items-center">
             {!activeTeam ? (
-              <Tooltip
-                placement="bottom"
-                title="Create a new project in your company and add a workforce"
-                mouseEnterDelay={0.05}
-              >
-                <button
-                  className="bg-secondry mr-2 py-1 px-3 rounded-md flex flex-row justify-center items-center"
-                  onClick={() => {
-                    setIsCreateTeam(true);
-                  }}
+              <AuthorityCheck grantPermissionFor="manage_teams">
+                <Tooltip
+                  placement="bottom"
+                  title="Create a new project in your company and add a workforce"
+                  mouseEnterDelay={0.05}
                 >
-                  <IoIosAdd size={26} />
-                  <p>Create Team</p>
-                </button>
-              </Tooltip>
+                  <button
+                    className="bg-secondry mr-2 py-1 px-3 rounded-md flex flex-row justify-center items-center"
+                    onClick={() => {
+                      setIsCreateTeam(true);
+                    }}
+                  >
+                    <IoIosAdd size={26} />
+                    <p>Create Team</p>
+                  </button>
+                </Tooltip>
+              </AuthorityCheck>
             ) : (
               <></>
             )}
@@ -316,41 +324,43 @@ export default function Teams({ teamsData, teamDomains }) {
                     </div>
                   </div>
                 </div>
-                <div className="project-actions flex flex-row mt-4 sm:mt-0">
-                  <Tooltip
-                    placement="topRight"
-                    title="Add employees to work on this team"
-                    mouseEnterDelay={0.05}
-                  >
-                    <button
-                      className="bg-white bg-opacity-10 hover:bg-opacity-25 transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center"
-                      onClick={() => setAssignEmployeesPanel(true)}
+                <AuthorityCheck grantPermissionFor="manage_teams">
+                  <div className="project-actions flex flex-row mt-4 sm:mt-0">
+                    <Tooltip
+                      placement="topRight"
+                      title="Add employees to work on this team"
+                      mouseEnterDelay={0.05}
                     >
-                      <AiOutlineUsergroupAdd size={24} />
-                    </button>
-                  </Tooltip>
-                  <Tooltip
-                    placement="topRight"
-                    title="Remove this team"
-                    mouseEnterDelay={0.05}
-                  >
-                    <Popconfirm
-                      title={`Remove Team from Projectorate?`}
-                      description="Are you sure to remove this team? "
-                      onConfirm={() => {
-                        DeleteTeamConfirm(activeTeam.id);
-                      }}
-                      onCancel={OnTeamDeleteCancel}
-                      okText="Confirm"
-                      cancelText="No"
-                      placement="bottomLeft"
-                    >
-                      <button className="bg-white bg-opacity-10 hover:bg-opacity-25 transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center">
-                        <CgTrash size={24} />
+                      <button
+                        className="bg-white bg-opacity-10 hover:bg-opacity-25 transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center"
+                        onClick={() => setAssignEmployeesPanel(true)}
+                      >
+                        <AiOutlineUsergroupAdd size={24} />
                       </button>
-                    </Popconfirm>
-                  </Tooltip>
-                </div>
+                    </Tooltip>
+                    <Tooltip
+                      placement="topRight"
+                      title="Remove this team"
+                      mouseEnterDelay={0.05}
+                    >
+                      <Popconfirm
+                        title={`Remove Team from Projectorate?`}
+                        description="Are you sure to remove this team? "
+                        onConfirm={() => {
+                          DeleteTeamConfirm(activeTeam.id);
+                        }}
+                        onCancel={OnTeamDeleteCancel}
+                        okText="Confirm"
+                        cancelText="No"
+                        placement="bottomLeft"
+                      >
+                        <button className="bg-white bg-opacity-10 hover:bg-opacity-25 transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center">
+                          <CgTrash size={24} />
+                        </button>
+                      </Popconfirm>
+                    </Tooltip>
+                  </div>
+                </AuthorityCheck>
               </div>
             </div>
             {/* Show tabs */}

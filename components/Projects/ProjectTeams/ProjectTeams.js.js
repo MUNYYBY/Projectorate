@@ -11,6 +11,7 @@ import moment from "moment/moment";
 import { getProjectEmployees } from "../../../client/requests";
 import InformationTag from "../../InformationTag/InformationTag";
 import Link from "next/link";
+import AuthorityCheck from "../../../Permissions/AuthorityCheck";
 
 export default function ProjectTeams({
   projectId,
@@ -62,21 +63,23 @@ export default function ProjectTeams({
       fixed: "right",
       width: 100,
       render: (_, { id }) => (
-        <Popconfirm
-          title={`Remove Team from project`}
-          description="Are you sure to remove this team from project?"
-          onConfirm={() => {
-            confirm(id);
-          }}
-          onCancel={cancel}
-          okText="Confirm"
-          cancelText="No"
-          placement="topLeft"
-        >
-          <button className="p-2 bg-red-500 rounded-md text-sm text-white">
-            Remove
-          </button>
-        </Popconfirm>
+        <AuthorityCheck grantPermissionFor="manage_projects">
+          <Popconfirm
+            title={`Remove Team from project`}
+            description="Are you sure to remove this team from project?"
+            onConfirm={() => {
+              confirm(id);
+            }}
+            onCancel={cancel}
+            okText="Confirm"
+            cancelText="No"
+            placement="topLeft"
+          >
+            <button className="p-2 bg-red-500 rounded-md text-sm text-white">
+              Remove
+            </button>
+          </Popconfirm>
+        </AuthorityCheck>
       ),
     },
   ];

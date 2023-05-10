@@ -9,6 +9,7 @@ import {
 } from "../../../client/requests";
 import moment from "moment/moment";
 import { getProjectEmployees } from "../../../client/requests";
+import AuthorityCheck from "../../../Permissions/AuthorityCheck";
 
 export default function TeamEmployees({
   teamId,
@@ -83,21 +84,23 @@ export default function TeamEmployees({
       fixed: "right",
       width: 100,
       render: (_, { id }) => (
-        <Popconfirm
-          title={`Remove Employee from project`}
-          description="Are you sure to remove this employee from projectorate?"
-          onConfirm={() => {
-            confirm(id);
-          }}
-          onCancel={cancel}
-          okText="Confirm"
-          cancelText="No"
-          placement="topLeft"
-        >
-          <button className="p-2 bg-red-500 rounded-md text-sm text-white">
-            Remove
-          </button>
-        </Popconfirm>
+        <AuthorityCheck grantPermissionFor="manage_teams">
+          <Popconfirm
+            title={`Remove Employee from project`}
+            description="Are you sure to remove this employee from projectorate?"
+            onConfirm={() => {
+              confirm(id);
+            }}
+            onCancel={cancel}
+            okText="Confirm"
+            cancelText="No"
+            placement="topLeft"
+          >
+            <button className="p-2 bg-red-500 rounded-md text-sm text-white">
+              Remove
+            </button>
+          </Popconfirm>
+        </AuthorityCheck>
       ),
     },
   ];

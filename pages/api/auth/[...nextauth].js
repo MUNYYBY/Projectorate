@@ -79,8 +79,9 @@ const authOptions = {
         employeeId: userDatabase.employee.id,
         status: userDatabase.status,
         email: userDatabase.email,
-        role: userDatabase.role,
+        role: userDatabase.Role.title,
       }; // creating payload
+      console.log(userData);
       session.user = userData; //sending payload as session
       return Promise.resolve(session);
     },
