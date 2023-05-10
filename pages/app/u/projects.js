@@ -4,7 +4,7 @@ import TabDevider from "../../../components/Devider/Devider";
 import ProjectsContainer from "../../../components/Projects/ProjectsContainer/ProjectsContainer";
 import { SlSocialSteam } from "react-icons/sl";
 import { IoIosAdd, IoIosHelpCircle, IoMdGitNetwork } from "react-icons/io";
-import { AiOutlineUsergroupAdd } from "react-icons/ai";
+import { AiOutlineUsergroupAdd, AiOutlineEdit } from "react-icons/ai";
 
 import { CgInbox, CgTrash } from "react-icons/cg";
 import { Tooltip, Col, Row, Tabs, Popconfirm, message, Result } from "antd";
@@ -28,6 +28,7 @@ import AllTickets from "../../../components/Tickets/AllTickets/AllTickets";
 import TicketInfo from "../../../components/Tickets/TicketInfo/TicketInfo";
 import EmployeeProfile from "../../../components/Employees/Profile/EmployeesProfile";
 import AuthorityCheck from "../../../Permissions/AuthorityCheck";
+import UpdateProject from "../../../components/Projects/UpdateProject/UpdateProject";
 
 const PROJECTS_TABS = ["Employees", "Teams", "Tickets"];
 
@@ -52,6 +53,7 @@ export default function SuperAdminProjectPanel({
   const [activeTab, setActiveTab] = useState(1); // 1 is employees
   const [isTicketInfo, setIsTicketInfo] = useState({ id: null });
   const [isEmployeeProfile, setIsEmployeeProfile] = useState({ id: null });
+  const [isUpdateProject, setIsUpdateProject] = useState(false);
 
   //** Get All the projects in CSR */
   const fetchAllProjects = async () => {
@@ -311,24 +313,31 @@ export default function SuperAdminProjectPanel({
                       {activeProject.name[0]}
                     </p>
                   </div>
-                  <div className="flex flex-col justify-center sm:ml-4">
-                    <h1 className="text-3xl font-bold text-secondry ">
-                      {projectInformation?.project_name.toUpperCase()}
-                    </h1>
-                    <p className="font-medium mt-2 text-sm md:text-md lg:text-xl sm:w-32 lg:w-96 md:w-32 w-full">
-                      {projectInformation?.description}
-                    </p>
-                    <div className="mt-4">
-                      <InformationTag
-                        title={
-                          handleProjectDomainsInfo(
-                            projectInformation?.projectDomainsId
-                          ).title
-                        }
-                        type="intermediate"
-                      />
+                  {!isUpdateProject ? (
+                    <div className="flex flex-col justify-center sm:ml-4">
+                      <h1 className="text-3xl font-bold text-secondry ">
+                        {projectInformation?.project_name.toUpperCase()}
+                      </h1>
+                      <p className="font-medium mt-2 text-sm md:text-md lg:text-xl sm:w-32 lg:w-96 md:w-32 w-full">
+                        {projectInformation?.description}
+                      </p>
+                      <div className="mt-4">
+                        <InformationTag
+                          title={
+                            handleProjectDomainsInfo(
+                              projectInformation?.projectDomainsId
+                            ).title
+                          }
+                          type="intermediate"
+                        />
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    <UpdateProject
+                      projectInformation={projectInformation}
+                      setIsUpdateProject={setIsUpdateProject}
+                    />
+                  )}
                 </div>
                 <AuthorityCheck grantPermissionFor="manage_projects">
                   <div className="project-actions flex flex-row mt-4 sm:mt-0">
@@ -342,6 +351,18 @@ export default function SuperAdminProjectPanel({
                         onClick={() => setAssignEmployeesPanel(true)}
                       >
                         <AiOutlineUsergroupAdd size={24} />
+                      </button>
+                    </Tooltip>
+                    <Tooltip
+                      placement="topRight"
+                      title="Edit this project"
+                      mouseEnterDelay={0.05}
+                    >
+                      <button
+                        className="bg-white bg-opacity-10 hover:bg-opacity-25 transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center"
+                        onClick={() => setIsUpdateProject(!isUpdateProject)}
+                      >
+                        <AiOutlineEdit size={24} />
                       </button>
                     </Tooltip>
                     <Tooltip

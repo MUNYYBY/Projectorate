@@ -142,6 +142,18 @@ export async function createProject(payload) {
     return { error: error };
   }
 }
+export async function UpdateProjectAPI(payload) {
+  try {
+    const res = await axios.post(
+      process.env.NEXT_PUBLIC_BASE_URL + "/projects/update-project",
+      payload
+    );
+    return res;
+  } catch (error) {
+    console.log("Error While creating project: ", error);
+    return { error: error };
+  }
+}
 export async function getAllProjects() {
   try {
     const res = await axios.get(
