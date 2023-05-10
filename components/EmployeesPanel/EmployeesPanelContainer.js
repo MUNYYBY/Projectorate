@@ -7,6 +7,7 @@ import { Drawer, Tooltip } from "antd";
 export default function EmployeesPanelContainer(props) {
   //state to check if user wants to add new employee
   const [addEmployee, setAddEmployee] = useState(false);
+  const [updateEmployee, setUpdateEmployee] = useState(false);
   return (
     <Drawer
       title="Employees Panel"
@@ -16,15 +17,18 @@ export default function EmployeesPanelContainer(props) {
       width="100%"
       extra={
         <Tooltip
-          placement="bottom"
+          placement="bottomRight"
           title="Add new employee, project manager, modetor to your company"
           mouseEnterDelay={0.05}
         >
           <button
             className="bg-primary py-1 px-3 rounded-md flex flex-row justify-center items-center transition-all"
-            onClick={() => setAddEmployee(!addEmployee)}
+            onClick={() => {
+              setAddEmployee(!addEmployee);
+              setUpdateEmployee(false);
+            }}
           >
-            {addEmployee ? (
+            {addEmployee || updateEmployee ? (
               "Cancel"
             ) : (
               <>
@@ -40,6 +44,8 @@ export default function EmployeesPanelContainer(props) {
       <EmployeesPanel
         addEmployee={addEmployee}
         setAddEmployee={setAddEmployee}
+        updateEmployee={updateEmployee}
+        setUpdateEmployee={setUpdateEmployee}
       />
     </Drawer>
   );

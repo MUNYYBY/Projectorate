@@ -4,7 +4,7 @@ import { deleteEmployee, getEmployees } from "../../client/requests";
 import moment from "moment/moment";
 import EmployeeProfile from "../Employees/Profile/EmployeesProfile";
 
-export default function EmployeesData() {
+export default function EmployeesData(props) {
   const [tabValue, setTabValue] = useState("All");
   const [employeesData, setEmployeesData] = useState();
   const [filteredEmployeesData, setFilteredEmployeesData] = useState();
@@ -77,7 +77,7 @@ export default function EmployeesData() {
   const columns = [
     {
       title: "Name",
-      width: 200,
+      width: 150,
       render: (_, { first_name, last_name, id }) => (
         <div
           className="underline cursor-pointer"
@@ -104,6 +104,7 @@ export default function EmployeesData() {
     },
     {
       title: "Gender",
+      width: 90,
       dataIndex: "gender",
       key: "gender",
     },
@@ -144,23 +145,30 @@ export default function EmployeesData() {
       title: "Action",
       key: "id",
       fixed: "right",
-      width: 100,
-      render: (_, { id }) => (
-        <Popconfirm
-          title="Delete Employee"
-          description="Are you sure to remove this employee from projectorate?"
-          onConfirm={() => {
-            confirm(id);
-          }}
-          onCancel={cancel}
-          okText="Confirm"
-          cancelText="No"
-          placement="topLeft"
-        >
-          <button className="p-2 bg-red-500 rounded-md text-sm text-white">
-            Delete
+      render: (_, param) => (
+        <div className="flex">
+          <button
+            className="p-2 mr-2 bg-secondry rounded-md text-sm text-white"
+            onClick={() => props.setUpdateEmployee(param)}
+          >
+            Update
           </button>
-        </Popconfirm>
+          <Popconfirm
+            title="Delete Employee"
+            description="Are you sure to remove this employee from projectorate?"
+            onConfirm={() => {
+              confirm(param.id);
+            }}
+            onCancel={cancel}
+            okText="Confirm"
+            cancelText="No"
+            placement="topLeft"
+          >
+            <button className="p-2 bg-red-500 rounded-md text-sm text-white">
+              Delete
+            </button>
+          </Popconfirm>
+        </div>
       ),
     },
   ];
