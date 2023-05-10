@@ -1,4 +1,4 @@
-import { Drawer, Popconfirm, Tooltip, Skeleton, Select } from "antd";
+import { Drawer, Popconfirm, Tooltip, Skeleton, Select, Empty } from "antd";
 import { message } from "antd";
 import { useEffect, useState } from "react";
 import React from "react";
@@ -94,7 +94,7 @@ export default function EmployeeProfile(props) {
                 </h1>
               </div>
               <div className="flex flex-col md:pl-4">
-                <div className="flex justify-center items-center mb-2">
+                <div className="flex justify-start items-center mb-2">
                   <FaRegUser size={25} />
                   <h1 className="text-3xl font-bold ml-2">
                     {EmployeeInfo.first_name} {EmployeeInfo.last_name}
@@ -111,7 +111,9 @@ export default function EmployeeProfile(props) {
                 <div className="flex justify-start items-center mb-2">
                   <BsCalendarDate size={22} />
                   <h1 className="text-lg ml-2">
-                    {moment().format(EmployeeInfo.date_of_birth)}
+                    {moment(EmployeeInfo.date_of_birth).format(
+                      "dddd, MMMM Do YYYY"
+                    )}
                   </h1>
                 </div>
                 <div className="flex justify-start items-center mb-2">
@@ -155,6 +157,14 @@ export default function EmployeeProfile(props) {
           </header>
           <div className="tabdevider h-[1.5px] my-4 bg-opacity-10 bg-white w-full rounded-lg"></div>
           <div className="text-lg font-semibold">Projects Assigned </div>
+          {EmployeeInfo.userProjects.length == 0 ? (
+            <Empty
+              image={Empty.PRESENTED_IMAGE_SIMPLE}
+              description="No Projects Assigned!"
+            />
+          ) : (
+            <></>
+          )}
           <div class="inline-grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 grid-flow-row gap-4 w-full mt-4">
             {EmployeeInfo.userProjects.map((item) => {
               return (
@@ -182,6 +192,14 @@ export default function EmployeeProfile(props) {
             })}
           </div>
           <div className="text-lg font-semibold mt-4">Teams Assigned </div>
+          {EmployeeInfo.UserTeams.length == 0 ? (
+            <Empty
+              image={Empty.PRESENTED_IMAGE_SIMPLE}
+              description="No Teams Assigned!"
+            />
+          ) : (
+            <></>
+          )}
           <div class="inline-grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 grid-flow-row gap-4 w-full mt-4">
             {EmployeeInfo.UserTeams.map((item) => {
               return (

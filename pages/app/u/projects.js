@@ -3,7 +3,7 @@ import SearchModule from "../../../components/Search/SearchModule";
 import TabDevider from "../../../components/Devider/Devider";
 import ProjectsContainer from "../../../components/Projects/ProjectsContainer/ProjectsContainer";
 import { SlSocialSteam } from "react-icons/sl";
-import { IoIosAdd, IoIosHelpCircle } from "react-icons/io";
+import { IoIosAdd, IoIosHelpCircle, IoMdGitNetwork } from "react-icons/io";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 
 import { CgInbox, CgTrash } from "react-icons/cg";
@@ -158,11 +158,13 @@ export default function SuperAdminProjectPanel({
         <header className="flex flex-row items-center justify-between border-b-2 border-b-gray-900 px-4 py-2 relative">
           <div className="flex flex-row items-center">
             <div className="project-panel-icon mr-3">
-              <SlSocialSteam size={26} />
+              <IoMdGitNetwork size={26} />
             </div>
-            <h1 className="text-lg font-bold">Project Panel</h1>
+            <h1 className={`text-lg font-bold hidden sm:flex`}>
+              Project Panel
+            </h1>
           </div>
-          <div className="absolute -bottom-0 left-52">
+          <div className={`absolute -bottom-0 left-16 sm:left-52`}>
             {activeProject ? (
               <div className="border-x-2 border-t-2 border-gray-900 bg-gray-900 rounded-t-md px-4 py-2 flex flex-row justify-between items-center">
                 <p>{activeProject.name}</p>

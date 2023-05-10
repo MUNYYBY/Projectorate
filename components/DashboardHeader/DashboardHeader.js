@@ -24,7 +24,7 @@ export default function DashboardHeader(
       <header className="flex flex-row items-center justify-between border-b-2 border-b-gray-900 px-4 py-2">
         <div className="flex flex-row items-center">
           <div className="dashboard-header-icon mr-3">{icon}</div>
-          <h1 className="text-lg font-bold">{title}</h1>
+          <h1 className="text-lg font-bol hidden sm:flex">{title}</h1>
         </div>
         <div className="flex flex-row items-center">
           {type == "project" ? (

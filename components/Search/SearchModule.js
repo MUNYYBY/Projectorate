@@ -43,11 +43,12 @@ export default function SearchModule({
         <input
           placeholder={`Search ${type}...`}
           type="text"
-          className="bg-transparent md:w-4/6 sm:w-[8rem] w-[6rem] focus:outline-0"
+          className="bg-transparent md:w-4/6 sm:w-[8rem] w-[8rem] focus:outline-0"
           onChange={handleSearch}
         />
         <button className="bg-primary py-2 px-3 rounded-md">
-          Find in “{type}”
+          <p className="sm:flex hidden">Find in “{type}”</p>
+          <p className="sm:hidden flex">Search</p>
         </button>
       </div>
     </div>

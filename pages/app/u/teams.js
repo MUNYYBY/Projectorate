@@ -16,7 +16,7 @@ import TeamsContainer from "../../../components/Teams/TeamsContainer/TeamsContai
 import TeamsContainerSkelton from "../../../components/Teams/TeamsContainer/TeamsContainerSkelton";
 import CreateTeam from "../../../components/Teams/CreateTeam/CreateTeam";
 import { RxCross1 } from "react-icons/rx";
-import { AiOutlineUsergroupAdd } from "react-icons/ai";
+import { AiOutlineBlock, AiOutlineUsergroupAdd } from "react-icons/ai";
 import InformationTag from "../../../components/InformationTag/InformationTag";
 import TeamEmployees from "../../../components/Teams/TeamEmployees/TeamEmployees";
 import AssignEmployee from "../../../components/Teams/AssignEmployee/AssignEmployee";
@@ -152,11 +152,11 @@ export default function Teams({ teamsData, teamDomains }) {
         <header className="flex flex-row items-center justify-between border-b-2 border-b-gray-900 px-4 py-2 relative">
           <div className="flex flex-row items-center">
             <div className="teams-panel-icon mr-3">
-              <SlSocialSteam size={26} />
+              <AiOutlineBlock size={26} />
             </div>
-            <h1 className="text-lg font-bold">Teams Panel</h1>
+            <h1 className="text-lg font-bold hidden sm:flex">Teams Panel</h1>
           </div>
-          <div className="absolute -bottom-0 left-48">
+          <div className="absolute -bottom-0 left-16 sm:left-48">
             {activeTeam ? (
               <div className="border-x-2 border-t-2 border-gray-900 bg-gray-900 rounded-t-md px-4 py-2 flex flex-row justify-between items-center">
                 <p>{activeTeam.name}</p>
@@ -193,10 +193,10 @@ export default function Teams({ teamsData, teamDomains }) {
             ) : (
               <></>
             )}
-            <div className="help-icon px-2">
+            <div className="help-icon px-2 sm:flex hidden">
               <CgInbox size={24} />
             </div>
-            <div className="inbox-icon px-2">
+            <div className="inbox-icon px-2 sm:flex hidden">
               <IoIosHelpCircle size={26} />
             </div>
           </div>
