@@ -24,8 +24,9 @@ export default function EmployeesPanelContainer(props) {
           <button
             className="bg-primary py-1 px-3 rounded-md flex flex-row justify-center items-center transition-all"
             onClick={() => {
-              setAddEmployee(!addEmployee);
-              setUpdateEmployee(false);
+              updateEmployee
+                ? setUpdateEmployee(false)
+                : setAddEmployee(!addEmployee);
             }}
           >
             {addEmployee || updateEmployee ? (

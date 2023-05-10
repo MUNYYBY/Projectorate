@@ -12,7 +12,7 @@ export default function EmployeesPanel(props) {
       ) : props.updateEmployee ? (
         <UpdateEmployee
           updateEmployee={props.updateEmployee}
-          setAddEmployee={props.setUpdateEmployee}
+          setUpdateEmployee={props.setUpdateEmployee}
         />
       ) : (
         <EmployeesData setUpdateEmployee={props.setUpdateEmployee} />

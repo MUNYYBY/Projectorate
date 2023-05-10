@@ -11,6 +11,16 @@ export async function createEmployee(payload) {
     return { error: error };
   }
 }
+export async function UpdateEmployeeAPI(payload) {
+  try {
+    const res = await axios.post("/api/employee/update-employee", payload);
+    console.log("Updated employee: ", res.data);
+    return res.data;
+  } catch (error) {
+    console.log("Error While add employee: ", error);
+    return { error: error };
+  }
+}
 
 export async function getEmployees() {
   try {

@@ -14,6 +14,7 @@ import {
 } from "antd";
 import { useEffect, useState } from "react";
 import {
+  UpdateEmployeeAPI,
   createEmployee,
   getDesignations,
   getRoles,
@@ -58,7 +59,7 @@ export default function UpdateEmployee(props) {
   const [form] = Form.useForm();
   const handleEmployeeSubmission = async (payload) => {
     setLoading(true);
-    let res = await createEmployee(payload);
+    let res = await UpdateEmployeeAPI(payload);
     console.log(res);
     if (res?.error) {
       message.error("Employee submission failed!");
@@ -66,12 +67,15 @@ export default function UpdateEmployee(props) {
     } else {
       message.success("Employee added successfully!");
       form.resetFields();
-      props.setAddEmployee(false);
+      props.setUpdateEmployee(false);
     }
   };
   const onFinish = (values) => {
-    // console.log("Received values of form: ", values);
-    handleEmployeeSubmission(values);
+    const payload = {
+      ...values,
+      id: employee.id,
+    };
+    handleEmployeeSubmission(payload);
   };
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
@@ -125,6 +129,21 @@ export default function UpdateEmployee(props) {
             }}
             scrollToFirstError
             disabled={loading}
+            initialValues={{
+              ["firstName"]: employee.first_name,
+              ["lastName"]: employee.last_name,
+              ["email"]: employee.email,
+              ["phoneNumber"]: employee.phone_number,
+              ["address"]: employee.address,
+              ["dateOfBirth"]: moment(employee.date_of_birth),
+              ["dateOfJoining"]: moment(employee.date_of_joining),
+              ["yearsOfExperience"]: employee.years_of_experience,
+              ["gender"]: employee.gender,
+              ["expertise"]: employee.expertise,
+              ["designation"]: employee.designation,
+              ["role"]: employee.role,
+              ["role"]: employee.role,
+            }}
           >
             <Row>
               <Col xs={{ span: 22, offset: 1 }} lg={{ span: 11, offset: 1 }}>
@@ -150,7 +169,7 @@ export default function UpdateEmployee(props) {
                     },
                   ]}
                 >
-                  <Input defaultValue={employee.first_name} />
+                  <Input />
                 </Form.Item>
                 <Form.Item
                   name="lastName"
@@ -174,7 +193,7 @@ export default function UpdateEmployee(props) {
                     },
                   ]}
                 >
-                  <Input defaultValue={employee.last_name} />
+                  <Input />
                 </Form.Item>
 
                 <Form.Item
@@ -195,7 +214,7 @@ export default function UpdateEmployee(props) {
                     },
                   ]}
                 >
-                  <Input defaultValue={employee.email} />
+                  <Input />
                 </Form.Item>
                 <Form.Item
                   name="address"
@@ -219,7 +238,7 @@ export default function UpdateEmployee(props) {
                     },
                   ]}
                 >
-                  <Input defaultValue={employee.address} />
+                  <Input />
                 </Form.Item>
                 <Form.Item
                   name="phoneNumber"
@@ -243,7 +262,6 @@ export default function UpdateEmployee(props) {
                     style={{
                       width: "100%",
                     }}
-                    defaultValue={employee.phone_number}
                   />
                 </Form.Item>
 
@@ -296,11 +314,7 @@ export default function UpdateEmployee(props) {
                     },
                   ]}
                 >
-                  <InputNumber
-                    className="w-full"
-                    type="number"
-                    defaultValue={employee.years_of_experience}
-                  />
+                  <InputNumber className="w-full" type="number" />
                 </Form.Item>
                 <Form.Item
                   name="gender"
@@ -312,10 +326,7 @@ export default function UpdateEmployee(props) {
                     },
                   ]}
                 >
-                  <Select
-                    placeholder="select gender"
-                    defaultValue={employee.gender}
-                  >
+                  <Select placeholder="select gender">
                     <Option value="male">Male</Option>
                     <Option value="female">Female</Option>
                   </Select>
@@ -345,7 +356,7 @@ export default function UpdateEmployee(props) {
                     },
                   ]}
                 >
-                  <Input defaultValue={employee.expertise} />
+                  <Input />
                 </Form.Item>
                 <Form.Item
                   name="designation"
@@ -357,10 +368,7 @@ export default function UpdateEmployee(props) {
                     },
                   ]}
                 >
-                  <Select
-                    placeholder="select your A designation for employee"
-                    defaultValue={employee.designation}
-                  >
+                  <Select placeholder="select your A designation for employee">
                     {designations?.map((designation) => {
                       return (
                         <Option key={designation.id} value={designation.id}>
@@ -380,10 +388,7 @@ export default function UpdateEmployee(props) {
                     },
                   ]}
                 >
-                  <Select
-                    placeholder="select your A role for employee"
-                    defaultValue={employee.role}
-                  >
+                  <Select placeholder="select your A role for employee">
                     {roles?.map((role) => {
                       return (
                         <Option key={role.id} value={role.id}>
