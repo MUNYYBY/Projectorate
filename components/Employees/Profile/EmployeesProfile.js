@@ -88,7 +88,7 @@ export default function EmployeeProfile(props) {
         <>
           <header className="flex flex-col md:flex-row justify-between items-start">
             <div className="flex flex-row sm:flex-row-reverse md:flex-row justify-between md:justify-start items-start w-full">
-              <div className="h-44 w-44 bg-gray-300 bg-opacity-10 flex justify-center items-center rounded-3xl sm:flex hidden">
+              <div className="h-44 w-44 bg-gray-900 bg-opacity-80 flex justify-center items-center rounded-3xl sm:flex hidden">
                 <h1 className="text-[8rem] font-bold opacity-60">
                   {EmployeeInfo.first_name[0]}
                 </h1>
