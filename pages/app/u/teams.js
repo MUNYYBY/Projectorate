@@ -16,7 +16,11 @@ import TeamsContainer from "../../../components/Teams/TeamsContainer/TeamsContai
 import TeamsContainerSkelton from "../../../components/Teams/TeamsContainer/TeamsContainerSkelton";
 import CreateTeam from "../../../components/Teams/CreateTeam/CreateTeam";
 import { RxCross1 } from "react-icons/rx";
-import { AiOutlineBlock, AiOutlineUsergroupAdd } from "react-icons/ai";
+import {
+  AiOutlineBlock,
+  AiOutlineEdit,
+  AiOutlineUsergroupAdd,
+} from "react-icons/ai";
 import InformationTag from "../../../components/InformationTag/InformationTag";
 import TeamEmployees from "../../../components/Teams/TeamEmployees/TeamEmployees";
 import AssignEmployee from "../../../components/Teams/AssignEmployee/AssignEmployee";
@@ -26,6 +30,8 @@ import AllTickets from "../../../components/Tickets/AllTickets/AllTickets";
 import TicketInfo from "../../../components/Tickets/TicketInfo/TicketInfo";
 import EmployeeProfile from "../../../components/Employees/Profile/EmployeesProfile";
 import AuthorityCheck from "../../../Permissions/AuthorityCheck";
+import UpdateProject from "../../../components/Projects/UpdateProject/UpdateProject";
+import UpdateTeam from "../../../components/Teams/UpdateTeam/UpdateTeam";
 
 const PROJECTS_TABS = ["Employees", "Tickets"];
 
@@ -47,6 +53,7 @@ export default function Teams({ teamsData, teamDomains }) {
   const [activeTab, setActiveTab] = useState(1);
   const [isTicketInfo, setIsTicketInfo] = useState(false);
   const [isEmployeeProfile, setIsEmployeeProfile] = useState({ id: null });
+  const [isUpdateTeam, setIsUpdateTeam] = useState(false);
 
   //** Get All the Teams in CSR */
   const fetchAllTeams = async () => {
@@ -305,24 +312,32 @@ export default function Teams({ teamsData, teamDomains }) {
                       {activeTeam.name[0]}
                     </p>
                   </div>
-                  <div className="flex flex-col justify-center sm:ml-4">
-                    <h1 className="text-3xl font-bold text-secondry ">
-                      {teamInformation?.team_name.toUpperCase()} |{" "}
-                      {teamInformation?.project.project_name.toUpperCase()}
-                    </h1>
-                    <p className="font-medium mt-2 text-sm md:text-md lg:text-xl sm:w-32 lg:w-96 md:w-32 w-full">
-                      {teamInformation?.description}
-                    </p>
-                    <div className="mt-4">
-                      <InformationTag
-                        title={
-                          handleTeamDomainsInfo(teamInformation?.teamDomainsId)
-                            .title
-                        }
-                        type="intermediate"
-                      />
+                  {!isUpdateTeam ? (
+                    <div className="flex flex-col justify-center sm:ml-4">
+                      <h1 className="text-3xl font-bold text-secondry ">
+                        {teamInformation?.team_name.toUpperCase()} |{" "}
+                        {teamInformation?.project.project_name.toUpperCase()}
+                      </h1>
+                      <p className="font-medium mt-2 text-sm md:text-md lg:text-xl sm:w-32 lg:w-96 md:w-32 w-full">
+                        {teamInformation?.description}
+                      </p>
+                      <div className="mt-4">
+                        <InformationTag
+                          title={
+                            handleTeamDomainsInfo(
+                              teamInformation?.teamDomainsId
+                            ).title
+                          }
+                          type="intermediate"
+                        />
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    <UpdateTeam
+                      teamInformation={teamInformation}
+                      setIsUpdateTeam={setIsUpdateTeam}
+                    />
+                  )}
                 </div>
                 <AuthorityCheck grantPermissionFor="manage_teams">
                   <div className="project-actions flex flex-row mt-4 sm:mt-0">
@@ -336,6 +351,22 @@ export default function Teams({ teamsData, teamDomains }) {
                         onClick={() => setAssignEmployeesPanel(true)}
                       >
                         <AiOutlineUsergroupAdd size={24} />
+                      </button>
+                    </Tooltip>
+                    <Tooltip
+                      placement="topRight"
+                      title="Edit this team"
+                      mouseEnterDelay={0.05}
+                    >
+                      <button
+                        className={`${
+                          isUpdateTeam
+                            ? "bg-primary"
+                            : "bg-white bg-opacity-10 hover:bg-opacity-25"
+                        }  transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center`}
+                        onClick={() => setIsUpdateTeam(!isUpdateTeam)}
+                      >
+                        <AiOutlineEdit size={24} />
                       </button>
                     </Tooltip>
                     <Tooltip

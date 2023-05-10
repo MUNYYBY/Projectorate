@@ -359,7 +359,11 @@ export default function SuperAdminProjectPanel({
                       mouseEnterDelay={0.05}
                     >
                       <button
-                        className="bg-white bg-opacity-10 hover:bg-opacity-25 transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center"
+                        className={`${
+                          isUpdateProject
+                            ? "bg-primary"
+                            : "bg-white bg-opacity-10 hover:bg-opacity-25"
+                        }  transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center`}
                         onClick={() => setIsUpdateProject(!isUpdateProject)}
                       >
                         <AiOutlineEdit size={24} />

@@ -292,6 +292,18 @@ export async function createTeam(payload) {
     return { error: error };
   }
 }
+export async function UpdateTeamAPI(payload) {
+  try {
+    const res = await axios.post(
+      process.env.NEXT_PUBLIC_BASE_URL + "/teams/update-team",
+      payload
+    );
+    return res;
+  } catch (error) {
+    console.log("Error While creating team: ", error);
+    return { error: error };
+  }
+}
 
 export async function GetSpecificTeam(teamId) {
   try {
