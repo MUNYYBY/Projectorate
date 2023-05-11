@@ -18,6 +18,8 @@ import { FiTrash2 } from "react-icons/fi";
 import { RiAccountCircleFill } from "react-icons/ri";
 import { BsWindowDock } from "react-icons/bs";
 
+import AuthorityCheck from "../../../Permissions/AuthorityCheck";
+
 export default function TicketInfo(props) {
   const [loading, setLoading] = useState(true);
   const [downloadloading, setDownloadLoading] = useState(false);
@@ -257,23 +259,25 @@ export default function TicketInfo(props) {
                     </div>
                   </>
                 )}
-                <Popconfirm
-                  title={`Are you sure you want to delete this ticket?`}
-                  onConfirm={() => {
-                    handleTicketDelete();
-                  }}
-                  //   onCancel={cancel}
-                  okText="Confirm"
-                  cancelText="No"
-                  placement="top"
-                >
-                  <button className="py-2 bg-red-600 bg-opacity-20 hover:bg-opacity-30 transition-all w-full rounded-lg flex flex-row justify-center items-center">
-                    <FiTrash2 color="red" size={20} />
-                    <p className="text-red-600 tex-xl font-bold ml-2">
-                      Delete Ticket
-                    </p>
-                  </button>
-                </Popconfirm>
+                <AuthorityCheck grantPermissionFor="manage_tickets">
+                  <Popconfirm
+                    title={`Are you sure you want to delete this ticket?`}
+                    onConfirm={() => {
+                      handleTicketDelete();
+                    }}
+                    //   onCancel={cancel}
+                    okText="Confirm"
+                    cancelText="No"
+                    placement="top"
+                  >
+                    <button className="py-2 bg-red-600 bg-opacity-20 hover:bg-opacity-30 transition-all w-full rounded-lg flex flex-row justify-center items-center">
+                      <FiTrash2 color="red" size={20} />
+                      <p className="text-red-600 tex-xl font-bold ml-2">
+                        Delete Ticket
+                      </p>
+                    </button>
+                  </Popconfirm>
+                </AuthorityCheck>
               </div>
             </div>
           </div>

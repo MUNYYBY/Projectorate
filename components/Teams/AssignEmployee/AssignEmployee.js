@@ -55,7 +55,7 @@ export default function AssignEmployee(props) {
       <h1 className="opacity-50 mb-4">
         Note: Only the employees which are added in to project of this team are
         allowed to assign. If you want to add another employee to this team,
-        first add him/her to this team's project!
+        first add him/her to this teams project!
       </h1>
       <TabDevider color="bg-gray-600" width="w-full" opacity="opacity-1" />
       <div className="mt-4 search-results">

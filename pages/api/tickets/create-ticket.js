@@ -1,3 +1,8 @@
+import {
+  CreateTicketSendEmail,
+  NewUserOnBoardEmail,
+  sendMailToUser,
+} from "../../../client/emails";
 import PrismaDB from "../../../lib/prisma";
 
 export default async function handler(req, res) {
@@ -152,6 +157,11 @@ export default async function handler(req, res) {
               message: "Error while creating ticket!",
             });
           } else {
+            NewUserOnBoardEmail(
+              "muneeburryhman@gmail.com",
+              "Munyyb",
+              "12345678"
+            );
             res.status(200).json({ result });
           }
         })
