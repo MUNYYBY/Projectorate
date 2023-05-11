@@ -5,7 +5,8 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: "Method not allowed" });
   }
   console.log("Delete single Team End-point hit!");
-  const { teamId } = req.query;
+  const { teamId, user_id } = req.query;
+  const LogsOperations = await PrismaDB.LogsOperations.findMany({});
   try {
     const checkget = await PrismaDB.Teams.findUnique({
       where: {
@@ -24,9 +25,41 @@ export default async function handler(req, res) {
       where: {
         id: parseInt(teamId),
       },
+      include: {
+        project: true,
+      },
     })
       .then(async (result) => {
         if (result) {
+          //** Record log */
+          try {
+            const response = await PrismaDB.Logs.create({
+              data: {
+                operation: "Deleted Team",
+                description: "Deleted Team during the Team deletion phase",
+                team_name: result.team_name,
+                project_name: result.project.project_name,
+                user: {
+                  connect: {
+                    id: parseInt(user_id),
+                  },
+                },
+                project: {
+                  connect: {
+                    id: result.project.id,
+                  },
+                },
+                LogsOperations: {
+                  connect: {
+                    id: LogsOperations.find((t) => t.title === "Deleted Team")
+                      ?.id,
+                  },
+                },
+              },
+            });
+          } catch (error) {
+            console.log("Error while creating log for team: ", error);
+          }
           res.status(200).json({
             code: 200,
             type: "Team and UserTeam deletion!",

@@ -14,20 +14,22 @@ export default function AssignEmployee(props) {
   const [loading, setLoading] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   function AssignEmployeeConfirm(employeeId) {
-    AssignEmployeeToTeam(props.teamId, employeeId).then((res) => {
-      console.log(res);
-      if (!res.error) {
-        message.success("Employee Sucessfully Added to the Team!");
-        props.setAssignEmployeesPanel(false);
-        props.setisNewEmployee(true);
-      } else {
-        if (res.error.data.error == 404) {
-          message.error("Project, team or employee not found!");
-        } else if (res.error.data.error == 403) {
-          message.warning("Employee is already assigned to this project!");
+    AssignEmployeeToTeam(props.teamId, employeeId, props.ownerId).then(
+      (res) => {
+        console.log(res);
+        if (!res.error) {
+          message.success("Employee Sucessfully Added to the Team!");
+          props.setAssignEmployeesPanel(false);
+          props.setisNewEmployee(true);
+        } else {
+          if (res.error.data.error == 404) {
+            message.error("Project, team or employee not found!");
+          } else if (res.error.data.error == 403) {
+            message.warning("Employee is already assigned to this project!");
+          }
         }
       }
-    });
+    );
   }
   function OnAssignEmployeeCancel() {}
 

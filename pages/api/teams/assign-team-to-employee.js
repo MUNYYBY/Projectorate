@@ -6,12 +6,13 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: "Method not allowed" });
   }
   console.log("Assign Team to employee End-point hit!");
-  const { userId, teamId } = req.query;
+  const { userId, teamId, ownerId } = req.query;
   if (!userId || !teamId) {
     return res
       .status(500)
-      .json({ message: "TeamId and UserId are both required!" });
+      .json({ message: "TeamId, ownerId and UserId are both required!" });
   }
+  const LogsOperations = await PrismaDB.LogsOperations.findMany({});
   try {
     const team = await PrismaDB.Teams.findUnique({
       where: {
@@ -68,6 +69,9 @@ export default async function handler(req, res) {
               employee_id: parseInt(user.id),
             },
           },
+          include: {
+            project: true,
+          },
         })
         .then((result) => {
           if (!result) {
@@ -108,8 +112,50 @@ export default async function handler(req, res) {
                 employee_id: parseInt(userId),
               },
             })
-            .then((result) => {
+            .then(async (result) => {
               if (result) {
+                //** Record log */
+                try {
+                  const response = await PrismaDB.Logs.create({
+                    data: {
+                      operation: "Assigned to Team",
+                      description:
+                        "Assigned to Team during the Team Assigning phase",
+                      team_name: team.team_name,
+                      project_name: project.project.project_name,
+                      employee_name: user.first_name + " " + user.last_name,
+                      user: {
+                        connect: {
+                          id: parseInt(ownerId),
+                        },
+                      },
+                      team: {
+                        connect: {
+                          id: team.id,
+                        },
+                      },
+                      project: {
+                        connect: {
+                          id: project.project.id,
+                        },
+                      },
+                      employee: {
+                        connect: {
+                          id: user.id,
+                        },
+                      },
+                      LogsOperations: {
+                        connect: {
+                          id: LogsOperations.find(
+                            (t) => t.title === "Assigned to Team"
+                          )?.id,
+                        },
+                      },
+                    },
+                  });
+                } catch (error) {
+                  console.log("Error while creating log for team: ", error);
+                }
                 UserAssignedToTeam(
                   user.email,
                   user.first_name,

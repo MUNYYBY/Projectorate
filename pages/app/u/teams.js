@@ -30,8 +30,9 @@ import AllTickets from "../../../components/Tickets/AllTickets/AllTickets";
 import TicketInfo from "../../../components/Tickets/TicketInfo/TicketInfo";
 import EmployeeProfile from "../../../components/Employees/Profile/EmployeesProfile";
 import AuthorityCheck from "../../../Permissions/AuthorityCheck";
-import UpdateProject from "../../../components/Projects/UpdateProject/UpdateProject";
 import UpdateTeam from "../../../components/Teams/UpdateTeam/UpdateTeam";
+
+import { useSession } from "next-auth/react";
 
 const PROJECTS_TABS = ["Employees", "Tickets"];
 
@@ -54,6 +55,8 @@ export default function Teams({ teamsData, teamDomains }) {
   const [isTicketInfo, setIsTicketInfo] = useState(false);
   const [isEmployeeProfile, setIsEmployeeProfile] = useState({ id: null });
   const [isUpdateTeam, setIsUpdateTeam] = useState(false);
+
+  const { data: session, status } = useSession();
 
   //** Get All the Teams in CSR */
   const fetchAllTeams = async () => {
@@ -118,7 +121,7 @@ export default function Teams({ teamsData, teamDomains }) {
 
   //** Delete project */
   function DeleteTeamConfirm() {
-    DeleteTeam(activeTeam.id).then((res) => {
+    DeleteTeam(activeTeam.id, session.user.id).then((res) => {
       if (!res.error) {
         message.success("Team Sucessfully deleted!");
         handleUnActiveTeam();
@@ -301,6 +304,7 @@ export default function Teams({ teamsData, teamDomains }) {
               setisNewEmployee={setisNewEmployee}
               projectId={teamInformation.project.id}
               teamId={activeTeam.id}
+              ownerId={session.user.id}
             />
             <div
               className={`${activeTeam.name}-project bg-gray-900 bg-opacity-60`}
@@ -423,6 +427,7 @@ export default function Teams({ teamsData, teamDomains }) {
                   isNewEmployee={isNewEmployee}
                   setisNewEmployee={setisNewEmployee}
                   setIsEmployeeProfile={setIsEmployeeProfile}
+                  ownerId={session.user.id}
                 />
               </>
             ) : activeTab == 2 ? (

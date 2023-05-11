@@ -16,6 +16,7 @@ export default function TeamEmployees({
   isNewEmployee,
   setisNewEmployee,
   setIsEmployeeProfile,
+  ownerId,
 }) {
   const [employeesData, setEmployeesData] = useState();
   const [loading, setLoading] = useState(false);
@@ -120,7 +121,7 @@ export default function TeamEmployees({
   };
 
   const confirm = (id) => {
-    DeleteEmployeeFromTeam(id, teamId).then((res) => {
+    DeleteEmployeeFromTeam(id, teamId, ownerId).then((res) => {
       console.log(res);
       if (!res.error) {
         //if employees is sucessfully deleted reload all employees and show message

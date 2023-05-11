@@ -333,10 +333,11 @@ export async function GetSpecificTeam(teamId) {
   }
 }
 
-export async function DeleteTeam(teamId) {
+export async function DeleteTeam(teamId, ownerId) {
   try {
     const res = await axios.delete(
-      process.env.NEXT_PUBLIC_BASE_URL + `/teams/delete-team?teamId=${teamId}`
+      process.env.NEXT_PUBLIC_BASE_URL +
+        `/teams/delete-team?teamId=${teamId}&user_id=${ownerId}`
     );
     return res;
   } catch (error) {
@@ -358,11 +359,11 @@ export async function getTeamEmployees(teamId) {
     return { error: error.response.data };
   }
 }
-export async function DeleteEmployeeFromTeam(employeeId, teamId) {
+export async function DeleteEmployeeFromTeam(employeeId, teamId, ownerId) {
   try {
     const res = await axios.delete(
       process.env.NEXT_PUBLIC_BASE_URL +
-        `/teams/remove-employee-from-team?employeeId=${employeeId}&teamId=${teamId}`
+        `/teams/remove-employee-from-team?employeeId=${employeeId}&teamId=${teamId}&ownerId=${ownerId}`
     );
     return res;
   } catch (error) {
@@ -370,11 +371,11 @@ export async function DeleteEmployeeFromTeam(employeeId, teamId) {
     return { error: error.response.data };
   }
 }
-export async function AssignEmployeeToTeam(teamId, employeeId) {
+export async function AssignEmployeeToTeam(teamId, employeeId, ownerId) {
   try {
     const res = await axios.post(
       process.env.NEXT_PUBLIC_BASE_URL +
-        `/teams/assign-team-to-employee?teamId=${teamId}&userId=${employeeId}`
+        `/teams/assign-team-to-employee?teamId=${teamId}&userId=${employeeId}&ownerId=${ownerId}`
     );
     return res;
   } catch (error) {

@@ -2,7 +2,9 @@ import React from "react";
 import { Form, Input, message, Select } from "antd";
 import { useState, useEffect } from "react";
 import { UpdateTeamAPI, getTeamDomains } from "../../../client/requests";
+import { useSession } from "next-auth/react";
 export default function UpdateTeam({ teamInformation, setIsUpdateTeam }) {
+  const { data: session, status } = useSession();
   const [loading, setLoading] = useState(false);
   const [teamDomains, setTeamDomains] = useState([]);
   const [form] = Form.useForm();
@@ -11,8 +13,10 @@ export default function UpdateTeam({ teamInformation, setIsUpdateTeam }) {
     const payload = {
       ...values,
       id: teamInformation.id,
+      user_id: session.user.id,
     };
     UpdateTeamAPI(payload).then((res) => {
+      console.log(res);
       if (res.data) {
         message.success("Team updated Sucessfully!");
         setIsUpdateTeam(false);

@@ -26,6 +26,7 @@ export default async function handler(req, res) {
         },
       },
     }).then(async (result) => {
+      //** Record log */
       try {
         const response = await PrismaDB.Logs.create({
           data: {

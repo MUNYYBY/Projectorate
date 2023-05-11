@@ -29,7 +29,7 @@ export default async function handler(req, res) {
         "Title, description, deadline, userId, TeamId, employeeId, ticketStatusId, ticketPiorityId are madatory!",
     });
   }
-
+  const LogsOperations = await PrismaDB.LogsOperations.findMany({});
   try {
     const employee = await PrismaDB.employee
       .findUnique({
