@@ -1,3 +1,4 @@
+import { UserAssignedToTeam } from "../../../client/emails";
 import PrismaDB from "../../../lib/prisma";
 
 export default async function handler(req, res) {
@@ -15,6 +16,9 @@ export default async function handler(req, res) {
     const team = await PrismaDB.Teams.findUnique({
       where: {
         id: parseInt(teamId),
+      },
+      include: {
+        TeamDomains: true,
       },
     })
       .then((result) => {
@@ -106,6 +110,13 @@ export default async function handler(req, res) {
             })
             .then((result) => {
               if (result) {
+                UserAssignedToTeam(
+                  user.email,
+                  user.first_name,
+                  team.team_name,
+                  team.TeamDomains.title,
+                  project.project_name
+                );
                 res.status(200).json({ result });
               } else {
                 res.status(500).json({

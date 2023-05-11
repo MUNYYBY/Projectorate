@@ -2,6 +2,10 @@
 const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
+  images: {
+    loader: "akamai",
+    path: "",
+  },
   serverRuntimeConfig: {
     PROJECT_ROOT: __dirname,
   },

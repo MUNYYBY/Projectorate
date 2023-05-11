@@ -13,7 +13,6 @@ export default async function handler(req, res) {
   console.log("Create Ticket End-point hit!");
 
   const reqBody = req.body;
-  console.log(reqBody);
   if (
     !reqBody.userId ||
     !reqBody.teamId ||
