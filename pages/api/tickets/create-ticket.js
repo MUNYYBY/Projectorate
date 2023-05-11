@@ -29,6 +29,7 @@ export default async function handler(req, res) {
         "Title, description, deadline, userId, TeamId, employeeId, ticketStatusId, ticketPiorityId are madatory!",
     });
   }
+
   try {
     const employee = await PrismaDB.employee
       .findUnique({

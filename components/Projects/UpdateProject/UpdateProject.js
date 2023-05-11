@@ -10,10 +10,12 @@ import {
 } from "antd";
 import { useState, useEffect } from "react";
 import { UpdateProjectAPI, getProjectDomains } from "../../../client/requests";
+import { useSession } from "next-auth/react";
 export default function UpdateProject({
   projectInformation,
   setIsUpdateProject,
 }) {
+  const { data: session, status } = useSession();
   const [loading, setLoading] = useState(false);
   const [projectDomains, setProjectDomains] = useState([]);
   const [form] = Form.useForm();
@@ -22,6 +24,7 @@ export default function UpdateProject({
     const payload = {
       ...values,
       id: projectInformation.id,
+      user_id: session.user.id,
     };
     UpdateProjectAPI(payload).then((res) => {
       if (res.data) {

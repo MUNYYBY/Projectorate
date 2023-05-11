@@ -6,12 +6,13 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: "Method not allowed" });
   }
   console.log("Assign project to employee End-point hit!");
-  const { userId, projectId } = req.query;
-  if (!userId || !projectId) {
+  const { userId, projectId, ownerId } = req.query;
+  if (!userId || !projectId || !ownerId) {
     return res
       .status(500)
-      .json({ message: "ProjectId and UserId are both required!" });
+      .json({ message: "ProjectId, ownerId and UserId are both required!" });
   }
+  const LogsOperations = await PrismaDB.LogsOperations.findMany({});
   try {
     const project = await PrismaDB.project
       .findUnique({
@@ -78,10 +79,49 @@ export default async function handler(req, res) {
                 employee_id: parseInt(userId),
               },
             })
-            .then((result) => {
+            .then(async (result) => {
               if (result) {
+                //record log
+                try {
+                  const response = await PrismaDB.Logs.create({
+                    data: {
+                      operation: "Assigned to Project",
+                      description:
+                        "Assigned to Project during the assigning phase",
+                      project_name: project.project_name,
+                      employee_name: user.first_name + " " + user.last_name,
+                      user: {
+                        connect: {
+                          id: parseInt(ownerId),
+                        },
+                      },
+                      project: {
+                        connect: {
+                          id: project.id,
+                        },
+                      },
+                      employee: {
+                        connect: {
+                          id: user.id,
+                        },
+                      },
+                      LogsOperations: {
+                        connect: {
+                          id: LogsOperations.find(
+                            (t) => t.title === "Assigned to Project"
+                          )?.id,
+                        },
+                      },
+                    },
+                  });
+                } catch (error) {
+                  console.log(
+                    "Error while creating log for assigning user to project: ",
+                    error
+                  );
+                }
                 //send email
-                console.log(project);
+                // console.log(project);
                 try {
                   UserAssignedToProject(
                     user.email,

@@ -30,6 +30,8 @@ import EmployeeProfile from "../../../components/Employees/Profile/EmployeesProf
 import AuthorityCheck from "../../../Permissions/AuthorityCheck";
 import UpdateProject from "../../../components/Projects/UpdateProject/UpdateProject";
 
+import { useSession } from "next-auth/react";
+
 const PROJECTS_TABS = ["Employees", "Teams", "Tickets"];
 
 export default function SuperAdminProjectPanel({
@@ -54,6 +56,8 @@ export default function SuperAdminProjectPanel({
   const [isTicketInfo, setIsTicketInfo] = useState({ id: null });
   const [isEmployeeProfile, setIsEmployeeProfile] = useState({ id: null });
   const [isUpdateProject, setIsUpdateProject] = useState(false);
+
+  const { data: session, status } = useSession();
 
   //** Get All the projects in CSR */
   const fetchAllProjects = async () => {
@@ -118,7 +122,7 @@ export default function SuperAdminProjectPanel({
 
   //** Delete project */
   function DeleteProjectConfirm() {
-    DeleteProject(activeProject.id).then((res) => {
+    DeleteProject(activeProject.id, session.user.id).then((res) => {
       if (!res.error) {
         message.success("Project Sucessfully deleted!");
         handleUnActiveProject();
@@ -302,6 +306,7 @@ export default function SuperAdminProjectPanel({
               setAssignEmployeesPanel={setAssignEmployeesPanel}
               setisNewEmployee={setisNewEmployee}
               projectId={activeProject.id}
+              ownerId={session.user.id}
             />
             <div
               className={`${activeProject.name}-project bg-gray-900 bg-opacity-60`}
@@ -423,6 +428,7 @@ export default function SuperAdminProjectPanel({
                   isNewEmployee={isNewEmployee}
                   setisNewEmployee={setisNewEmployee}
                   setIsEmployeeProfile={setIsEmployeeProfile}
+                  ownerId={session.user.id}
                 />
               </>
             ) : activeTab == 2 ? (

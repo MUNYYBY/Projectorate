@@ -11,7 +11,7 @@ export default async function handler(req, res) {
         _count: { select: { userProjects: true, Teams: true, Tickets: true } },
       },
     });
-    console.log("All Projects: ", data);
+    // console.log("All Projects: ", data);
     res.status(200).json({ data });
   } catch (error) {
     console.log("Error while getting all Projects at backend: ", error);

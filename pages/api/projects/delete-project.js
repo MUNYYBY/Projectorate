@@ -5,7 +5,8 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: "Method not allowed" });
   }
   console.log("Delete single project End-point hit!");
-  const { projectId } = req.query;
+  const { projectId, user_id } = req.query;
+  const LogsOperations = await PrismaDB.LogsOperations.findMany({});
   try {
     const checkget = await PrismaDB.Project.findUnique({
       where: {
@@ -27,6 +28,30 @@ export default async function handler(req, res) {
     })
       .then(async (result) => {
         if (result) {
+          try {
+            const response = await PrismaDB.Logs.create({
+              data: {
+                operation: "Deleted Project",
+                description:
+                  "Deleted Project during the project deletion phase",
+                project_name: result.project_name,
+                user: {
+                  connect: {
+                    id: parseInt(user_id),
+                  },
+                },
+                LogsOperations: {
+                  connect: {
+                    id: LogsOperations.find(
+                      (t) => t.title === "Deleted Project"
+                    )?.id,
+                  },
+                },
+              },
+            });
+          } catch (error) {
+            console.log("Error while deleting log for project: ", error);
+          }
           res.status(200).json({
             code: 200,
             type: "Project and Userproject deletion!",

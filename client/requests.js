@@ -191,11 +191,11 @@ export async function GetSpecificProject(propjectId) {
   }
 }
 
-export async function DeleteProject(projectId) {
+export async function DeleteProject(projectId, user_id) {
   try {
     const res = await axios.delete(
       process.env.NEXT_PUBLIC_BASE_URL +
-        `/projects/delete-project?projectId=${projectId}`
+        `/projects/delete-project?projectId=${projectId}&user_id=${user_id}`
     );
     return res;
   } catch (error) {
@@ -231,11 +231,15 @@ export async function getProjectTeams(projectId) {
   }
 }
 
-export async function DeleteEmployeeFromProject(employeeId, projectId) {
+export async function DeleteEmployeeFromProject(
+  employeeId,
+  projectId,
+  ownerId
+) {
   try {
     const res = await axios.delete(
       process.env.NEXT_PUBLIC_BASE_URL +
-        `/projects/remove-employee-from-project?employeeId=${employeeId}&projectId=${projectId}`
+        `/projects/remove-employee-from-project?employeeId=${employeeId}&projectId=${projectId}&ownerId=${ownerId}`
     );
     return res;
   } catch (error) {
@@ -257,11 +261,11 @@ export async function SearchEmployee(search) {
   }
 }
 
-export async function AssignEmployeeToProject(projectId, employeeId) {
+export async function AssignEmployeeToProject(projectId, employeeId, ownerId) {
   try {
     const res = await axios.post(
       process.env.NEXT_PUBLIC_BASE_URL +
-        `/projects/assign-project-to-employee?projectId=${projectId}&userId=${employeeId}`
+        `/projects/assign-project-to-employee?projectId=${projectId}&userId=${employeeId}&ownerId=${ownerId}`
     );
     return res;
   } catch (error) {

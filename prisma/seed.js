@@ -217,6 +217,9 @@ async function seed() {
           title: "Assigned to Project",
         },
         {
+          title: "Removed from Project",
+        },
+        {
           title: "Created Team",
         },
         {
@@ -227,6 +230,9 @@ async function seed() {
         },
         {
           title: "Assigned to Team",
+        },
+        {
+          title: "Removed from Team",
         },
         {
           title: "Created Ticket",

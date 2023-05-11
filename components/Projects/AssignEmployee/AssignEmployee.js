@@ -23,18 +23,20 @@ export default function AssignEmployee(props) {
     });
   }
   function AssignEmployeeConfirm(projectId, employeeId) {
-    AssignEmployeeToProject(projectId, employeeId).then((res) => {
-      console.log(res);
-      if (!res.error) {
-        message.success("Employee Sucessfully Added to the project!");
-        props.setAssignEmployeesPanel(false);
-        props.setisNewEmployee(true);
-      } else {
-        message.error(
-          "Some Error Occured while adding Employee to the project!"
-        );
+    AssignEmployeeToProject(projectId, employeeId, props.ownerId).then(
+      (res) => {
+        console.log(res);
+        if (!res.error) {
+          message.success("Employee Sucessfully Added to the project!");
+          props.setAssignEmployeesPanel(false);
+          props.setisNewEmployee(true);
+        } else {
+          message.error(
+            "Some Error Occured while adding Employee to the project!"
+          );
+        }
       }
-    });
+    );
   }
   function OnAssignEmployeeCancel() {}
   return (

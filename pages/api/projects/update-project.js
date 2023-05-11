@@ -8,17 +8,18 @@ export default async function handler(req, res) {
   console.log("Update project End-point hit!");
 
   const reqBody = req.body;
-  console.log(reqBody);
+  const LogsOperations = await PrismaDB.LogsOperations.findMany({});
   if (
     !reqBody.id ||
     !reqBody.project_name ||
     !reqBody.description ||
-    !reqBody.project_domain_id
+    !reqBody.project_domain_id ||
+    !reqBody.user_id
   ) {
     return res.status(500).json({
       error: 500,
       message:
-        "Id, description, Project name, and project domain id is required!",
+        "Id, description, Project name, userId, and project domain id is required!",
     });
   }
   try {
@@ -35,8 +36,36 @@ export default async function handler(req, res) {
           },
         },
       },
+    }).then(async (result) => {
+      try {
+        const response = await PrismaDB.Logs.create({
+          data: {
+            operation: "Updated Project",
+            description: "Updated Project during the update project phase",
+            project_name: result.project_name,
+            user: {
+              connect: {
+                id: reqBody.user_id,
+              },
+            },
+            project: {
+              connect: {
+                id: result.id,
+              },
+            },
+            LogsOperations: {
+              connect: {
+                id: LogsOperations.find((t) => t.title === "Created Project")
+                  ?.id,
+              },
+            },
+          },
+        });
+      } catch (error) {
+        console.log("Error while creating log for project: ", error);
+      }
+      res.status(200).json(result);
     });
-    res.status(200).json(data);
   } catch (error) {
     console.log("Error while updating project at backend: ", error);
     return res.status(422).json({

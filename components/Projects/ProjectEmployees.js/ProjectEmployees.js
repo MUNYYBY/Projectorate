@@ -14,6 +14,7 @@ export default function ProjectEmployees({
   isNewEmployee,
   setisNewEmployee,
   setIsEmployeeProfile,
+  ownerId,
 }) {
   const [employeesData, setEmployeesData] = useState();
   const [loading, setLoading] = useState(false);
@@ -118,7 +119,7 @@ export default function ProjectEmployees({
   };
 
   const confirm = (id) => {
-    DeleteEmployeeFromProject(id, projectId).then((res) => {
+    DeleteEmployeeFromProject(id, projectId, ownerId).then((res) => {
       console.log(res);
       if (!res.error) {
         //if employees is sucessfully deleted reload all employees and show message
@@ -129,10 +130,7 @@ export default function ProjectEmployees({
       }
     });
   };
-  const cancel = (e) => {
-    console.log(e);
-    message.error("Click on No");
-  };
+  const cancel = (e) => {};
 
   //fetch employee if a new employee has been added
   useEffect(() => {
