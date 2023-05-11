@@ -204,7 +204,8 @@
                 "
               >
                 <h1 style="font-size: 48px; font-weight: 400; margin: 0">
-                  Welcome to the team, {{username}}!
+                  {{username}} you have been assigned to project
+                  "{{projectName}}"
                 </h1>
               </td>
             </tr>
@@ -246,9 +247,9 @@
                 "
               >
                 <p style="margin: 0">
-                  We're excited to have you get started. You can visit the
-                  Projectorate, where you will be assigned to projects, teams
-                  and work on tickets.
+                  You are recieving this email because you have been assigned to
+                  a project. Login to projectorate and start your work on the
+                  project.
                 </p>
               </td>
             </tr>
@@ -266,37 +267,58 @@
                 "
               >
                 <p style="margin: 0">
-                  Following is you password through which you access your
-                  projectorate account. Please keep this information private as
-                  this is you only means to access the system.
+                  We are confident that your skills and experience make you a
+                  valuable addition to the project team, and we look forward to
+                  your contributions.
                 </p>
               </td>
             </tr>
             <!-- COPY -->
-            <tr>
+            <tr style="margin-top: 1rem; margin-bottom: 1rem">
               <td
-                bgcolor="#ffffff"
-                align="left"
+                bgcolor="#ebedef"
                 style="
-                  padding: 20px 30px 20px 30px;
+                  padding: 10px 30px 10px 30px;
                   color: #666666;
                   font-family: 'Lato', Helvetica, Arial, sans-serif;
                   font-size: 18px;
                   font-weight: 400;
-                  line-height: 25px;
+                  line-height: 15px;
+                  width: 100%;
                 "
               >
-                <p
-                  style="
-                    margin: 0;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
-                  "
-                >
-                  <a style="color: #5865f2">{{password}}</a>
-                </p>
+                <div style="width: 100%">
+                  <div
+                    style="
+                      margin: 0;
+                      display: flex;
+                      flex-direction: row;
+                      justify-content: space-between;
+                      align-items: center;
+                      width: 100%;
+                    "
+                  >
+                    <p style="color: #3ba55d; text-align: left">Project Name</p>
+                    <p style="color: #3ba55d; text-align: right">
+                      {{projectName}}
+                    </p>
+                  </div>
+                  <div
+                    style="
+                      margin: 0;
+                      display: flex;
+                      flex-direction: row;
+                      justify-content: space-between;
+                      align-items: center;
+                      width: 100%;
+                    "
+                  >
+                    <p style="color: #3ba55d; text-align: left">Domain</p>
+                    <p style="color: #3ba55d; text-align: right">
+                      {{projectDomain}}
+                    </p>
+                  </div>
+                </div>
               </td>
             </tr>
             <!-- COPY -->

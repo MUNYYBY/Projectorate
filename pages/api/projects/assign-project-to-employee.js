@@ -1,3 +1,4 @@
+import { UserAssignedToProject } from "../../../client/emails";
 import PrismaDB from "../../../lib/prisma";
 
 export default async function handler(req, res) {
@@ -12,10 +13,13 @@ export default async function handler(req, res) {
       .json({ message: "ProjectId and UserId are both required!" });
   }
   try {
-    const project = PrismaDB.project
+    const project = await PrismaDB.project
       .findUnique({
         where: {
           id: parseInt(projectId),
+        },
+        include: {
+          projectDomain: true,
         },
       })
       .then((result) => {
@@ -25,12 +29,14 @@ export default async function handler(req, res) {
             type: "Project",
             message: "Project does not exist!",
           });
+        } else {
+          return result;
         }
       })
       .catch((err) => {
         console.log(err);
       });
-    const user = PrismaDB.employee
+    const user = await PrismaDB.employee
       .findUnique({
         where: {
           id: parseInt(userId),
@@ -43,6 +49,8 @@ export default async function handler(req, res) {
             type: "Employee",
             message: "Employee does not exist!",
           });
+        } else {
+          return result;
         }
       })
       .catch((err) => {
@@ -72,6 +80,18 @@ export default async function handler(req, res) {
             })
             .then((result) => {
               if (result) {
+                //send email
+                console.log(project);
+                try {
+                  UserAssignedToProject(
+                    user.email,
+                    user.first_name,
+                    project.project_name,
+                    project.projectDomain.title
+                  );
+                } catch (error) {
+                  console.log(error);
+                }
                 res.status(200).json({ result });
               } else {
                 res.status(500).json({

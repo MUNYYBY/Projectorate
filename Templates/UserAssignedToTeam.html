@@ -204,7 +204,8 @@
                 "
               >
                 <h1 style="font-size: 48px; font-weight: 400; margin: 0">
-                  Welcome to the team, {{username}}!
+                  {{username}} you have been assigned to team "{{teamName}}" in
+                  project "{{projectName}}"
                 </h1>
               </td>
             </tr>
@@ -246,9 +247,9 @@
                 "
               >
                 <p style="margin: 0">
-                  We're excited to have you get started. You can visit the
-                  Projectorate, where you will be assigned to projects, teams
-                  and work on tickets.
+                  You are recieving this email because you have been assigned to
+                  a team in a project. Login to projectorate and start your work
+                  on the team.
                 </p>
               </td>
             </tr>
@@ -266,37 +267,62 @@
                 "
               >
                 <p style="margin: 0">
-                  Following is you password through which you access your
-                  projectorate account. Please keep this information private as
-                  this is you only means to access the system.
+                  We are confident that your skills and experience make you a
+                  valuable addition to the project team, and we look forward to
+                  your contributions.
                 </p>
               </td>
             </tr>
             <!-- COPY -->
-            <tr>
+            <tr style="margin-top: 1rem; margin-bottom: 1rem">
               <td
-                bgcolor="#ffffff"
-                align="left"
+                bgcolor="#ebedef"
+                align="center"
                 style="
-                  padding: 20px 30px 20px 30px;
+                  padding: 10px 30px 10px 30px;
                   color: #666666;
                   font-family: 'Lato', Helvetica, Arial, sans-serif;
                   font-size: 18px;
                   font-weight: 400;
-                  line-height: 25px;
+                  line-height: 15px;
                 "
               >
-                <p
+                <div
                   style="
                     margin: 0;
                     display: flex;
                     flex-direction: row;
-                    justify-content: center;
+                    justify-content: space-between;
                     align-items: center;
                   "
                 >
-                  <a style="color: #5865f2">{{password}}</a>
-                </p>
+                  <h4 style="color: #3ba55d">Team Name</h4>
+                  <h4 style="color: #3ba55d">{{teamName}}</h4>
+                </div>
+                <div
+                  style="
+                    margin: 0;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                  "
+                >
+                  <h4 style="color: #3ba55d">Team Domain</h4>
+                  <h4 style="color: #3ba55d">{{teamDomain}}</h4>
+                </div>
+                <div
+                  style="
+                    margin: 0;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                  "
+                >
+                  <h4 style="color: #3ba55d">Project Name</h4>
+                  <h4 style="color: #3ba55d">{{projectName}}</h4>
+                </div>
               </td>
             </tr>
             <!-- COPY -->
