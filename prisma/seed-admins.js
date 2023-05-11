@@ -17,6 +17,7 @@ async function seedAdmins() {
         title: "Senior",
       },
     });
+    const LogsOperations = await prisma.LogsOperations.findMany({});
     const date = new Date();
     await prisma.user.create({
       data: {
@@ -50,6 +51,19 @@ async function seedAdmins() {
             gender: "Male",
             address: "XYZ",
             years_of_experience: 10,
+            Logs: {
+              create: {
+                operation: "Created employee",
+                description: "Created super-admin at super-admin",
+                LogsOperations: {
+                  connect: {
+                    id: LogsOperations.find(
+                      (t) => t.title === "Created Employee"
+                    )?.id,
+                  },
+                },
+              },
+            },
           },
         },
       },
@@ -86,6 +100,19 @@ async function seedAdmins() {
             gender: "Female",
             address: "XYZ",
             years_of_experience: 10,
+            Logs: {
+              create: {
+                operation: "Created employee",
+                description: "Created super-admin at super-admin",
+                LogsOperations: {
+                  connect: {
+                    id: LogsOperations.find(
+                      (t) => t.title === "Created Employee"
+                    )?.id,
+                  },
+                },
+              },
+            },
           },
         },
       },

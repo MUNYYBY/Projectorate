@@ -186,6 +186,66 @@ async function seed() {
   } catch (error) {
     console.log("Error at adding all Ticket Piority: ", error);
   }
+  try {
+    await prisma.LogsOperations.deleteMany();
+    console.log("All Logs Operations destroyed!");
+  } catch (error) {
+    console.log("Error at Logs Operations destroy:", error);
+  }
+  try {
+    await prisma.LogsOperations.createMany({
+      data: [
+        {
+          title: "Created Employee",
+        },
+        {
+          title: "Updated Employee",
+        },
+        {
+          title: "Deleted Employee",
+        },
+        {
+          title: "Created Project",
+        },
+        {
+          title: "Updated Project",
+        },
+        {
+          title: "Deleted Project",
+        },
+        {
+          title: "Assigned to Project",
+        },
+        {
+          title: "Created Team",
+        },
+        {
+          title: "Updated Team",
+        },
+        {
+          title: "Deleted Team",
+        },
+        {
+          title: "Assigned to Team",
+        },
+        {
+          title: "Created Ticket",
+        },
+        {
+          title: "Updated Ticket",
+        },
+        {
+          title: "Deleted Ticket",
+        },
+        {
+          title: "Assigned to Ticket",
+        },
+      ],
+    });
+    console.log("All Logs Operations Added!");
+  } catch (error) {
+    console.log("Error at adding Logs Operations: ", error);
+  }
 }
 
 seed();
