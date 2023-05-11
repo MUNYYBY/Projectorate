@@ -55,6 +55,7 @@ async function seedAdmins() {
               create: {
                 operation: "Created employee",
                 description: "Created super-admin at super-admin",
+                employee_name: "Muneeb ur rehman",
                 LogsOperations: {
                   connect: {
                     id: LogsOperations.find(
@@ -104,6 +105,7 @@ async function seedAdmins() {
               create: {
                 operation: "Created employee",
                 description: "Created super-admin at super-admin",
+                employee_name: "Areesha Ahmed",
                 LogsOperations: {
                   connect: {
                     id: LogsOperations.find(

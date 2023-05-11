@@ -32,7 +32,7 @@ export default async function handler(req, res) {
         },
       },
     });
-    console.log("All employees: ", data);
+    // console.log("All employees: ", data);
     res.status(200).json({ data });
   } catch (error) {
     console.log("Error while getting employees at backedn: ", error);

@@ -19,6 +19,7 @@ import {
   getRoles,
 } from "../../client/requests";
 import moment from "moment";
+import { useSession } from "next-auth/react";
 const { Option } = Select;
 const formItemLayout = {
   labelCol: {
@@ -51,6 +52,7 @@ const tailFormItemLayout = {
   },
 };
 export default function AddEmployee(props) {
+  const { data: session, status } = useSession();
   const [designations, setDesignations] = useState(null);
   const [roles, setRoles] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -70,20 +72,8 @@ export default function AddEmployee(props) {
   };
   const onFinish = (values) => {
     // console.log("Received values of form: ", values);
-    handleEmployeeSubmission(values);
+    handleEmployeeSubmission({ ...values, userId: session.user.id });
   };
-  const prefixSelector = (
-    <Form.Item name="prefix" noStyle>
-      <Select
-        style={{
-          width: 70,
-        }}
-      >
-        <Option value="92">+92</Option>
-        <Option value="91">+91</Option>
-      </Select>
-    </Form.Item>
-  );
   //get all the designations in the db
   const getAllDesignations = async () => {
     const designationsResponse = await getDesignations();

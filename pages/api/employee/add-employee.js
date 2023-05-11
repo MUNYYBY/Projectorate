@@ -9,6 +9,7 @@ export default async function handler(req, res) {
   const employeeData = req.body;
   //   console.log(employeeData);
   try {
+    const LogsOperations = await PrismaDB.LogsOperations.findMany({});
     const data = await PrismaDB.user
       .create({
         data: {
@@ -49,13 +50,45 @@ export default async function handler(req, res) {
           employee: true,
         },
       })
-      .then((data) => {
+      .then(async (result) => {
+        try {
+          const response = await PrismaDB.Logs.create({
+            data: {
+              operation: "Created employee",
+              description:
+                "Created employee during the employee creation phase",
+              employee_name:
+                result.employee.first_name + " " + result.employee.last_name,
+              employee: {
+                connect: {
+                  id: result.employee.id,
+                },
+              },
+              user: {
+                connect: {
+                  id: employeeData.userId,
+                },
+              },
+              LogsOperations: {
+                connect: {
+                  id: LogsOperations.find((t) => t.title === "Created Employee")
+                    ?.id,
+                },
+              },
+            },
+          });
+        } catch (error) {
+          console.log(
+            "Error while creating log for creation of employee: " +
+              error.message
+          );
+        }
         NewUserOnBoardEmail(
-          data.email,
-          data.employee.first_name,
-          data.password
+          result.email,
+          result.employee.first_name,
+          result.password
         );
-        res.status(200).json(data);
+        res.status(200).json(result);
       });
   } catch (error) {
     console.log("Error while add new user at backend: ", error);

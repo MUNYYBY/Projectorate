@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import { deleteEmployee, getEmployees } from "../../client/requests";
 import moment from "moment/moment";
 import EmployeeProfile from "../Employees/Profile/EmployeesProfile";
+import { useSession } from "next-auth/react";
 
 export default function EmployeesData(props) {
+  const { data: session, status } = useSession();
   const [tabValue, setTabValue] = useState("All");
   const [employeesData, setEmployeesData] = useState();
   const [filteredEmployeesData, setFilteredEmployeesData] = useState();
@@ -27,7 +29,7 @@ export default function EmployeesData(props) {
 
   //** Delete employee */
   const confirm = (id) => {
-    deleteEmployee(id).then((res) => {
+    deleteEmployee(id, session.user.id).then((res) => {
       console.log(res);
       if (!res.error) {
         //if employees is sucessfully deleted reload all employees and show message

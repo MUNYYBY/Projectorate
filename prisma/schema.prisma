@@ -20,6 +20,7 @@ model User {
   updatedAt DateTime? @updatedAt
   Teams     Teams[]
   Tickets   Tickets[]
+  Logs      Logs[]
 }
 
 model Employee {
@@ -117,15 +118,21 @@ model Resource {
 model Logs {
   id               Int             @id @default(autoincrement())
   employee         Employee?       @relation(fields: [employeeId], references: [id], onDelete: SetNull)
-  project          Project?        @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  team             Teams?          @relation(fields: [teamId], references: [id], onDelete: Cascade)
-  ticket           Tickets?        @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  project          Project?        @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  team             Teams?          @relation(fields: [teamId], references: [id], onDelete: SetNull)
+  ticket           Tickets?        @relation(fields: [ticketId], references: [id], onDelete: SetNull)
+  user             User?           @relation(fields: [ownerId], references: [id], onDelete: SetNull)
+  ownerId          Int?
   employeeId       Int?
   projectId        Int?
   teamId           Int?
   ticketId         Int?
   operation        String
   description      String?
+  employee_name    String?
+  project_name     String?
+  team_name        String?
+  ticket_name      String?
   createdAt        DateTime        @default(now())
   updatedAt        DateTime?       @updatedAt
   LogsOperations   LogsOperations? @relation(fields: [logsOperationsId], references: [id])
