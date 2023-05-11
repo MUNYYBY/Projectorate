@@ -482,12 +482,14 @@ export async function ChangeTicketStatus(ticketId, statusId) {
   }
 }
 
-export async function DeleteTicket(ticketId) {
+export async function DeleteTicket(ticketId, ownerId) {
   try {
     const res = await axios.delete(
       process.env.NEXT_PUBLIC_BASE_URL +
         `/tickets/delete-ticket?ticketId=` +
-        ticketId
+        ticketId +
+        `&ownerId=` +
+        ownerId
     );
     return res;
   } catch (error) {

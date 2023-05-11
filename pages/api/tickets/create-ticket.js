@@ -148,8 +148,13 @@ export default async function handler(req, res) {
             },
           },
         },
+        include: {
+          team: true,
+          project: true,
+          employee: true,
+        },
       })
-        .then((result) => {
+        .then(async (result) => {
           if (!result) {
             res.status(500).json({
               error: 500,
@@ -157,6 +162,57 @@ export default async function handler(req, res) {
               message: "Error while creating ticket!",
             });
           } else {
+            //** Record log */
+            try {
+              const response = await PrismaDB.Logs.create({
+                data: {
+                  operation: "Created Ticket",
+                  description:
+                    "Created Ticket during the ticket creation phase",
+                  team_name: result.team.team_name,
+                  project_name: result.project.project_name,
+                  employee_name:
+                    result.employee.first_name +
+                    " " +
+                    result.employee.last_name,
+                  ticket_name: result.title,
+                  user: {
+                    connect: {
+                      id: reqBody.userId,
+                    },
+                  },
+                  team: {
+                    connect: {
+                      id: result.team.id,
+                    },
+                  },
+                  project: {
+                    connect: {
+                      id: result.project.id,
+                    },
+                  },
+                  employee: {
+                    connect: {
+                      id: result.employee.id,
+                    },
+                  },
+                  ticket: {
+                    connect: {
+                      id: result.id,
+                    },
+                  },
+                  LogsOperations: {
+                    connect: {
+                      id: LogsOperations.find(
+                        (t) => t.title === "Created Ticket"
+                      )?.id,
+                    },
+                  },
+                },
+              });
+            } catch (error) {
+              console.log("Error while creating log for tickets: ", error);
+            }
             res.status(200).json({ result });
           }
         })

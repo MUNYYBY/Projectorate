@@ -20,11 +20,15 @@ import { BsWindowDock } from "react-icons/bs";
 
 import AuthorityCheck from "../../../Permissions/AuthorityCheck";
 
+import { useSession } from "next-auth/react";
+
 export default function TicketInfo(props) {
   const [loading, setLoading] = useState(true);
   const [downloadloading, setDownloadLoading] = useState(false);
   const [ticketInfo, setTicketInfo] = useState(null);
   const [ticketStatus, setTicketStatus] = useState([]);
+
+  const { data: session, status } = useSession();
 
   const [windowSize, setWindowSize] = useState([
     window.innerWidth,
@@ -92,7 +96,7 @@ export default function TicketInfo(props) {
   //** Handle Ticket Delete */
   function handleTicketDelete() {
     setLoading(true);
-    DeleteTicket(ticketInfo.id).then((res) => {
+    DeleteTicket(ticketInfo.id, session.user.id).then((res) => {
       if (!res.error) {
         message.success("Ticket status has been deleted!");
         props.setIsTicketInfo({ id: null });
