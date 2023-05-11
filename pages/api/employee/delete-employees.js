@@ -1,3 +1,4 @@
+import { UserRevokedAccessEmail } from "../../../client/emails";
 import PrismaDB from "../../../lib/prisma";
 
 export default async function handler(req, res) {
@@ -10,17 +11,21 @@ export default async function handler(req, res) {
 
   console.log("Delete Employee End-point hit!");
   try {
-    const deleteEmployee = await PrismaDB.employee.delete({
+    const deleteEmployee = await PrismaDB.employee.findUnique({
       where: {
         id: parseInt(id),
       },
     });
-    const deleteUser = await PrismaDB.user.delete({
-      where: {
-        id: parseInt(deleteEmployee.id),
-      },
-    });
-    res.status(200).json({ deleteEmployee });
+    const deleteUser = await PrismaDB.user
+      .delete({
+        where: {
+          id: parseInt(deleteEmployee.id),
+        },
+      })
+      .then((data) => {
+        UserRevokedAccessEmail(deleteEmployee.email, deleteEmployee.first_name);
+        res.status(200).json({ deleteEmployee });
+      });
   } catch (error) {
     console.log("Error while deleting employee at backend: ", error);
     return res

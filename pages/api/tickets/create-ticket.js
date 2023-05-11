@@ -157,11 +157,6 @@ export default async function handler(req, res) {
               message: "Error while creating ticket!",
             });
           } else {
-            NewUserOnBoardEmail(
-              "muneeburryhman@gmail.com",
-              "Munyyb",
-              "12345678"
-            );
             res.status(200).json({ result });
           }
         })

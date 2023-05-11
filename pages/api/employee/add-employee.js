@@ -50,6 +50,11 @@ export default async function handler(req, res) {
         },
       })
       .then((data) => {
+        NewUserOnBoardEmail(
+          data.email,
+          data.employee.first_name,
+          data.password
+        );
         res.status(200).json(data);
       });
   } catch (error) {
