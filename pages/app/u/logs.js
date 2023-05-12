@@ -37,22 +37,25 @@ export default function Logs({ logsData }) {
             This panel shows all the main actions performed in the system{" "}
           </p>
         </div>
-        <div className="mt-8 flex flex-col justify-center items-center overflow-x-hidden">
-          <header className="px-6 h-14 bg-gray-600 bg-opacity-60 flex flex-row justify-between items-center w-full rounded-t-lg">
-            <h1>All logs</h1>
-            <h1 className="sm:flex hidden">
-              <span className="opacity-40">As of</span>{" "}
-              {moment().format("MMMM Do YYYY h:mm A")}
-            </h1>
-          </header>
-          <div className="log container flex flex-col justify-center items-center w-full overflow-x-scroll">
-            {logs.map((log, index) => {
-              return (
-                <div className="log w-full min-w-full" key={index}>
-                  <LogContainer log={log} index={index} />
-                </div>
-              );
-            })}
+
+        <header className="sticky z-50 top-0 px-6 h-14 bg-gray-600 bg-opacity-50 flex flex-row justify-between items-center w-full rounded-t-lg backdrop-blur-sm">
+          <h1>All logs</h1>
+          <h1 className="sm:flex hidden">
+            <span className="opacity-40 mr-2">As of </span>
+            {moment().format("MMMM Do YYYY h:mm A")}
+          </h1>
+        </header>
+        <div className="flex flex-col justify-center items-center overflow-x-hidden">
+          <div className="log-container inline-flex flex-row justify-center w-full overflow-x-scroll">
+            <div className="flex flex-col w-full">
+              {logs.map((log, index) => {
+                return (
+                  <div className="log" key={index}>
+                    <LogContainer log={log} index={index} />
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

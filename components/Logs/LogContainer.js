@@ -44,7 +44,7 @@ export default function LogContainer({ log, index }) {
     return <div className={`text-md italic `}>{placeholder}</div>;
   };
   return (
-    <header className="px-6 h-20 bg-gray-700 bg-opacity-75 flex flex-row justify-between items-center w-full mb-[1.5px] min-w-max">
+    <div className="px-6 h-20 bg-gray-700 bg-opacity-75 flex flex-row justify-between items-center  mb-[1.5px] min-w-max">
       <div className="flex flex-row justify-center items-center">
         <h1 className="font-bold mr-4 opacity-50 w-6">{index + 1}</h1>
         <div className="h-8 w-8 mr-3 rounded-lg flex justify-center items-center bg-gray-500 bg-opacity-20 sm:flex hidden">
@@ -65,6 +65,6 @@ export default function LogContainer({ log, index }) {
         <div className="mr-2">{handleLogRepresentative(log)}</div>
       </div>
       <h1 className="text-sm opacity-50">{moment(log.createdAt).fromNow()}</h1>
-    </header>
+    </div>
   );
 }
