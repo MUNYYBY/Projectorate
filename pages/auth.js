@@ -59,7 +59,11 @@ export default function Auth() {
         });
         router.replace("/app");
       } else {
-        setErrorMessage(signInResponse.error);
+        setErrorMessage(
+          signInResponse.error == "Email or Password Incorrect"
+            ? "Email or Password Incorrect"
+            : "Some error occoured!"
+        );
         setNotifications({
           placement: "bottomRight",
           message: "Login Failed",

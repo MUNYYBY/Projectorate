@@ -2,8 +2,11 @@ const next = require("next");
 const express = require("express");
 const cors = require("cors");
 const dev = process.env.NODE_ENV !== "production";
-const hostname = "localhost";
-const port = 3000;
+const hostname =
+  process.env.NODE_ENV == "production"
+    ? "projectorate.ap-south-1.elasticbeanstalk.com"
+    : "localhost";
+const port = process.env.PORT || 3000;
 const app = next({ dev, hostname, port });
 const handle = app.getRequestHandler();
 const { parse } = require("url");
