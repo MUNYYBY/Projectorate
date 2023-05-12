@@ -3,7 +3,10 @@ import fileDownload from "js-file-download";
 
 export async function createEmployee(payload) {
   try {
-    const res = await axios.post("/api/employee/add-employee", payload);
+    const res = await axios.post(
+      process.env.NEXT_PUBLIC_BASE_URL + "/api/employee/add-employee",
+      payload
+    );
     console.log("hello ", res.data);
     return res.data;
   } catch (error) {
@@ -13,7 +16,10 @@ export async function createEmployee(payload) {
 }
 export async function UpdateEmployeeAPI(payload) {
   try {
-    const res = await axios.post("/api/employee/update-employee", payload);
+    const res = await axios.post(
+      process.env.NEXT_PUBLIC_BASE_URL + "/api/employee/update-employee",
+      payload
+    );
     console.log("Updated employee: ", res.data);
     return res.data;
   } catch (error) {
@@ -24,7 +30,9 @@ export async function UpdateEmployeeAPI(payload) {
 
 export async function getEmployees() {
   try {
-    const res = await axios.get("/api/employee/get-employees");
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL + "/api/employee/get-employees"
+    );
     return res.data;
   } catch (error) {
     console.log("Error While getting employee: ", error);
@@ -46,7 +54,11 @@ export async function getEmployeeProfile(id) {
 export async function getEmployeeInfo(id) {
   console.log(id);
   try {
-    const res = await axios.get("/api/employee/get-employee-info?id=" + id);
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL +
+        "/api/employee/get-employee-info?id=" +
+        id
+    );
     return res.data;
   } catch (error) {
     console.log("Error While getting employee info: ", error);
@@ -56,7 +68,11 @@ export async function getEmployeeInfo(id) {
 export async function deleteEmployee(id, userId) {
   try {
     const res = await axios.delete(
-      "/api/employee/delete-employees?id=" + id + "&userId=" + userId
+      process.env.NEXT_PUBLIC_BASE_URL +
+        "/api/employee/delete-employees?id=" +
+        id +
+        "&userId=" +
+        userId
     );
     return res;
   } catch (error) {
@@ -68,7 +84,9 @@ export async function deleteEmployee(id, userId) {
 //get all the designations in the database
 export async function getDesignations() {
   try {
-    const res = await axios.get("/api/designations/get-designations");
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL + "/api/designations/get-designations"
+    );
     return res.data;
   } catch (error) {
     console.log("Error While getting designations at front-end: ", error);
@@ -78,7 +96,9 @@ export async function getDesignations() {
 //get all the roles in the database
 export async function getRoles() {
   try {
-    const res = await axios.get("/api/roles/get-roles");
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL + "/api/roles/get-roles"
+    );
     return res.data;
   } catch (error) {
     console.log("Error While getting roles at front-end: ", error);
