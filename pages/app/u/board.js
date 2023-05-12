@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CgInbox } from "react-icons/cg";
 import { IoIosHelpCircle } from "react-icons/io";
 import { HiOutlineViewBoards } from "react-icons/hi";
 import { getALlTickets, getTicketsStatus } from "../../../client/requests";
-import Board from "../../../components/board/board";
+import BoardC from "../../../components/board/board";
 
-export default function board({ tickets, ticketsStatus }) {
-  console.log(tickets);
-  console.log(ticketsStatus);
+export default function Board() {
+  //**States */
+  const [allTickets, setAllTickets] = useState([]);
+  const [ticketsStatus, setTicketsStatus] = useState([]);
+
+  async function handleFetching() {
+    const allTickets = await getALlTickets();
+    const status = await getTicketsStatus();
+    setAllTickets(allTickets.data);
+    setTicketsStatus(status.data);
+  }
+  useEffect(() => {
+    handleFetching();
+  }, []);
   return (
     <>
       <div className="board h-screen overflow-hidden">
@@ -34,39 +45,9 @@ export default function board({ tickets, ticketsStatus }) {
           </div>
         </div>
         <div className="board-penel h-full w-screen flex flex-row overflow-x-auto">
-          <Board />
-          <Board />
-          <Board />
-          <Board />
-          <Board />
-          <Board />
-          <Board />
-          <Board />
-          <Board />
-          <Board />
-          <Board />
+          <BoardC />
         </div>
       </div>
     </>
   );
-}
-
-// This gets called on every server-side render
-export async function getServerSideProps() {
-  // Fetch data from external API
-  let tickets = null;
-  let ticketsStatus = null;
-  //get all the projects
-  try {
-    const allTickets = await getALlTickets();
-    const status = await getTicketsStatus();
-    tickets = allTickets.data;
-    ticketsStatus = status.data;
-  } catch (error) {
-    console.log("Error at server-side for all tickets: ", error);
-  }
-  // Pass data to the page via props
-  return {
-    props: { tickets: tickets.data, ticketsStatus: ticketsStatus.data },
-  };
 }

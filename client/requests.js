@@ -4,7 +4,7 @@ import fileDownload from "js-file-download";
 export async function createEmployee(payload) {
   try {
     const res = await axios.post(
-      process.env.NEXT_PUBLIC_BASE_URL + "/api/employee/add-employee",
+      process.env.NEXT_PUBLIC_BASE_URL + "/employee/add-employee",
       payload
     );
     console.log("hello ", res.data);
@@ -17,7 +17,7 @@ export async function createEmployee(payload) {
 export async function UpdateEmployeeAPI(payload) {
   try {
     const res = await axios.post(
-      process.env.NEXT_PUBLIC_BASE_URL + "/api/employee/update-employee",
+      process.env.NEXT_PUBLIC_BASE_URL + "/employee/update-employee",
       payload
     );
     console.log("Updated employee: ", res.data);
@@ -31,7 +31,7 @@ export async function UpdateEmployeeAPI(payload) {
 export async function getEmployees() {
   try {
     const res = await axios.get(
-      process.env.NEXT_PUBLIC_BASE_URL + "/api/employee/get-employees"
+      process.env.NEXT_PUBLIC_BASE_URL + "/employee/get-employees"
     );
     return res.data;
   } catch (error) {
@@ -55,9 +55,7 @@ export async function getEmployeeInfo(id) {
   console.log(id);
   try {
     const res = await axios.get(
-      process.env.NEXT_PUBLIC_BASE_URL +
-        "/api/employee/get-employee-info?id=" +
-        id
+      process.env.NEXT_PUBLIC_BASE_URL + "/employee/get-employee-info?id=" + id
     );
     return res.data;
   } catch (error) {
@@ -69,7 +67,7 @@ export async function deleteEmployee(id, userId) {
   try {
     const res = await axios.delete(
       process.env.NEXT_PUBLIC_BASE_URL +
-        "/api/employee/delete-employees?id=" +
+        "/employee/delete-employees?id=" +
         id +
         "&userId=" +
         userId
@@ -85,7 +83,7 @@ export async function deleteEmployee(id, userId) {
 export async function getDesignations() {
   try {
     const res = await axios.get(
-      process.env.NEXT_PUBLIC_BASE_URL + "/api/designations/get-designations"
+      process.env.NEXT_PUBLIC_BASE_URL + "/designations/get-designations"
     );
     return res.data;
   } catch (error) {
@@ -97,7 +95,7 @@ export async function getDesignations() {
 export async function getRoles() {
   try {
     const res = await axios.get(
-      process.env.NEXT_PUBLIC_BASE_URL + "/api/roles/get-roles"
+      process.env.NEXT_PUBLIC_BASE_URL + "/roles/get-roles"
     );
     return res.data;
   } catch (error) {

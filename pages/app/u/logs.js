@@ -8,10 +8,17 @@ import moment from "moment/moment";
 import LogContainer from "../../../components/Logs/LogContainer";
 
 export default function Logs({ logsData }) {
-  const [logs, setLogs] = useState(logsData);
+  const [logs, setLogs] = useState([]);
+
+  //** Initial fetching */
+  async function handleFetching() {
+    const logsResponse = await getAllLogs();
+    const l = logsResponse.data;
+    setLogs(l);
+  }
   useEffect(() => {
-    console.log(logs);
-  }, [logs]);
+    handleFetching();
+  }, []);
   return (
     <div className="logs-panel">
       <header className="flex flex-row items-center justify-between border-b-2 border-b-gray-900 px-4 py-2 relative">
@@ -61,16 +68,4 @@ export default function Logs({ logsData }) {
       </div>
     </div>
   );
-}
-export async function getServerSideProps() {
-  let logs = null;
-  try {
-    const logsResponse = await getAllLogs();
-    logs = logsResponse.data;
-  } catch (error) {
-    console.log("Error at server-side for all logs: ", error);
-  }
-  return {
-    props: { logsData: logs },
-  };
 }

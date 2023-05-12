@@ -36,13 +36,14 @@ import { useSession } from "next-auth/react";
 
 const PROJECTS_TABS = ["Employees", "Tickets"];
 
-export default function Teams({ teamsData, teamDomains }) {
+export default function Teams() {
   //** Router Initialization */
   const router = useRouter();
 
   //** React States */
-  const [teams, setTeams] = useState(teamsData);
-  const [filteredTeams, setFilteredTeams] = useState(teamsData);
+  const [teams, setTeams] = useState([]);
+  const [filteredTeams, setFilteredTeams] = useState([]);
+  const [teamDomains, setTeamDomains] = useState([]);
   const [isRefreshTeams, setIsRefreshTeams] = useState(false);
   const [isCreateTeam, setIsCreateTeam] = useState(false);
   const [activeTeam, setActiveTeam] = useState(null);
@@ -55,14 +56,33 @@ export default function Teams({ teamsData, teamDomains }) {
   const [isTicketInfo, setIsTicketInfo] = useState(false);
   const [isEmployeeProfile, setIsEmployeeProfile] = useState({ id: null });
   const [isUpdateTeam, setIsUpdateTeam] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const { data: session, status } = useSession();
 
+  //** Initial fetching */
+  async function handleFetching() {
+    //get all the projects domains
+    setLoading(true);
+    const allTeamDomains = await getTeamDomains();
+    const td = allTeamDomains.data;
+    setTeamDomains(td);
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    fetchAllTeams();
+    handleFetching();
+  }, []);
+
   //** Get All the Teams in CSR */
   const fetchAllTeams = async () => {
+    setLoading(true);
     await getAllTeams().then((res) => {
       setTeams(res.data);
+      setFilteredTeams(res.data);
       setIsRefreshTeams(false);
+      setLoading(false);
     });
   };
 
@@ -232,13 +252,13 @@ export default function Teams({ teamsData, teamDomains }) {
               <div className="">
                 <h1 className="font-bold text-xl">ALL TEAMS</h1>
                 <p className="text-sm opacity-60 mt-1">
-                  A complete list of all the Team for certain projects in
+                  {/* A complete list of all the Team for certain projects in */}
                   Projectorate.
                 </p>
               </div>
 
               <div className="Projects py-4">
-                {filteredTeams.length == 0 ? (
+                {!loading && filteredTeams.length == 0 ? (
                   <div className="w-full flex justify-center items-center">
                     <Result
                       status="404"
@@ -250,7 +270,7 @@ export default function Teams({ teamsData, teamDomains }) {
                   <></>
                 )}
                 <div class="inline-grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 grid-flow-row gap-4 w-full">
-                  {!isRefreshTeams ? (
+                  {!isRefreshTeams || !loading ? (
                     filteredTeams.map((item) => {
                       return (
                         <div
@@ -268,7 +288,7 @@ export default function Teams({ teamsData, teamDomains }) {
                             employeesCount={item._count.UserTeams}
                             ticketsCount={item._count.Tickets}
                             tagTitle={
-                              handleTeamDomainsInfo(item.teamDomainsId).title
+                              handleTeamDomainsInfo(item.teamDomainsId)?.title
                             }
                           />
                         </div>
@@ -330,7 +350,7 @@ export default function Teams({ teamsData, teamDomains }) {
                           title={
                             handleTeamDomainsInfo(
                               teamInformation?.teamDomainsId
-                            ).title
+                            )?.title
                           }
                           type="intermediate"
                         />
@@ -451,29 +471,4 @@ export default function Teams({ teamsData, teamDomains }) {
       </div>
     </>
   );
-}
-
-// This gets called on every server-side render
-export async function getServerSideProps() {
-  // Fetch data from external API
-  let teams = null;
-  let teamDomains = null;
-  //get all the projects
-  try {
-    const allTeams = await getAllTeams();
-    teams = allTeams.data;
-  } catch (error) {
-    console.log("Error at server-side for teams: ", error);
-  }
-  //get all the projects domains
-  try {
-    const allTeamDomains = await getTeamDomains();
-    teamDomains = allTeamDomains.data;
-  } catch (error) {
-    console.log("Error at server-side for user projects: ", error);
-  }
-  // Pass data to the page via props
-  return {
-    props: { teamsData: teams, teamDomains },
-  };
 }

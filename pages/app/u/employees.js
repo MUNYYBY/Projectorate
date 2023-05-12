@@ -15,11 +15,11 @@ import EmployeeProfile from "../../../components/Employees/Profile/EmployeesProf
 
 const { Option } = Select;
 
-export default function SuperAdminEmployees({ data }) {
+export default function SuperAdminEmployees() {
   const [isEmployeePanel, setIsEmployeePanel] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [employeesData, setEmployeesData] = useState(data);
-  const [filteredEmployeesData, setFilteredEmployeesData] = useState(data);
+  const [employeesData, setEmployeesData] = useState([]);
+  const [filteredEmployeesData, setFilteredEmployeesData] = useState([]);
   const [isEmployeeProfile, setIsEmployeeProfile] = useState({ id: null });
 
   //Global Notificatiosn handler
@@ -35,13 +35,12 @@ export default function SuperAdminEmployees({ data }) {
   //This function get the new employees when
   //CheckforNewEmployees gets true
   const getNewEmployees = async () => {
-    if (checkForNewEmployees) {
-      setLoading(true);
-      const res = await getEmployees();
-      const data = res.data;
-      setCheckForNewEmployees(false);
-      setEmployeesData(data);
-    }
+    setLoading(true);
+    const res = await getEmployees();
+    const data = res.data;
+    setCheckForNewEmployees(false);
+    setEmployeesData(data);
+    setFilteredEmployeesData(data);
   };
 
   //Call the getNewEmployees function when needed
@@ -57,12 +56,22 @@ export default function SuperAdminEmployees({ data }) {
       }, 2500);
     }
   }, [loading]);
+
+  //** Initial Call */
+  useEffect(() => {
+    getNewEmployees();
+  }, []);
   return (
     <>
-      <EmployeeProfile
-        isEmployeeProfile={isEmployeeProfile}
-        setIsEmployeeProfile={setIsEmployeeProfile}
-      />
+      {!loading ? (
+        <EmployeeProfile
+          isEmployeeProfile={isEmployeeProfile}
+          setIsEmployeeProfile={setIsEmployeeProfile}
+        />
+      ) : (
+        <></>
+      )}
+
       <div className="Employees-panel">
         <DashboardHeader
           title="Employees Panel"
@@ -136,19 +145,4 @@ export default function SuperAdminEmployees({ data }) {
       />
     </>
   );
-}
-// This gets called on every server-side render
-export async function getServerSideProps() {
-  // Fetch data from external API
-  let data;
-  try {
-    const res = await fetch(
-      process.env.NEXT_PUBLIC_BASE_URL + `/employee/get-employees`
-    );
-    data = res.json();
-  } catch (error) {
-    console.log("Error at server-side for employees: ", error);
-  }
-  // Pass data to the page via props
-  return { props: data };
 }

@@ -15,8 +15,34 @@ import {
   getInternEmployeesAnalytics,
   getSeniorEmployeesAnalytics,
 } from "../../../client/requests";
-export default function SuperAdminDashboard({ chilren, data }) {
+export default function SuperAdminDashboard() {
+  //** states */
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
   const { userData } = useUserDataHandler();
+
+  //** Intitial fetching */
+
+  async function handleFetching() {
+    setLoading(true);
+    const associateCountRes = await getAssociateEmployeesAnalytics();
+    const seniorCountRes = await getSeniorEmployeesAnalytics();
+    const internCountRes = await getInternEmployeesAnalytics();
+    const allCountRes = await getAllEmployeesAnalytics();
+
+    const d = {
+      all_employees_count: allCountRes.count,
+      senior_employees_count: seniorCountRes.count,
+      associate_employees_count: associateCountRes.count,
+      intern_employees_count: internCountRes.count,
+    };
+    setData(d);
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    handleFetching();
+  }, []);
   return (
     <RouteContextProvider>
       <div>
@@ -34,7 +60,11 @@ export default function SuperAdminDashboard({ chilren, data }) {
               <h1 className="font-bold text-2xl">Projectorate Statistics</h1>
               <p className="opacity-50">A brief analytics of the system</p>
             </div>
-            <div className="stats shadow mt-8 bg-gray-900 rounded-lg h-40">
+            <div
+              className={`stats shadow mt-8 bg-gray-900 rounded-lg h-40 ${
+                loading ? "bg-opacity-10" : "bg-opacity-100"
+              }`}
+            >
               <div className="stat">
                 <div className="stat-figure text-pOrange">
                   <svg
@@ -101,7 +131,11 @@ export default function SuperAdminDashboard({ chilren, data }) {
               </div>
             </div>
             {/* the second row for stats */}
-            <div className="stats shadow mt-8 bg-gray-900 rounded-lg h-40">
+            <div
+              className={`stats shadow mt-8 bg-gray-900 rounded-lg h-40 ${
+                loading ? "bg-opacity-10" : "bg-opacity-100"
+              }`}
+            >
               <div className="stat">
                 <div className="stat-figure text-pOrange">
                   <svg
@@ -172,28 +206,4 @@ export default function SuperAdminDashboard({ chilren, data }) {
       </div>
     </RouteContextProvider>
   );
-}
-// This gets called on every server-side render
-export async function getServerSideProps() {
-  // Fetch data from external API
-  let data = null;
-  try {
-    const associateCountRes = await getAssociateEmployeesAnalytics();
-    const seniorCountRes = await getSeniorEmployeesAnalytics();
-    const internCountRes = await getInternEmployeesAnalytics();
-    const allCountRes = await getAllEmployeesAnalytics();
-
-    data = {
-      all_employees_count: allCountRes.count,
-      senior_employees_count: seniorCountRes.count,
-      associate_employees_count: associateCountRes.count,
-      intern_employees_count: internCountRes.count,
-    };
-  } catch (error) {
-    console.log("Error at server-side for Super-admin index: ", error);
-  }
-  // Pass data to the page via props
-  return {
-    props: { data },
-  };
 }

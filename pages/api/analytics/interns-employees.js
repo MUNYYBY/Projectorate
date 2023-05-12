@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   console.log("Get Intern employees End-point hit!");
   let designationRes = null;
   try {
-    designationRes = await prisma.designation.findFirst({
+    designationRes = await PrismaDB.designation.findFirst({
       where: {
         title: "Intern",
       },

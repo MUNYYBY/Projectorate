@@ -34,17 +34,14 @@ import { useSession } from "next-auth/react";
 
 const PROJECTS_TABS = ["Employees", "Teams", "Tickets"];
 
-export default function SuperAdminProjectPanel({
-  projectsData,
-  projectDomains,
-}) {
+export default function SuperAdminProjectPanel() {
   //** Router Initialization */
   const router = useRouter();
 
   //** React States */
-  const [projects, setProjects] = useState(projectsData);
-  const [filteredProjectsData, setFilteredProjectsData] =
-    useState(projectsData);
+  const [projects, setProjects] = useState([]);
+  const [filteredProjectsData, setFilteredProjectsData] = useState([]);
+  const [projectDomains, setProjectDomains] = useState([]);
   const [isCreateProject, setIsCreateProject] = useState(false);
   const [isRefreshProjects, setIsRefreshProjects] = useState(false);
   const [activeProject, setActiveProject] = useState(null);
@@ -56,15 +53,32 @@ export default function SuperAdminProjectPanel({
   const [isTicketInfo, setIsTicketInfo] = useState({ id: null });
   const [isEmployeeProfile, setIsEmployeeProfile] = useState({ id: null });
   const [isUpdateProject, setIsUpdateProject] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const { data: session, status } = useSession();
 
+  //** Initial Fetching */
+  async function handleFetching() {
+    let pd = null;
+    //get all the projects domains
+    const allProjectsDomains = await getProjectDomains();
+    pd = allProjectsDomains.data;
+    setProjects(projects);
+    setProjectDomains(pd);
+  }
+
+  useEffect(() => {
+    handleFetching();
+    fetchAllProjects();
+  }, []);
   //** Get All the projects in CSR */
   const fetchAllProjects = async () => {
+    setLoading(true);
     await getAllProjects().then((res) => {
       setProjects(res.data);
       setFilteredProjectsData(res.data);
       setIsRefreshProjects(false);
+      setLoading(false);
     });
   };
 
@@ -239,7 +253,7 @@ export default function SuperAdminProjectPanel({
                 </p>
               </div>
               <div className="Projects py-4">
-                {filteredProjectsData.length == 0 ? (
+                {!loading && filteredProjectsData.length == 0 ? (
                   <div className="w-full flex justify-center items-center">
                     <Result
                       status="404"
@@ -251,7 +265,7 @@ export default function SuperAdminProjectPanel({
                   <></>
                 )}
                 <div class="inline-grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 grid-flow-row gap-4 w-full">
-                  {!isRefreshProjects ? (
+                  {!isRefreshProjects || !loading ? (
                     filteredProjectsData.map((item) => {
                       return (
                         <div
@@ -271,7 +285,7 @@ export default function SuperAdminProjectPanel({
                             ticketsCount={item._count.Tickets}
                             tagTitle={
                               handleProjectDomainsInfo(item.projectDomainsId)
-                                .title
+                                ?.title
                             }
                           />
                         </div>
@@ -331,7 +345,7 @@ export default function SuperAdminProjectPanel({
                           title={
                             handleProjectDomainsInfo(
                               projectInformation?.projectDomainsId
-                            ).title
+                            )?.title
                           }
                           type="intermediate"
                         />
@@ -457,30 +471,4 @@ export default function SuperAdminProjectPanel({
       </div>
     </>
   );
-}
-
-// This gets called on every server-side render
-export async function getServerSideProps() {
-  // Fetch data from external API
-  let projects = null;
-  let projectDomains = null;
-  //get all the projects
-  try {
-    const allProjects = await getAllProjects();
-    projects = allProjects.data;
-  } catch (error) {
-    console.log("Error at server-side for users projects: ", error);
-  }
-  //get all the projects domains
-  try {
-    const allProjectsDomains = await getProjectDomains();
-    projectDomains = allProjectsDomains.data;
-    console.log(projectDomains);
-  } catch (error) {
-    console.log("Error at server-side for users projects: ", error);
-  }
-  // Pass data to the page via props
-  return {
-    props: { projectsData: projects, projectDomains },
-  };
 }
