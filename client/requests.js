@@ -540,3 +540,13 @@ export async function DownloadFile(url) {
     return { error: error.response };
   }
 }
+export async function getAllLogs() {
+  try {
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL + "/logs/get-all-logs"
+    );
+    return res.data;
+  } catch (error) {
+    console.log("Error While getting projects: ", error);
+  }
+}

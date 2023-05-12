@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   console.log("Get all Tickets End-point hit!");
   try {
     const data = await PrismaDB.Tickets.findMany({});
-    console.log("All Tickets: ", data);
+    // console.log("All Tickets: ", data);
     res.status(200).json({ data });
   } catch (error) {
     console.log("Error while getting all Tickets at backend: ", error);

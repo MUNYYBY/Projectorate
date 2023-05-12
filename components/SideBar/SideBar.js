@@ -6,6 +6,7 @@ import { IoIosAdd, IoMdGitNetwork } from "react-icons/io";
 import { FaRegUser, FaDragon } from "react-icons/fa";
 import { HiOutlineViewBoards } from "react-icons/hi";
 import { FiSettings } from "react-icons/fi";
+import { RiFolderHistoryLine } from "react-icons/ri";
 import { Tooltip } from "antd";
 import TabDevider from "../Devider/Devider";
 import { useRouteCheck } from "../../context/routesContext";
@@ -91,6 +92,14 @@ export default function SideBar() {
               <SideBarIcon
                 icon={<HiOutlineViewBoards size={26} />}
                 tooltip="Board"
+              />
+            </div>
+          </Link>
+          <Link href={NAV_URL + "logs"}>
+            <div className="Logs">
+              <SideBarIcon
+                icon={<RiFolderHistoryLine size={26} />}
+                tooltip="Logs"
               />
             </div>
           </Link>

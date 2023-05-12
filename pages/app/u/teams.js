@@ -304,7 +304,7 @@ export default function Teams({ teamsData, teamDomains }) {
               setisNewEmployee={setisNewEmployee}
               projectId={teamInformation.project.id}
               teamId={activeTeam.id}
-              ownerId={session.user.id}
+              ownerId={session?.user.id}
             />
             <div
               className={`${activeTeam.name}-project bg-gray-900 bg-opacity-60`}
@@ -427,7 +427,7 @@ export default function Teams({ teamsData, teamDomains }) {
                   isNewEmployee={isNewEmployee}
                   setisNewEmployee={setisNewEmployee}
                   setIsEmployeeProfile={setIsEmployeeProfile}
-                  ownerId={session.user.id}
+                  ownerId={session?.user.id}
                 />
               </>
             ) : activeTab == 2 ? (
