@@ -168,7 +168,7 @@ export default function TicketInfo(props) {
                         const compute = ticketStatus.find(
                           (status) => status.id == ticketInfo.ticketStatusId
                         );
-                        return compute.title;
+                        return compute?.title;
                       }}
                       style={{
                         width: 200,

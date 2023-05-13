@@ -45,7 +45,7 @@ export default function ProjectTeams({
         <InformationTag
           title={project.project_name}
           type="secondry"
-          size="lg"
+          size="md"
         />
       ),
       key: "projectId",
@@ -53,7 +53,7 @@ export default function ProjectTeams({
     {
       title: "Team Domain",
       render: (_, { TeamDomains }) => (
-        <InformationTag title={TeamDomains.title} type="pOrange" size="lg" />
+        <InformationTag title={TeamDomains.title} type="pOrange" size="md" />
       ),
       key: "teamDomainsId",
     },

@@ -888,7 +888,7 @@ function TicketInfo(props) {
                                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(antd__WEBPACK_IMPORTED_MODULE_1__.Select, {
                                                 defaultValue: ()=>{
                                                     const compute = ticketStatus.find((status)=>status.id == ticketInfo.ticketStatusId);
-                                                    return compute.title;
+                                                    return compute?.title;
                                                 },
                                                 style: {
                                                     width: 200

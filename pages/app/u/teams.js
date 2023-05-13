@@ -353,6 +353,7 @@ export default function Teams() {
                             )?.title
                           }
                           type="intermediate"
+                          size="lg"
                         />
                       </div>
                     </div>

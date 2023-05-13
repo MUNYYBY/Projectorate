@@ -15,6 +15,7 @@ import { signOut } from "next-auth/react";
 import { useNotificationsHandler } from "../../context/notificationContext";
 import EmployeeProfile from "../Employees/Profile/EmployeesProfile";
 import { useSession } from "next-auth/react";
+import AuthorityCheck from "../../Permissions/AuthorityCheck";
 
 const NAV_URL = "/app/u/";
 
@@ -87,22 +88,24 @@ export default function SideBar() {
               />
             </div>
           </Link>
-          <Link href={NAV_URL + "board"}>
+          {/* <Link href={NAV_URL + "board"}>
             <div className="Board">
               <SideBarIcon
                 icon={<HiOutlineViewBoards size={26} />}
                 tooltip="Board"
               />
             </div>
-          </Link>
-          <Link href={NAV_URL + "logs"}>
-            <div className="Logs">
-              <SideBarIcon
-                icon={<RiFolderHistoryLine size={26} />}
-                tooltip="Logs"
-              />
-            </div>
-          </Link>
+          </Link> */}
+          <AuthorityCheck grantPermissionFor="manage_logs">
+            <Link href={NAV_URL + "logs"}>
+              <div className="Logs">
+                <SideBarIcon
+                  icon={<RiFolderHistoryLine size={26} />}
+                  tooltip="Logs"
+                />
+              </div>
+            </Link>
+          </AuthorityCheck>
           <TabDevider />
           <div
             className="User Profile"

@@ -36,8 +36,10 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var next_auth_react__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(next_auth_react__WEBPACK_IMPORTED_MODULE_12__);
 /* harmony import */ var _context_notificationContext__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(5329);
 /* harmony import */ var _Employees_Profile_EmployeesProfile__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(9146);
+/* harmony import */ var _Permissions_AuthorityCheck__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(3802);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_Employees_Profile_EmployeesProfile__WEBPACK_IMPORTED_MODULE_14__]);
 _Employees_Profile_EmployeesProfile__WEBPACK_IMPORTED_MODULE_14__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
 
 
 
@@ -147,27 +149,18 @@ function SideBar() {
                                     })
                                 })
                             }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_1___default()), {
-                                href: NAV_URL + "board",
-                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    className: "Board",
-                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(SideBarIcon, {
-                                        icon: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_icons_hi__WEBPACK_IMPORTED_MODULE_6__.HiOutlineViewBoards, {
-                                            size: 26
-                                        }),
-                                        tooltip: "Board"
-                                    })
-                                })
-                            }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_1___default()), {
-                                href: NAV_URL + "logs",
-                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    className: "Logs",
-                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(SideBarIcon, {
-                                        icon: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_icons_ri__WEBPACK_IMPORTED_MODULE_8__.RiFolderHistoryLine, {
-                                            size: 26
-                                        }),
-                                        tooltip: "Logs"
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_Permissions_AuthorityCheck__WEBPACK_IMPORTED_MODULE_15__/* ["default"] */ .Z, {
+                                grantPermissionFor: "manage_logs",
+                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_1___default()), {
+                                    href: NAV_URL + "logs",
+                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                                        className: "Logs",
+                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(SideBarIcon, {
+                                            icon: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_icons_ri__WEBPACK_IMPORTED_MODULE_8__.RiFolderHistoryLine, {
+                                                size: 26
+                                            }),
+                                            tooltip: "Logs"
+                                        })
                                     })
                                 })
                             }),

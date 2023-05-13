@@ -348,6 +348,7 @@ export default function SuperAdminProjectPanel() {
                             )?.title
                           }
                           type="intermediate"
+                          size="lg"
                         />
                       </div>
                     </div>
