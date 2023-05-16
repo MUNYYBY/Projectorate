@@ -29,12 +29,12 @@ export default function Logs({ logsData }) {
           <h1 className="text-lg font-bold">Logs Panel</h1>
         </div>
         <div className="flex flex-row items-center">
-          <div className="help-icon px-2">
+          {/* <div className="help-icon px-2">
             <CgInbox size={24} />
           </div>
           <div className="inbox-icon px-2">
             <IoIosHelpCircle size={26} />
-          </div>
+          </div> */}
         </div>
       </header>
       <div className="container px-4">

@@ -29,14 +29,14 @@ export default function Board() {
             </div>
             <h1 className="text-lg font-bold">Board Panel</h1>
           </div>
-          <div className="flex flex-row items-center">
+          {/* <div className="flex flex-row items-center">
             <div className="help-icon px-2">
               <CgInbox size={24} />
             </div>
             <div className="inbox-icon px-2">
               <IoIosHelpCircle size={26} />
             </div>
-          </div>
+          </div> */}
         </header>
         <div className="mx-4 my-4">
           <div className="flex flex-col">

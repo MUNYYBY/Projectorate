@@ -62,7 +62,7 @@ export default function DashboardHeader(
           ) : (
             ""
           )}
-          <div className="help-icon px-2 sm:flex hidden">
+          {/* <div className="help-icon px-2 sm:flex hidden">
             <Tooltip placement="bottom" title="Help" mouseEnterDelay={0.05}>
               <CgInbox size={28} />
             </Tooltip>
@@ -71,7 +71,7 @@ export default function DashboardHeader(
             <Tooltip placement="bottom" title="Inbox" mouseEnterDelay={0.05}>
               <IoIosHelpCircle size={30} />
             </Tooltip>
-          </div>
+          </div> */}
         </div>
       </header>
     </div>

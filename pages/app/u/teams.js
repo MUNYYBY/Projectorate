@@ -223,12 +223,12 @@ export default function Teams() {
             ) : (
               <></>
             )}
-            <div className="help-icon px-2 sm:flex hidden">
+            {/* <div className="help-icon px-2 sm:flex hidden">
               <CgInbox size={24} />
             </div>
             <div className="inbox-icon px-2 sm:flex hidden">
               <IoIosHelpCircle size={26} />
-            </div>
+            </div> */}
           </div>
         </header>
         {/* show all teams / show specific team starts here */}

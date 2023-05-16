@@ -219,12 +219,12 @@ export default function SuperAdminProjectPanel() {
             ) : (
               <></>
             )}
-            <div className="help-icon px-2 sm:flex hidden">
+            {/* <div className="help-icon px-2 sm:flex hidden">
               <CgInbox size={24} />
             </div>
             <div className="inbox-icon px-2 sm:flex hidden">
               <IoIosHelpCircle size={26} />
-            </div>
+            </div> */}
           </div>
         </header>
         {/* show all project / show specific project starts here */}

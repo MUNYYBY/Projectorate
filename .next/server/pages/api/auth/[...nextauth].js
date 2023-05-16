@@ -1,146 +1,75 @@
 "use strict";
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
 (() => {
 var exports = {};
-exports.id = 3748;
-exports.ids = [3748];
+exports.id = "pages/api/auth/[...nextauth]";
+exports.ids = ["pages/api/auth/[...nextauth]"];
 exports.modules = {
 
-/***/ 3524:
+/***/ "@next-auth/prisma-adapter":
+/*!********************************************!*\
+  !*** external "@next-auth/prisma-adapter" ***!
+  \********************************************/
+/***/ ((module) => {
+
+module.exports = require("@next-auth/prisma-adapter");
+
+/***/ }),
+
+/***/ "@prisma/client":
+/*!*********************************!*\
+  !*** external "@prisma/client" ***!
+  \*********************************/
 /***/ ((module) => {
 
 module.exports = require("@prisma/client");
 
 /***/ }),
 
-/***/ 36:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ "next-auth":
+/*!****************************!*\
+  !*** external "next-auth" ***!
+  \****************************/
+/***/ ((module) => {
 
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3524);
-/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_prisma_client__WEBPACK_IMPORTED_MODULE_0__);
-// lib/prisma.ts
-
-let PrismaDB;
-if (true) {
-    PrismaDB = new _prisma_client__WEBPACK_IMPORTED_MODULE_0__.PrismaClient();
-} else {}
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PrismaDB);
-
+module.exports = require("next-auth");
 
 /***/ }),
 
-/***/ 8209:
+/***/ "next-auth/providers/credentials":
+/*!**************************************************!*\
+  !*** external "next-auth/providers/credentials" ***!
+  \**************************************************/
+/***/ ((module) => {
+
+module.exports = require("next-auth/providers/credentials");
+
+/***/ }),
+
+/***/ "(api)/./lib/prisma.js":
+/*!***********************!*\
+  !*** ./lib/prisma.js ***!
+  \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// ESM COMPAT FLAG
-__webpack_require__.r(__webpack_exports__);
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @prisma/client */ \"@prisma/client\");\n/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_prisma_client__WEBPACK_IMPORTED_MODULE_0__);\n// lib/prisma.ts\n\nlet PrismaDB;\nif (false) {} else {\n    if (!global.prisma) {\n        global.prisma = new _prisma_client__WEBPACK_IMPORTED_MODULE_0__.PrismaClient();\n    }\n    PrismaDB = global.prisma;\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PrismaDB);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwaSkvLi9saWIvcHJpc21hLmpzLmpzIiwibWFwcGluZ3MiOiI7Ozs7OztBQUFBLGdCQUFnQjtBQUNzQztBQUV0RCxJQUFJRSxRQUFRO0FBRVosSUFBSUMsS0FBcUMsRUFBRSxFQUUxQyxNQUFNO0lBQ0wsSUFBSSxDQUFDQyxNQUFNLENBQUNKLE1BQU0sRUFBRTtRQUNsQkksTUFBTSxDQUFDSixNQUFNLEdBQUcsSUFBSUMsd0RBQVksRUFBRSxDQUFDO0lBQ3JDLENBQUM7SUFDREMsUUFBUSxHQUFHRSxNQUFNLENBQUNKLE1BQU0sQ0FBQztBQUMzQixDQUFDO0FBRUQsaUVBQWVFLFFBQVEsRUFBQyIsInNvdXJjZXMiOlsid2VicGFjazovL3Byb2plY3RvcmF0ZS8uL2xpYi9wcmlzbWEuanM/NzUxNSJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBsaWIvcHJpc21hLnRzXHJcbmltcG9ydCB7IHByaXNtYSwgUHJpc21hQ2xpZW50IH0gZnJvbSBcIkBwcmlzbWEvY2xpZW50XCI7XHJcblxyXG5sZXQgUHJpc21hREI7XHJcblxyXG5pZiAocHJvY2Vzcy5lbnYuTk9ERV9FTlYgPT09IFwicHJvZHVjdGlvblwiKSB7XHJcbiAgUHJpc21hREIgPSBuZXcgUHJpc21hQ2xpZW50KCk7XHJcbn0gZWxzZSB7XHJcbiAgaWYgKCFnbG9iYWwucHJpc21hKSB7XHJcbiAgICBnbG9iYWwucHJpc21hID0gbmV3IFByaXNtYUNsaWVudCgpO1xyXG4gIH1cclxuICBQcmlzbWFEQiA9IGdsb2JhbC5wcmlzbWE7XHJcbn1cclxuXHJcbmV4cG9ydCBkZWZhdWx0IFByaXNtYURCO1xyXG4iXSwibmFtZXMiOlsicHJpc21hIiwiUHJpc21hQ2xpZW50IiwiUHJpc21hREIiLCJwcm9jZXNzIiwiZ2xvYmFsIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(api)/./lib/prisma.js\n");
 
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  "default": () => (/* binding */ _nextauth_)
-});
+/***/ }),
 
-;// CONCATENATED MODULE: external "next-auth"
-const external_next_auth_namespaceObject = require("next-auth");
-var external_next_auth_default = /*#__PURE__*/__webpack_require__.n(external_next_auth_namespaceObject);
-;// CONCATENATED MODULE: external "next-auth/providers/credentials"
-const credentials_namespaceObject = require("next-auth/providers/credentials");
-var credentials_default = /*#__PURE__*/__webpack_require__.n(credentials_namespaceObject);
-;// CONCATENATED MODULE: external "@next-auth/prisma-adapter"
-const prisma_adapter_namespaceObject = require("@next-auth/prisma-adapter");
-// EXTERNAL MODULE: ./lib/prisma.js
-var prisma = __webpack_require__(36);
-;// CONCATENATED MODULE: ./pages/api/auth/[...nextauth].js
+/***/ "(api)/./pages/api/auth/[...nextauth].js":
+/*!*****************************************!*\
+  !*** ./pages/api/auth/[...nextauth].js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-
-
-
-const authOptions = {
-    adapter: (0,prisma_adapter_namespaceObject.PrismaAdapter)(prisma/* default */.Z),
-    session: {
-        strategy: "jwt",
-        maxAge: 30 * 24 * 60 * 60
-    },
-    providers: [
-        credentials_default()({
-            // The name to display on the sign in form (e.g. "Sign in with...")
-            name: "Credentials",
-            credentials: {},
-            async authorize (credentials, req) {
-                console.log(credentials);
-                const { email , password  } = credentials;
-                const user = await prisma/* default.user.findFirst */.Z.user.findFirst({
-                    where: {
-                        email: credentials.email
-                    }
-                });
-                if (user) {
-                    if (user.password != password || user.email !== email) {
-                        throw new Error("Email or Password Incorrect");
-                    } else {
-                        delete user["password"];
-                        // Any object returned will be saved in `user` property of the JWT
-                        return user;
-                    }
-                } else {
-                    // If you return null then an error will be displayed advising the user to check their details.
-                    throw new Error("Email or Password Incorrect");
-                // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
-                }
-            }
-        }), 
-    ],
-    pages: {
-        signIn: "/auth",
-        signOut: "/auth"
-    },
-    callbacks: {
-        // async redirect({ user, url, baseUrl }) {
-        //   // Allows relative callback URLs
-        //   if (user) {
-        //     if (!user.id) {
-        //       if (url.startsWith("/auth")) return "/app";
-        //     }
-        //   } else if (new URL(url).origin === baseUrl) return url;
-        //   return baseUrl;
-        //   //  Allows callback URLs on the same origin
-        // },
-        async session ({ session , token , user  }) {
-            const userDatabase = await prisma/* default.user.findFirst */.Z.user.findFirst({
-                where: {
-                    email: session.user.email
-                },
-                include: {
-                    employee: {
-                        select: {
-                            id: true
-                        }
-                    },
-                    Role: {
-                        select: {
-                            id: true,
-                            title: true
-                        }
-                    }
-                }
-            });
-            const userData = {
-                id: userDatabase.id,
-                employeeId: userDatabase.employee.id,
-                status: userDatabase.status,
-                email: userDatabase.email,
-                role: userDatabase.Role.title
-            }; // creating payload
-            console.log(userData);
-            session.user = userData; //sending payload as session
-            return Promise.resolve(session);
-        }
-    }
-};
-/* harmony default export */ const _nextauth_ = (external_next_auth_default()(authOptions));
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var next_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! next-auth */ \"next-auth\");\n/* harmony import */ var next_auth__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(next_auth__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var next_auth_providers_credentials__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next-auth/providers/credentials */ \"next-auth/providers/credentials\");\n/* harmony import */ var next_auth_providers_credentials__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_auth_providers_credentials__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _next_auth_prisma_adapter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @next-auth/prisma-adapter */ \"@next-auth/prisma-adapter\");\n/* harmony import */ var _next_auth_prisma_adapter__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_next_auth_prisma_adapter__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _lib_prisma__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../lib/prisma */ \"(api)/./lib/prisma.js\");\n\n\n\n\nconst authOptions = {\n    adapter: (0,_next_auth_prisma_adapter__WEBPACK_IMPORTED_MODULE_2__.PrismaAdapter)(_lib_prisma__WEBPACK_IMPORTED_MODULE_3__[\"default\"]),\n    session: {\n        strategy: \"jwt\",\n        maxAge: 30 * 24 * 60 * 60\n    },\n    providers: [\n        next_auth_providers_credentials__WEBPACK_IMPORTED_MODULE_1___default()({\n            // The name to display on the sign in form (e.g. \"Sign in with...\")\n            name: \"Credentials\",\n            credentials: {},\n            async authorize (credentials, req) {\n                console.log(credentials);\n                const { email , password  } = credentials;\n                const user = await _lib_prisma__WEBPACK_IMPORTED_MODULE_3__[\"default\"].user.findFirst({\n                    where: {\n                        email: credentials.email\n                    }\n                });\n                if (user) {\n                    if (user.password != password || user.email !== email) {\n                        throw new Error(\"Email or Password Incorrect\");\n                    } else {\n                        delete user[\"password\"];\n                        // Any object returned will be saved in `user` property of the JWT\n                        return user;\n                    }\n                } else {\n                    // If you return null then an error will be displayed advising the user to check their details.\n                    throw new Error(\"Email or Password Incorrect\");\n                // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter\n                }\n            }\n        }), \n    ],\n    pages: {\n        signIn: \"/auth\",\n        signOut: \"/auth\"\n    },\n    callbacks: {\n        // async redirect({ user, url, baseUrl }) {\n        //   // Allows relative callback URLs\n        //   if (user) {\n        //     if (!user.id) {\n        //       if (url.startsWith(\"/auth\")) return \"/app\";\n        //     }\n        //   } else if (new URL(url).origin === baseUrl) return url;\n        //   return baseUrl;\n        //   //  Allows callback URLs on the same origin\n        // },\n        async session ({ session , token , user  }) {\n            const userDatabase = await _lib_prisma__WEBPACK_IMPORTED_MODULE_3__[\"default\"].user.findFirst({\n                where: {\n                    email: session.user.email\n                },\n                include: {\n                    employee: {\n                        select: {\n                            id: true\n                        }\n                    },\n                    Role: {\n                        select: {\n                            id: true,\n                            title: true\n                        }\n                    }\n                }\n            });\n            const userData = {\n                id: userDatabase.id,\n                employeeId: userDatabase.employee.id,\n                status: userDatabase.status,\n                email: userDatabase.email,\n                role: userDatabase.Role.title\n            }; // creating payload\n            console.log(userData);\n            session.user = userData; //sending payload as session\n            return Promise.resolve(session);\n        }\n    }\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (next_auth__WEBPACK_IMPORTED_MODULE_0___default()(authOptions));\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwaSkvLi9wYWdlcy9hcGkvYXV0aC9bLi4ubmV4dGF1dGhdLmpzLmpzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBQWlDO0FBQ2lDO0FBQ1I7QUFDZjtBQUUzQyxNQUFNSSxXQUFXLEdBQUc7SUFDbEJDLE9BQU8sRUFBRUgsd0VBQWEsQ0FBQ0MsbURBQVEsQ0FBQztJQUNoQ0csT0FBTyxFQUFFO1FBQ1BDLFFBQVEsRUFBRSxLQUFLO1FBQ2ZDLE1BQU0sRUFBRSxFQUFFLEdBQUcsRUFBRSxHQUFHLEVBQUUsR0FBRyxFQUFFO0tBQzFCO0lBQ0RDLFNBQVMsRUFBRTtRQUNUUixzRUFBbUIsQ0FBQztZQUNsQixtRUFBbUU7WUFDbkVTLElBQUksRUFBRSxhQUFhO1lBQ25CQyxXQUFXLEVBQUUsRUFBRTtZQUNmLE1BQU1DLFNBQVMsRUFBQ0QsV0FBVyxFQUFFRSxHQUFHLEVBQUU7Z0JBQ2hDQyxPQUFPLENBQUNDLEdBQUcsQ0FBQ0osV0FBVyxDQUFDLENBQUM7Z0JBQ3pCLE1BQU0sRUFBRUssS0FBSyxHQUFFQyxRQUFRLEdBQUUsR0FBR04sV0FBVztnQkFFdkMsTUFBTU8sSUFBSSxHQUFHLE1BQU1mLGtFQUF1QixDQUFDO29CQUN6Q2lCLEtBQUssRUFBRTt3QkFDTEosS0FBSyxFQUFFTCxXQUFXLENBQUNLLEtBQUs7cUJBQ3pCO2lCQUNGLENBQUM7Z0JBQ0YsSUFBSUUsSUFBSSxFQUFFO29CQUNSLElBQUlBLElBQUksQ0FBQ0QsUUFBUSxJQUFJQSxRQUFRLElBQUlDLElBQUksQ0FBQ0YsS0FBSyxLQUFLQSxLQUFLLEVBQUU7d0JBQ3JELE1BQU0sSUFBSUssS0FBSyxDQUFDLDZCQUE2QixDQUFDLENBQUM7b0JBQ2pELE9BQU87d0JBQ0wsT0FBT0gsSUFBSSxDQUFDLFVBQVUsQ0FBQyxDQUFDO3dCQUN4QixrRUFBa0U7d0JBQ2xFLE9BQU9BLElBQUksQ0FBQztvQkFDZCxDQUFDO2dCQUNILE9BQU87b0JBQ0wsK0ZBQStGO29CQUMvRixNQUFNLElBQUlHLEtBQUssQ0FBQyw2QkFBNkIsQ0FBQyxDQUFDO2dCQUMvQywySUFBMkk7Z0JBQzdJLENBQUM7WUFDSCxDQUFDO1NBQ0YsQ0FBQztLQUNIO0lBQ0RDLEtBQUssRUFBRTtRQUNMQyxNQUFNLEVBQUUsT0FBTztRQUNmQyxPQUFPLEVBQUUsT0FBTztLQUNqQjtJQUNEQyxTQUFTLEVBQUU7UUFDVCwyQ0FBMkM7UUFDM0MscUNBQXFDO1FBQ3JDLGdCQUFnQjtRQUNoQixzQkFBc0I7UUFDdEIsb0RBQW9EO1FBQ3BELFFBQVE7UUFDUiw0REFBNEQ7UUFDNUQsb0JBQW9CO1FBQ3BCLGdEQUFnRDtRQUNoRCxLQUFLO1FBRUwsTUFBTW5CLE9BQU8sRUFBQyxFQUFFQSxPQUFPLEdBQUVvQixLQUFLLEdBQUVSLElBQUksR0FBRSxFQUFFO1lBQ3RDLE1BQU1TLFlBQVksR0FBRyxNQUFNeEIsa0VBQXVCLENBQUM7Z0JBQ2pEaUIsS0FBSyxFQUFFO29CQUNMSixLQUFLLEVBQUVWLE9BQU8sQ0FBQ1ksSUFBSSxDQUFDRixLQUFLO2lCQUMxQjtnQkFDRFksT0FBTyxFQUFFO29CQUNQQyxRQUFRLEVBQUU7d0JBQ1JDLE1BQU0sRUFBRTs0QkFDTkMsRUFBRSxFQUFFLElBQUk7eUJBQ1Q7cUJBQ0Y7b0JBQ0RDLElBQUksRUFBRTt3QkFDSkYsTUFBTSxFQUFFOzRCQUNOQyxFQUFFLEVBQUUsSUFBSTs0QkFDUkUsS0FBSyxFQUFFLElBQUk7eUJBQ1o7cUJBQ0Y7aUJBQ0Y7YUFDRixDQUFDO1lBQ0YsTUFBTUMsUUFBUSxHQUFHO2dCQUNmSCxFQUFFLEVBQUVKLFlBQVksQ0FBQ0ksRUFBRTtnQkFDbkJJLFVBQVUsRUFBRVIsWUFBWSxDQUFDRSxRQUFRLENBQUNFLEVBQUU7Z0JBQ3BDSyxNQUFNLEVBQUVULFlBQVksQ0FBQ1MsTUFBTTtnQkFDM0JwQixLQUFLLEVBQUVXLFlBQVksQ0FBQ1gsS0FBSztnQkFDekJxQixJQUFJLEVBQUVWLFlBQVksQ0FBQ0ssSUFBSSxDQUFDQyxLQUFLO2FBQzlCLEVBQUUsbUJBQW1CO1lBQ3RCbkIsT0FBTyxDQUFDQyxHQUFHLENBQUNtQixRQUFRLENBQUMsQ0FBQztZQUN0QjVCLE9BQU8sQ0FBQ1ksSUFBSSxHQUFHZ0IsUUFBUSxDQUFDLENBQUMsNEJBQTRCO1lBQ3JELE9BQU9JLE9BQU8sQ0FBQ0MsT0FBTyxDQUFDakMsT0FBTyxDQUFDLENBQUM7UUFDbEMsQ0FBQztLQUNGO0NBQ0Y7QUFFRCxpRUFBZU4sZ0RBQVEsQ0FBQ0ksV0FBVyxDQUFDLEVBQUMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9wcm9qZWN0b3JhdGUvLi9wYWdlcy9hcGkvYXV0aC9bLi4ubmV4dGF1dGhdLmpzPzUyN2YiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IE5leHRBdXRoIGZyb20gXCJuZXh0LWF1dGhcIjtcclxuaW1wb3J0IENyZWRlbnRpYWxzUHJvdmlkZXIgZnJvbSBcIm5leHQtYXV0aC9wcm92aWRlcnMvY3JlZGVudGlhbHNcIjtcclxuaW1wb3J0IHsgUHJpc21hQWRhcHRlciB9IGZyb20gXCJAbmV4dC1hdXRoL3ByaXNtYS1hZGFwdGVyXCI7XHJcbmltcG9ydCBQcmlzbWFEQiBmcm9tIFwiLi4vLi4vLi4vbGliL3ByaXNtYVwiO1xyXG5cclxuY29uc3QgYXV0aE9wdGlvbnMgPSB7XHJcbiAgYWRhcHRlcjogUHJpc21hQWRhcHRlcihQcmlzbWFEQiksXHJcbiAgc2Vzc2lvbjoge1xyXG4gICAgc3RyYXRlZ3k6IFwiand0XCIsXHJcbiAgICBtYXhBZ2U6IDMwICogMjQgKiA2MCAqIDYwLCAvLyAzMCBkYXlzXHJcbiAgfSxcclxuICBwcm92aWRlcnM6IFtcclxuICAgIENyZWRlbnRpYWxzUHJvdmlkZXIoe1xyXG4gICAgICAvLyBUaGUgbmFtZSB0byBkaXNwbGF5IG9uIHRoZSBzaWduIGluIGZvcm0gKGUuZy4gXCJTaWduIGluIHdpdGguLi5cIilcclxuICAgICAgbmFtZTogXCJDcmVkZW50aWFsc1wiLFxyXG4gICAgICBjcmVkZW50aWFsczoge30sXHJcbiAgICAgIGFzeW5jIGF1dGhvcml6ZShjcmVkZW50aWFscywgcmVxKSB7XHJcbiAgICAgICAgY29uc29sZS5sb2coY3JlZGVudGlhbHMpO1xyXG4gICAgICAgIGNvbnN0IHsgZW1haWwsIHBhc3N3b3JkIH0gPSBjcmVkZW50aWFscztcclxuXHJcbiAgICAgICAgY29uc3QgdXNlciA9IGF3YWl0IFByaXNtYURCLnVzZXIuZmluZEZpcnN0KHtcclxuICAgICAgICAgIHdoZXJlOiB7XHJcbiAgICAgICAgICAgIGVtYWlsOiBjcmVkZW50aWFscy5lbWFpbCxcclxuICAgICAgICAgIH0sXHJcbiAgICAgICAgfSk7XHJcbiAgICAgICAgaWYgKHVzZXIpIHtcclxuICAgICAgICAgIGlmICh1c2VyLnBhc3N3b3JkICE9IHBhc3N3b3JkIHx8IHVzZXIuZW1haWwgIT09IGVtYWlsKSB7XHJcbiAgICAgICAgICAgIHRocm93IG5ldyBFcnJvcihcIkVtYWlsIG9yIFBhc3N3b3JkIEluY29ycmVjdFwiKTtcclxuICAgICAgICAgIH0gZWxzZSB7XHJcbiAgICAgICAgICAgIGRlbGV0ZSB1c2VyW1wicGFzc3dvcmRcIl07XHJcbiAgICAgICAgICAgIC8vIEFueSBvYmplY3QgcmV0dXJuZWQgd2lsbCBiZSBzYXZlZCBpbiBgdXNlcmAgcHJvcGVydHkgb2YgdGhlIEpXVFxyXG4gICAgICAgICAgICByZXR1cm4gdXNlcjtcclxuICAgICAgICAgIH1cclxuICAgICAgICB9IGVsc2Uge1xyXG4gICAgICAgICAgLy8gSWYgeW91IHJldHVybiBudWxsIHRoZW4gYW4gZXJyb3Igd2lsbCBiZSBkaXNwbGF5ZWQgYWR2aXNpbmcgdGhlIHVzZXIgdG8gY2hlY2sgdGhlaXIgZGV0YWlscy5cclxuICAgICAgICAgIHRocm93IG5ldyBFcnJvcihcIkVtYWlsIG9yIFBhc3N3b3JkIEluY29ycmVjdFwiKTtcclxuICAgICAgICAgIC8vIFlvdSBjYW4gYWxzbyBSZWplY3QgdGhpcyBjYWxsYmFjayB3aXRoIGFuIEVycm9yIHRodXMgdGhlIHVzZXIgd2lsbCBiZSBzZW50IHRvIHRoZSBlcnJvciBwYWdlIHdpdGggdGhlIGVycm9yIG1lc3NhZ2UgYXMgYSBxdWVyeSBwYXJhbWV0ZXJcclxuICAgICAgICB9XHJcbiAgICAgIH0sXHJcbiAgICB9KSxcclxuICBdLFxyXG4gIHBhZ2VzOiB7XHJcbiAgICBzaWduSW46IFwiL2F1dGhcIixcclxuICAgIHNpZ25PdXQ6IFwiL2F1dGhcIixcclxuICB9LFxyXG4gIGNhbGxiYWNrczoge1xyXG4gICAgLy8gYXN5bmMgcmVkaXJlY3QoeyB1c2VyLCB1cmwsIGJhc2VVcmwgfSkge1xyXG4gICAgLy8gICAvLyBBbGxvd3MgcmVsYXRpdmUgY2FsbGJhY2sgVVJMc1xyXG4gICAgLy8gICBpZiAodXNlcikge1xyXG4gICAgLy8gICAgIGlmICghdXNlci5pZCkge1xyXG4gICAgLy8gICAgICAgaWYgKHVybC5zdGFydHNXaXRoKFwiL2F1dGhcIikpIHJldHVybiBcIi9hcHBcIjtcclxuICAgIC8vICAgICB9XHJcbiAgICAvLyAgIH0gZWxzZSBpZiAobmV3IFVSTCh1cmwpLm9yaWdpbiA9PT0gYmFzZVVybCkgcmV0dXJuIHVybDtcclxuICAgIC8vICAgcmV0dXJuIGJhc2VVcmw7XHJcbiAgICAvLyAgIC8vICBBbGxvd3MgY2FsbGJhY2sgVVJMcyBvbiB0aGUgc2FtZSBvcmlnaW5cclxuICAgIC8vIH0sXHJcblxyXG4gICAgYXN5bmMgc2Vzc2lvbih7IHNlc3Npb24sIHRva2VuLCB1c2VyIH0pIHtcclxuICAgICAgY29uc3QgdXNlckRhdGFiYXNlID0gYXdhaXQgUHJpc21hREIudXNlci5maW5kRmlyc3Qoe1xyXG4gICAgICAgIHdoZXJlOiB7XHJcbiAgICAgICAgICBlbWFpbDogc2Vzc2lvbi51c2VyLmVtYWlsLFxyXG4gICAgICAgIH0sXHJcbiAgICAgICAgaW5jbHVkZToge1xyXG4gICAgICAgICAgZW1wbG95ZWU6IHtcclxuICAgICAgICAgICAgc2VsZWN0OiB7XHJcbiAgICAgICAgICAgICAgaWQ6IHRydWUsXHJcbiAgICAgICAgICAgIH0sXHJcbiAgICAgICAgICB9LFxyXG4gICAgICAgICAgUm9sZToge1xyXG4gICAgICAgICAgICBzZWxlY3Q6IHtcclxuICAgICAgICAgICAgICBpZDogdHJ1ZSxcclxuICAgICAgICAgICAgICB0aXRsZTogdHJ1ZSxcclxuICAgICAgICAgICAgfSxcclxuICAgICAgICAgIH0sXHJcbiAgICAgICAgfSxcclxuICAgICAgfSk7XHJcbiAgICAgIGNvbnN0IHVzZXJEYXRhID0ge1xyXG4gICAgICAgIGlkOiB1c2VyRGF0YWJhc2UuaWQsXHJcbiAgICAgICAgZW1wbG95ZWVJZDogdXNlckRhdGFiYXNlLmVtcGxveWVlLmlkLFxyXG4gICAgICAgIHN0YXR1czogdXNlckRhdGFiYXNlLnN0YXR1cyxcclxuICAgICAgICBlbWFpbDogdXNlckRhdGFiYXNlLmVtYWlsLFxyXG4gICAgICAgIHJvbGU6IHVzZXJEYXRhYmFzZS5Sb2xlLnRpdGxlLFxyXG4gICAgICB9OyAvLyBjcmVhdGluZyBwYXlsb2FkXHJcbiAgICAgIGNvbnNvbGUubG9nKHVzZXJEYXRhKTtcclxuICAgICAgc2Vzc2lvbi51c2VyID0gdXNlckRhdGE7IC8vc2VuZGluZyBwYXlsb2FkIGFzIHNlc3Npb25cclxuICAgICAgcmV0dXJuIFByb21pc2UucmVzb2x2ZShzZXNzaW9uKTtcclxuICAgIH0sXHJcbiAgfSxcclxufTtcclxuXHJcbmV4cG9ydCBkZWZhdWx0IE5leHRBdXRoKGF1dGhPcHRpb25zKTtcclxuIl0sIm5hbWVzIjpbIk5leHRBdXRoIiwiQ3JlZGVudGlhbHNQcm92aWRlciIsIlByaXNtYUFkYXB0ZXIiLCJQcmlzbWFEQiIsImF1dGhPcHRpb25zIiwiYWRhcHRlciIsInNlc3Npb24iLCJzdHJhdGVneSIsIm1heEFnZSIsInByb3ZpZGVycyIsIm5hbWUiLCJjcmVkZW50aWFscyIsImF1dGhvcml6ZSIsInJlcSIsImNvbnNvbGUiLCJsb2ciLCJlbWFpbCIsInBhc3N3b3JkIiwidXNlciIsImZpbmRGaXJzdCIsIndoZXJlIiwiRXJyb3IiLCJwYWdlcyIsInNpZ25JbiIsInNpZ25PdXQiLCJjYWxsYmFja3MiLCJ0b2tlbiIsInVzZXJEYXRhYmFzZSIsImluY2x1ZGUiLCJlbXBsb3llZSIsInNlbGVjdCIsImlkIiwiUm9sZSIsInRpdGxlIiwidXNlckRhdGEiLCJlbXBsb3llZUlkIiwic3RhdHVzIiwicm9sZSIsIlByb21pc2UiLCJyZXNvbHZlIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(api)/./pages/api/auth/[...nextauth].js\n");
 
 /***/ })
 
@@ -151,7 +80,7 @@ const authOptions = {
 var __webpack_require__ = require("../../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = (__webpack_exec__(8209));
+var __webpack_exports__ = (__webpack_exec__("(api)/./pages/api/auth/[...nextauth].js"));
 module.exports = __webpack_exports__;
 
 })();
