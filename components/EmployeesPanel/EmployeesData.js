@@ -91,7 +91,6 @@ export default function EmployeesData(props) {
         </div>
       ),
       key: "name",
-      fixed: "left",
     },
     {
       title: "Age",
@@ -146,7 +145,6 @@ export default function EmployeesData(props) {
     {
       title: "Action",
       key: "id",
-      fixed: "right",
       render: (_, param) => (
         <div className="flex">
           <button
@@ -182,7 +180,7 @@ export default function EmployeesData(props) {
         setIsEmployeeProfile={setIsEmployeeProfile}
       />
       <div className="flex flex-col justify-center items-center">
-        <div className="py-4">
+        <div className="py-4 sm:flex hidden">
           <Segmented
             options={[
               "All",

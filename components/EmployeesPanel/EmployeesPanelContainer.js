@@ -34,8 +34,12 @@ export default function EmployeesPanelContainer(props) {
             ) : (
               <>
                 {" "}
-                <IoIosAdd size={26} />
-                <p>Add New Employee</p>
+                <div className="sm:flex hidden">
+                  <IoIosAdd size={26} />
+                </div>
+                <p>
+                  Add <span className="sm:flex hidden">New</span> Employee
+                </p>
               </>
             )}
           </button>
