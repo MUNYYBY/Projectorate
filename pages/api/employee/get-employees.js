@@ -7,7 +7,20 @@ export default async function handler(req, res) {
   console.log("Get Employee End-point hit!");
   try {
     const data = await PrismaDB.employee.findMany({
+      where: {
+        user: {
+          is: {
+            status: "Active",
+          },
+        },
+      },
       include: {
+        user: {
+          select: {
+            id: true,
+            status: true,
+          },
+        },
         userProjects: {
           select: {
             project_id: true,

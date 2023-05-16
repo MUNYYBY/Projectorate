@@ -59,9 +59,12 @@ export default function Auth() {
         });
         router.replace("/app");
       } else {
+        setLoading(false);
         setErrorMessage(
           signInResponse.error == "Email or Password Incorrect"
             ? "Email or Password Incorrect"
+            : signInResponse.error == "Your credentials has been revoked"
+            ? "Your credentials has been revoked"
             : "Some error occoured!"
         );
         setNotifications({
@@ -71,7 +74,6 @@ export default function Auth() {
             "Please type in correct credentials before you try to login!",
           type: "error",
         });
-        setLoading(false);
       }
       getSessionFromAuth();
     }
@@ -79,6 +81,7 @@ export default function Auth() {
   useEffect(() => {
     if (isClicked) {
       LoginApp();
+      setIsClicked(false);
     }
   }, [isClicked]);
   return (

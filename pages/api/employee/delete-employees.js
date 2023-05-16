@@ -21,9 +21,12 @@ export default async function handler(req, res) {
       },
     });
     const deleteUser = await PrismaDB.user
-      .delete({
+      .update({
         where: {
           id: parseInt(deleteEmployee.id),
+        },
+        data: {
+          status: "Block",
         },
       })
       .then(async (data) => {

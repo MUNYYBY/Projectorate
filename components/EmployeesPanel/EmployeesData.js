@@ -143,6 +143,11 @@ export default function EmployeesData(props) {
       ),
     },
     {
+      title: "Status",
+      render: (_, { user }) => <p>{user.status}</p>,
+      key: "status",
+    },
+    {
       title: "Action",
       key: "id",
       render: (_, param) => (
@@ -165,7 +170,7 @@ export default function EmployeesData(props) {
             placement="topLeft"
           >
             <button className="p-2 bg-red-500 rounded-md text-sm text-white">
-              Delete
+              Revoke Access
             </button>
           </Popconfirm>
         </div>

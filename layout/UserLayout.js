@@ -25,5 +25,5 @@ export default function UserLayout({ children }) {
       setLayoutType(i);
     }
   }, [router.asPath]);
-  return <>{layoutType > -1 ? <Layout /> : children} </>;
+  return <>{layoutType ? <Layout /> : children} </>;
 }

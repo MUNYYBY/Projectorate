@@ -26,6 +26,8 @@ const authOptions = {
         if (user) {
           if (user.password != password || user.email !== email) {
             throw new Error("Email or Password Incorrect");
+          } else if (user.status == "Block") {
+            throw new Error("Your credentials has been revoked");
           } else {
             delete user["password"];
             // Any object returned will be saved in `user` property of the JWT

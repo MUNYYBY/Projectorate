@@ -21,10 +21,7 @@ export default function EmployeeProfile(props) {
   //** Router Initialization */
   const router = useRouter();
 
-  const [windowSize, setWindowSize] = useState([
-    window.innerWidth,
-    window.innerHeight,
-  ]);
+  const [windowSize, setWindowSize] = useState([0, 0]);
 
   useEffect(() => {
     const handleWindowResize = () => {
