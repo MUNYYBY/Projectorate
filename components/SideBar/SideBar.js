@@ -51,7 +51,7 @@ export default function SideBar() {
         isEmployeeProfile={isEmployeeProfile}
         setIsEmployeeProfile={setIsEmployeeProfile}
       />
-      <nav className="fixed bg-gray-900 h-screen w-[4.5rem] flex flex-col items-center justify-between">
+      <nav className="fixed bg-gray-900 h-full w-[4.5rem] flex flex-col items-center justify-between">
         <div className="primary-nav flex flex-col items-center">
           <Link href={NAV_URL}>
             <div className="Projectorate">
