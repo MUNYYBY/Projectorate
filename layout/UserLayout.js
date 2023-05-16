@@ -21,12 +21,8 @@ export default function UserLayout({ children }) {
 
   useEffect(() => {
     if (router.asPath) {
-      const i = Users.findIndex((route) => router.asPath.includes("app/u"));
-      if (i > -1) {
-        setLayoutType(i);
-      } else {
-        setLayoutType(-1);
-      }
+      const i = router.asPath.includes("app/u");
+      setLayoutType(i);
     }
   }, [router.asPath]);
   return <>{layoutType > -1 ? <Layout /> : children} </>;

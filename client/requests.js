@@ -116,6 +116,16 @@ export async function getAllEmployeesAnalytics() {
     );
   }
 }
+export async function GetAnalytics() {
+  try {
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL + "/analytics/analytics"
+    );
+    return res.data;
+  } catch (error) {
+    console.log("Error While getting analytics at front-end: ", error);
+  }
+}
 export async function getSeniorEmployeesAnalytics() {
   try {
     const res = await axios.get(

@@ -137,7 +137,7 @@ export default function SideBar() {
             }
             title="Settings"
             trigger="click"
-            placement="topRight"
+            placement="rightBottom"
             open={settingsOpen}
             onOpenChange={handleSettingsOpenChange}
           >
@@ -170,7 +170,11 @@ const SideBarIcon = ({
           {icon}
         </div>
       ) : (
-        <Tooltip placement={placement} title={tooltip} mouseEnterDelay={0.05}>
+        <Tooltip
+          placement={tooltip == "Settings" ? "top" : placement}
+          title={tooltip}
+          mouseEnterDelay={0.05}
+        >
           {type == "nav" ? (
             <div className="sidebar-icon group">{icon}</div>
           ) : type == "logo" ? (

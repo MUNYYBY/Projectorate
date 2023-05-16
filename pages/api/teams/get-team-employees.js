@@ -56,6 +56,14 @@ export default async function handler(req, res) {
                 where: {
                   id: { in: response },
                 },
+                include: {
+                  Designation: {
+                    select: {
+                      id: true,
+                      title: true,
+                    },
+                  },
+                },
               })
               .then((result) => {
                 if (result) {

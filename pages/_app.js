@@ -6,6 +6,7 @@ import { UserDataContextProvider } from "../context/userDataContext";
 import { useState } from "react";
 import { ConfigProvider, theme, Button, Card } from "antd";
 import UserLayout from "../layout/UserLayout";
+import { RouteContextProvider } from "../context/routesContext";
 
 function MyApp({ Component, pageProps, session }) {
   //for antd dark mode
@@ -33,9 +34,11 @@ function MyApp({ Component, pageProps, session }) {
         />
         <SessionProvider session={session}>
           <UserDataContextProvider>
-            <NotificationsContextProvider>
-              {getLayout(<Component {...pageProps} />)}
-            </NotificationsContextProvider>
+            <RouteContextProvider>
+              <NotificationsContextProvider>
+                {getLayout(<Component {...pageProps} />)}
+              </NotificationsContextProvider>
+            </RouteContextProvider>
           </UserDataContextProvider>
         </SessionProvider>
       </ConfigProvider>

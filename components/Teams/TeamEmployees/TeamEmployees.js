@@ -67,7 +67,11 @@ export default function TeamEmployees({
     {
       title: "Designation",
       dataIndex: "designation",
-      key: "designation",
+      render: (_, { Designation }) => (
+        <div>
+          <h1>{Designation.title}</h1>
+        </div>
+      ),
     },
     // {
     //   title: "Role",

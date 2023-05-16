@@ -29,7 +29,6 @@ export default function SubPanel() {
   const fetchAllProjects = async () => {
     setLoading(true);
     await getAllProjects().then((res) => {
-      console.log("Projects:", res);
       if (res) {
         setProjects(res.data);
         setLoading(false);
@@ -59,18 +58,18 @@ export default function SubPanel() {
       </div>
       {/* fix inner div to scroll */}
       <div className="">
-        <div className="sub-panels-tabs flex flex-col my-3">
+        {/* <div className="sub-panels-tabs flex flex-col my-3">
           <ProjectTab icon={<FiHome size={16} />} title="Project Home" />
           <ProjectTab
             icon={<AiOutlineFileDone size={16} />}
             title="Completed"
           />
           <ProjectTab icon={<RxLapTimer size={16} />} title="In-progress" />
-        </div>
-        <div className="px-2 mx-4 mb-4">
+        </div> */}
+        {/* <div className="px-2 mx-4 mb-4">
           <TabDevider width="w-full" />
-        </div>
-        <div className="Projects-tab-container">
+        </div> */}
+        <div className="Projects-tab-container mt-4">
           {loading && projects.length == 0 ? (
             <div className="w-full flex flex-col justify-center items-center">
               <svg
