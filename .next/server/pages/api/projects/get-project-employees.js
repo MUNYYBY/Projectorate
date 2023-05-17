@@ -1,137 +1,45 @@
 "use strict";
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
 (() => {
 var exports = {};
-exports.id = 7883;
-exports.ids = [7883];
+exports.id = "pages/api/projects/get-project-employees";
+exports.ids = ["pages/api/projects/get-project-employees"];
 exports.modules = {
 
-/***/ 3524:
+/***/ "@prisma/client":
+/*!*********************************!*\
+  !*** external "@prisma/client" ***!
+  \*********************************/
 /***/ ((module) => {
 
 module.exports = require("@prisma/client");
 
 /***/ }),
 
-/***/ 36:
+/***/ "(api)/./lib/prisma.js":
+/*!***********************!*\
+  !*** ./lib/prisma.js ***!
+  \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3524);
-/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_prisma_client__WEBPACK_IMPORTED_MODULE_0__);
-// lib/prisma.ts
-
-let PrismaDB;
-if (true) {
-    PrismaDB = new _prisma_client__WEBPACK_IMPORTED_MODULE_0__.PrismaClient();
-} else {}
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PrismaDB);
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @prisma/client */ \"@prisma/client\");\n/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_prisma_client__WEBPACK_IMPORTED_MODULE_0__);\n// lib/prisma.ts\n\nlet PrismaDB;\nif (false) {} else {\n    if (!global.prisma) {\n        global.prisma = new _prisma_client__WEBPACK_IMPORTED_MODULE_0__.PrismaClient();\n    }\n    PrismaDB = global.prisma;\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PrismaDB);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwaSkvLi9saWIvcHJpc21hLmpzLmpzIiwibWFwcGluZ3MiOiI7Ozs7OztBQUFBLGdCQUFnQjtBQUNzQztBQUV0RCxJQUFJRSxRQUFRO0FBRVosSUFBSUMsS0FBcUMsRUFBRSxFQUUxQyxNQUFNO0lBQ0wsSUFBSSxDQUFDQyxNQUFNLENBQUNKLE1BQU0sRUFBRTtRQUNsQkksTUFBTSxDQUFDSixNQUFNLEdBQUcsSUFBSUMsd0RBQVksRUFBRSxDQUFDO0lBQ3JDLENBQUM7SUFDREMsUUFBUSxHQUFHRSxNQUFNLENBQUNKLE1BQU0sQ0FBQztBQUMzQixDQUFDO0FBRUQsaUVBQWVFLFFBQVEsRUFBQyIsInNvdXJjZXMiOlsid2VicGFjazovL3Byb2plY3RvcmF0ZS8uL2xpYi9wcmlzbWEuanM/NzUxNSJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBsaWIvcHJpc21hLnRzXHJcbmltcG9ydCB7IHByaXNtYSwgUHJpc21hQ2xpZW50IH0gZnJvbSBcIkBwcmlzbWEvY2xpZW50XCI7XHJcblxyXG5sZXQgUHJpc21hREI7XHJcblxyXG5pZiAocHJvY2Vzcy5lbnYuTk9ERV9FTlYgPT09IFwicHJvZHVjdGlvblwiKSB7XHJcbiAgUHJpc21hREIgPSBuZXcgUHJpc21hQ2xpZW50KCk7XHJcbn0gZWxzZSB7XHJcbiAgaWYgKCFnbG9iYWwucHJpc21hKSB7XHJcbiAgICBnbG9iYWwucHJpc21hID0gbmV3IFByaXNtYUNsaWVudCgpO1xyXG4gIH1cclxuICBQcmlzbWFEQiA9IGdsb2JhbC5wcmlzbWE7XHJcbn1cclxuXHJcbmV4cG9ydCBkZWZhdWx0IFByaXNtYURCO1xyXG4iXSwibmFtZXMiOlsicHJpc21hIiwiUHJpc21hQ2xpZW50IiwiUHJpc21hREIiLCJwcm9jZXNzIiwiZ2xvYmFsIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(api)/./lib/prisma.js\n");
 
 /***/ }),
 
-/***/ 257:
+/***/ "(api)/./pages/api/projects/get-project-employees.js":
+/*!*****************************************************!*\
+  !*** ./pages/api/projects/get-project-employees.js ***!
+  \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ handler)
-/* harmony export */ });
-/* harmony import */ var _lib_prisma__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(36);
-
-async function handler(req, res) {
-    if (req.method !== "GET") {
-        return res.status(405).json({
-            message: "Method not allowed"
-        });
-    }
-    console.log("Get Employee for project End-point hit!");
-    const { projectId  } = req.query;
-    if (!projectId) {
-        return res.status(500).json({
-            message: "ProjectId is required!"
-        });
-    }
-    try {
-        const project = _lib_prisma__WEBPACK_IMPORTED_MODULE_0__/* ["default"].project.findUnique */ .Z.project.findUnique({
-            where: {
-                id: parseInt(projectId)
-            }
-        }).then((result)=>{
-            if (!result) {
-                res.status(404).json({
-                    error: 404,
-                    type: "Project",
-                    message: "Project does not exist!"
-                });
-            }
-        }).catch((err)=>{
-            console.log(err);
-        });
-        const userProjects = _lib_prisma__WEBPACK_IMPORTED_MODULE_0__/* ["default"].userProjects.findMany */ .Z.userProjects.findMany({
-            where: {
-                project_id: parseInt(projectId)
-            },
-            select: {
-                employee_id: true
-            }
-        }).then(async (result)=>{
-            if (!result) {
-                res.status(404).json({
-                    error: 404,
-                    type: "User Project",
-                    message: "Project does not exist!"
-                });
-            } else {
-                let response = [];
-                result.map((item)=>{
-                    response.push(item.employee_id);
-                });
-                await _lib_prisma__WEBPACK_IMPORTED_MODULE_0__/* ["default"].employee.findMany */ .Z.employee.findMany({
-                    where: {
-                        id: {
-                            in: response
-                        },
-                        user: {
-                            is: {
-                                status: "Active"
-                            }
-                        }
-                    },
-                    include: {
-                        Designation: {
-                            select: {
-                                id: true,
-                                title: true
-                            }
-                        }
-                    }
-                }).then((result)=>{
-                    if (result) {
-                        res.status(200).json({
-                            result
-                        });
-                    } else {
-                        res.status(404).json({
-                            error: 404,
-                            type: "Employees",
-                            message: "Employees not found in project!"
-                        });
-                    }
-                });
-            }
-        }).catch((err)=>{
-            console.log(err);
-        });
-    } catch (error) {
-        console.log("Error while getting employees for project at backend: ", error);
-        return res.status(422).json({
-            error: "Error while getting employees for project at backend: "
-        });
-    }
-}
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ handler)\n/* harmony export */ });\n/* harmony import */ var _lib_prisma__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../lib/prisma */ \"(api)/./lib/prisma.js\");\n\nasync function handler(req, res) {\n    if (req.method !== \"GET\") {\n        return res.status(405).json({\n            message: \"Method not allowed\"\n        });\n    }\n    console.log(\"Get Employee for project End-point hit!\");\n    const { projectId  } = req.query;\n    if (!projectId) {\n        return res.status(500).json({\n            message: \"ProjectId is required!\"\n        });\n    }\n    try {\n        const project = _lib_prisma__WEBPACK_IMPORTED_MODULE_0__[\"default\"].project.findUnique({\n            where: {\n                id: parseInt(projectId)\n            }\n        }).then((result)=>{\n            if (!result) {\n                res.status(404).json({\n                    error: 404,\n                    type: \"Project\",\n                    message: \"Project does not exist!\"\n                });\n            }\n        }).catch((err)=>{\n            console.log(err);\n        });\n        const userProjects = _lib_prisma__WEBPACK_IMPORTED_MODULE_0__[\"default\"].userProjects.findMany({\n            where: {\n                project_id: parseInt(projectId)\n            },\n            select: {\n                employee_id: true\n            }\n        }).then(async (result)=>{\n            if (!result) {\n                res.status(404).json({\n                    error: 404,\n                    type: \"User Project\",\n                    message: \"Project does not exist!\"\n                });\n            } else {\n                let response = [];\n                result.map((item)=>{\n                    response.push(item.employee_id);\n                });\n                await _lib_prisma__WEBPACK_IMPORTED_MODULE_0__[\"default\"].employee.findMany({\n                    where: {\n                        id: {\n                            in: response\n                        },\n                        user: {\n                            is: {\n                                status: \"Active\"\n                            }\n                        }\n                    },\n                    include: {\n                        Designation: {\n                            select: {\n                                id: true,\n                                title: true\n                            }\n                        }\n                    }\n                }).then((result)=>{\n                    if (result) {\n                        res.status(200).json({\n                            result\n                        });\n                    } else {\n                        res.status(404).json({\n                            error: 404,\n                            type: \"Employees\",\n                            message: \"Employees not found in project!\"\n                        });\n                    }\n                });\n            }\n        }).catch((err)=>{\n            console.log(err);\n        });\n    } catch (error) {\n        console.log(\"Error while getting employees for project at backend: \", error);\n        return res.status(422).json({\n            error: \"Error while getting employees for project at backend: \"\n        });\n    }\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwaSkvLi9wYWdlcy9hcGkvcHJvamVjdHMvZ2V0LXByb2plY3QtZW1wbG95ZWVzLmpzLmpzIiwibWFwcGluZ3MiOiI7Ozs7O0FBQTJDO0FBRTVCLGVBQWVDLE9BQU8sQ0FBQ0MsR0FBRyxFQUFFQyxHQUFHLEVBQUU7SUFDOUMsSUFBSUQsR0FBRyxDQUFDRSxNQUFNLEtBQUssS0FBSyxFQUFFO1FBQ3hCLE9BQU9ELEdBQUcsQ0FBQ0UsTUFBTSxDQUFDLEdBQUcsQ0FBQyxDQUFDQyxJQUFJLENBQUM7WUFBRUMsT0FBTyxFQUFFLG9CQUFvQjtTQUFFLENBQUMsQ0FBQztJQUNqRSxDQUFDO0lBQ0RDLE9BQU8sQ0FBQ0MsR0FBRyxDQUFDLHlDQUF5QyxDQUFDLENBQUM7SUFDdkQsTUFBTSxFQUFFQyxTQUFTLEdBQUUsR0FBR1IsR0FBRyxDQUFDUyxLQUFLO0lBQy9CLElBQUksQ0FBQ0QsU0FBUyxFQUFFO1FBQ2QsT0FBT1AsR0FBRyxDQUFDRSxNQUFNLENBQUMsR0FBRyxDQUFDLENBQUNDLElBQUksQ0FBQztZQUFFQyxPQUFPLEVBQUUsd0JBQXdCO1NBQUUsQ0FBQyxDQUFDO0lBQ3JFLENBQUM7SUFDRCxJQUFJO1FBQ0YsTUFBTUssT0FBTyxHQUFHWixzRUFDSCxDQUFDO1lBQ1ZjLEtBQUssRUFBRTtnQkFDTEMsRUFBRSxFQUFFQyxRQUFRLENBQUNOLFNBQVMsQ0FBQzthQUN4QjtTQUNGLENBQUMsQ0FDRE8sSUFBSSxDQUFDLENBQUNDLE1BQU0sR0FBSztZQUNoQixJQUFJLENBQUNBLE1BQU0sRUFBRTtnQkFDWGYsR0FBRyxDQUFDRSxNQUFNLENBQUMsR0FBRyxDQUFDLENBQUNDLElBQUksQ0FBQztvQkFDbkJhLEtBQUssRUFBRSxHQUFHO29CQUNWQyxJQUFJLEVBQUUsU0FBUztvQkFDZmIsT0FBTyxFQUFFLHlCQUF5QjtpQkFDbkMsQ0FBQyxDQUFDO1lBQ0wsQ0FBQztRQUNILENBQUMsQ0FBQyxDQUNEYyxLQUFLLENBQUMsQ0FBQ0MsR0FBRyxHQUFLO1lBQ2RkLE9BQU8sQ0FBQ0MsR0FBRyxDQUFDYSxHQUFHLENBQUMsQ0FBQztRQUNuQixDQUFDLENBQUM7UUFDSixNQUFNQyxZQUFZLEdBQUd2Qix5RUFDVixDQUFDO1lBQ1JjLEtBQUssRUFBRTtnQkFDTFcsVUFBVSxFQUFFVCxRQUFRLENBQUNOLFNBQVMsQ0FBQzthQUNoQztZQUNEZ0IsTUFBTSxFQUFFO2dCQUNOQyxXQUFXLEVBQUUsSUFBSTthQUNsQjtTQUNGLENBQUMsQ0FDRFYsSUFBSSxDQUFDLE9BQU9DLE1BQU0sR0FBSztZQUN0QixJQUFJLENBQUNBLE1BQU0sRUFBRTtnQkFDWGYsR0FBRyxDQUFDRSxNQUFNLENBQUMsR0FBRyxDQUFDLENBQUNDLElBQUksQ0FBQztvQkFDbkJhLEtBQUssRUFBRSxHQUFHO29CQUNWQyxJQUFJLEVBQUUsY0FBYztvQkFDcEJiLE9BQU8sRUFBRSx5QkFBeUI7aUJBQ25DLENBQUMsQ0FBQztZQUNMLE9BQU87Z0JBQ0wsSUFBSXFCLFFBQVEsR0FBRyxFQUFFO2dCQUNqQlYsTUFBTSxDQUFDVyxHQUFHLENBQUMsQ0FBQ0MsSUFBSSxHQUFLO29CQUNuQkYsUUFBUSxDQUFDRyxJQUFJLENBQUNELElBQUksQ0FBQ0gsV0FBVyxDQUFDLENBQUM7Z0JBQ2xDLENBQUMsQ0FBQyxDQUFDO2dCQUNILE1BQU0zQixxRUFDSyxDQUFDO29CQUNSYyxLQUFLLEVBQUU7d0JBQ0xDLEVBQUUsRUFBRTs0QkFBRWtCLEVBQUUsRUFBRUwsUUFBUTt5QkFBRTt3QkFDcEJNLElBQUksRUFBRTs0QkFDSkMsRUFBRSxFQUFFO2dDQUNGOUIsTUFBTSxFQUFFLFFBQVE7NkJBQ2pCO3lCQUNGO3FCQUNGO29CQUNEK0IsT0FBTyxFQUFFO3dCQUNQQyxXQUFXLEVBQUU7NEJBQ1hYLE1BQU0sRUFBRTtnQ0FDTlgsRUFBRSxFQUFFLElBQUk7Z0NBQ1J1QixLQUFLLEVBQUUsSUFBSTs2QkFDWjt5QkFDRjtxQkFDRjtpQkFDRixDQUFDLENBQ0RyQixJQUFJLENBQUMsQ0FBQ0MsTUFBTSxHQUFLO29CQUNoQixJQUFJQSxNQUFNLEVBQUU7d0JBQ1ZmLEdBQUcsQ0FBQ0UsTUFBTSxDQUFDLEdBQUcsQ0FBQyxDQUFDQyxJQUFJLENBQUM7NEJBQUVZLE1BQU07eUJBQUUsQ0FBQyxDQUFDO29CQUNuQyxPQUFPO3dCQUNMZixHQUFHLENBQUNFLE1BQU0sQ0FBQyxHQUFHLENBQUMsQ0FBQ0MsSUFBSSxDQUFDOzRCQUNuQmEsS0FBSyxFQUFFLEdBQUc7NEJBQ1ZDLElBQUksRUFBRSxXQUFXOzRCQUNqQmIsT0FBTyxFQUFFLGlDQUFpQzt5QkFDM0MsQ0FBQyxDQUFDO29CQUNMLENBQUM7Z0JBQ0gsQ0FBQyxDQUFDLENBQUM7WUFDUCxDQUFDO1FBQ0gsQ0FBQyxDQUFDLENBQ0RjLEtBQUssQ0FBQyxDQUFDQyxHQUFHLEdBQUs7WUFDZGQsT0FBTyxDQUFDQyxHQUFHLENBQUNhLEdBQUcsQ0FBQyxDQUFDO1FBQ25CLENBQUMsQ0FBQztJQUNOLEVBQUUsT0FBT0gsS0FBSyxFQUFFO1FBQ2RYLE9BQU8sQ0FBQ0MsR0FBRyxDQUNULHdEQUF3RCxFQUN4RFUsS0FBSyxDQUNOLENBQUM7UUFDRixPQUFPaEIsR0FBRyxDQUFDRSxNQUFNLENBQUMsR0FBRyxDQUFDLENBQUNDLElBQUksQ0FBQztZQUMxQmEsS0FBSyxFQUFFLHdEQUF3RDtTQUNoRSxDQUFDLENBQUM7SUFDTCxDQUFDO0FBQ0gsQ0FBQyIsInNvdXJjZXMiOlsid2VicGFjazovL3Byb2plY3RvcmF0ZS8uL3BhZ2VzL2FwaS9wcm9qZWN0cy9nZXQtcHJvamVjdC1lbXBsb3llZXMuanM/NzUyZiJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUHJpc21hREIgZnJvbSBcIi4uLy4uLy4uL2xpYi9wcmlzbWFcIjtcclxuXHJcbmV4cG9ydCBkZWZhdWx0IGFzeW5jIGZ1bmN0aW9uIGhhbmRsZXIocmVxLCByZXMpIHtcclxuICBpZiAocmVxLm1ldGhvZCAhPT0gXCJHRVRcIikge1xyXG4gICAgcmV0dXJuIHJlcy5zdGF0dXMoNDA1KS5qc29uKHsgbWVzc2FnZTogXCJNZXRob2Qgbm90IGFsbG93ZWRcIiB9KTtcclxuICB9XHJcbiAgY29uc29sZS5sb2coXCJHZXQgRW1wbG95ZWUgZm9yIHByb2plY3QgRW5kLXBvaW50IGhpdCFcIik7XHJcbiAgY29uc3QgeyBwcm9qZWN0SWQgfSA9IHJlcS5xdWVyeTtcclxuICBpZiAoIXByb2plY3RJZCkge1xyXG4gICAgcmV0dXJuIHJlcy5zdGF0dXMoNTAwKS5qc29uKHsgbWVzc2FnZTogXCJQcm9qZWN0SWQgaXMgcmVxdWlyZWQhXCIgfSk7XHJcbiAgfVxyXG4gIHRyeSB7XHJcbiAgICBjb25zdCBwcm9qZWN0ID0gUHJpc21hREIucHJvamVjdFxyXG4gICAgICAuZmluZFVuaXF1ZSh7XHJcbiAgICAgICAgd2hlcmU6IHtcclxuICAgICAgICAgIGlkOiBwYXJzZUludChwcm9qZWN0SWQpLFxyXG4gICAgICAgIH0sXHJcbiAgICAgIH0pXHJcbiAgICAgIC50aGVuKChyZXN1bHQpID0+IHtcclxuICAgICAgICBpZiAoIXJlc3VsdCkge1xyXG4gICAgICAgICAgcmVzLnN0YXR1cyg0MDQpLmpzb24oe1xyXG4gICAgICAgICAgICBlcnJvcjogNDA0LFxyXG4gICAgICAgICAgICB0eXBlOiBcIlByb2plY3RcIixcclxuICAgICAgICAgICAgbWVzc2FnZTogXCJQcm9qZWN0IGRvZXMgbm90IGV4aXN0IVwiLFxyXG4gICAgICAgICAgfSk7XHJcbiAgICAgICAgfVxyXG4gICAgICB9KVxyXG4gICAgICAuY2F0Y2goKGVycikgPT4ge1xyXG4gICAgICAgIGNvbnNvbGUubG9nKGVycik7XHJcbiAgICAgIH0pO1xyXG4gICAgY29uc3QgdXNlclByb2plY3RzID0gUHJpc21hREIudXNlclByb2plY3RzXHJcbiAgICAgIC5maW5kTWFueSh7XHJcbiAgICAgICAgd2hlcmU6IHtcclxuICAgICAgICAgIHByb2plY3RfaWQ6IHBhcnNlSW50KHByb2plY3RJZCksXHJcbiAgICAgICAgfSxcclxuICAgICAgICBzZWxlY3Q6IHtcclxuICAgICAgICAgIGVtcGxveWVlX2lkOiB0cnVlLFxyXG4gICAgICAgIH0sXHJcbiAgICAgIH0pXHJcbiAgICAgIC50aGVuKGFzeW5jIChyZXN1bHQpID0+IHtcclxuICAgICAgICBpZiAoIXJlc3VsdCkge1xyXG4gICAgICAgICAgcmVzLnN0YXR1cyg0MDQpLmpzb24oe1xyXG4gICAgICAgICAgICBlcnJvcjogNDA0LFxyXG4gICAgICAgICAgICB0eXBlOiBcIlVzZXIgUHJvamVjdFwiLFxyXG4gICAgICAgICAgICBtZXNzYWdlOiBcIlByb2plY3QgZG9lcyBub3QgZXhpc3QhXCIsXHJcbiAgICAgICAgICB9KTtcclxuICAgICAgICB9IGVsc2Uge1xyXG4gICAgICAgICAgbGV0IHJlc3BvbnNlID0gW107XHJcbiAgICAgICAgICByZXN1bHQubWFwKChpdGVtKSA9PiB7XHJcbiAgICAgICAgICAgIHJlc3BvbnNlLnB1c2goaXRlbS5lbXBsb3llZV9pZCk7XHJcbiAgICAgICAgICB9KTtcclxuICAgICAgICAgIGF3YWl0IFByaXNtYURCLmVtcGxveWVlXHJcbiAgICAgICAgICAgIC5maW5kTWFueSh7XHJcbiAgICAgICAgICAgICAgd2hlcmU6IHtcclxuICAgICAgICAgICAgICAgIGlkOiB7IGluOiByZXNwb25zZSB9LFxyXG4gICAgICAgICAgICAgICAgdXNlcjoge1xyXG4gICAgICAgICAgICAgICAgICBpczoge1xyXG4gICAgICAgICAgICAgICAgICAgIHN0YXR1czogXCJBY3RpdmVcIixcclxuICAgICAgICAgICAgICAgICAgfSxcclxuICAgICAgICAgICAgICAgIH0sXHJcbiAgICAgICAgICAgICAgfSxcclxuICAgICAgICAgICAgICBpbmNsdWRlOiB7XHJcbiAgICAgICAgICAgICAgICBEZXNpZ25hdGlvbjoge1xyXG4gICAgICAgICAgICAgICAgICBzZWxlY3Q6IHtcclxuICAgICAgICAgICAgICAgICAgICBpZDogdHJ1ZSxcclxuICAgICAgICAgICAgICAgICAgICB0aXRsZTogdHJ1ZSxcclxuICAgICAgICAgICAgICAgICAgfSxcclxuICAgICAgICAgICAgICAgIH0sXHJcbiAgICAgICAgICAgICAgfSxcclxuICAgICAgICAgICAgfSlcclxuICAgICAgICAgICAgLnRoZW4oKHJlc3VsdCkgPT4ge1xyXG4gICAgICAgICAgICAgIGlmIChyZXN1bHQpIHtcclxuICAgICAgICAgICAgICAgIHJlcy5zdGF0dXMoMjAwKS5qc29uKHsgcmVzdWx0IH0pO1xyXG4gICAgICAgICAgICAgIH0gZWxzZSB7XHJcbiAgICAgICAgICAgICAgICByZXMuc3RhdHVzKDQwNCkuanNvbih7XHJcbiAgICAgICAgICAgICAgICAgIGVycm9yOiA0MDQsXHJcbiAgICAgICAgICAgICAgICAgIHR5cGU6IFwiRW1wbG95ZWVzXCIsXHJcbiAgICAgICAgICAgICAgICAgIG1lc3NhZ2U6IFwiRW1wbG95ZWVzIG5vdCBmb3VuZCBpbiBwcm9qZWN0IVwiLFxyXG4gICAgICAgICAgICAgICAgfSk7XHJcbiAgICAgICAgICAgICAgfVxyXG4gICAgICAgICAgICB9KTtcclxuICAgICAgICB9XHJcbiAgICAgIH0pXHJcbiAgICAgIC5jYXRjaCgoZXJyKSA9PiB7XHJcbiAgICAgICAgY29uc29sZS5sb2coZXJyKTtcclxuICAgICAgfSk7XHJcbiAgfSBjYXRjaCAoZXJyb3IpIHtcclxuICAgIGNvbnNvbGUubG9nKFxyXG4gICAgICBcIkVycm9yIHdoaWxlIGdldHRpbmcgZW1wbG95ZWVzIGZvciBwcm9qZWN0IGF0IGJhY2tlbmQ6IFwiLFxyXG4gICAgICBlcnJvclxyXG4gICAgKTtcclxuICAgIHJldHVybiByZXMuc3RhdHVzKDQyMikuanNvbih7XHJcbiAgICAgIGVycm9yOiBcIkVycm9yIHdoaWxlIGdldHRpbmcgZW1wbG95ZWVzIGZvciBwcm9qZWN0IGF0IGJhY2tlbmQ6IFwiLFxyXG4gICAgfSk7XHJcbiAgfVxyXG59XHJcbiJdLCJuYW1lcyI6WyJQcmlzbWFEQiIsImhhbmRsZXIiLCJyZXEiLCJyZXMiLCJtZXRob2QiLCJzdGF0dXMiLCJqc29uIiwibWVzc2FnZSIsImNvbnNvbGUiLCJsb2ciLCJwcm9qZWN0SWQiLCJxdWVyeSIsInByb2plY3QiLCJmaW5kVW5pcXVlIiwid2hlcmUiLCJpZCIsInBhcnNlSW50IiwidGhlbiIsInJlc3VsdCIsImVycm9yIiwidHlwZSIsImNhdGNoIiwiZXJyIiwidXNlclByb2plY3RzIiwiZmluZE1hbnkiLCJwcm9qZWN0X2lkIiwic2VsZWN0IiwiZW1wbG95ZWVfaWQiLCJyZXNwb25zZSIsIm1hcCIsIml0ZW0iLCJwdXNoIiwiZW1wbG95ZWUiLCJpbiIsInVzZXIiLCJpcyIsImluY2x1ZGUiLCJEZXNpZ25hdGlvbiIsInRpdGxlIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(api)/./pages/api/projects/get-project-employees.js\n");
 
 /***/ })
 
@@ -142,7 +50,7 @@ async function handler(req, res) {
 var __webpack_require__ = require("../../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = (__webpack_exec__(257));
+var __webpack_exports__ = (__webpack_exec__("(api)/./pages/api/projects/get-project-employees.js"));
 module.exports = __webpack_exports__;
 
 })();
