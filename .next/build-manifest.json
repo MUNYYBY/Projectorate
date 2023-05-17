@@ -25,10 +25,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/app/u/employees": [
+    "/app/u/projects": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/app/u/employees.js"
+      "static/chunks/pages/app/u/projects.js"
     ],
     "/auth": [
       "static/chunks/webpack.js",

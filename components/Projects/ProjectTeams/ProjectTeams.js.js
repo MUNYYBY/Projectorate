@@ -60,7 +60,6 @@ export default function ProjectTeams({
     {
       title: "Action",
       key: "id",
-      fixed: "right",
       width: 100,
       render: (_, { id }) => (
         <AuthorityCheck grantPermissionFor="manage_projects">

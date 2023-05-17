@@ -34,7 +34,7 @@ export default function HorizontalLayout({
     } else {
       setIsLgWidth(false);
     }
-  }, [windowSize]);
+  }, [windowSize[0]]);
   return (
     <>
       {isLgWidth ? (

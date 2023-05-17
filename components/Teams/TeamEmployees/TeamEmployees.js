@@ -86,7 +86,6 @@ export default function TeamEmployees({
     {
       title: "Action",
       key: "id",
-      fixed: "right",
       width: 100,
       render: (_, { id }) => (
         <AuthorityCheck grantPermissionFor="manage_teams">

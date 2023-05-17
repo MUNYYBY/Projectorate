@@ -20,13 +20,9 @@ export default function EmployeesContainerSkelton() {
         </div>
       </div>
       <div
-        className="Employee-work-info-tag bg-gray-600 rounded-2xl"
+        className="Employee-work-info-tag bg-gray-600 rounded-2xl sm:flex hidden"
         style={{ height: 30, width: 200 }}
       ></div>
-      <div className="Employee-tickets-stat flex flex-row justify-center items-center">
-        {/* <HiOutlineTicket size={32} className="opacity-80 mr-2" /> */}
-        <p className="text-xl text-gray-600">xx / xx</p>
-      </div>
     </div>
   );
 }
