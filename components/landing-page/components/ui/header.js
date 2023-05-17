@@ -36,7 +36,7 @@ export default function Header() {
             {/* Desktop sign in links */}
             <ul className="flex grow justify-end flex-wrap items-center">
               <li>
-                <Link href="/signup" className="text-gray-100 p-4">
+                <Link href="/auth" className="text-gray-100 p-4 cursor-pointer">
                   <div className="flex justify-center items-center">
                     <h1 className="h4 text-gray-100">Login</h1>
                     <svg

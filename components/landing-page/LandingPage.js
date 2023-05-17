@@ -35,7 +35,6 @@ export default function LandingPage() {
             <FeaturesBlocks />
             <Testimonials />
             <Newsletter />
-            <Banner />
           </main>
           <Footer />
         </div>

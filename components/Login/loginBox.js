@@ -1,5 +1,19 @@
 import { useState, useEffect } from "react";
 import { RiErrorWarningLine } from "react-icons/ri";
+import {
+  AutoComplete,
+  Button,
+  Cascader,
+  Checkbox,
+  Col,
+  DatePicker,
+  Form,
+  Input,
+  InputNumber,
+  Row,
+  Select,
+  message,
+} from "antd";
 export default function LoginBox({
   setIsClicked,
   setEmail,
@@ -11,10 +25,14 @@ export default function LoginBox({
     "h-12 bg-gray-700 rounded-sm px-3 "
   );
 
-  const handleClick = (e) => {
-    e.preventDefault();
+  const [form] = Form.useForm();
+
+  const onFinish = (values) => {
     setIsClicked(true);
+    setEmail(values.email);
+    setPassword(values.password);
   };
+
   useEffect(() => {
     if (errorMessage) {
       setInputClassString(inputClassString + "border-red-500 border-2");
@@ -24,8 +42,8 @@ export default function LoginBox({
   }, [errorMessage]);
   return (
     <div
-      className="bg-gray-900 rounded-lg shadow-xl p-9 border-black"
-      style={{ height: "34rem", width: "28rem" }}
+      className="bg-gray-900 rounded-md shadow-xl m-2 p-4 md:p-9 border-black flex flex-col justify-center items-center"
+      style={{ height: "34rem" }}
     >
       <div className="Input-container flex flex-col justify-center items-center">
         <div className="flex flex-col justify-center items-center mb-7">
@@ -34,7 +52,83 @@ export default function LoginBox({
             Please enter your valid Credentials!
           </p>
         </div>
-        <form>
+        <Form
+          form={form}
+          name="signin"
+          onFinish={onFinish}
+          style={{
+            width: "100%",
+          }}
+          scrollToFirstError
+          disabled={loading}
+          layout="vertical"
+        >
+          <Form.Item
+            name="email"
+            label="E-mail"
+            rules={[
+              {
+                type: "email",
+                message: "The input is not valid E-mail!",
+              },
+              {
+                required: true,
+                message: "Please input your E-mail!",
+              },
+              {
+                whitespace: true,
+                message: "Must be atleast one non-space character!",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name="password"
+            label="Password"
+            rules={[
+              {
+                required: true,
+                message: "Please input your password!",
+              },
+              {
+                min: 8,
+                message: "Password must be 8 characters long!",
+              },
+            ]}
+            hasFeedback
+          >
+            <Input.Password />
+          </Form.Item>
+          {errorMessage ? (
+            <div className="error-message flex flex-row  items-center">
+              <div className="error-icon mr-2">
+                <RiErrorWarningLine size={28} className="text-red-500" />
+              </div>
+              <p className="text-red-500 text-md">{errorMessage}</p>
+            </div>
+          ) : (
+            ""
+          )}
+          <div className="submission-section flex flex-col mt-5">
+            <p className="text-xs text-center mb-3 opacity-60">
+              By logging in you are agreeing to the company user terms and
+              conditions
+            </p>
+            <button
+              className={
+                !loading
+                  ? "bg-secondry px-5 py-3 rounded-sm"
+                  : "bg-secondry px-5 py-3 rounded-sm opacity-60"
+              }
+              type="submit"
+              disabled={loading}
+            >
+              LOGIN
+            </button>
+          </div>
+        </Form>
+        {/* <form>
           <div className="input-container flex flex-col my-5">
             <label className="my-1">EMAIL</label>
             <input
@@ -81,7 +175,7 @@ export default function LoginBox({
               LOGIN
             </button>
           </div>
-        </form>
+        </form> */}
       </div>
     </div>
   );
