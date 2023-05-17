@@ -248,14 +248,6 @@ export default function Features() {
                       height="462"
                       alt="Features bg"
                     />
-                    <Image
-                      className="md:max-w-none absolute w-full left-0 transform animate-float"
-                      src={FeaturesElement}
-                      width={500}
-                      height="44"
-                      alt="Element"
-                      style={{ top: "30%" }}
-                    />
                   </div>
                 </Transition>
               </div>

@@ -34,9 +34,9 @@ export default function Header() {
           {/* Desktop navigation */}
           <nav className="hidden md:flex md:grow">
             {/* Desktop sign in links */}
-            <ul className="flex grow justify-end flex-wrap items-center">
+            <ul className="flex grow justify-end flex-wrap items-center cursor-pointer">
               <li>
-                <Link href="/auth" className="text-gray-100 p-4 cursor-pointer">
+                <Link href="/auth" className="text-gray-100 p-4">
                   <div className="flex justify-center items-center">
                     <h1 className="h4 text-gray-100">Login</h1>
                     <svg

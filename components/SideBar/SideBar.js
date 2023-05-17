@@ -88,14 +88,14 @@ export default function SideBar() {
               />
             </div>
           </Link>
-          {/* <Link href={NAV_URL + "board"}>
+          <Link href={NAV_URL + "board"}>
             <div className="Board">
               <SideBarIcon
                 icon={<HiOutlineViewBoards size={26} />}
                 tooltip="Board"
               />
             </div>
-          </Link> */}
+          </Link>
           <AuthorityCheck grantPermissionFor="manage_logs">
             <Link href={NAV_URL + "logs"}>
               <div className="Logs">

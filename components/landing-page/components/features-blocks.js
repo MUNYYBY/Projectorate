@@ -2,7 +2,7 @@ import React from "react";
 
 export default function FeaturesBlocks() {
   return (
-    <section className="relative">
+    <section className="relative mt-[35rem] md:mt-[8rem]">
       {/* Section background (needs .relative class on parent and next sibling elements) */}
       <div
         className="absolute inset-0 top-1/2 md:mt-24 lg:mt-0 bg-gray-900 pointer-events-none"

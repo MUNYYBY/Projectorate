@@ -17,25 +17,7 @@
       "page": "/",
       "matchers": [
         {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/auth(.json)?[\\/#\\?]?$"
-        },
-        {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/app(.json)?[\\/#\\?]?$"
-        },
-        {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/app\\/u(.json)?[\\/#\\?]?$"
-        },
-        {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/app\\/u\\/projects(.json)?[\\/#\\?]?$"
-        },
-        {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/app\\/u\\/employees(.json)?[\\/#\\?]?$"
-        },
-        {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/app\\/u\\/teams(.json)?[\\/#\\?]?$"
-        },
-        {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/app\\/u\\/board(.json)?[\\/#\\?]?$"
+          "regexp": "^/.*$"
         }
       ],
       "wasm": [],

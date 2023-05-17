@@ -52,7 +52,7 @@ export default function HorizontalLayout({
         </div>
       )}
       <div
-        className="app-layout Dashboard w-full min-h-[100vh]"
+        className="app-layout Dashboard w-full full"
         style={{ backgroundColor: "#2c2e33" }}
       >
         <div className="absolute left-0 top-0 z-50">
@@ -68,7 +68,7 @@ export default function HorizontalLayout({
           <SubPanel />
         </div>
 
-        <div className={`md:ml-[20.5rem]`}>{children}</div>
+        <div className={`md:ml-[20.5rem] h-full`}>{children}</div>
       </div>
     </>
   );
