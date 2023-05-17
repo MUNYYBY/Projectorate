@@ -568,7 +568,7 @@ _components_HorizontalLayout__WEBPACK_IMPORTED_MODULE_5__ = (__webpack_async_dep
 
 function UserLayout({ children  }) {
     //** States Initialization */
-    const { 0: layoutType , 1: setLayoutType  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(-1);
+    const { 0: layoutType , 1: setLayoutType  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);
     //** Router Initializtion  */
     const router = (0,next_router__WEBPACK_IMPORTED_MODULE_2__.useRouter)();
     const Layout = ()=>{

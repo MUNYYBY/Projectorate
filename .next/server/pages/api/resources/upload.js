@@ -69,7 +69,7 @@ async function handler(req, res) {
     let originalFileName = null;
     try {
         //Relative directories
-        const rootDir = "/public/uploads";
+        const rootDir = "/public/Uploads";
         // directory for saving images
         let dir = serverPath(rootDir);
         if (!external_fs_default().existsSync(dir)) {

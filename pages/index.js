@@ -3,11 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { Player, Controls } from "@lottiefiles/react-lottie-player";
 import { FaDragon } from "react-icons/fa";
+import LandingPage from "../components/landing-page/LandingPage";
 
 export default function Home() {
   return (
     <>
-      <div className="w-screen h-screen bg-primary flex flex-col justify-center items-center">
+      {/* <div className="w-screen h-screen bg-primary flex flex-col justify-center items-center">
         <div className="absolute top-4 left-4 flex flex-row">
           <div className="mr-5 pt-1">
             <FaDragon size={32} />
@@ -15,12 +16,6 @@ export default function Home() {
           <h1 className="text-4xl font-demo">Projectorate</h1>
         </div>
         <div>
-          {/* <Image
-          src={Working}
-          alt="projectorate under construction"
-          width={400}
-          height={400}
-        /> */}
           <Player
             autoplay
             loop
@@ -47,7 +42,8 @@ export default function Home() {
             </button>
           </Link>
         </div>
-      </div>
+      </div> */}
+      <LandingPage />
     </>
   );
 }
