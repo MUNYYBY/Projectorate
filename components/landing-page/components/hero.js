@@ -4,7 +4,7 @@ import ModalVideo from "./modal-video";
 
 export default function Hero() {
   return (
-    <section className="relative">
+    <section className="relative bg-gray-800">
       {/* Illustration behind hero content */}
       <div
         className="absolute left-1/2 transform -translate-x-1/2 bottom-0 pointer-events-none -z-1"
@@ -42,22 +42,22 @@ export default function Hero() {
           {/* Section header */}
           <div className="text-center pb-12 md:pb-16">
             <h1
-              className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4"
+              className="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4 text-white"
               data-aos="zoom-y-out"
             >
-              Make your website{" "}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
-                wonderful
+              Make your workforce{" "}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-intermediate">
+                Collaborative!
               </span>
             </h1>
             <div className="max-w-3xl mx-auto">
               <p
-                className="text-xl text-gray-600 mb-8"
+                className="text-xl text-gray-400 mb-8"
                 data-aos="zoom-y-out"
                 data-aos-delay="150"
               >
-                Our landing page template works on all devices, so you only have
-                to set it up once, and get beautiful results forever.
+                Projectorate provides best project management architecture to
+                manage your workflow and to collaborate with your teams
               </p>
               <div
                 className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center"
@@ -66,10 +66,10 @@ export default function Hero() {
               >
                 <div>
                   <a
-                    className="btn text-white bg-blue-600 hover:bg-blue-700 w-full mb-4 sm:w-auto sm:mb-0"
+                    className="btn text-white bg-secondry w-full mb-4 sm:w-auto sm:mb-0"
                     href="#0"
                   >
-                    Start free trial
+                    Get Started
                   </a>
                 </div>
                 <div>

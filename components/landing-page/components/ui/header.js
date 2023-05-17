@@ -20,8 +20,8 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed w-full z-30 md:bg-opacity-90 transition duration-300 ease-in-out ${
-        !top ? "bg-white backdrop-blur-sm shadow-lg" : ""
+      className={`fixed w-full z-30 bg-gray-900 md:bg-opacity-90 transition duration-300 ease-in-out ${
+        !top ? "bg-gray-800 backdrop-blur-sm shadow-lg" : ""
       }`}
     >
       <div className="max-w-6xl mx-auto px-5 sm:px-6">
@@ -36,12 +36,20 @@ export default function Header() {
             {/* Desktop sign in links */}
             <ul className="flex grow justify-end flex-wrap items-center">
               <li>
-                <a
-                  href="/signin"
-                  className="font-medium text-gray-600 hover:text-gray-900 px-5 py-3 flex items-center transition duration-150 ease-in-out"
-                >
-                  Sign in
-                </a>
+                <Link href="/signup" className="text-gray-100 p-4">
+                  <div className="flex justify-center items-center">
+                    <h1 className="h4 text-gray-100">Login</h1>
+                    <svg
+                      className="w-5 h-5 fill-current text-gray-100 shrink-0 ml-2 -mr-1"
+                      viewBox="0 0 12 12"
+                    >
+                      <path
+                        d="M11.707 5.293L7 .586 5.586 2l3 3H0v2h8.586l-3 3L7 11.414l4.707-4.707a1 1 0 000-1.414z"
+                        fillRule="nonzero"
+                      />
+                    </svg>
+                  </div>
+                </Link>
               </li>
             </ul>
           </nav>
