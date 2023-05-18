@@ -1,9 +1,10 @@
 {
   "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
   "/api/analytics/all-employees": "pages/api/analytics/all-employees.js",
   "/api/analytics/analytics": "pages/api/analytics/analytics.js",
-  "/api/analytics/interns-employees": "pages/api/analytics/interns-employees.js",
   "/api/analytics/associate-employees": "pages/api/analytics/associate-employees.js",
+  "/api/analytics/interns-employees": "pages/api/analytics/interns-employees.js",
   "/api/analytics/senior-employees": "pages/api/analytics/senior-employees.js",
   "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
   "/api/designations/add-designation": "pages/api/designations/add-designation.js",
@@ -40,10 +41,10 @@
   "/api/teams/get-team": "pages/api/teams/get-team.js",
   "/api/teams/remove-employee-from-team": "pages/api/teams/remove-employee-from-team.js",
   "/api/teams/update-team": "pages/api/teams/update-team.js",
-  "/api/tickets-piority/get-tickets-piority": "pages/api/tickets-piority/get-tickets-piority.js",
   "/api/tickets-status/get-tickets-status": "pages/api/tickets-status/get-tickets-status.js",
   "/api/tickets/change-ticket-status": "pages/api/tickets/change-ticket-status.js",
   "/api/tickets/create-ticket": "pages/api/tickets/create-ticket.js",
+  "/api/tickets-piority/get-tickets-piority": "pages/api/tickets-piority/get-tickets-piority.js",
   "/api/tickets/delete-ticket": "pages/api/tickets/delete-ticket.js",
   "/api/tickets/get-all-tickets": "pages/api/tickets/get-all-tickets.js",
   "/api/tickets/get-project-tickets": "pages/api/tickets/get-project-tickets.js",
@@ -58,7 +59,6 @@
   "/app/u/teams": "pages/app/u/teams.html",
   "/auth": "pages/auth.html",
   "/": "pages/index.html",
-  "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/404": "pages/404.html"
 }
