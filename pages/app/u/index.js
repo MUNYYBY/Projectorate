@@ -68,9 +68,9 @@ export default function SuperAdminDashboard() {
                   ></path>
                 </svg>
               </div>
-              <div className="stat-title">All Employees</div>
+              <div className="opacity-25">All Employees</div>
               <div className="stat-value">{data?.all_employees_count}</div>
-              <div className="stat-desc">March 1st - present</div>
+              <div className="opacity-25">March 1st - present</div>
             </div>
 
             <div className="stat">
@@ -89,9 +89,9 @@ export default function SuperAdminDashboard() {
                   ></path>
                 </svg>
               </div>
-              <div className="stat-title">Senior</div>
+              <div className="opacity-25">Senior</div>
               <div className="stat-value">{data?.senior_employees_count}</div>
-              <div className="stat-desc">March 1st - present</div>
+              <div className="opacity-25">March 1st - present</div>
             </div>
 
             <div className="stat">
@@ -110,11 +110,11 @@ export default function SuperAdminDashboard() {
                   ></path>
                 </svg>
               </div>
-              <div className="stat-title">Associate</div>
+              <div className="opacity-25">Associate</div>
               <div className="stat-value">
                 {data?.associate_employees_count}
               </div>
-              <div className="stat-desc">March 1st - present</div>
+              <div className="opacity-25">March 1st - present</div>
             </div>
           </div>
           {/* the second row for stats */}
@@ -137,9 +137,9 @@ export default function SuperAdminDashboard() {
                   ></path>
                 </svg>
               </div>
-              <div className="stat-title">Projects</div>
+              <div className="opacity-25">Projects</div>
               <div className="stat-value">{data?.projects}</div>
-              <div className="stat-desc">March 1st - present</div>
+              <div className="opacity-25">March 1st - present</div>
             </div>
 
             <div className="stat">
@@ -158,9 +158,9 @@ export default function SuperAdminDashboard() {
                   ></path>
                 </svg>
               </div>
-              <div className="stat-title">Teams</div>
+              <div className="opacity-25">Teams</div>
               <div className="stat-value">{data?.teams}</div>
-              <div className="stat-desc">March 1st - present</div>
+              <div className="opacity-25">March 1st - present</div>
             </div>
 
             <div className="stat">
@@ -179,9 +179,9 @@ export default function SuperAdminDashboard() {
                   ></path>
                 </svg>
               </div>
-              <div className="stat-title">Tickets</div>
+              <div className="opacity-25">Tickets</div>
               <div className="stat-value">{data?.tickets}</div>
-              <div className="stat-desc">March 1st - present</div>
+              <div className="opacity-25">March 1st - present</div>
             </div>
           </div>
         </div>

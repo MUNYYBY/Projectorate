@@ -233,6 +233,7 @@ export default function AddEmployee(props) {
                     style={{
                       width: "100%",
                     }}
+                    type="number"
                   />
                 </Form.Item>
 
