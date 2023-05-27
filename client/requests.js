@@ -472,6 +472,19 @@ export async function getProjectTickets(projectId) {
     return { error: error.response };
   }
 }
+export async function GetUserTickets(userId) {
+  try {
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL +
+        `/tickets/get-user-tickets?userId=` +
+        userId
+    );
+    return res;
+  } catch (error) {
+    console.log("Error While getting user tickets at front-end: ", error);
+    return { error: error.response };
+  }
+}
 export async function getTeamTickets(teamId) {
   try {
     const res = await axios.get(
