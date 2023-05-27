@@ -101,6 +101,12 @@ export default async function handler(req, res) {
       },
       include: {
         project: true,
+        _count: {
+          select: {
+            UserTeams: true,
+            Tickets: true,
+          },
+        },
       },
     });
     if (data) {

@@ -33,6 +33,8 @@ import AuthorityCheck from "../../../Permissions/AuthorityCheck";
 import UpdateTeam from "../../../components/Teams/UpdateTeam/UpdateTeam";
 
 import { useSession } from "next-auth/react";
+import ProjectTicketsChart from "../../../components/PieChart/ProjectTicketsChart";
+import { HiOutlineTicket, HiOutlineUsers } from "react-icons/hi";
 
 const PROJECTS_TABS = ["Employees", "Tickets"];
 
@@ -57,6 +59,7 @@ export default function Teams() {
   const [isEmployeeProfile, setIsEmployeeProfile] = useState({ id: null });
   const [isUpdateTeam, setIsUpdateTeam] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [teamTickets, setTeamTickets] = useState(null);
 
   const { data: session, status } = useSession();
 
@@ -127,7 +130,8 @@ export default function Teams() {
       //** Get project Information */
       GetSpecificTeam(router.query.teamId).then((res) => {
         if (!res.error) {
-          console.log(res.data);
+          // console.log(res.data);
+          setTeamTickets(res.Tickets);
           setTeamInformation(res.data);
         } else {
           if (res.error.error == 404) {
@@ -342,10 +346,10 @@ export default function Teams() {
                         {teamInformation?.team_name.toUpperCase()} |{" "}
                         {teamInformation?.project.project_name.toUpperCase()}
                       </h1>
-                      <p className="font-medium mt-2 text-sm md:text-md lg:text-xl sm:w-32 lg:w-96 md:w-32 w-full">
+                      <p className="font-medium mt-2 text-sm md:text-md lg:text-lg sm:w-32 lg:w-96 md:w-32 w-full">
                         {teamInformation?.description}
                       </p>
-                      <div className="mt-4">
+                      <div className="mt-2">
                         <InformationTag
                           title={
                             handleTeamDomainsInfo(
@@ -353,8 +357,25 @@ export default function Teams() {
                             )?.title
                           }
                           type="intermediate"
-                          size="lg"
+                          size="md"
                         />
+                      </div>
+                      <div className="flex mt-3">
+                        <div className="bg-gray-800 px-3 py-1 flex justify-center items-center rounded-md">
+                          <HiOutlineUsers />
+                          <p className="ml-2 opacity-80">
+                            {teamInformation._count.UserTeams}
+                          </p>
+                        </div>
+                        <div className="ml-3 bg-gray-800 px-3 py-1 flex justify-center items-center rounded-md">
+                          <HiOutlineTicket />
+                          <p className="ml-2 opacity-80">
+                            {teamInformation._count.Tickets}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="mt-3 opacity-50">
+                        Estimated completion: 16/05/2025
                       </div>
                     </div>
                   ) : (
@@ -364,59 +385,64 @@ export default function Teams() {
                     />
                   )}
                 </div>
-                <AuthorityCheck grantPermissionFor="manage_teams">
-                  <div className="project-actions flex flex-row mt-4 sm:mt-0">
-                    <Tooltip
-                      placement="topRight"
-                      title="Add employees to work on this team"
-                      mouseEnterDelay={0.05}
-                    >
-                      <button
-                        className="bg-white bg-opacity-10 hover:bg-opacity-25 transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center"
-                        onClick={() => setAssignEmployeesPanel(true)}
+                <div className="flex flex-col item-start sm:items-end">
+                  <AuthorityCheck grantPermissionFor="manage_teams">
+                    <div className="project-actions flex flex-row mt-4 sm:mt-0">
+                      <Tooltip
+                        placement="topRight"
+                        title="Add employees to work on this team"
+                        mouseEnterDelay={0.05}
                       >
-                        <AiOutlineUsergroupAdd size={24} />
-                      </button>
-                    </Tooltip>
-                    <Tooltip
-                      placement="topRight"
-                      title="Edit this team"
-                      mouseEnterDelay={0.05}
-                    >
-                      <button
-                        className={`${
-                          isUpdateTeam
-                            ? "bg-primary"
-                            : "bg-white bg-opacity-10 hover:bg-opacity-25"
-                        }  transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center`}
-                        onClick={() => setIsUpdateTeam(!isUpdateTeam)}
-                      >
-                        <AiOutlineEdit size={24} />
-                      </button>
-                    </Tooltip>
-                    <Tooltip
-                      placement="topRight"
-                      title="Remove this team"
-                      mouseEnterDelay={0.05}
-                    >
-                      <Popconfirm
-                        title={`Remove Team from Projectorate?`}
-                        description="Are you sure to remove this team? "
-                        onConfirm={() => {
-                          DeleteTeamConfirm(activeTeam.id);
-                        }}
-                        onCancel={OnTeamDeleteCancel}
-                        okText="Confirm"
-                        cancelText="No"
-                        placement="bottomLeft"
-                      >
-                        <button className="bg-white bg-opacity-10 hover:bg-opacity-25 transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center">
-                          <CgTrash size={24} />
+                        <button
+                          className="bg-white bg-opacity-10 hover:bg-opacity-25 transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center"
+                          onClick={() => setAssignEmployeesPanel(true)}
+                        >
+                          <AiOutlineUsergroupAdd size={24} />
                         </button>
-                      </Popconfirm>
-                    </Tooltip>
+                      </Tooltip>
+                      <Tooltip
+                        placement="topRight"
+                        title="Edit this team"
+                        mouseEnterDelay={0.05}
+                      >
+                        <button
+                          className={`${
+                            isUpdateTeam
+                              ? "bg-primary"
+                              : "bg-white bg-opacity-10 hover:bg-opacity-25"
+                          }  transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center`}
+                          onClick={() => setIsUpdateTeam(!isUpdateTeam)}
+                        >
+                          <AiOutlineEdit size={24} />
+                        </button>
+                      </Tooltip>
+                      <Tooltip
+                        placement="topRight"
+                        title="Remove this team"
+                        mouseEnterDelay={0.05}
+                      >
+                        <Popconfirm
+                          title={`Remove Team from Projectorate?`}
+                          description="Are you sure to remove this team? "
+                          onConfirm={() => {
+                            DeleteTeamConfirm(activeTeam.id);
+                          }}
+                          onCancel={OnTeamDeleteCancel}
+                          okText="Confirm"
+                          cancelText="No"
+                          placement="bottomLeft"
+                        >
+                          <button className="bg-white bg-opacity-10 hover:bg-opacity-25 transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center">
+                            <CgTrash size={24} />
+                          </button>
+                        </Popconfirm>
+                      </Tooltip>
+                    </div>
+                  </AuthorityCheck>
+                  <div className="project-statistics mt-3">
+                    <ProjectTicketsChart Tickets={teamTickets} />
                   </div>
-                </AuthorityCheck>
+                </div>
               </div>
             </div>
             {/* Show tabs */}
