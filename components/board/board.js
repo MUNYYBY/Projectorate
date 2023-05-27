@@ -59,7 +59,7 @@ function TicketContainer({ ticket, setIsTicketInfo }) {
             {ticket.TicketPiority.title}
           </div>
           <div className="text-white text-opacity-60 px-2 mt-1 mr-1 py-1 border-[1.5px] bg-gray-800 border-gray-500 border-opacity-50 rounded-full text-xs ">
-            {moment(ticket.createdAt).format("DD/MM/YY")}
+            {moment(ticket.deadline).format("DD/MM/YY")}
           </div>
         </div>
         <div className="inline-flex">
@@ -77,7 +77,7 @@ function TicketContainer({ ticket, setIsTicketInfo }) {
 
 export default function BoardC({ data, tickets, setIsTicketInfo }) {
   return (
-    <div className="mx-1 !h-full !w-80 border-2 border-gray-600 border-opacity-60 rounded-md flex flex-col flex-shrink-0 bg-gray-900 bg-opacity-75 hover:bg-opacity-100 transition-all p-2 relative">
+    <div className="mx-1 !h-full overflow-y-auto !w-88 border-2 border-gray-600 border-opacity-60 rounded-md flex flex-col flex-shrink-0 bg-gray-900 bg-opacity-75 hover:bg-opacity-100 transition-all p-2 relative">
       <header className="flex flex-col w-full p-2">
         <div className="flex items-center">
           <div

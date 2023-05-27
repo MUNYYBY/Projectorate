@@ -27,10 +27,12 @@ export default function ProjectsTabContainer({
     >
       <div className="flex flex-row items-center">
         <div className="Project-Image h-12 w-12 flex justify-center items-center bg-gray-500 bg-opacity-25 rounded-lg">
-          <h1 className="text-3xl font-semibold">{CompanyName[0]}</h1>
+          <h1 className="text-2xl font-semibold">
+            {CompanyName[0].toUpperCase()}
+          </h1>
         </div>
-        <div className="projects-container-info ml-3">
-          <h4 className="">{CompanyName}</h4>
+        <div className="projects-container-info ml-2">
+          <h4 className="text-sm font-semibold">{CompanyName}</h4>
         </div>
       </div>
     </div>

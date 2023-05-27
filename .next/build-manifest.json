@@ -25,10 +25,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/app/u/board": [
+    "/app/u/projects": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/app/u/board.js"
+      "static/chunks/pages/app/u/projects.js"
+    ],
+    "/app/u/teams": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/app/u/teams.js"
     ]
   },
   "ampFirstPages": []

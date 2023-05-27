@@ -339,7 +339,7 @@ export default function Teams() {
                 <div className="flex flex-row justify-start items-start">
                   <div className="bg-gray-700 md:flex hidden lg:h-52 lg:w-52 md:h-32 md:w-32 h-24 w-24 rounded-lg flex justify-center items-center">
                     <p className="font-extrabold lg:text-[10rem] md:text-6xl text-3xl opacity-40">
-                      {activeTeam.name[0]}
+                      {activeTeam.name[0].toUpperCase()}
                     </p>
                   </div>
                   {!isUpdateTeam ? (

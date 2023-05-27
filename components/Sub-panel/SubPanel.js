@@ -65,7 +65,7 @@ export default function SubPanel() {
   }
   return (
     <div className="Sub-panel-dahboard fixed ml-[4.5rem] w-64 h-screen bg-gray-800">
-      <div className="bg-gray-700 p-4 rounded-b-xl">
+      <div className="bg-gray-900 bg-opacity-60 p-4 rounded-b-xl">
         <h1 className="text-xl mb-3 font-semibold">{panelName} Panel</h1>
         <Input
           placeholder="Search projects..."
@@ -76,7 +76,7 @@ export default function SubPanel() {
       {/* fix inner div to scroll */}
       <div className="">
         <div className="Projects-tab-container mt-4">
-          <h1 className="text-md font-bold mb-4 ml-4 opacity-75">Projects</h1>
+          <h1 className="text-md font-bold mb-4 ml-4 opacity-90">Projects</h1>
           {loading && filterProjects.length == 0 ? (
             <div className="w-full flex flex-col justify-center items-center">
               <svg
