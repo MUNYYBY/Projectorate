@@ -31,7 +31,7 @@ import AuthorityCheck from "../../../Permissions/AuthorityCheck";
 import UpdateProject from "../../../components/Projects/UpdateProject/UpdateProject";
 
 import { useSession } from "next-auth/react";
-// import PieChart from "../../../components/PieChart.js/PieChart";
+import ProjectTicketsChart from "../../../components/PieChart/ProjectTicketsChart";
 
 const PROJECTS_TABS = ["Employees", "Teams", "Tickets"];
 
@@ -55,6 +55,7 @@ export default function SuperAdminProjectPanel() {
   const [isEmployeeProfile, setIsEmployeeProfile] = useState({ id: null });
   const [isUpdateProject, setIsUpdateProject] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [projectTickets, setProjectTickets] = useState(null);
 
   const { data: session, status } = useSession();
 
@@ -125,6 +126,7 @@ export default function SuperAdminProjectPanel() {
         if (!res.error) {
           console.log(res.data);
           setProjectInformation(res.data);
+          setProjectTickets(res.Tickets);
         } else {
           if (res.error.error == 404) {
             message.error("Team not found!");
@@ -338,7 +340,7 @@ export default function SuperAdminProjectPanel() {
                       <h1 className="text-3xl font-bold text-secondry ">
                         {projectInformation?.project_name.toUpperCase()}
                       </h1>
-                      <p className="font-medium mt-2 text-sm md:text-md lg:text-xl sm:w-32 lg:w-96 md:w-32 w-full">
+                      <p className="font-medium mt-2 text-sm md:text-md lg:text-lg sm:w-32 lg:w-96 md:w-32 w-full">
                         {projectInformation?.description}
                       </p>
                       <div className="mt-4">
@@ -349,7 +351,7 @@ export default function SuperAdminProjectPanel() {
                             )?.title
                           }
                           type="intermediate"
-                          size="lg"
+                          size="md"
                         />
                       </div>
                     </div>
@@ -360,60 +362,64 @@ export default function SuperAdminProjectPanel() {
                     />
                   )}
                 </div>
-                <AuthorityCheck grantPermissionFor="manage_projects">
-                  <div className="project-actions flex flex-row mt-4 sm:mt-0">
-                    <Tooltip
-                      placement="topRight"
-                      title="Add employees to work on this project"
-                      mouseEnterDelay={0.05}
-                    >
-                      <button
-                        className="bg-white bg-opacity-10 hover:bg-opacity-25 transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center"
-                        onClick={() => setAssignEmployeesPanel(true)}
+                <div className="flex flex-col item-start sm:items-end">
+                  <AuthorityCheck grantPermissionFor="manage_projects">
+                    <div className="project-actions flex flex-row mt-4 sm:mt-0">
+                      <Tooltip
+                        placement="topRight"
+                        title="Add employees to work on this project"
+                        mouseEnterDelay={0.05}
                       >
-                        <AiOutlineUsergroupAdd size={24} />
-                      </button>
-                    </Tooltip>
-                    <Tooltip
-                      placement="topRight"
-                      title="Edit this project"
-                      mouseEnterDelay={0.05}
-                    >
-                      <button
-                        className={`${
-                          isUpdateProject
-                            ? "bg-primary"
-                            : "bg-white bg-opacity-10 hover:bg-opacity-25"
-                        }  transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center`}
-                        onClick={() => setIsUpdateProject(!isUpdateProject)}
-                      >
-                        <AiOutlineEdit size={24} />
-                      </button>
-                    </Tooltip>
-                    <Tooltip
-                      placement="topRight"
-                      title="Remove this project"
-                      mouseEnterDelay={0.05}
-                    >
-                      <Popconfirm
-                        title={`Remove project Projectorate?`}
-                        description="Are you sure to remove this project from projectorate?"
-                        onConfirm={() => {
-                          DeleteProjectConfirm(activeProject.id);
-                        }}
-                        onCancel={OnProjectDeleteCancel}
-                        okText="Confirm"
-                        cancelText="No"
-                        placement="bottomLeft"
-                      >
-                        <button className="bg-white bg-opacity-10 hover:bg-opacity-25 transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center">
-                          <CgTrash size={24} />
+                        <button
+                          className="bg-white bg-opacity-10 hover:bg-opacity-25 transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center"
+                          onClick={() => setAssignEmployeesPanel(true)}
+                        >
+                          <AiOutlineUsergroupAdd size={24} />
                         </button>
-                      </Popconfirm>
-                    </Tooltip>
+                      </Tooltip>
+                      <Tooltip
+                        placement="topRight"
+                        title="Edit this project"
+                        mouseEnterDelay={0.05}
+                      >
+                        <button
+                          className={`${
+                            isUpdateProject
+                              ? "bg-primary"
+                              : "bg-white bg-opacity-10 hover:bg-opacity-25"
+                          }  transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center`}
+                          onClick={() => setIsUpdateProject(!isUpdateProject)}
+                        >
+                          <AiOutlineEdit size={24} />
+                        </button>
+                      </Tooltip>
+                      <Tooltip
+                        placement="topRight"
+                        title="Remove this project"
+                        mouseEnterDelay={0.05}
+                      >
+                        <Popconfirm
+                          title={`Remove project Projectorate?`}
+                          description="Are you sure to remove this project from projectorate?"
+                          onConfirm={() => {
+                            DeleteProjectConfirm(activeProject.id);
+                          }}
+                          onCancel={OnProjectDeleteCancel}
+                          okText="Confirm"
+                          cancelText="No"
+                          placement="bottomLeft"
+                        >
+                          <button className="bg-white bg-opacity-10 hover:bg-opacity-25 transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center">
+                            <CgTrash size={24} />
+                          </button>
+                        </Popconfirm>
+                      </Tooltip>
+                    </div>
+                  </AuthorityCheck>
+                  <div className="project-statistics mt-3">
+                    <ProjectTicketsChart Tickets={projectTickets} />
                   </div>
-                </AuthorityCheck>
-                {/* <PieChart /> */}
+                </div>
               </div>
             </div>
             {/* Show tabs */}
