@@ -1,5 +1,5 @@
 // import VideoThumb from "@/public/images/hero-image.png";
-import VideoThumb from "../../../public/images/hero-image.png";
+import VideoThumb from "../../../public/images/PROJECTORATE_THUMBNAIL.jpg";
 import ModalVideo from "./modal-video";
 
 export default function Hero() {
@@ -89,8 +89,8 @@ export default function Hero() {
             thumb={VideoThumb}
             thumbWidth={768}
             thumbHeight={432}
-            thumbAlt="Modal video thumbnail"
-            video="/videos/video.mp4"
+            thumbAlt="Projectorate Modal video thumbnail"
+            video="/videos/Projectorate_demo.mp4"
             videoWidth={1920}
             videoHeight={1080}
           />

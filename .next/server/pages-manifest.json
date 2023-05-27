@@ -2,15 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/auth": "pages/auth.js",
-  "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
-  "/app": "pages/app.js",
-  "/api/employee/get-employee-info": "pages/api/employee/get-employee-info.js",
-  "/app/u": "pages/app/u.js",
-  "/api/projects/get-all-projects": "pages/api/projects/get-all-projects.js",
-  "/api/analytics/associate-employees": "pages/api/analytics/associate-employees.js",
-  "/api/analytics/senior-employees": "pages/api/analytics/senior-employees.js",
-  "/api/analytics/interns-employees": "pages/api/analytics/interns-employees.js",
-  "/api/analytics/all-employees": "pages/api/analytics/all-employees.js",
-  "/api/analytics/analytics": "pages/api/analytics/analytics.js"
+  "/": "pages/index.js"
 }
