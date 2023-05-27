@@ -12,6 +12,7 @@ import { useNotificationsHandler } from "../../../context/notificationContext";
 import { Select } from "antd";
 import EmployeesPanelContainer from "../../../components/EmployeesPanel/EmployeesPanelContainer";
 import EmployeeProfile from "../../../components/Employees/Profile/EmployeesProfile";
+import { EmployeesHeadMeta } from "../../../Meta/Heads";
 
 const { Option } = Select;
 
@@ -63,6 +64,7 @@ export default function SuperAdminEmployees() {
   }, []);
   return (
     <>
+      <EmployeesHeadMeta />
       {!loading ? (
         <EmployeeProfile
           isEmployeeProfile={isEmployeeProfile}

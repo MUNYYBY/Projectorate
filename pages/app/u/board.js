@@ -4,6 +4,7 @@ import { IoIosHelpCircle } from "react-icons/io";
 import { HiOutlineViewBoards } from "react-icons/hi";
 import { getALlTickets, getTicketsStatus } from "../../../client/requests";
 import BoardC from "../../../components/board/board";
+import { BoardHeadMeta } from "../../../Meta/Heads";
 
 export default function Board() {
   //**States */
@@ -21,6 +22,7 @@ export default function Board() {
   }, []);
   return (
     <>
+      <BoardHeadMeta />
       <div className="board h-full w-full overflow-hidden">
         <header className="flex flex-row items-center justify-between border-b-2 border-b-gray-900 px-4 py-2 relative">
           <div className="flex flex-row items-center">

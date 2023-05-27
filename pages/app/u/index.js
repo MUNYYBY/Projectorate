@@ -8,6 +8,7 @@ import {
   getInternEmployeesAnalytics,
   getSeniorEmployeesAnalytics,
 } from "../../../client/requests";
+import { DashboardHeadMeta } from "../../../Meta/Heads";
 export default function SuperAdminDashboard() {
   //** states */
   const [data, setData] = useState(null);
@@ -41,151 +42,154 @@ export default function SuperAdminDashboard() {
     handleFetching();
   }, []);
   return (
-    <div>
+    <>
+      <DashboardHeadMeta />
       <div>
-        <DashboardHeader />
-        <div className="flex flex-col m-6 mt-10 ">
-          <div className="flex flex-col">
-            <h1 className="font-bold text-2xl">Projectorate Statistics</h1>
-            <p className="opacity-50">A brief analytics of the system</p>
-          </div>
-          <div
-            className={`stats text-white shadow mt-8 bg-gray-900 rounded-lg h-40`}
-          >
-            <div className="stat">
-              <div className="stat-figure text-pOrange">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  className="inline-block w-8 h-8 stroke-current"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
-                </svg>
-              </div>
-              <div className="opacity-25">All Employees</div>
-              <div className="stat-value">{data?.all_employees_count}</div>
-              <div className="opacity-25">March 1st - present</div>
+        <div>
+          <DashboardHeader />
+          <div className="flex flex-col m-6 mt-10 ">
+            <div className="flex flex-col">
+              <h1 className="font-bold text-2xl">Projectorate Statistics</h1>
+              <p className="opacity-50">A brief analytics of the system</p>
             </div>
+            <div
+              className={`stats text-white shadow mt-8 bg-gray-900 rounded-lg h-40`}
+            >
+              <div className="stat">
+                <div className="stat-figure text-pOrange">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    className="inline-block w-8 h-8 stroke-current"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                </div>
+                <div className="opacity-25">All Employees</div>
+                <div className="stat-value">{data?.all_employees_count}</div>
+                <div className="opacity-25">March 1st - present</div>
+              </div>
 
-            <div className="stat">
-              <div className="stat-figure text-pOrange">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  className="inline-block w-8 h-8 stroke-current"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-                  ></path>
-                </svg>
+              <div className="stat">
+                <div className="stat-figure text-pOrange">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    className="inline-block w-8 h-8 stroke-current"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                    ></path>
+                  </svg>
+                </div>
+                <div className="opacity-25">Senior</div>
+                <div className="stat-value">{data?.senior_employees_count}</div>
+                <div className="opacity-25">March 1st - present</div>
               </div>
-              <div className="opacity-25">Senior</div>
-              <div className="stat-value">{data?.senior_employees_count}</div>
-              <div className="opacity-25">March 1st - present</div>
-            </div>
 
-            <div className="stat">
-              <div className="stat-figure text-pOrange">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  className="inline-block w-8 h-8 stroke-current"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
-                  ></path>
-                </svg>
+              <div className="stat">
+                <div className="stat-figure text-pOrange">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    className="inline-block w-8 h-8 stroke-current"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+                    ></path>
+                  </svg>
+                </div>
+                <div className="opacity-25">Associate</div>
+                <div className="stat-value">
+                  {data?.associate_employees_count}
+                </div>
+                <div className="opacity-25">March 1st - present</div>
               </div>
-              <div className="opacity-25">Associate</div>
-              <div className="stat-value">
-                {data?.associate_employees_count}
-              </div>
-              <div className="opacity-25">March 1st - present</div>
             </div>
-          </div>
-          {/* the second row for stats */}
-          <div
-            className={`stats text-white shadow mt-8 bg-gray-900 rounded-lg h-40 `}
-          >
-            <div className="stat">
-              <div className="stat-figure text-pOrange">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  className="inline-block w-8 h-8 stroke-current"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
-                </svg>
+            {/* the second row for stats */}
+            <div
+              className={`stats text-white shadow mt-8 bg-gray-900 rounded-lg h-40 `}
+            >
+              <div className="stat">
+                <div className="stat-figure text-pOrange">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    className="inline-block w-8 h-8 stroke-current"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                </div>
+                <div className="opacity-25">Projects</div>
+                <div className="stat-value">{data?.projects}</div>
+                <div className="opacity-25">March 1st - present</div>
               </div>
-              <div className="opacity-25">Projects</div>
-              <div className="stat-value">{data?.projects}</div>
-              <div className="opacity-25">March 1st - present</div>
-            </div>
 
-            <div className="stat">
-              <div className="stat-figure text-pOrange">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  className="inline-block w-8 h-8 stroke-current"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-                  ></path>
-                </svg>
+              <div className="stat">
+                <div className="stat-figure text-pOrange">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    className="inline-block w-8 h-8 stroke-current"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                    ></path>
+                  </svg>
+                </div>
+                <div className="opacity-25">Teams</div>
+                <div className="stat-value">{data?.teams}</div>
+                <div className="opacity-25">March 1st - present</div>
               </div>
-              <div className="opacity-25">Teams</div>
-              <div className="stat-value">{data?.teams}</div>
-              <div className="opacity-25">March 1st - present</div>
-            </div>
 
-            <div className="stat">
-              <div className="stat-figure text-pOrange">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  className="inline-block w-8 h-8 stroke-current"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
-                  ></path>
-                </svg>
+              <div className="stat">
+                <div className="stat-figure text-pOrange">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    className="inline-block w-8 h-8 stroke-current"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+                    ></path>
+                  </svg>
+                </div>
+                <div className="opacity-25">Tickets</div>
+                <div className="stat-value">{data?.tickets}</div>
+                <div className="opacity-25">March 1st - present</div>
               </div>
-              <div className="opacity-25">Tickets</div>
-              <div className="stat-value">{data?.tickets}</div>
-              <div className="opacity-25">March 1st - present</div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

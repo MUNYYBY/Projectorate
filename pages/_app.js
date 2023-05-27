@@ -7,6 +7,7 @@ import { useState } from "react";
 import { ConfigProvider, theme, Button, Card } from "antd";
 import UserLayout from "../layout/UserLayout";
 import { RouteContextProvider } from "../context/routesContext";
+import { IndexHeadMeta } from "../Meta/Heads";
 
 function MyApp({ Component, pageProps, session }) {
   //for antd dark mode
@@ -17,6 +18,7 @@ function MyApp({ Component, pageProps, session }) {
   const getLayout = (page) => <UserLayout>{page}</UserLayout>;
   return (
     <>
+      <IndexHeadMeta />
       <ConfigProvider
         theme={{
           algorithm: darkAlgorithm,

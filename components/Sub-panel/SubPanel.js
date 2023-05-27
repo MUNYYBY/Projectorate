@@ -76,6 +76,7 @@ export default function SubPanel() {
       {/* fix inner div to scroll */}
       <div className="">
         <div className="Projects-tab-container mt-4">
+          <h1 className="text-md font-bold mb-4 ml-4 opacity-75">Projects</h1>
           {loading && filterProjects.length == 0 ? (
             <div className="w-full flex flex-col justify-center items-center">
               <svg

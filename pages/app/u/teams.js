@@ -35,6 +35,7 @@ import UpdateTeam from "../../../components/Teams/UpdateTeam/UpdateTeam";
 import { useSession } from "next-auth/react";
 import ProjectTicketsChart from "../../../components/PieChart/ProjectTicketsChart";
 import { HiOutlineTicket, HiOutlineUsers } from "react-icons/hi";
+import { TeamsHeadMeta } from "../../../Meta/Heads";
 
 const PROJECTS_TABS = ["Employees", "Tickets"];
 
@@ -166,6 +167,7 @@ export default function Teams() {
 
   return (
     <>
+      <TeamsHeadMeta />
       <AuthorityCheck grantPermissionFor="manage_tickets">
         <div className="absolute z-[999] bottom-4 right-4 flex flex-col items-end">
           {isCreateTicket ? (

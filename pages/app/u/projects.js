@@ -36,6 +36,7 @@ import UpdateProject from "../../../components/Projects/UpdateProject/UpdateProj
 
 import { useSession } from "next-auth/react";
 import ProjectTicketsChart from "../../../components/PieChart/ProjectTicketsChart";
+import { ProjectHeadMeta } from "../../../Meta/Heads";
 
 const PROJECTS_TABS = ["Employees", "Teams", "Tickets"];
 
@@ -165,6 +166,7 @@ export default function SuperAdminProjectPanel() {
 
   return (
     <>
+      <ProjectHeadMeta />
       <AuthorityCheck grantPermissionFor="manage_tickets">
         <div className="fixed z-[999] bottom-4 right-4 flex flex-col items-end">
           {isCreateTicket ? (

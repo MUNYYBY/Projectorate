@@ -6,6 +6,7 @@ import LoginBox from "../components/Login/loginBox";
 import BG_IMAGE from "../public/Assets/login_bg_image.svg";
 import { motion } from "framer-motion";
 import { useNotificationsHandler } from "../context/notificationContext";
+import { LoginHeadMeta } from "../Meta/Heads";
 
 export default function Auth() {
   const [isClicked, setIsClicked] = useState(false);
@@ -86,6 +87,7 @@ export default function Auth() {
   }, [isClicked]);
   return (
     <>
+      <LoginHeadMeta />
       <div className="h-screen bg-primary">
         <div className="secondry-section h-screen w-screen absolute z-0">
           <div className="absolute bottom-0 h-full w-full mx-[-15vw]">
