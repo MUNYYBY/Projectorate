@@ -15,10 +15,28 @@ export default function Board() {
     const allTickets = await getALlTickets();
     const status = await getTicketsStatus();
     setAllTickets(allTickets.data);
-    setTicketsStatus(status.data);
+    setTicketsStatus(status.data.data);
   }
   useEffect(() => {
     handleFetching();
+  }, []);
+
+  //** Screen size dynamic */
+  const [windowSize, setWindowSize] = useState([
+    window.innerWidth,
+    window.innerHeight,
+  ]);
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowSize([window.innerWidth, window.innerHeight]);
+    };
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
   }, []);
   return (
     <>
@@ -43,44 +61,19 @@ export default function Board() {
         <div className="mx-4 my-4">
           <div className="flex flex-col">
             <h1 className="font-bold text-2xl">Tickets</h1>
-            <p className="opacity-50">This board shows all the tickets</p>
+            <p className="opacity-50">
+              This board shows all the tickets assigned to you
+            </p>
           </div>
         </div>
-        <div className="board-penel flex h-72 min-w-screen overflow-x-scroll whitespace-nowrap flex-nowrap">
-          <div className="w-72 mx-2">
-            <BoardC />
-          </div>
-
-          <div className="w-72 mx-2">
-            <BoardC />
-          </div>
-          <div className="w-72 mx-2">
-            <BoardC />
-          </div>
-
-          <div className="w-72 mx-2">
-            <BoardC />
-          </div>
-
-          <div className="w-72 mx-2">
-            <BoardC />
-          </div>
-
-          <div className="w-72 mx-2">
-            <BoardC />
-          </div>
-
-          <div className="w-72 mx-2">
-            <BoardC />
-          </div>
-
-          <div className="w-72 mx-2">
-            <BoardC />
-          </div>
-
-          <div className="w-72 mx-2">
-            <BoardC />
-          </div>
+        <div className={`board-penel flex h-[82vh] overflow-x-scroll`}>
+          {ticketsStatus.map((status, index) => {
+            return (
+              <div key={index} className="tickets-container-by-status">
+                <BoardC data={status} />
+              </div>
+            );
+          })}
         </div>
       </div>
     </>
