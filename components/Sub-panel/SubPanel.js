@@ -8,12 +8,13 @@ import TabDevider from "../Devider/Devider";
 import ProjectsTabContainer from "./ProjectsTabs/ProjectTabsContainer";
 import { useRouter } from "next/router";
 import { getAllProjects } from "../../client/requests";
-import { Empty } from "antd";
+import { Empty, Input } from "antd";
 
 export default function SubPanel() {
   const router = useRouter();
   const [panelName, setPanelName] = useState("");
   const [projects, setProjects] = useState([]);
+  const [filterProjects, setFilterProjects] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -31,6 +32,7 @@ export default function SubPanel() {
     await getAllProjects().then((res) => {
       if (res) {
         setProjects(res.data);
+        setFilterProjects(res.data);
         setLoading(false);
       }
     });
@@ -40,6 +42,16 @@ export default function SubPanel() {
   useEffect(() => {
     fetchAllProjects();
   }, []);
+
+  //** handle search */
+  function handleSearch(val) {
+    const value = val.target.value;
+    setFilterProjects(
+      projects.filter((e) => {
+        return e.project_name.toLowerCase().includes(value.toLowerCase());
+      })
+    );
+  }
 
   function handleProjectNav(projectName, projectId) {
     router.replace({
@@ -54,12 +66,17 @@ export default function SubPanel() {
   return (
     <div className="Sub-panel-dahboard fixed ml-[4.5rem] w-64 h-screen bg-gray-800">
       <div className="bg-gray-700 p-4 rounded-b-xl">
-        <h1 className="text-xl font-semibold">{panelName} Panel</h1>
+        <h1 className="text-xl mb-3 font-semibold">{panelName} Panel</h1>
+        <Input
+          placeholder="Search projects..."
+          type="text"
+          onChange={handleSearch}
+        />
       </div>
       {/* fix inner div to scroll */}
       <div className="">
         <div className="Projects-tab-container mt-4">
-          {loading && projects.length == 0 ? (
+          {loading && filterProjects.length == 0 ? (
             <div className="w-full flex flex-col justify-center items-center">
               <svg
                 className="animate-spin -ml-1 h-10 w-10 text-white"
@@ -82,13 +99,13 @@ export default function SubPanel() {
                 ></path>
               </svg>
             </div>
-          ) : projects.length == 0 ? (
+          ) : filterProjects.length == 0 ? (
             <Empty
               image={Empty.PRESENTED_IMAGE_SIMPLE}
-              description="No projects in the company"
+              description="No projects found"
             />
           ) : (
-            projects.map((project, index) => {
+            filterProjects.map((project, index) => {
               return (
                 <div
                   key={project.id + index}

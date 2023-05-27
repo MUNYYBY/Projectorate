@@ -31,6 +31,7 @@ import AuthorityCheck from "../../../Permissions/AuthorityCheck";
 import UpdateProject from "../../../components/Projects/UpdateProject/UpdateProject";
 
 import { useSession } from "next-auth/react";
+// import PieChart from "../../../components/PieChart.js/PieChart";
 
 const PROJECTS_TABS = ["Employees", "Teams", "Tickets"];
 
@@ -412,6 +413,7 @@ export default function SuperAdminProjectPanel() {
                     </Tooltip>
                   </div>
                 </AuthorityCheck>
+                {/* <PieChart /> */}
               </div>
             </div>
             {/* Show tabs */}

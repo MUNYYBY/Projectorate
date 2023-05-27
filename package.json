@@ -17,6 +17,7 @@
     "@prisma/client": "^4.8.1",
     "antd": "^5.0.5",
     "aos": "^2.3.4",
+    "apexcharts": "^3.40.0",
     "axios": "^1.2.2",
     "cloudinary": "^1.36.4",
     "cors": "^2.8.5",
@@ -37,6 +38,7 @@
     "path": "^0.12.7",
     "qs": "^6.11.1",
     "react": "18.2.0",
+    "react-apexcharts": "^1.4.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
     "url": "^0.11.0"

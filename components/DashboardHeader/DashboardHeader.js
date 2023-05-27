@@ -15,10 +15,6 @@ export default function DashboardHeader(
   },
   props
 ) {
-  const handleSetEmployees = (e) => {
-    e.preventDefault();
-    props.setAddEmployees(true);
-  };
   return (
     <div className="dashboard-header">
       <header className="flex flex-row items-center justify-between border-b-2 border-b-gray-900 px-4 py-2">

@@ -1,109 +1,45 @@
 "use strict";
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
 (() => {
 var exports = {};
-exports.id = 2031;
-exports.ids = [2031];
+exports.id = "pages/api/projects/create-project";
+exports.ids = ["pages/api/projects/create-project"];
 exports.modules = {
 
-/***/ 3524:
+/***/ "@prisma/client":
+/*!*********************************!*\
+  !*** external "@prisma/client" ***!
+  \*********************************/
 /***/ ((module) => {
 
 module.exports = require("@prisma/client");
 
 /***/ }),
 
-/***/ 36:
+/***/ "(api)/./lib/prisma.js":
+/*!***********************!*\
+  !*** ./lib/prisma.js ***!
+  \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3524);
-/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_prisma_client__WEBPACK_IMPORTED_MODULE_0__);
-// lib/prisma.ts
-
-let PrismaDB;
-if (true) {
-    PrismaDB = new _prisma_client__WEBPACK_IMPORTED_MODULE_0__.PrismaClient();
-} else {}
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PrismaDB);
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @prisma/client */ \"@prisma/client\");\n/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_prisma_client__WEBPACK_IMPORTED_MODULE_0__);\n// lib/prisma.ts\n\nlet PrismaDB;\nif (false) {} else {\n    if (!global.prisma) {\n        global.prisma = new _prisma_client__WEBPACK_IMPORTED_MODULE_0__.PrismaClient();\n    }\n    PrismaDB = global.prisma;\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PrismaDB);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwaSkvLi9saWIvcHJpc21hLmpzLmpzIiwibWFwcGluZ3MiOiI7Ozs7OztBQUFBLGdCQUFnQjtBQUNzQztBQUV0RCxJQUFJRSxRQUFRO0FBRVosSUFBSUMsS0FBcUMsRUFBRSxFQUUxQyxNQUFNO0lBQ0wsSUFBSSxDQUFDQyxNQUFNLENBQUNKLE1BQU0sRUFBRTtRQUNsQkksTUFBTSxDQUFDSixNQUFNLEdBQUcsSUFBSUMsd0RBQVksRUFBRSxDQUFDO0lBQ3JDLENBQUM7SUFDREMsUUFBUSxHQUFHRSxNQUFNLENBQUNKLE1BQU0sQ0FBQztBQUMzQixDQUFDO0FBRUQsaUVBQWVFLFFBQVEsRUFBQyIsInNvdXJjZXMiOlsid2VicGFjazovL3Byb2plY3RvcmF0ZS8uL2xpYi9wcmlzbWEuanM/NzUxNSJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBsaWIvcHJpc21hLnRzXHJcbmltcG9ydCB7IHByaXNtYSwgUHJpc21hQ2xpZW50IH0gZnJvbSBcIkBwcmlzbWEvY2xpZW50XCI7XHJcblxyXG5sZXQgUHJpc21hREI7XHJcblxyXG5pZiAocHJvY2Vzcy5lbnYuTk9ERV9FTlYgPT09IFwicHJvZHVjdGlvblwiKSB7XHJcbiAgUHJpc21hREIgPSBuZXcgUHJpc21hQ2xpZW50KCk7XHJcbn0gZWxzZSB7XHJcbiAgaWYgKCFnbG9iYWwucHJpc21hKSB7XHJcbiAgICBnbG9iYWwucHJpc21hID0gbmV3IFByaXNtYUNsaWVudCgpO1xyXG4gIH1cclxuICBQcmlzbWFEQiA9IGdsb2JhbC5wcmlzbWE7XHJcbn1cclxuXHJcbmV4cG9ydCBkZWZhdWx0IFByaXNtYURCO1xyXG4iXSwibmFtZXMiOlsicHJpc21hIiwiUHJpc21hQ2xpZW50IiwiUHJpc21hREIiLCJwcm9jZXNzIiwiZ2xvYmFsIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(api)/./lib/prisma.js\n");
 
 /***/ }),
 
-/***/ 8862:
+/***/ "(api)/./pages/api/projects/create-project.js":
+/*!**********************************************!*\
+  !*** ./pages/api/projects/create-project.js ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ handler)
-/* harmony export */ });
-/* harmony import */ var _lib_prisma__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(36);
-
-async function handler(req, res) {
-    if (req.method !== "POST") {
-        return res.status(405).json({
-            message: "Method not allowed"
-        });
-    }
-    console.log("Create project End-point hit!");
-    const reqData = req.body;
-    const LogsOperations = await _lib_prisma__WEBPACK_IMPORTED_MODULE_0__/* ["default"].LogsOperations.findMany */ .Z.LogsOperations.findMany({});
-    try {
-        const data = await _lib_prisma__WEBPACK_IMPORTED_MODULE_0__/* ["default"].Project.create */ .Z.Project.create({
-            data: {
-                project_name: reqData.project_name,
-                description: reqData.description,
-                user: {
-                    connect: {
-                        id: reqData.user_id
-                    }
-                },
-                projectDomain: {
-                    connect: {
-                        id: reqData.project_domain_id
-                    }
-                }
-            }
-        }).then(async (result)=>{
-            //** Record log */
-            try {
-                const response = await _lib_prisma__WEBPACK_IMPORTED_MODULE_0__/* ["default"].Logs.create */ .Z.Logs.create({
-                    data: {
-                        operation: "Created Project",
-                        description: "Created Project during the project creation phase",
-                        project_name: result.project_name,
-                        user: {
-                            connect: {
-                                id: reqData.user_id
-                            }
-                        },
-                        project: {
-                            connect: {
-                                id: result.id
-                            }
-                        },
-                        LogsOperations: {
-                            connect: {
-                                id: LogsOperations.find((t)=>t.title === "Created Project")?.id
-                            }
-                        }
-                    }
-                });
-            } catch (error) {
-                console.log("Error while creating log for project: ", error);
-            }
-            res.status(200).json(result);
-        });
-    } catch (error) {
-        console.log("Error while add new Create project at backend: ", error);
-        return res.status(422).json({
-            error: "Error while add new Create project at backend:",
-            error
-        });
-    }
-}
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ handler)\n/* harmony export */ });\n/* harmony import */ var _lib_prisma__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../lib/prisma */ \"(api)/./lib/prisma.js\");\n\nasync function handler(req, res) {\n    if (req.method !== \"POST\") {\n        return res.status(405).json({\n            message: \"Method not allowed\"\n        });\n    }\n    console.log(\"Create project End-point hit!\");\n    const reqData = req.body;\n    const LogsOperations = await _lib_prisma__WEBPACK_IMPORTED_MODULE_0__[\"default\"].LogsOperations.findMany({});\n    try {\n        const data = await _lib_prisma__WEBPACK_IMPORTED_MODULE_0__[\"default\"].Project.create({\n            data: {\n                project_name: reqData.project_name,\n                description: reqData.description,\n                user: {\n                    connect: {\n                        id: reqData.user_id\n                    }\n                },\n                projectDomain: {\n                    connect: {\n                        id: reqData.project_domain_id\n                    }\n                }\n            }\n        }).then(async (result)=>{\n            //** Record log */\n            try {\n                const response = await _lib_prisma__WEBPACK_IMPORTED_MODULE_0__[\"default\"].Logs.create({\n                    data: {\n                        operation: \"Created Project\",\n                        description: \"Created Project during the project creation phase\",\n                        project_name: result.project_name,\n                        user: {\n                            connect: {\n                                id: reqData.user_id\n                            }\n                        },\n                        project: {\n                            connect: {\n                                id: result.id\n                            }\n                        },\n                        LogsOperations: {\n                            connect: {\n                                id: LogsOperations.find((t)=>t.title === \"Created Project\")?.id\n                            }\n                        }\n                    }\n                });\n            } catch (error) {\n                console.log(\"Error while creating log for project: \", error);\n            }\n            res.status(200).json(result);\n        });\n    } catch (error) {\n        console.log(\"Error while add new Create project at backend: \", error);\n        return res.status(422).json({\n            error: \"Error while add new Create project at backend:\",\n            error\n        });\n    }\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwaSkvLi9wYWdlcy9hcGkvcHJvamVjdHMvY3JlYXRlLXByb2plY3QuanMuanMiLCJtYXBwaW5ncyI6Ijs7Ozs7QUFBMkM7QUFFNUIsZUFBZUMsT0FBTyxDQUFDQyxHQUFHLEVBQUVDLEdBQUcsRUFBRTtJQUM5QyxJQUFJRCxHQUFHLENBQUNFLE1BQU0sS0FBSyxNQUFNLEVBQUU7UUFDekIsT0FBT0QsR0FBRyxDQUFDRSxNQUFNLENBQUMsR0FBRyxDQUFDLENBQUNDLElBQUksQ0FBQztZQUFFQyxPQUFPLEVBQUUsb0JBQW9CO1NBQUUsQ0FBQyxDQUFDO0lBQ2pFLENBQUM7SUFFREMsT0FBTyxDQUFDQyxHQUFHLENBQUMsK0JBQStCLENBQUMsQ0FBQztJQUU3QyxNQUFNQyxPQUFPLEdBQUdSLEdBQUcsQ0FBQ1MsSUFBSTtJQUN4QixNQUFNQyxjQUFjLEdBQUcsTUFBTVosMkVBQWdDLENBQUMsRUFBRSxDQUFDO0lBQ2pFLElBQUk7UUFDRixNQUFNYyxJQUFJLEdBQUcsTUFBTWQsa0VBQXVCLENBQUM7WUFDekNjLElBQUksRUFBRTtnQkFDSkcsWUFBWSxFQUFFUCxPQUFPLENBQUNPLFlBQVk7Z0JBQ2xDQyxXQUFXLEVBQUVSLE9BQU8sQ0FBQ1EsV0FBVztnQkFDaENDLElBQUksRUFBRTtvQkFDSkMsT0FBTyxFQUFFO3dCQUNQQyxFQUFFLEVBQUVYLE9BQU8sQ0FBQ1ksT0FBTztxQkFDcEI7aUJBQ0Y7Z0JBQ0RDLGFBQWEsRUFBRTtvQkFDYkgsT0FBTyxFQUFFO3dCQUNQQyxFQUFFLEVBQUVYLE9BQU8sQ0FBQ2MsaUJBQWlCO3FCQUM5QjtpQkFDRjthQUNGO1NBQ0YsQ0FBQyxDQUFDQyxJQUFJLENBQUMsT0FBT0MsTUFBTSxHQUFLO1lBQ3hCLGtCQUFrQjtZQUNsQixJQUFJO2dCQUNGLE1BQU1DLFFBQVEsR0FBRyxNQUFNM0IsK0RBQW9CLENBQUM7b0JBQzFDYyxJQUFJLEVBQUU7d0JBQ0plLFNBQVMsRUFBRSxpQkFBaUI7d0JBQzVCWCxXQUFXLEVBQUUsbURBQW1EO3dCQUNoRUQsWUFBWSxFQUFFUyxNQUFNLENBQUNULFlBQVk7d0JBQ2pDRSxJQUFJLEVBQUU7NEJBQ0pDLE9BQU8sRUFBRTtnQ0FDUEMsRUFBRSxFQUFFWCxPQUFPLENBQUNZLE9BQU87NkJBQ3BCO3lCQUNGO3dCQUNEUSxPQUFPLEVBQUU7NEJBQ1BWLE9BQU8sRUFBRTtnQ0FDUEMsRUFBRSxFQUFFSyxNQUFNLENBQUNMLEVBQUU7NkJBQ2Q7eUJBQ0Y7d0JBQ0RULGNBQWMsRUFBRTs0QkFDZFEsT0FBTyxFQUFFO2dDQUNQQyxFQUFFLEVBQUVULGNBQWMsQ0FBQ21CLElBQUksQ0FBQyxDQUFDQyxDQUFDLEdBQUtBLENBQUMsQ0FBQ0MsS0FBSyxLQUFLLGlCQUFpQixDQUFDLEVBQ3pEWixFQUFFOzZCQUNQO3lCQUNGO3FCQUNGO2lCQUNGLENBQUM7WUFDSixFQUFFLE9BQU9hLEtBQUssRUFBRTtnQkFDZDFCLE9BQU8sQ0FBQ0MsR0FBRyxDQUFDLHdDQUF3QyxFQUFFeUIsS0FBSyxDQUFDLENBQUM7WUFDL0QsQ0FBQztZQUNEL0IsR0FBRyxDQUFDRSxNQUFNLENBQUMsR0FBRyxDQUFDLENBQUNDLElBQUksQ0FBQ29CLE1BQU0sQ0FBQyxDQUFDO1FBQy9CLENBQUMsQ0FBQztJQUNKLEVBQUUsT0FBT1EsS0FBSyxFQUFFO1FBQ2QxQixPQUFPLENBQUNDLEdBQUcsQ0FBQyxpREFBaUQsRUFBRXlCLEtBQUssQ0FBQyxDQUFDO1FBQ3RFLE9BQU8vQixHQUFHLENBQ1BFLE1BQU0sQ0FBQyxHQUFHLENBQUMsQ0FDWEMsSUFBSSxDQUFDO1lBQUU0QixLQUFLLEVBQUUsZ0RBQWdEO1lBQUVBLEtBQUs7U0FBRSxDQUFDLENBQUM7SUFDOUUsQ0FBQztBQUNILENBQUMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9wcm9qZWN0b3JhdGUvLi9wYWdlcy9hcGkvcHJvamVjdHMvY3JlYXRlLXByb2plY3QuanM/NTc2MiJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUHJpc21hREIgZnJvbSBcIi4uLy4uLy4uL2xpYi9wcmlzbWFcIjtcclxuXHJcbmV4cG9ydCBkZWZhdWx0IGFzeW5jIGZ1bmN0aW9uIGhhbmRsZXIocmVxLCByZXMpIHtcclxuICBpZiAocmVxLm1ldGhvZCAhPT0gXCJQT1NUXCIpIHtcclxuICAgIHJldHVybiByZXMuc3RhdHVzKDQwNSkuanNvbih7IG1lc3NhZ2U6IFwiTWV0aG9kIG5vdCBhbGxvd2VkXCIgfSk7XHJcbiAgfVxyXG5cclxuICBjb25zb2xlLmxvZyhcIkNyZWF0ZSBwcm9qZWN0IEVuZC1wb2ludCBoaXQhXCIpO1xyXG5cclxuICBjb25zdCByZXFEYXRhID0gcmVxLmJvZHk7XHJcbiAgY29uc3QgTG9nc09wZXJhdGlvbnMgPSBhd2FpdCBQcmlzbWFEQi5Mb2dzT3BlcmF0aW9ucy5maW5kTWFueSh7fSk7XHJcbiAgdHJ5IHtcclxuICAgIGNvbnN0IGRhdGEgPSBhd2FpdCBQcmlzbWFEQi5Qcm9qZWN0LmNyZWF0ZSh7XHJcbiAgICAgIGRhdGE6IHtcclxuICAgICAgICBwcm9qZWN0X25hbWU6IHJlcURhdGEucHJvamVjdF9uYW1lLFxyXG4gICAgICAgIGRlc2NyaXB0aW9uOiByZXFEYXRhLmRlc2NyaXB0aW9uLFxyXG4gICAgICAgIHVzZXI6IHtcclxuICAgICAgICAgIGNvbm5lY3Q6IHtcclxuICAgICAgICAgICAgaWQ6IHJlcURhdGEudXNlcl9pZCxcclxuICAgICAgICAgIH0sXHJcbiAgICAgICAgfSxcclxuICAgICAgICBwcm9qZWN0RG9tYWluOiB7XHJcbiAgICAgICAgICBjb25uZWN0OiB7XHJcbiAgICAgICAgICAgIGlkOiByZXFEYXRhLnByb2plY3RfZG9tYWluX2lkLFxyXG4gICAgICAgICAgfSxcclxuICAgICAgICB9LFxyXG4gICAgICB9LFxyXG4gICAgfSkudGhlbihhc3luYyAocmVzdWx0KSA9PiB7XHJcbiAgICAgIC8vKiogUmVjb3JkIGxvZyAqL1xyXG4gICAgICB0cnkge1xyXG4gICAgICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgUHJpc21hREIuTG9ncy5jcmVhdGUoe1xyXG4gICAgICAgICAgZGF0YToge1xyXG4gICAgICAgICAgICBvcGVyYXRpb246IFwiQ3JlYXRlZCBQcm9qZWN0XCIsXHJcbiAgICAgICAgICAgIGRlc2NyaXB0aW9uOiBcIkNyZWF0ZWQgUHJvamVjdCBkdXJpbmcgdGhlIHByb2plY3QgY3JlYXRpb24gcGhhc2VcIixcclxuICAgICAgICAgICAgcHJvamVjdF9uYW1lOiByZXN1bHQucHJvamVjdF9uYW1lLFxyXG4gICAgICAgICAgICB1c2VyOiB7XHJcbiAgICAgICAgICAgICAgY29ubmVjdDoge1xyXG4gICAgICAgICAgICAgICAgaWQ6IHJlcURhdGEudXNlcl9pZCxcclxuICAgICAgICAgICAgICB9LFxyXG4gICAgICAgICAgICB9LFxyXG4gICAgICAgICAgICBwcm9qZWN0OiB7XHJcbiAgICAgICAgICAgICAgY29ubmVjdDoge1xyXG4gICAgICAgICAgICAgICAgaWQ6IHJlc3VsdC5pZCxcclxuICAgICAgICAgICAgICB9LFxyXG4gICAgICAgICAgICB9LFxyXG4gICAgICAgICAgICBMb2dzT3BlcmF0aW9uczoge1xyXG4gICAgICAgICAgICAgIGNvbm5lY3Q6IHtcclxuICAgICAgICAgICAgICAgIGlkOiBMb2dzT3BlcmF0aW9ucy5maW5kKCh0KSA9PiB0LnRpdGxlID09PSBcIkNyZWF0ZWQgUHJvamVjdFwiKVxyXG4gICAgICAgICAgICAgICAgICA/LmlkLFxyXG4gICAgICAgICAgICAgIH0sXHJcbiAgICAgICAgICAgIH0sXHJcbiAgICAgICAgICB9LFxyXG4gICAgICAgIH0pO1xyXG4gICAgICB9IGNhdGNoIChlcnJvcikge1xyXG4gICAgICAgIGNvbnNvbGUubG9nKFwiRXJyb3Igd2hpbGUgY3JlYXRpbmcgbG9nIGZvciBwcm9qZWN0OiBcIiwgZXJyb3IpO1xyXG4gICAgICB9XHJcbiAgICAgIHJlcy5zdGF0dXMoMjAwKS5qc29uKHJlc3VsdCk7XHJcbiAgICB9KTtcclxuICB9IGNhdGNoIChlcnJvcikge1xyXG4gICAgY29uc29sZS5sb2coXCJFcnJvciB3aGlsZSBhZGQgbmV3IENyZWF0ZSBwcm9qZWN0IGF0IGJhY2tlbmQ6IFwiLCBlcnJvcik7XHJcbiAgICByZXR1cm4gcmVzXHJcbiAgICAgIC5zdGF0dXMoNDIyKVxyXG4gICAgICAuanNvbih7IGVycm9yOiBcIkVycm9yIHdoaWxlIGFkZCBuZXcgQ3JlYXRlIHByb2plY3QgYXQgYmFja2VuZDpcIiwgZXJyb3IgfSk7XHJcbiAgfVxyXG59XHJcbiJdLCJuYW1lcyI6WyJQcmlzbWFEQiIsImhhbmRsZXIiLCJyZXEiLCJyZXMiLCJtZXRob2QiLCJzdGF0dXMiLCJqc29uIiwibWVzc2FnZSIsImNvbnNvbGUiLCJsb2ciLCJyZXFEYXRhIiwiYm9keSIsIkxvZ3NPcGVyYXRpb25zIiwiZmluZE1hbnkiLCJkYXRhIiwiUHJvamVjdCIsImNyZWF0ZSIsInByb2plY3RfbmFtZSIsImRlc2NyaXB0aW9uIiwidXNlciIsImNvbm5lY3QiLCJpZCIsInVzZXJfaWQiLCJwcm9qZWN0RG9tYWluIiwicHJvamVjdF9kb21haW5faWQiLCJ0aGVuIiwicmVzdWx0IiwicmVzcG9uc2UiLCJMb2dzIiwib3BlcmF0aW9uIiwicHJvamVjdCIsImZpbmQiLCJ0IiwidGl0bGUiLCJlcnJvciJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(api)/./pages/api/projects/create-project.js\n");
 
 /***/ })
 
@@ -114,7 +50,7 @@ async function handler(req, res) {
 var __webpack_require__ = require("../../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = (__webpack_exec__(8862));
+var __webpack_exports__ = (__webpack_exec__("(api)/./pages/api/projects/create-project.js"));
 module.exports = __webpack_exports__;
 
 })();

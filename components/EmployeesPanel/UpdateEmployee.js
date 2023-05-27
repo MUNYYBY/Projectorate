@@ -133,7 +133,6 @@ export default function UpdateEmployee(props) {
               ["expertise"]: employee.expertise,
               ["designation"]: employee.designation,
               ["role"]: employee.role,
-              ["role"]: employee.role,
             }}
           >
             <Row>

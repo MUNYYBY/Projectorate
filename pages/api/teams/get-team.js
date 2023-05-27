@@ -11,6 +11,90 @@ export default async function handler(req, res) {
   }
 
   try {
+    //** get tickets status to evaluate the tickets query */
+    const TicketsStatus = await PrismaDB.TicketStatus.findMany({});
+
+    const allTickets = await PrismaDB.Tickets.count({
+      where: {
+        teamId: parseInt(teamId),
+      },
+    });
+
+    //** get tickets individually for specified project */
+    const todoTickets = await PrismaDB.Tickets.count({
+      where: {
+        AND: [
+          { teamId: parseInt(teamId) },
+          {
+            TicketStatus: {
+              id: TicketsStatus.find((t) => t.title === "Todo")?.id,
+            },
+          },
+        ],
+      },
+    });
+    const inProgressTickets = await PrismaDB.Tickets.count({
+      where: {
+        AND: [
+          { teamId: parseInt(teamId) },
+          {
+            TicketStatus: {
+              id: TicketsStatus.find((t) => t.title === "In-progress")?.id,
+            },
+          },
+        ],
+      },
+    });
+    const doneTickets = await PrismaDB.Tickets.count({
+      where: {
+        AND: [
+          { teamId: parseInt(teamId) },
+          {
+            TicketStatus: {
+              id: TicketsStatus.find((t) => t.title === "Done")?.id,
+            },
+          },
+        ],
+      },
+    });
+    const resolvedTickets = await PrismaDB.Tickets.count({
+      where: {
+        AND: [
+          { teamId: parseInt(teamId) },
+          {
+            TicketStatus: {
+              id: TicketsStatus.find((t) => t.title === "Resolved")?.id,
+            },
+          },
+        ],
+      },
+    });
+    const testedTickets = await PrismaDB.Tickets.count({
+      where: {
+        AND: [
+          { teamId: parseInt(teamId) },
+          {
+            TicketStatus: {
+              id: TicketsStatus.find(
+                (t) => t.title === "Tested but not resolved"
+              )?.id,
+            },
+          },
+        ],
+      },
+    });
+    const holdTickets = await PrismaDB.Tickets.count({
+      where: {
+        AND: [
+          { teamId: parseInt(teamId) },
+          {
+            TicketStatus: {
+              id: TicketsStatus.find((t) => t.title === "On Hold")?.id,
+            },
+          },
+        ],
+      },
+    });
     const data = await PrismaDB.Teams.findUnique({
       where: {
         id: parseInt(teamId),
@@ -20,7 +104,18 @@ export default async function handler(req, res) {
       },
     });
     if (data) {
-      res.status(200).json({ data });
+      res.status(200).json({
+        data,
+        Tickets: {
+          all: allTickets,
+          todo: todoTickets,
+          inProgress: inProgressTickets,
+          done: doneTickets,
+          resolved: resolvedTickets,
+          tested: testedTickets,
+          hold: holdTickets,
+        },
+      });
     } else {
       res.status(404).json({ error: 404, message: "Team not found" });
     }
