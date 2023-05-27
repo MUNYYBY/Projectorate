@@ -3,6 +3,9 @@ export const options = {
     type: "donut",
     foreColor: "#d4d7dc",
   },
+  dataLabels: {
+    enabled: false,
+  },
   plotOptions: {
     pie: {
       expandOnClick: false,

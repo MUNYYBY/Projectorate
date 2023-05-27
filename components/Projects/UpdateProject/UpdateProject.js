@@ -49,6 +49,7 @@ export default function UpdateProject({
   }, []);
   return (
     <div className="md:ml-4">
+      <h1 className="mb-2 text-xl font-semibold">Update Project</h1>
       <Form
         form={form}
         layout="vertical"
@@ -59,6 +60,10 @@ export default function UpdateProject({
         }}
         scrollToFirstError
         disabled={loading}
+        initialValues={{
+          project_name: projectInformation.project_name,
+          description: projectInformation.description,
+        }}
       >
         <Form.Item
           name="project_name"
@@ -78,10 +83,7 @@ export default function UpdateProject({
             },
           ]}
         >
-          <Input
-            placeholder="Enter a project name"
-            defaultValue={projectInformation.project_name}
-          />
+          <Input placeholder="Enter a project name" />
         </Form.Item>
         <Form.Item
           name="project_domain_id"
@@ -120,20 +122,17 @@ export default function UpdateProject({
             },
           ]}
         >
-          <Input
-            placeholder="Enter a project description"
-            defaultValue={projectInformation.description}
-          />
+          <Input placeholder="Enter a project description" />
         </Form.Item>
         <div className="flex">
           <button
-            className="bg-white bg-opacity-10 hover:bg-opacity-20 transition-all w-24 h-10 p-2 mr-2 rounded-md flex flex-row justify-center items-center text-lg font-semibold mt-4 disabled:opacity-50"
+            className="bg-white bg-opacity-10 hover:bg-opacity-20 transition-all w-24 h-10 p-2 mr-2 rounded-md flex flex-row justify-center items-center text-lg font-semibold disabled:opacity-50"
             onClick={() => setIsUpdateProject(false)}
           >
             <p>Cancel</p>
           </button>
           <button
-            className="bg-primary w-24 h-10 p-2 rounded-md flex flex-row justify-center items-center text-lg font-semibold mt-4 disabled:opacity-50"
+            className="bg-primary w-24 h-10 p-2 rounded-md flex flex-row justify-center items-center text-lg font-semibold disabled:opacity-50"
             disabled={loading}
           >
             {loading ? (

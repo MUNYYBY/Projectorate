@@ -2,11 +2,15 @@ import { useEffect, useState } from "react";
 import SearchModule from "../../../components/Search/SearchModule";
 import TabDevider from "../../../components/Devider/Devider";
 import ProjectsContainer from "../../../components/Projects/ProjectsContainer/ProjectsContainer";
-import { SlSocialSteam } from "react-icons/sl";
 import { IoIosAdd, IoIosHelpCircle, IoMdGitNetwork } from "react-icons/io";
-import { AiOutlineUsergroupAdd, AiOutlineEdit } from "react-icons/ai";
-
+import {
+  AiOutlineUsergroupAdd,
+  AiOutlineEdit,
+  AiOutlineBlock,
+} from "react-icons/ai";
+import { HiOutlineUsers, HiOutlineTicket } from "react-icons/hi";
 import { CgInbox, CgTrash } from "react-icons/cg";
+
 import { Tooltip, Col, Row, Tabs, Popconfirm, message, Result } from "antd";
 import CreateProject from "../../../components/Projects/CreateProject/CreateProject";
 import {
@@ -330,7 +334,7 @@ export default function SuperAdminProjectPanel() {
             >
               <div className="py-10 flex flex-col sm:flex-row justify-between sm:items-start px-3 sm:px-6">
                 <div className="flex flex-row justify-start items-start">
-                  <div className="bg-gray-700 md:flex hidden lg:h-52 lg:w-52 md:h-32 md:w-32 h-24 w-24 rounded-lg flex justify-center items-center">
+                  <div className="bg-gray-700 lg:flex hidden lg:h-52 lg:w-52 md:h-32 md:w-32 h-24 w-24 rounded-lg flex justify-center items-center">
                     <p className="font-extrabold lg:text-[10rem] md:text-6xl text-3xl opacity-40">
                       {activeProject.name[0]}
                     </p>
@@ -343,7 +347,7 @@ export default function SuperAdminProjectPanel() {
                       <p className="font-medium mt-2 text-sm md:text-md lg:text-lg sm:w-32 lg:w-96 md:w-32 w-full">
                         {projectInformation?.description}
                       </p>
-                      <div className="mt-4">
+                      <div className="mt-2">
                         <InformationTag
                           title={
                             handleProjectDomainsInfo(
@@ -353,6 +357,29 @@ export default function SuperAdminProjectPanel() {
                           type="intermediate"
                           size="md"
                         />
+                      </div>
+                      <div className="flex mt-3">
+                        <div className="bg-gray-800 px-3 py-1 flex justify-center items-center rounded-md">
+                          <HiOutlineUsers />
+                          <p className="ml-2 opacity-80">
+                            {projectInformation._count.userProjects}
+                          </p>
+                        </div>
+                        <div className="ml-3 bg-gray-800 px-3 py-1 flex justify-center items-center rounded-md">
+                          <AiOutlineBlock />
+                          <p className="ml-2 opacity-80">
+                            {projectInformation._count.Teams}
+                          </p>
+                        </div>
+                        <div className="ml-3 bg-gray-800 px-3 py-1 flex justify-center items-center rounded-md">
+                          <HiOutlineTicket />
+                          <p className="ml-2 opacity-80">
+                            {projectInformation._count.Tickets}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="mt-3 opacity-50">
+                        Estimated completion: 16/05/2025
                       </div>
                     </div>
                   ) : (
