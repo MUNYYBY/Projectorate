@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import { useRouter } from "next/router";
 import { Users } from "../Config/User";
 import Loading from "../components/Loading/loading";
 import HorizontalLayout from "./components/HorizontalLayout";
 
-export default function UserLayout({ children }) {
+function UserLayout({ children }) {
   //** States Initialization */
   const [layoutType, setLayoutType] = useState(null);
   const [isNavActive, setIsNavActive] = useState(false);
@@ -33,3 +33,5 @@ export default function UserLayout({ children }) {
   }, [router.asPath]);
   return <>{layoutType ? <Layout /> : children} </>;
 }
+
+export default memo(UserLayout);

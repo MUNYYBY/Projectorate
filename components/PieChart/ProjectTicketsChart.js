@@ -1,6 +1,10 @@
 import React, { Component } from "react";
-import Chart from "react-apexcharts";
+// import Chart from "react-apexcharts";
 import { options } from "./Options";
+
+import dynamic from "next/dynamic";
+
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 class ProjectTicketsChart extends Component {
   constructor(props) {
@@ -26,12 +30,14 @@ class ProjectTicketsChart extends Component {
     return (
       <div className="donut bg-gray-800 p-2 rounded-lg flex flex-col justify-center items-center">
         <p className="text-gray-400 font-semibold text-sm">Tickets</p>
-        <Chart
-          options={this.state.options}
-          series={this.state.series}
-          labels={this.state.labels}
-          type="donut"
-        />
+        {typeof window !== "undefined" && (
+          <Chart
+            options={this.state.options}
+            series={this.state.series}
+            labels={this.state.labels}
+            type="donut"
+          />
+        )}
       </div>
     );
   }

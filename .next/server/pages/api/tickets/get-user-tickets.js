@@ -1,45 +1,116 @@
 "use strict";
-/*
- * ATTENTION: An "eval-source-map" devtool has been used.
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
 (() => {
 var exports = {};
-exports.id = "pages/api/tickets/get-user-tickets";
-exports.ids = ["pages/api/tickets/get-user-tickets"];
+exports.id = 8590;
+exports.ids = [8590];
 exports.modules = {
 
-/***/ "@prisma/client":
-/*!*********************************!*\
-  !*** external "@prisma/client" ***!
-  \*********************************/
+/***/ 3524:
 /***/ ((module) => {
 
 module.exports = require("@prisma/client");
 
 /***/ }),
 
-/***/ "(api)/./lib/prisma.js":
-/*!***********************!*\
-  !*** ./lib/prisma.js ***!
-  \***********************/
+/***/ 36:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @prisma/client */ \"@prisma/client\");\n/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_prisma_client__WEBPACK_IMPORTED_MODULE_0__);\n// lib/prisma.ts\n\nlet PrismaDB;\nif (false) {} else {\n    if (!global.prisma) {\n        global.prisma = new _prisma_client__WEBPACK_IMPORTED_MODULE_0__.PrismaClient();\n    }\n    PrismaDB = global.prisma;\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PrismaDB);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwaSkvLi9saWIvcHJpc21hLmpzLmpzIiwibWFwcGluZ3MiOiI7Ozs7OztBQUFBLGdCQUFnQjtBQUNzQztBQUV0RCxJQUFJRSxRQUFRO0FBRVosSUFBSUMsS0FBcUMsRUFBRSxFQUUxQyxNQUFNO0lBQ0wsSUFBSSxDQUFDQyxNQUFNLENBQUNKLE1BQU0sRUFBRTtRQUNsQkksTUFBTSxDQUFDSixNQUFNLEdBQUcsSUFBSUMsd0RBQVksRUFBRSxDQUFDO0lBQ3JDLENBQUM7SUFDREMsUUFBUSxHQUFHRSxNQUFNLENBQUNKLE1BQU0sQ0FBQztBQUMzQixDQUFDO0FBRUQsaUVBQWVFLFFBQVEsRUFBQyIsInNvdXJjZXMiOlsid2VicGFjazovL3Byb2plY3RvcmF0ZS8uL2xpYi9wcmlzbWEuanM/NzUxNSJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBsaWIvcHJpc21hLnRzXHJcbmltcG9ydCB7IHByaXNtYSwgUHJpc21hQ2xpZW50IH0gZnJvbSBcIkBwcmlzbWEvY2xpZW50XCI7XHJcblxyXG5sZXQgUHJpc21hREI7XHJcblxyXG5pZiAocHJvY2Vzcy5lbnYuTk9ERV9FTlYgPT09IFwicHJvZHVjdGlvblwiKSB7XHJcbiAgUHJpc21hREIgPSBuZXcgUHJpc21hQ2xpZW50KCk7XHJcbn0gZWxzZSB7XHJcbiAgaWYgKCFnbG9iYWwucHJpc21hKSB7XHJcbiAgICBnbG9iYWwucHJpc21hID0gbmV3IFByaXNtYUNsaWVudCgpO1xyXG4gIH1cclxuICBQcmlzbWFEQiA9IGdsb2JhbC5wcmlzbWE7XHJcbn1cclxuXHJcbmV4cG9ydCBkZWZhdWx0IFByaXNtYURCO1xyXG4iXSwibmFtZXMiOlsicHJpc21hIiwiUHJpc21hQ2xpZW50IiwiUHJpc21hREIiLCJwcm9jZXNzIiwiZ2xvYmFsIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(api)/./lib/prisma.js\n");
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3524);
+/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_prisma_client__WEBPACK_IMPORTED_MODULE_0__);
+// lib/prisma.ts
+
+let PrismaDB;
+if (true) {
+    PrismaDB = new _prisma_client__WEBPACK_IMPORTED_MODULE_0__.PrismaClient();
+} else {}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PrismaDB);
+
 
 /***/ }),
 
-/***/ "(api)/./pages/api/tickets/get-user-tickets.js":
-/*!***********************************************!*\
-  !*** ./pages/api/tickets/get-user-tickets.js ***!
-  \***********************************************/
+/***/ 5938:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ handler)\n/* harmony export */ });\n/* harmony import */ var _lib_prisma__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../lib/prisma */ \"(api)/./lib/prisma.js\");\n\nasync function handler(req, res) {\n    if (req.method !== \"GET\") {\n        return res.status(405).json({\n            message: \"Method not allowed\"\n        });\n    }\n    console.log(\"Get project Tickets End-point hit!\");\n    const { userId  } = req.query;\n    if (!userId) {\n        return res.status(500).json({\n            message: \"UserId is required!\"\n        });\n    }\n    try {\n        const data = await _lib_prisma__WEBPACK_IMPORTED_MODULE_0__[\"default\"].Tickets.findMany({\n            where: {\n                assigneeId: parseInt(userId)\n            },\n            include: {\n                project: {\n                    select: {\n                        project_name: true,\n                        id: true\n                    }\n                },\n                team: {\n                    select: {\n                        team_name: true,\n                        id: true\n                    }\n                },\n                employee: {\n                    select: {\n                        first_name: true,\n                        last_name: true,\n                        id: true\n                    }\n                },\n                TicketStatus: {\n                    select: {\n                        title: true,\n                        id: true\n                    }\n                },\n                TicketPiority: {\n                    select: {\n                        title: true,\n                        id: true\n                    }\n                }\n            }\n        }).then((result)=>{\n            res.status(200).json({\n                result\n            });\n        }).catch((err)=>{\n            res.status(404).json({\n                error: 404,\n                type: \"Ticket\",\n                message: \"Error while user tickets!\",\n                errMessage: err.message\n            });\n        });\n    } catch (error) {\n        console.log(\"Error while getting user Tickets at backend: \", error);\n        return res.status(422).json({\n            error: \"Error while getting user Tickets at backend: \" + error.message\n        });\n    }\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwaSkvLi9wYWdlcy9hcGkvdGlja2V0cy9nZXQtdXNlci10aWNrZXRzLmpzLmpzIiwibWFwcGluZ3MiOiI7Ozs7O0FBQTJDO0FBRTVCLGVBQWVDLE9BQU8sQ0FBQ0MsR0FBRyxFQUFFQyxHQUFHLEVBQUU7SUFDOUMsSUFBSUQsR0FBRyxDQUFDRSxNQUFNLEtBQUssS0FBSyxFQUFFO1FBQ3hCLE9BQU9ELEdBQUcsQ0FBQ0UsTUFBTSxDQUFDLEdBQUcsQ0FBQyxDQUFDQyxJQUFJLENBQUM7WUFBRUMsT0FBTyxFQUFFLG9CQUFvQjtTQUFFLENBQUMsQ0FBQztJQUNqRSxDQUFDO0lBQ0RDLE9BQU8sQ0FBQ0MsR0FBRyxDQUFDLG9DQUFvQyxDQUFDLENBQUM7SUFDbEQsTUFBTSxFQUFFQyxNQUFNLEdBQUUsR0FBR1IsR0FBRyxDQUFDUyxLQUFLO0lBQzVCLElBQUksQ0FBQ0QsTUFBTSxFQUFFO1FBQ1gsT0FBT1AsR0FBRyxDQUFDRSxNQUFNLENBQUMsR0FBRyxDQUFDLENBQUNDLElBQUksQ0FBQztZQUFFQyxPQUFPLEVBQUUscUJBQXFCO1NBQUUsQ0FBQyxDQUFDO0lBQ2xFLENBQUM7SUFDRCxJQUFJO1FBQ0YsTUFBTUssSUFBSSxHQUFHLE1BQU1aLG9FQUF5QixDQUFDO1lBQzNDZSxLQUFLLEVBQUU7Z0JBQ0xDLFVBQVUsRUFBRUMsUUFBUSxDQUFDUCxNQUFNLENBQUM7YUFDN0I7WUFDRFEsT0FBTyxFQUFFO2dCQUNQQyxPQUFPLEVBQUU7b0JBQ1BDLE1BQU0sRUFBRTt3QkFDTkMsWUFBWSxFQUFFLElBQUk7d0JBQ2xCQyxFQUFFLEVBQUUsSUFBSTtxQkFDVDtpQkFDRjtnQkFDREMsSUFBSSxFQUFFO29CQUNKSCxNQUFNLEVBQUU7d0JBQ05JLFNBQVMsRUFBRSxJQUFJO3dCQUNmRixFQUFFLEVBQUUsSUFBSTtxQkFDVDtpQkFDRjtnQkFDREcsUUFBUSxFQUFFO29CQUNSTCxNQUFNLEVBQUU7d0JBQ05NLFVBQVUsRUFBRSxJQUFJO3dCQUNoQkMsU0FBUyxFQUFFLElBQUk7d0JBQ2ZMLEVBQUUsRUFBRSxJQUFJO3FCQUNUO2lCQUNGO2dCQUNETSxZQUFZLEVBQUU7b0JBQ1pSLE1BQU0sRUFBRTt3QkFDTlMsS0FBSyxFQUFFLElBQUk7d0JBQ1hQLEVBQUUsRUFBRSxJQUFJO3FCQUNUO2lCQUNGO2dCQUNEUSxhQUFhLEVBQUU7b0JBQ2JWLE1BQU0sRUFBRTt3QkFDTlMsS0FBSyxFQUFFLElBQUk7d0JBQ1hQLEVBQUUsRUFBRSxJQUFJO3FCQUNUO2lCQUNGO2FBQ0Y7U0FDRixDQUFDLENBQ0NTLElBQUksQ0FBQyxDQUFDQyxNQUFNLEdBQUs7WUFDaEI3QixHQUFHLENBQUNFLE1BQU0sQ0FBQyxHQUFHLENBQUMsQ0FBQ0MsSUFBSSxDQUFDO2dCQUFFMEIsTUFBTTthQUFFLENBQUMsQ0FBQztRQUNuQyxDQUFDLENBQUMsQ0FDREMsS0FBSyxDQUFDLENBQUNDLEdBQUcsR0FBSztZQUNkL0IsR0FBRyxDQUFDRSxNQUFNLENBQUMsR0FBRyxDQUFDLENBQUNDLElBQUksQ0FBQztnQkFDbkI2QixLQUFLLEVBQUUsR0FBRztnQkFDVkMsSUFBSSxFQUFFLFFBQVE7Z0JBQ2Q3QixPQUFPLEVBQUUsMkJBQTJCO2dCQUNwQzhCLFVBQVUsRUFBRUgsR0FBRyxDQUFDM0IsT0FBTzthQUN4QixDQUFDLENBQUM7UUFDTCxDQUFDLENBQUM7SUFDTixFQUFFLE9BQU80QixLQUFLLEVBQUU7UUFDZDNCLE9BQU8sQ0FBQ0MsR0FBRyxDQUFDLCtDQUErQyxFQUFFMEIsS0FBSyxDQUFDLENBQUM7UUFDcEUsT0FBT2hDLEdBQUcsQ0FBQ0UsTUFBTSxDQUFDLEdBQUcsQ0FBQyxDQUFDQyxJQUFJLENBQUM7WUFDMUI2QixLQUFLLEVBQUUsK0NBQStDLEdBQUdBLEtBQUssQ0FBQzVCLE9BQU87U0FDdkUsQ0FBQyxDQUFDO0lBQ0wsQ0FBQztBQUNILENBQUMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9wcm9qZWN0b3JhdGUvLi9wYWdlcy9hcGkvdGlja2V0cy9nZXQtdXNlci10aWNrZXRzLmpzPzEyZWUiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFByaXNtYURCIGZyb20gXCIuLi8uLi8uLi9saWIvcHJpc21hXCI7XHJcblxyXG5leHBvcnQgZGVmYXVsdCBhc3luYyBmdW5jdGlvbiBoYW5kbGVyKHJlcSwgcmVzKSB7XHJcbiAgaWYgKHJlcS5tZXRob2QgIT09IFwiR0VUXCIpIHtcclxuICAgIHJldHVybiByZXMuc3RhdHVzKDQwNSkuanNvbih7IG1lc3NhZ2U6IFwiTWV0aG9kIG5vdCBhbGxvd2VkXCIgfSk7XHJcbiAgfVxyXG4gIGNvbnNvbGUubG9nKFwiR2V0IHByb2plY3QgVGlja2V0cyBFbmQtcG9pbnQgaGl0IVwiKTtcclxuICBjb25zdCB7IHVzZXJJZCB9ID0gcmVxLnF1ZXJ5O1xyXG4gIGlmICghdXNlcklkKSB7XHJcbiAgICByZXR1cm4gcmVzLnN0YXR1cyg1MDApLmpzb24oeyBtZXNzYWdlOiBcIlVzZXJJZCBpcyByZXF1aXJlZCFcIiB9KTtcclxuICB9XHJcbiAgdHJ5IHtcclxuICAgIGNvbnN0IGRhdGEgPSBhd2FpdCBQcmlzbWFEQi5UaWNrZXRzLmZpbmRNYW55KHtcclxuICAgICAgd2hlcmU6IHtcclxuICAgICAgICBhc3NpZ25lZUlkOiBwYXJzZUludCh1c2VySWQpLFxyXG4gICAgICB9LFxyXG4gICAgICBpbmNsdWRlOiB7XHJcbiAgICAgICAgcHJvamVjdDoge1xyXG4gICAgICAgICAgc2VsZWN0OiB7XHJcbiAgICAgICAgICAgIHByb2plY3RfbmFtZTogdHJ1ZSxcclxuICAgICAgICAgICAgaWQ6IHRydWUsXHJcbiAgICAgICAgICB9LFxyXG4gICAgICAgIH0sXHJcbiAgICAgICAgdGVhbToge1xyXG4gICAgICAgICAgc2VsZWN0OiB7XHJcbiAgICAgICAgICAgIHRlYW1fbmFtZTogdHJ1ZSxcclxuICAgICAgICAgICAgaWQ6IHRydWUsXHJcbiAgICAgICAgICB9LFxyXG4gICAgICAgIH0sXHJcbiAgICAgICAgZW1wbG95ZWU6IHtcclxuICAgICAgICAgIHNlbGVjdDoge1xyXG4gICAgICAgICAgICBmaXJzdF9uYW1lOiB0cnVlLFxyXG4gICAgICAgICAgICBsYXN0X25hbWU6IHRydWUsXHJcbiAgICAgICAgICAgIGlkOiB0cnVlLFxyXG4gICAgICAgICAgfSxcclxuICAgICAgICB9LFxyXG4gICAgICAgIFRpY2tldFN0YXR1czoge1xyXG4gICAgICAgICAgc2VsZWN0OiB7XHJcbiAgICAgICAgICAgIHRpdGxlOiB0cnVlLFxyXG4gICAgICAgICAgICBpZDogdHJ1ZSxcclxuICAgICAgICAgIH0sXHJcbiAgICAgICAgfSxcclxuICAgICAgICBUaWNrZXRQaW9yaXR5OiB7XHJcbiAgICAgICAgICBzZWxlY3Q6IHtcclxuICAgICAgICAgICAgdGl0bGU6IHRydWUsXHJcbiAgICAgICAgICAgIGlkOiB0cnVlLFxyXG4gICAgICAgICAgfSxcclxuICAgICAgICB9LFxyXG4gICAgICB9LFxyXG4gICAgfSlcclxuICAgICAgLnRoZW4oKHJlc3VsdCkgPT4ge1xyXG4gICAgICAgIHJlcy5zdGF0dXMoMjAwKS5qc29uKHsgcmVzdWx0IH0pO1xyXG4gICAgICB9KVxyXG4gICAgICAuY2F0Y2goKGVycikgPT4ge1xyXG4gICAgICAgIHJlcy5zdGF0dXMoNDA0KS5qc29uKHtcclxuICAgICAgICAgIGVycm9yOiA0MDQsXHJcbiAgICAgICAgICB0eXBlOiBcIlRpY2tldFwiLFxyXG4gICAgICAgICAgbWVzc2FnZTogXCJFcnJvciB3aGlsZSB1c2VyIHRpY2tldHMhXCIsXHJcbiAgICAgICAgICBlcnJNZXNzYWdlOiBlcnIubWVzc2FnZSxcclxuICAgICAgICB9KTtcclxuICAgICAgfSk7XHJcbiAgfSBjYXRjaCAoZXJyb3IpIHtcclxuICAgIGNvbnNvbGUubG9nKFwiRXJyb3Igd2hpbGUgZ2V0dGluZyB1c2VyIFRpY2tldHMgYXQgYmFja2VuZDogXCIsIGVycm9yKTtcclxuICAgIHJldHVybiByZXMuc3RhdHVzKDQyMikuanNvbih7XHJcbiAgICAgIGVycm9yOiBcIkVycm9yIHdoaWxlIGdldHRpbmcgdXNlciBUaWNrZXRzIGF0IGJhY2tlbmQ6IFwiICsgZXJyb3IubWVzc2FnZSxcclxuICAgIH0pO1xyXG4gIH1cclxufVxyXG4iXSwibmFtZXMiOlsiUHJpc21hREIiLCJoYW5kbGVyIiwicmVxIiwicmVzIiwibWV0aG9kIiwic3RhdHVzIiwianNvbiIsIm1lc3NhZ2UiLCJjb25zb2xlIiwibG9nIiwidXNlcklkIiwicXVlcnkiLCJkYXRhIiwiVGlja2V0cyIsImZpbmRNYW55Iiwid2hlcmUiLCJhc3NpZ25lZUlkIiwicGFyc2VJbnQiLCJpbmNsdWRlIiwicHJvamVjdCIsInNlbGVjdCIsInByb2plY3RfbmFtZSIsImlkIiwidGVhbSIsInRlYW1fbmFtZSIsImVtcGxveWVlIiwiZmlyc3RfbmFtZSIsImxhc3RfbmFtZSIsIlRpY2tldFN0YXR1cyIsInRpdGxlIiwiVGlja2V0UGlvcml0eSIsInRoZW4iLCJyZXN1bHQiLCJjYXRjaCIsImVyciIsImVycm9yIiwidHlwZSIsImVyck1lc3NhZ2UiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///(api)/./pages/api/tickets/get-user-tickets.js\n");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ handler)
+/* harmony export */ });
+/* harmony import */ var _lib_prisma__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(36);
+
+async function handler(req, res) {
+    if (req.method !== "GET") {
+        return res.status(405).json({
+            message: "Method not allowed"
+        });
+    }
+    console.log("Get project Tickets End-point hit!");
+    const { userId  } = req.query;
+    if (!userId) {
+        return res.status(500).json({
+            message: "UserId is required!"
+        });
+    }
+    try {
+        const data = await _lib_prisma__WEBPACK_IMPORTED_MODULE_0__/* ["default"].Tickets.findMany */ .Z.Tickets.findMany({
+            where: {
+                assigneeId: parseInt(userId)
+            },
+            include: {
+                project: {
+                    select: {
+                        project_name: true,
+                        id: true
+                    }
+                },
+                team: {
+                    select: {
+                        team_name: true,
+                        id: true
+                    }
+                },
+                employee: {
+                    select: {
+                        first_name: true,
+                        last_name: true,
+                        id: true
+                    }
+                },
+                TicketStatus: {
+                    select: {
+                        title: true,
+                        id: true
+                    }
+                },
+                TicketPiority: {
+                    select: {
+                        title: true,
+                        id: true
+                    }
+                }
+            }
+        }).then((result)=>{
+            res.status(200).json({
+                result
+            });
+        }).catch((err)=>{
+            res.status(404).json({
+                error: 404,
+                type: "Ticket",
+                message: "Error while user tickets!",
+                errMessage: err.message
+            });
+        });
+    } catch (error) {
+        console.log("Error while getting user Tickets at backend: ", error);
+        return res.status(422).json({
+            error: "Error while getting user Tickets at backend: " + error.message
+        });
+    }
+}
+
 
 /***/ })
 
@@ -50,7 +121,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 var __webpack_require__ = require("../../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = (__webpack_exec__("(api)/./pages/api/tickets/get-user-tickets.js"));
+var __webpack_exports__ = (__webpack_exec__(5938));
 module.exports = __webpack_exports__;
 
 })();

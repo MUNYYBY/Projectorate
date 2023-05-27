@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import SideBar from "../../components/SideBar/SideBar";
 import SubPanel from "../../components/Sub-panel/SubPanel";
 
-export default function HorizontalLayout({
-  children,
-  isNavActive,
-  setIsNavActive,
-}) {
+function HorizontalLayout({ children, isNavActive, setIsNavActive }) {
   const [isLgWidth, setIsLgWidth] = useState(true);
 
   //** Screen size dynamic */
@@ -73,3 +69,5 @@ export default function HorizontalLayout({
     </>
   );
 }
+
+export default memo(HorizontalLayout);
