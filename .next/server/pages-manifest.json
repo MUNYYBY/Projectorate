@@ -3,9 +3,5 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
-  "/app/u/board": "pages/app/u/board.js",
-  "/api/tickets-status/get-tickets-status": "pages/api/tickets-status/get-tickets-status.js",
-  "/api/tickets/get-user-tickets": "pages/api/tickets/get-user-tickets.js",
-  "/api/tickets/get-ticket-info": "pages/api/tickets/get-ticket-info.js",
-  "/api/resources/download": "pages/api/resources/download.js"
+  "/app/u/teams": "pages/app/u/teams.js"
 }

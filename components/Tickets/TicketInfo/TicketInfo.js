@@ -162,28 +162,34 @@ export default function TicketInfo(props) {
                       {ticketInfo.title}
                     </h1>
                   </div>
-                  <div className="md:m-0 m-4">
-                    <Select
-                      defaultValue={() => {
-                        const compute = ticketStatus.find(
-                          (status) => status.id == ticketInfo.ticketStatusId
-                        );
-                        return compute?.title;
-                      }}
-                      style={{
-                        width: 200,
-                      }}
-                      onChange={(id) => handleStatusChange(id)}
-                    >
-                      {ticketStatus.map((item) => {
-                        return (
-                          <Select.Option key={item.id} value={item.id}>
-                            {item.title}
-                          </Select.Option>
-                        );
-                      })}
-                    </Select>
-                  </div>
+                  {/* ticket status can only be changed by ticket owner or ticket assigneee */}
+                  {session?.user.id == ticketInfo.ownerId ||
+                  session?.user.id == ticketInfo.assigneeId ? (
+                    <div className="md:m-0 m-4">
+                      <Select
+                        defaultValue={() => {
+                          const compute = ticketStatus.find(
+                            (status) => status.id == ticketInfo.ticketStatusId
+                          );
+                          return compute?.title;
+                        }}
+                        style={{
+                          width: 200,
+                        }}
+                        onChange={(id) => handleStatusChange(id)}
+                      >
+                        {ticketStatus.map((item) => {
+                          return (
+                            <Select.Option key={item.id} value={item.id}>
+                              {item.title}
+                            </Select.Option>
+                          );
+                        })}
+                      </Select>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
                 </div>
                 <div className="text-lg flex flex-row items-center">
                   {TicketStatus(ticketInfo.TicketStatus.title)}
