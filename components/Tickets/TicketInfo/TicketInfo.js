@@ -30,7 +30,10 @@ export default function TicketInfo(props) {
 
   const { data: session, status } = useSession();
 
-  const [windowSize, setWindowSize] = useState([0, 0]);
+  const [windowSize, setWindowSize] = useState([
+    window.innerWidth,
+    window.innerHeight,
+  ]);
 
   useEffect(() => {
     const handleWindowResize = () => {

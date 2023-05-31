@@ -37,10 +37,14 @@ export default function Board() {
   return (
     <>
       <BoardHeadMeta />
-      <TicketInfo
-        isTicketInfo={isTicketInfo}
-        setIsTicketInfo={setIsTicketInfo}
-      />
+      {ticketsStatus.length > 0 ? (
+        <TicketInfo
+          isTicketInfo={isTicketInfo}
+          setIsTicketInfo={setIsTicketInfo}
+        />
+      ) : (
+        <></>
+      )}
       <AuthorityCheck grantPermissionFor="manage_tickets">
         <div className="absolute z-[999] bottom-4 right-4 flex flex-col items-end">
           {isCreateTicket ? (
