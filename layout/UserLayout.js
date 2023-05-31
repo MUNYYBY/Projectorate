@@ -7,7 +7,6 @@ import HorizontalLayout from "./components/HorizontalLayout";
 function UserLayout({ children }) {
   //** States Initialization */
   const [layoutType, setLayoutType] = useState(null);
-  const [isNavActive, setIsNavActive] = useState(false);
 
   //** Router Initializtion  */
   const router = useRouter();
@@ -15,12 +14,7 @@ function UserLayout({ children }) {
   const Layout = () => {
     return (
       <>
-        <HorizontalLayout
-          setIsNavActive={setIsNavActive}
-          isNavActive={isNavActive}
-        >
-          {children}
-        </HorizontalLayout>
+        <HorizontalLayout>{children}</HorizontalLayout>
       </>
     );
   };
@@ -28,10 +22,12 @@ function UserLayout({ children }) {
   useEffect(() => {
     if (router.asPath) {
       const i = router.asPath.includes("app/u");
-      setLayoutType(i);
+      if (i != layoutType) {
+        setLayoutType(i);
+      }
     }
   }, [router.asPath]);
   return <>{layoutType ? <Layout /> : children} </>;
 }
 
-export default memo(UserLayout);
+export default UserLayout;

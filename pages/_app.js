@@ -15,7 +15,8 @@ function MyApp({ Component, pageProps, session }) {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   // ** Layouts
-  const getLayout = (page) => <UserLayout>{page}</UserLayout>;
+  const getLayout =
+    Component.getLayout ?? ((page) => <UserLayout>{page}</UserLayout>);
   return (
     <>
       <IndexHeadMeta />

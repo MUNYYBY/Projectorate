@@ -17,15 +17,6 @@ export default function SubPanel() {
   const [filterProjects, setFilterProjects] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (router.asPath?.includes("projects")) setPanelName("Projects");
-    else if (router.asPath?.includes("employees")) setPanelName("Employees");
-    else if (router.asPath?.includes("teams")) setPanelName("Teams");
-    else if (router.asPath?.includes("board")) setPanelName("Board");
-    else if (router.asPath?.includes("logs")) setPanelName("Logs");
-    else setPanelName("Home");
-  }, [router.asPath]);
-
   //** Get All the projects in CSR */
   const fetchAllProjects = async () => {
     setLoading(true);
@@ -66,7 +57,7 @@ export default function SubPanel() {
   return (
     <div className="Sub-panel-dahboard fixed ml-[4.5rem] w-64 h-screen bg-gray-800">
       <div className="bg-gray-900 bg-opacity-60 p-4 rounded-b-xl">
-        <h1 className="text-xl mb-3 font-semibold">{panelName} Panel</h1>
+        <h1 className="text-xl mb-3 font-semibold">Projects</h1>
         <Input
           placeholder="Search projects..."
           type="text"
@@ -76,7 +67,6 @@ export default function SubPanel() {
       {/* fix inner div to scroll */}
       <div className="">
         <div className="Projects-tab-container mt-4">
-          <h1 className="text-md font-bold mb-4 ml-4 opacity-90">Projects</h1>
           {loading && filterProjects.length == 0 ? (
             <div className="w-full flex flex-col justify-center items-center">
               <svg
