@@ -23,6 +23,7 @@ export default function CreateTeam(props) {
   const [creationPhase, setCreationPhase] = useState(0);
   const [teamDomains, setTeamDomains] = useState([]);
   const [projects, setProjects] = useState([]);
+  const [completion, setCompletion] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const createTeamCall = () => {
@@ -31,6 +32,7 @@ export default function CreateTeam(props) {
       description: teamDetails,
       team_domain_id: teamDomainSelected,
       project_id: projectSelected,
+      estimated_completion: completion,
       user_id: session.user.id,
     };
     console.log("Team Payload: ", payload);
@@ -153,6 +155,7 @@ export default function CreateTeam(props) {
                   setCreationPhase={setCreationPhase}
                   teamDomains={teamDomains}
                   setTeamDomainSelected={setTeamDomainSelected}
+                  setCompletion={setCompletion}
                   setIsSubmitted={setIsSubmitted}
                 />
               )}

@@ -37,6 +37,7 @@ import UpdateProject from "../../../components/Projects/UpdateProject/UpdateProj
 import { useSession } from "next-auth/react";
 import ProjectTicketsChart from "../../../components/PieChart/ProjectTicketsChart";
 import { ProjectHeadMeta } from "../../../Meta/Heads";
+import moment from "moment";
 
 const PROJECTS_TABS = ["Employees", "Teams", "Tickets"];
 
@@ -381,7 +382,13 @@ export default function SuperAdminProjectPanel() {
                         </div>
                       </div>
                       <div className="mt-3 opacity-50">
-                        Estimated completion: 16/05/2025
+                        Status: {projectInformation.ProjectStatus.title}
+                      </div>
+                      <div className="mt-1 opacity-50">
+                        Estimated completion:{" "}
+                        {moment(projectInformation.estimated_completion).format(
+                          "MM/DD/YYYY"
+                        )}
                       </div>
                     </div>
                   ) : (

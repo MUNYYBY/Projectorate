@@ -97,6 +97,12 @@ export default async function handler(req, res) {
         id: parseInt(projectId),
       },
       include: {
+        ProjectStatus: {
+          select: {
+            id: true,
+            title: true,
+          },
+        },
         _count: {
           select: {
             userProjects: true,

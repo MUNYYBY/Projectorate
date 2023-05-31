@@ -186,6 +186,62 @@ async function seed() {
   } catch (error) {
     console.log("Error at adding all Ticket Piority: ", error);
   }
+  //following are the seeds for project pre-requisites
+  try {
+    await prisma.ProjectStatus.deleteMany();
+    console.log("All Projects Status destroyed!");
+  } catch (error) {
+    console.log("Error at Ticket Status destroy!", error);
+  }
+  try {
+    await prisma.ProjectStatus.createMany({
+      data: [
+        {
+          title: "In-progress",
+          description: "This project is in progress",
+        },
+        {
+          title: "Under Testing",
+          description: "This project is under testing",
+        },
+        {
+          title: "Completed",
+          description: "This project is completed",
+        },
+      ],
+    });
+    console.log("All project Status Added!");
+  } catch (error) {
+    console.log("Error at adding all project Status! ", error);
+  }
+  //following are the seeds for team pre-requisites
+  try {
+    await prisma.TeamStatus.deleteMany();
+    console.log("All Team Status destroyed!");
+  } catch (error) {
+    console.log("Error at Team Status destroy!", error);
+  }
+  try {
+    await prisma.TeamStatus.createMany({
+      data: [
+        {
+          title: "In-progress",
+          description: "This Team is in progress",
+        },
+        {
+          title: "Under Testing",
+          description: "This Team is under testing",
+        },
+        {
+          title: "Completed",
+          description: "This Team is completed",
+        },
+      ],
+    });
+    console.log("All Team Status Added!");
+  } catch (error) {
+    console.log("Error at adding all Team Status! ", error);
+  }
   try {
     await prisma.LogsOperations.deleteMany();
     console.log("All Logs Operations destroyed!");

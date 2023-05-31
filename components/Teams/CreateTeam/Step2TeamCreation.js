@@ -1,12 +1,14 @@
 import React from "react";
-import { Form, Input, Select } from "antd";
+import { DatePicker, Form, Input, Select } from "antd";
 import { useState, useEffect } from "react";
+import moment from "moment/moment";
 
 export default function Step2TeamCreation(props) {
   const [form] = Form.useForm();
   function onFinish(values) {
     props.setTeamDetails(values.team_description);
     props.setTeamDomainSelected(values.team_domain);
+    props.setCompletion(values.estimated_completion);
     props.setIsSubmitted(true);
   }
   return (
@@ -62,6 +64,23 @@ export default function Step2TeamCreation(props) {
           ]}
         >
           <Input placeholder="Enter a Team description" />
+        </Form.Item>
+        <Form.Item
+          name="estimated_completion"
+          label="Estimated Completion"
+          rules={[
+            {
+              required: true,
+              message: "Please input a date of expected completion of project!",
+            },
+          ]}
+        >
+          <DatePicker
+            className="w-full"
+            disabledDate={(current) => {
+              return moment().add(-1, "years") >= current;
+            }}
+          />
         </Form.Item>
         <button
           className="bg-primary h-12 p-2 rounded-md flex flex-row justify-center items-center w-full text-lg font-semibold mt-4 disabled:opacity-50"

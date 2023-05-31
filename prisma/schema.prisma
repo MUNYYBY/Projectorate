@@ -51,36 +51,42 @@ model Employee {
 }
 
 model Project {
-  id               Int             @id @default(autoincrement())
-  user             User?           @relation(fields: [ownerId], references: [id], onDelete: SetNull)
-  ownerId          Int?
-  project_name     String
-  description      String
-  userProjects     UserProjects[]
-  projectDomain    ProjectDomains? @relation(fields: [projectDomainsId], references: [id])
-  createdAt        DateTime        @default(now())
-  updatedAt        DateTime?       @updatedAt
-  projectDomainsId Int?
-  Teams            Teams[]
-  Tickets          Tickets[]
-  Logs             Logs[]
+  id                   Int             @id @default(autoincrement())
+  user                 User?           @relation(fields: [ownerId], references: [id], onDelete: SetNull)
+  ownerId              Int?
+  project_name         String
+  description          String
+  userProjects         UserProjects[]
+  projectDomain        ProjectDomains? @relation(fields: [projectDomainsId], references: [id])
+  projectDomainsId     Int?
+  Teams                Teams[]
+  Tickets              Tickets[]
+  Logs                 Logs[]
+  ProjectStatus        ProjectStatus?  @relation(fields: [projectStatusId], references: [id])
+  projectStatusId      Int?
+  estimated_completion String
+  createdAt            DateTime        @default(now())
+  updatedAt            DateTime?       @updatedAt
 }
 
 model Teams {
-  id            Int          @id @default(autoincrement())
-  user          User?        @relation(fields: [ownerId], references: [id], onDelete: SetNull)
-  project       Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  ownerId       Int?
-  projectId     Int
-  team_name     String
-  description   String
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime?    @updatedAt
-  TeamDomains   TeamDomains? @relation(fields: [teamDomainsId], references: [id])
-  teamDomainsId Int?
-  UserTeams     UserTeams[]
-  Tickets       Tickets[]
-  Logs          Logs[]
+  id                   Int          @id @default(autoincrement())
+  user                 User?        @relation(fields: [ownerId], references: [id], onDelete: SetNull)
+  project              Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  ownerId              Int?
+  projectId            Int
+  team_name            String
+  description          String
+  TeamDomains          TeamDomains? @relation(fields: [teamDomainsId], references: [id])
+  teamDomainsId        Int?
+  UserTeams            UserTeams[]
+  Tickets              Tickets[]
+  Logs                 Logs[]
+  TeamStatus           TeamStatus?  @relation(fields: [teamStatusId], references: [id])
+  teamStatusId         Int?
+  estimated_completion String
+  createdAt            DateTime     @default(now())
+  updatedAt            DateTime?    @updatedAt
 }
 
 model Tickets {
@@ -192,6 +198,24 @@ model TeamDomains {
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
   Teams     Teams[]
+}
+
+model ProjectStatus {
+  id          Int       @id @default(autoincrement())
+  project     Project[]
+  title       String
+  description String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @updatedAt
+}
+
+model TeamStatus {
+  id          Int       @id @default(autoincrement())
+  team        Teams[]
+  title       String
+  description String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @updatedAt
 }
 
 model TicketStatus {

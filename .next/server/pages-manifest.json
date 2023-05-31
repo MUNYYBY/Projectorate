@@ -2,5 +2,10 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/app/u/teams": "pages/app/u/teams.js",
+  "/api/project-domains/get-project-domains": "pages/api/project-domains/get-project-domains.js",
+  "/api/projects/get-all-projects": "pages/api/projects/get-all-projects.js",
+  "/api/projects/get-project": "pages/api/projects/get-project.js",
+  "/api/projects/get-project-employees": "pages/api/projects/get-project-employees.js",
   "/app/u/projects": "pages/app/u/projects.js"
 }

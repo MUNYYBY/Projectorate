@@ -22,11 +22,13 @@ export default async function handler(req, res) {
     });
   }
   const LogsOperations = await PrismaDB.LogsOperations.findMany({});
+  const TeamStatus = await PrismaDB.TeamStatus.findMany({});
   try {
     const data = await PrismaDB.Teams.create({
       data: {
         team_name: reqBody.team_name,
         description: reqBody.description,
+        estimated_completion: reqBody.estimated_completion,
         user: {
           connect: {
             id: reqBody.user_id,
@@ -40,6 +42,11 @@ export default async function handler(req, res) {
         TeamDomains: {
           connect: {
             id: reqBody.team_domain_id,
+          },
+        },
+        TeamStatus: {
+          connect: {
+            id: TeamStatus.find((t) => t.title === "In-progress")?.id,
           },
         },
       },

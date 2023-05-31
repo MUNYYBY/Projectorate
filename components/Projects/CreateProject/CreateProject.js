@@ -17,6 +17,7 @@ export default function CreateProject(props) {
   const [projectDomainSelected, setProjectDomainSelected] = useState(null);
   const [creationPhase, setCreationPhase] = useState(0);
   const [projectDomains, setProjectDomains] = useState(null);
+  const [completion, setCompletion] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const createProjectCall = () => {
@@ -24,6 +25,7 @@ export default function CreateProject(props) {
       project_name: projectName,
       description: projectDetails,
       project_domain_id: projectDomainSelected,
+      estimated_completion: completion,
       user_id: session.user.id,
     };
     console.log("Project Payload: ", payload);
@@ -138,6 +140,7 @@ export default function CreateProject(props) {
                   setCreationPhase={setCreationPhase}
                   projectDomains={projectDomains}
                   setProjectDomainSelected={setProjectDomainSelected}
+                  setCompletion={setCompletion}
                   setIsSubmitted={setIsSubmitted}
                 />
               )}

@@ -36,6 +36,7 @@ import { useSession } from "next-auth/react";
 import ProjectTicketsChart from "../../../components/PieChart/ProjectTicketsChart";
 import { HiOutlineTicket, HiOutlineUsers } from "react-icons/hi";
 import { TeamsHeadMeta } from "../../../Meta/Heads";
+import moment from "moment";
 
 const PROJECTS_TABS = ["Employees", "Tickets"];
 
@@ -377,7 +378,13 @@ export default function Teams() {
                         </div>
                       </div>
                       <div className="mt-3 opacity-50">
-                        Estimated completion: 16/05/2025
+                        Status: {teamInformation.TeamStatus.title}
+                      </div>
+                      <div className="mt-1 opacity-50">
+                        Estimated completion:{" "}
+                        {moment(teamInformation.estimated_completion).format(
+                          "MM/DD/YYYY"
+                        )}
                       </div>
                     </div>
                   ) : (

@@ -8,12 +8,15 @@ export default async function handler(req, res) {
   console.log("Create project End-point hit!");
 
   const reqData = req.body;
+  console.log(reqData);
   const LogsOperations = await PrismaDB.LogsOperations.findMany({});
+  const ProjectStatus = await PrismaDB.ProjectStatus.findMany({});
   try {
     const data = await PrismaDB.Project.create({
       data: {
         project_name: reqData.project_name,
         description: reqData.description,
+        estimated_completion: reqData.estimated_completion,
         user: {
           connect: {
             id: reqData.user_id,
@@ -22,6 +25,11 @@ export default async function handler(req, res) {
         projectDomain: {
           connect: {
             id: reqData.project_domain_id,
+          },
+        },
+        ProjectStatus: {
+          connect: {
+            id: ProjectStatus.find((t) => t.title === "In-progress")?.id,
           },
         },
       },
