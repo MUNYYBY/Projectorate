@@ -168,6 +168,18 @@ export async function getProjectDomains() {
     return { error: error };
   }
 }
+//get all the project status in the database
+export async function getProjectStatus() {
+  try {
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL + "/projects/get-project-status"
+    );
+    return res.data;
+  } catch (error) {
+    console.log("Error While getting project status at front-end: ", error);
+    return { error: error };
+  }
+}
 
 //Projects api calls
 export async function createProject(payload) {
@@ -298,6 +310,18 @@ export async function AssignEmployeeToProject(projectId, employeeId, ownerId) {
     return res;
   } catch (error) {
     console.log("Error While assigning employee to project: ", error);
+    return { error: error.response };
+  }
+}
+export async function ChangeProjectStatus(projectId, statusId) {
+  try {
+    const res = await axios.post(
+      process.env.NEXT_PUBLIC_BASE_URL +
+        `/projects/change-project-status?projectId=${projectId}&statusId=${statusId}`
+    );
+    return res;
+  } catch (error) {
+    console.log("Error While changing project status: ", error);
     return { error: error.response };
   }
 }

@@ -29,11 +29,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/app/u/projects.js"
-    ],
-    "/app/u/teams": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/app/u/teams.js"
     ]
   },
   "ampFirstPages": []

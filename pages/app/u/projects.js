@@ -8,7 +8,11 @@ import {
   AiOutlineEdit,
   AiOutlineBlock,
 } from "react-icons/ai";
-import { HiOutlineUsers, HiOutlineTicket } from "react-icons/hi";
+import {
+  HiOutlineUsers,
+  HiOutlineTicket,
+  HiStatusOnline,
+} from "react-icons/hi";
 import { CgInbox, CgTrash } from "react-icons/cg";
 
 import { Tooltip, Col, Row, Tabs, Popconfirm, message, Result } from "antd";
@@ -38,6 +42,7 @@ import { useSession } from "next-auth/react";
 import ProjectTicketsChart from "../../../components/PieChart/ProjectTicketsChart";
 import { ProjectHeadMeta } from "../../../Meta/Heads";
 import moment from "moment";
+import ChangeStatus from "../../../components/Projects/ChangeStatus/ChangeStatus";
 
 const PROJECTS_TABS = ["Employees", "Teams", "Tickets"];
 
@@ -62,6 +67,7 @@ export default function SuperAdminProjectPanel() {
   const [isUpdateProject, setIsUpdateProject] = useState(false);
   const [loading, setLoading] = useState(true);
   const [projectTickets, setProjectTickets] = useState(null);
+  const [isChangeProjectStatus, setIsChangeProjectStatus] = useState(false);
 
   const { data: session, status } = useSession();
 
@@ -325,6 +331,15 @@ export default function SuperAdminProjectPanel() {
           </>
         ) : (
           <>
+            {isChangeProjectStatus ? (
+              <ChangeStatus
+                setIsChangeProjectStatus={setIsChangeProjectStatus}
+                project={projectInformation}
+              />
+            ) : (
+              ""
+            )}
+
             <AssignEmployee
               assignEmployeesPanel={assignEmployeesPanel}
               setAssignEmployeesPanel={setAssignEmployeesPanel}
@@ -403,32 +418,52 @@ export default function SuperAdminProjectPanel() {
                     <div className="project-actions flex flex-row mt-4 sm:mt-0">
                       <Tooltip
                         placement="topRight"
-                        title="Add employees to work on this project"
+                        title="Change project status"
                         mouseEnterDelay={0.05}
                       >
                         <button
                           className="bg-white bg-opacity-10 hover:bg-opacity-25 transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center"
-                          onClick={() => setAssignEmployeesPanel(true)}
+                          onClick={() => setIsChangeProjectStatus(true)}
                         >
-                          <AiOutlineUsergroupAdd size={24} />
+                          <HiStatusOnline size={24} />
                         </button>
                       </Tooltip>
-                      <Tooltip
-                        placement="topRight"
-                        title="Edit this project"
-                        mouseEnterDelay={0.05}
-                      >
-                        <button
-                          className={`${
-                            isUpdateProject
-                              ? "bg-primary"
-                              : "bg-white bg-opacity-10 hover:bg-opacity-25"
-                          }  transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center`}
-                          onClick={() => setIsUpdateProject(!isUpdateProject)}
-                        >
-                          <AiOutlineEdit size={24} />
-                        </button>
-                      </Tooltip>
+                      {projectInformation.ProjectStatus.title != "Completed" ? (
+                        <>
+                          <Tooltip
+                            placement="topRight"
+                            title="Add employees to work on this project"
+                            mouseEnterDelay={0.05}
+                          >
+                            <button
+                              className="bg-white bg-opacity-10 hover:bg-opacity-25 transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center"
+                              onClick={() => setAssignEmployeesPanel(true)}
+                            >
+                              <AiOutlineUsergroupAdd size={24} />
+                            </button>
+                          </Tooltip>
+                          <Tooltip
+                            placement="topRight"
+                            title="Edit this project"
+                            mouseEnterDelay={0.05}
+                          >
+                            <button
+                              className={`${
+                                isUpdateProject
+                                  ? "bg-primary"
+                                  : "bg-white bg-opacity-10 hover:bg-opacity-25"
+                              }  transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center`}
+                              onClick={() =>
+                                setIsUpdateProject(!isUpdateProject)
+                              }
+                            >
+                              <AiOutlineEdit size={24} />
+                            </button>
+                          </Tooltip>
+                        </>
+                      ) : (
+                        <></>
+                      )}
                       <Tooltip
                         placement="topRight"
                         title="Remove this project"
