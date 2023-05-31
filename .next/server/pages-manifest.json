@@ -2,5 +2,9 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/app/u/teams": "pages/app/u/teams.js"
+  "/api/roles/get-roles": "pages/api/roles/get-roles.js",
+  "/api/employee/add-employee": "pages/api/employee/add-employee.js",
+  "/api/employee/get-employees": "pages/api/employee/get-employees.js",
+  "/api/designations/get-designations": "pages/api/designations/get-designations.js",
+  "/app/u/employees": "pages/app/u/employees.js"
 }

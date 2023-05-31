@@ -219,12 +219,12 @@ export default function UpdateEmployee(props) {
                       message: "Must be atleast one non-space character!",
                     },
                     {
-                      min: 4,
-                      message: "Address must be minimum of 4 characters",
+                      min: 5,
+                      message: "Address must be minimum of 5 characters",
                     },
                     {
-                      max: 40,
-                      message: "Address must be maximum of 40 characters",
+                      max: 100,
+                      message: "Address must be maximum of 100 characters",
                     },
                   ]}
                 >

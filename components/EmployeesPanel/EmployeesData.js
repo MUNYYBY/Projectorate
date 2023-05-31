@@ -150,31 +150,34 @@ export default function EmployeesData(props) {
     {
       title: "Action",
       key: "id",
-      render: (_, param) => (
-        <div className="flex">
-          <button
-            className="p-2 mr-2 bg-secondry rounded-md text-sm text-white"
-            onClick={() => props.setUpdateEmployee(param)}
-          >
-            Update
-          </button>
-          <Popconfirm
-            title="Delete Employee"
-            description="Are you sure to remove this employee from projectorate?"
-            onConfirm={() => {
-              confirm(param.id);
-            }}
-            onCancel={cancel}
-            okText="Confirm"
-            cancelText="No"
-            placement="topLeft"
-          >
-            <button className="p-2 bg-red-500 rounded-md text-sm text-white">
-              Revoke Access
+      render: (_, param) =>
+        param.Role.title != "Super-admin" ? (
+          <div className="flex">
+            <button
+              className="p-2 mr-2 bg-secondry rounded-md text-sm text-white"
+              onClick={() => props.setUpdateEmployee(param)}
+            >
+              Update
             </button>
-          </Popconfirm>
-        </div>
-      ),
+            <Popconfirm
+              title="Delete Employee"
+              description="Are you sure to remove this employee from projectorate?"
+              onConfirm={() => {
+                confirm(param.id);
+              }}
+              onCancel={cancel}
+              okText="Confirm"
+              cancelText="No"
+              placement="topLeft"
+            >
+              <button className="p-2 bg-red-500 rounded-md text-sm text-white">
+                Revoke Access
+              </button>
+            </Popconfirm>
+          </div>
+        ) : (
+          <></>
+        ),
     },
   ];
 

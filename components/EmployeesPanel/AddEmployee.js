@@ -60,9 +60,15 @@ export default function AddEmployee(props) {
   const handleEmployeeSubmission = async (payload) => {
     setLoading(true);
     let res = await createEmployee(payload);
-    console.log(res);
     if (res?.error) {
-      message.error("Employee submission failed!");
+      if (res.error.response.status === 400) {
+        message.error(
+          "Employee with similar email already exists! Employees can not have same emails."
+        );
+      } else {
+        message.error("Employee submission failed!");
+      }
+      form.resetFields();
       setLoading(false);
     } else {
       message.success("Employee added successfully!");
@@ -200,12 +206,12 @@ export default function AddEmployee(props) {
                       message: "Must be atleast one non-space character!",
                     },
                     {
-                      min: 4,
-                      message: "Address must be minimum of 4 characters",
+                      min: 5,
+                      message: "Address must be minimum of 5 characters",
                     },
                     {
-                      max: 40,
-                      message: "Address must be maximum of 40 characters",
+                      max: 100,
+                      message: "Address must be maximum of 100 characters",
                     },
                   ]}
                 >

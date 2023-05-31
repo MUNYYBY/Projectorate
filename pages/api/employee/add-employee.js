@@ -9,6 +9,21 @@ export default async function handler(req, res) {
   const employeeData = req.body;
   //   console.log(employeeData);
   try {
+    const user = await PrismaDB.user
+      .findUnique({
+        where: {
+          email: employeeData.email,
+        },
+      })
+      .then((result) => {
+        if (result) {
+          res.status(400).json({
+            error: 400,
+            type: "Employee",
+            message: "Employee with similar email already exists!",
+          });
+        }
+      });
     const LogsOperations = await PrismaDB.LogsOperations.findMany({});
     const data = await PrismaDB.user
       .create({
