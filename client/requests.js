@@ -337,6 +337,19 @@ export async function getTeamDomains() {
     return { error: error };
   }
 }
+
+//get all the team status in the database
+export async function getTeamStatus() {
+  try {
+    const res = await axios.get(
+      process.env.NEXT_PUBLIC_BASE_URL + "/teams/get-team-status"
+    );
+    return res.data;
+  } catch (error) {
+    console.log("Error While getting team status at front-end: ", error);
+    return { error: error };
+  }
+}
 export async function getAllTeams() {
   try {
     const res = await axios.get(
@@ -432,6 +445,18 @@ export async function AssignEmployeeToTeam(teamId, employeeId, ownerId) {
     return res;
   } catch (error) {
     console.log("Error While assigning employee to team: ", error);
+    return { error: error.response };
+  }
+}
+export async function ChangeTeamStatus(teamId, statusId) {
+  try {
+    const res = await axios.post(
+      process.env.NEXT_PUBLIC_BASE_URL +
+        `/teams/change-team-status?teamId=${teamId}&statusId=${statusId}`
+    );
+    return res;
+  } catch (error) {
+    console.log("Error While changing project status: ", error);
     return { error: error.response };
   }
 }

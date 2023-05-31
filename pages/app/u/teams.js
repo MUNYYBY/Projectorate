@@ -34,9 +34,14 @@ import UpdateTeam from "../../../components/Teams/UpdateTeam/UpdateTeam";
 
 import { useSession } from "next-auth/react";
 import ProjectTicketsChart from "../../../components/PieChart/ProjectTicketsChart";
-import { HiOutlineTicket, HiOutlineUsers } from "react-icons/hi";
+import {
+  HiOutlineTicket,
+  HiOutlineUsers,
+  HiStatusOnline,
+} from "react-icons/hi";
 import { TeamsHeadMeta } from "../../../Meta/Heads";
 import moment from "moment";
+import ChangeStatus from "../../../components/Teams/ChangeStatus/ChangeStatus";
 
 const PROJECTS_TABS = ["Employees", "Tickets"];
 
@@ -62,6 +67,7 @@ export default function Teams() {
   const [isUpdateTeam, setIsUpdateTeam] = useState(false);
   const [loading, setLoading] = useState(true);
   const [teamTickets, setTeamTickets] = useState(null);
+  const [isChangeTeamStatus, setIsChangeTeamStatus] = useState(false);
 
   const { data: session, status } = useSession();
 
@@ -325,6 +331,14 @@ export default function Teams() {
           </>
         ) : (
           <>
+            {isChangeTeamStatus ? (
+              <ChangeStatus
+                setIsChangeTeamStatus={setIsChangeTeamStatus}
+                team={teamInformation}
+              />
+            ) : (
+              ""
+            )}
             <AssignEmployee
               assignEmployeesPanel={assignEmployeesPanel}
               setAssignEmployeesPanel={setAssignEmployeesPanel}
@@ -399,32 +413,50 @@ export default function Teams() {
                     <div className="project-actions flex flex-row mt-4 sm:mt-0">
                       <Tooltip
                         placement="topRight"
-                        title="Add employees to work on this team"
+                        title="Change project status"
                         mouseEnterDelay={0.05}
                       >
                         <button
                           className="bg-white bg-opacity-10 hover:bg-opacity-25 transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center"
-                          onClick={() => setAssignEmployeesPanel(true)}
+                          onClick={() => setIsChangeTeamStatus(true)}
                         >
-                          <AiOutlineUsergroupAdd size={24} />
+                          <HiStatusOnline size={24} />
                         </button>
                       </Tooltip>
-                      <Tooltip
-                        placement="topRight"
-                        title="Edit this team"
-                        mouseEnterDelay={0.05}
-                      >
-                        <button
-                          className={`${
-                            isUpdateTeam
-                              ? "bg-primary"
-                              : "bg-white bg-opacity-10 hover:bg-opacity-25"
-                          }  transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center`}
-                          onClick={() => setIsUpdateTeam(!isUpdateTeam)}
-                        >
-                          <AiOutlineEdit size={24} />
-                        </button>
-                      </Tooltip>
+                      {teamInformation.TeamStatus.title != "Completed" ? (
+                        <>
+                          <Tooltip
+                            placement="topRight"
+                            title="Add employees to work on this team"
+                            mouseEnterDelay={0.05}
+                          >
+                            <button
+                              className="bg-white bg-opacity-10 hover:bg-opacity-25 transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center"
+                              onClick={() => setAssignEmployeesPanel(true)}
+                            >
+                              <AiOutlineUsergroupAdd size={24} />
+                            </button>
+                          </Tooltip>
+                          <Tooltip
+                            placement="topRight"
+                            title="Edit this team"
+                            mouseEnterDelay={0.05}
+                          >
+                            <button
+                              className={`${
+                                isUpdateTeam
+                                  ? "bg-primary"
+                                  : "bg-white bg-opacity-10 hover:bg-opacity-25"
+                              }  transition-all mr-2 p-2 rounded-lg flex flex-row justify-center items-center`}
+                              onClick={() => setIsUpdateTeam(!isUpdateTeam)}
+                            >
+                              <AiOutlineEdit size={24} />
+                            </button>
+                          </Tooltip>
+                        </>
+                      ) : (
+                        <></>
+                      )}
                       <Tooltip
                         placement="topRight"
                         title="Remove this team"
