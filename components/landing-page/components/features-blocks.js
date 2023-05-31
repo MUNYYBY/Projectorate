@@ -2,7 +2,7 @@ import React from "react";
 
 export default function FeaturesBlocks() {
   return (
-    <section className="relative mt-[35rem] md:mt-[8rem]">
+    <section className="relative mt-[35rem] md:mt-[0rem]">
       {/* Section background (needs .relative class on parent and next sibling elements) */}
       <div
         className="absolute inset-0 top-1/2 md:mt-24 lg:mt-0 bg-gray-900 pointer-events-none"
@@ -16,9 +16,11 @@ export default function FeaturesBlocks() {
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
             <h2 className="h2 mb-4">Explore the solutions</h2>
             <p className="text-xl text-gray-600">
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur excepteur sint occaecat
-              cupidatat.
+              Projectorate empowers project managers to streamline workflows,
+              enhance collaboration, and optimize project outcomes. With
+              intuitive features, real-time analytics, and customizable
+              solutions, its the ultimate platform to navigate the complexities
+              of software project management effectively.
             </p>
           </div>
 
@@ -61,10 +63,10 @@ export default function FeaturesBlocks() {
                 </g>
               </svg>
               <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">
-                Headless CMS
+                User Friendly Interface
               </h4>
               <p className="text-gray-600 text-center">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Intuitive interface, making project management a breeze
               </p>
             </div>
 
@@ -102,10 +104,10 @@ export default function FeaturesBlocks() {
                 </g>
               </svg>
               <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">
-                Headless CMS
+                Employees Panel
               </h4>
               <p className="text-gray-600 text-center">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Empowering Employees, Amplifying Engagement
               </p>
             </div>
 
@@ -146,10 +148,10 @@ export default function FeaturesBlocks() {
                 </g>
               </svg>
               <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">
-                Headless CMS
+                Projects Panel
               </h4>
               <p className="text-gray-600 text-center">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Streamline, Collaborate, and Succeed using Projectorate
               </p>
             </div>
 
@@ -189,10 +191,10 @@ export default function FeaturesBlocks() {
                 </g>
               </svg>
               <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">
-                Headless CMS
+                Teams Panel
               </h4>
               <p className="text-gray-600 text-center">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Elevate Collaboration: Unleash the Power of Teams Panel
               </p>
             </div>
 
@@ -227,10 +229,10 @@ export default function FeaturesBlocks() {
                 </g>
               </svg>
               <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">
-                Headless CMS
+                Tickets Board
               </h4>
               <p className="text-gray-600 text-center">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Streamlined ticket management for effortless team collaboration
               </p>
             </div>
 
@@ -261,10 +263,10 @@ export default function FeaturesBlocks() {
                 </g>
               </svg>
               <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">
-                Headless CMS
+                Logs
               </h4>
               <p className="text-gray-600 text-center">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Track. Analyze. Optimize. Logs for Superior User Action Insights
               </p>
             </div>
           </div>

@@ -1,10 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import Image from "next/image";
-// import FeaturesBg from "@/public/images/features-bg.png";
-import FeaturesBg from "../../../public/images/features-bg.png";
-// import FeaturesElement from "@/public/images/features-element.png";
-import FeaturesElement from "../../../public/images/features-element.png";
+import FeaturesBg1 from "../../../public/images/features-1.png";
+import FeaturesBg2 from "../../../public/images/features-2.png";
+import FeaturesBg3 from "../../../public/images/features-3.png";
 
 export default function Features() {
   const [tab, setTab] = useState(1);
@@ -35,9 +34,10 @@ export default function Features() {
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-16">
             <h1 className="h2 mb-4">Explore the solutions</h1>
             <p className="text-xl text-gray-600">
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur excepteur sint occaecat
-              cupidatat.
+              Discover the power of our software project management tools with
+              projectorate. Seamlessly plan, track, and collaborate on projects,
+              streamline workflows, and achieve your goals with ease. Boost
+              productivity and success today.
             </p>
           </div>
 
@@ -51,9 +51,8 @@ export default function Features() {
               <div className="md:pr-4 lg:pr-12 xl:pr-16 mb-8">
                 <h3 className="h3 mb-3">Powerful suite of tools</h3>
                 <p className="text-xl text-gray-600">
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse
-                  cillum dolore pariatur. Excepteur sint occaecat cupidatat non
-                  proident, sunt in culpa.
+                  Projectorate provide power set of tools to manage your
+                  workflow more efficiently and quicky
                 </p>
               </div>
               {/* Tabs buttons */}
@@ -72,11 +71,12 @@ export default function Features() {
                 >
                   <div>
                     <div className="font-bold leading-snug tracking-tight mb-1">
-                      Building the Simple ecosystem
+                      Employees Panel
                     </div>
                     <div className="text-gray-600">
-                      Take collaboration to the next level with security and
-                      administrative features built for teams.
+                      Empower your employees with our intuitive panel. Easily
+                      track progress, and foster collaboration for enhanced
+                      productivity.
                     </div>
                   </div>
                   <div className="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3">
@@ -103,11 +103,11 @@ export default function Features() {
                 >
                   <div>
                     <div className="font-bold leading-snug tracking-tight mb-1">
-                      Building the Simple ecosystem
+                      Projects Panel
                     </div>
                     <div className="text-gray-600">
-                      Take collaboration to the next level with security and
-                      administrative features built for teams.
+                      Efficiently manage and organize your projects with our
+                      intuitive projects panel. Take control of your projects
                     </div>
                   </div>
                   <div className="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3">
@@ -137,11 +137,13 @@ export default function Features() {
                 >
                   <div>
                     <div className="font-bold leading-snug tracking-tight mb-1">
-                      Building the Simple ecosystem
+                      Tickets Board
                     </div>
                     <div className="text-gray-600">
-                      Take collaboration to the next level with security and
-                      administrative features built for teams.
+                      Effortlessly manage and interact with assigned tickets on
+                      our Tickets Board. Track progress, and resolve issues
+                      efficiently. Stay on top of deadlines and tasks
+                      effortlessly.
                     </div>
                   </div>
                   <div className="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3">
@@ -167,7 +169,7 @@ export default function Features() {
               data-aos="zoom-y-out"
               ref={tabs}
             >
-              <div className="relative flex flex-col text-center lg:text-right">
+              <div className="relative flex flex-col text-center lg:text-right md:mt-44">
                 {/* Item 1 */}
                 <Transition
                   show={tab === 1}
@@ -180,22 +182,15 @@ export default function Features() {
                   leaveFrom="opacity-100 translate-y-0"
                   leaveTo="opacity-0 -translate-y-16"
                 >
-                  <div className="relative inline-flex flex-col">
+                  <div className="relative flex flex-col justify-center items-center">
                     <Image
                       className="md:max-w-none mx-auto rounded"
-                      src={FeaturesBg}
-                      width={500}
-                      height="462"
+                      src={FeaturesBg1}
+                      width={700}
+                      height="400"
                       alt="Features bg"
                     />
-                    <Image
-                      className="md:max-w-none absolute w-full left-0 transform animate-float"
-                      src={FeaturesElement}
-                      width={500}
-                      height="44"
-                      alt="Element"
-                      style={{ top: "30%" }}
-                    />
+                    <h1 className="text-lg font-bold mt-5">Employees Panel</h1>
                   </div>
                 </Transition>
                 {/* Item 2 */}
@@ -210,22 +205,15 @@ export default function Features() {
                   leaveFrom="opacity-100 translate-y-0"
                   leaveTo="opacity-0 -translate-y-16"
                 >
-                  <div className="relative inline-flex flex-col">
+                  <div className="relative flex flex-col justify-center items-center">
                     <Image
                       className="md:max-w-none mx-auto rounded"
-                      src={FeaturesBg}
-                      width={500}
-                      height="462"
+                      src={FeaturesBg3}
+                      width={700}
+                      height="400"
                       alt="Features bg"
                     />
-                    <Image
-                      className="md:max-w-none absolute w-full left-0 transform animate-float"
-                      src={FeaturesElement}
-                      width={500}
-                      height="44"
-                      alt="Element"
-                      style={{ top: "30%" }}
-                    />
+                    <h1 className="text-lg font-bold mt-5">Projects Panel</h1>
                   </div>
                 </Transition>
                 {/* Item 3 */}
@@ -240,14 +228,15 @@ export default function Features() {
                   leaveFrom="opacity-100 translate-y-0"
                   leaveTo="opacity-0 -translate-y-16"
                 >
-                  <div className="relative inline-flex flex-col">
+                  <div className="relative flex flex-col justify-center items-center">
                     <Image
                       className="md:max-w-none mx-auto rounded"
-                      src={FeaturesBg}
-                      width={500}
-                      height="462"
+                      src={FeaturesBg2}
+                      width={700}
+                      height="400"
                       alt="Features bg"
                     />
+                    <h1 className="text-lg font-bold mt-5">Tickets Board</h1>
                   </div>
                 </Transition>
               </div>
