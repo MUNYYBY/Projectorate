@@ -3,7 +3,7 @@ import Handlebars from "handlebars";
 import fs from "fs";
 import path from "path";
 
-const from = "hm.muneeb.u.r@gmail.com";
+const from = "support@projectorate.org";
 const subjects = {
   userOnBoard: "Projectorate - Welcome to the Team",
   userRevokedAccess: "Projectorate - Revoked acess to the system",
@@ -11,15 +11,24 @@ const subjects = {
   UserAssignedToTeam: "Projectorate - Assigned to a team",
 };
 
+// let transporter = nodemailer.createTransport({
+//   service: "gmail",
+//   auth: {
+//     type: "OAuth2",
+//     user: process.env.MAIL_USERNAME,
+//     pass: process.env.MAIL_PASSWORD,
+//     clientId: process.env.OAUTH_CLIENTID,
+//     clientSecret: process.env.OAUTH_CLIENT_SECRET,
+//     refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+//   },
+// });
+
 let transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "mail.privateemail.com",
+  port: 587,
   auth: {
-    type: "OAuth2",
-    user: process.env.MAIL_USERNAME,
-    pass: process.env.MAIL_PASSWORD,
-    clientId: process.env.OAUTH_CLIENTID,
-    clientSecret: process.env.OAUTH_CLIENT_SECRET,
-    refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+    user: "support@projectorate.org",
+    pass: process.env.EMAIL_PASS,
   },
 });
 
