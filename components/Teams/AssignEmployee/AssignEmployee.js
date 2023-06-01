@@ -102,16 +102,16 @@ export default function AssignEmployee(props) {
                 className="employee-card flex flex-row justify-between items-center py-4 px-4 mb-2 bg-gray-800 bg-opacity-50 rounded-lg border-2 border-gray-600"
               >
                 <div className="flex flex-row justify-center items-center">
-                  <div className="bg-gray-600 bg-opacity-50 rounded-md h-14 w-14 flex justify-center items-center">
-                    <p className="font-extrabold text-2xl opacity-40">
+                  <div className="bg-gray-600 bg-opacity-50 rounded-md h-11 w-11 flex justify-center items-center">
+                    <p className="font-extrabold text-xl opacity-40">
                       {employee.first_name[0]}
                     </p>
                   </div>
                   <div className="ml-2">
-                    <h1 className="font-semibold text-lg">
+                    <h1 className="font-semibold text-base">
                       {employee.first_name} {employee.last_name}
                     </h1>
-                    <h1 className="m-0 text-md">@{employee.email}</h1>
+                    <h1 className="m-0 text-sm">@{employee.email}</h1>
                   </div>
                 </div>
                 <Popconfirm
@@ -126,7 +126,7 @@ export default function AssignEmployee(props) {
                     className="bg-primary py-1 px-2 rounded-md flex flex-row justify-center items-center"
                     // onClick={() => !setIsCreateProject(!isCreateProject)}
                   >
-                    <TiUserAddOutline size={26} />
+                    <TiUserAddOutline size={20} />
                   </button>
                 </Popconfirm>
               </div>

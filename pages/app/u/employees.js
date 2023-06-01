@@ -30,14 +30,14 @@ export default function SuperAdminEmployees() {
   const [checkForNewEmployees, setCheckForNewEmployees] = useState(false);
 
   //Initial Skelton Animation for employees
-  setInterval(() => {
-    setLoading(false);
-  }, 2500);
   //This function get the new employees when
   //CheckforNewEmployees gets true
   const getNewEmployees = async () => {
     setLoading(true);
     const res = await getEmployees();
+    if (res) {
+      setLoading(false);
+    }
     const data = res.data;
     setCheckForNewEmployees(false);
     setEmployeesData(data);

@@ -2,7 +2,12 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/api/employee/get-employees": "pages/api/employee/get-employees.js",
-  "/api/employee/add-employee": "pages/api/employee/add-employee.js",
-  "/app/u/employees": "pages/app/u/employees.js"
+  "/api/team-domains/get-team-domains": "pages/api/team-domains/get-team-domains.js",
+  "/app/u/teams": "pages/app/u/teams.js",
+  "/api/teams/get-all-teams": "pages/api/teams/get-all-teams.js",
+  "/api/teams/get-team": "pages/api/teams/get-team.js",
+  "/api/projects/get-project-employees": "pages/api/projects/get-project-employees.js",
+  "/api/projects/get-all-projects": "pages/api/projects/get-all-projects.js",
+  "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
+  "/api/teams/get-team-employees": "pages/api/teams/get-team-employees.js"
 }
