@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST={"..\\components\\PieChart\\ProjectTicketsChart.js -> react-apexcharts":{"id":"..\\components\\PieChart\\ProjectTicketsChart.js -> react-apexcharts","files":["static/chunks/node_modules_react-apexcharts_dist_react-apexcharts_min_js.js"]}}
+self.__REACT_LOADABLE_MANIFEST={"..\\components\\PieChart\\ProjectTicketsChart.js -> react-apexcharts":{id:7229,files:["static/chunks/6c44d60f.1ea5caf34b52961d.js","static/chunks/229.b854d690932a3d00.js"]}};
