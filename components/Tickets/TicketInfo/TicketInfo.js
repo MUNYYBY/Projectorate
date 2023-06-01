@@ -16,17 +16,22 @@ import { FaFlag } from "react-icons/fa";
 import { FiTrash2 } from "react-icons/fi";
 
 import { RiAccountCircleFill } from "react-icons/ri";
-import { BsWindowDock } from "react-icons/bs";
+import { BsListTask, BsWindowDock } from "react-icons/bs";
+import { TbSend } from "react-icons/tb";
 
 import AuthorityCheck from "../../../Permissions/AuthorityCheck";
 
 import { useSession } from "next-auth/react";
+import WorkSubmission from "../WorkSubmission/WorkSubmission";
+import Submit from "../WorkSubmission/Submit";
 
 export default function TicketInfo(props) {
   const [loading, setLoading] = useState(true);
   const [downloadloading, setDownloadLoading] = useState(false);
   const [ticketInfo, setTicketInfo] = useState(null);
   const [ticketStatus, setTicketStatus] = useState([]);
+  const [isWorkSubmission, setIsWorkSubmission] = useState(false);
+  const [isSubmitWork, setIsSubmitWork] = useState(false);
 
   const { data: session, status } = useSession();
 
@@ -150,6 +155,17 @@ export default function TicketInfo(props) {
         </>
       ) : (
         <>
+          <WorkSubmission
+            setIsWorkSubmission={setIsWorkSubmission}
+            isWorkSubmission={isWorkSubmission}
+            work={ticketInfo.WorkSubmission}
+          />
+          <Submit
+            setIsSubmitWork={setIsSubmitWork}
+            isSubmitWork={isSubmitWork}
+            ticketId={ticketInfo.id}
+          />
+
           <div className="tickets-info">
             <header className="flex flex-row justify-between">
               <div className="flex flex-col w-full">
@@ -248,9 +264,32 @@ export default function TicketInfo(props) {
               </div>
               <div className="tabdevider w-[1.5px] md:flex hidden h-[10rem] mx-4 bg-opacity-10 bg-white rounded-lg"></div>
               <div className="w-full md:w-1/2 flex flex-col">
+                {session?.user.id == ticketInfo.ownerId ||
+                session?.user.id == ticketInfo.assigneeId ? (
+                  <button
+                    className="py-3 mb-2 bg-white bg-opacity-10 transition-all w-full rounded-md flex flex-row justify-center items-center disabled:opacity-50"
+                    onClick={() => setIsSubmitWork(true)}
+                  >
+                    <TbSend color="white" size={20} />
+                    <p className="text-white-600 tex-xl font-bold ml-2">
+                      Submit Work
+                    </p>
+                  </button>
+                ) : (
+                  <></>
+                )}
+                <button
+                  className="py-3 mb-2 bg-white bg-opacity-10 transition-all w-full rounded-md flex flex-row justify-center items-center disabled:opacity-50"
+                  onClick={() => setIsWorkSubmission(true)}
+                >
+                  <BsListTask color="white" size={20} />
+                  <p className="text-white-600 tex-xl font-bold ml-2">
+                    Work Submissions
+                  </p>
+                </button>
                 {ticketInfo.Resource[0].url ? (
                   <button
-                    className="py-2 mb-4 bg-green-600 bg-opacity-20 hover:bg-opacity-30 transition-all w-full rounded-lg flex flex-row justify-center items-center disabled:opacity-50"
+                    className="py-3 mb-2 bg-green-600 bg-opacity-20 hover:bg-opacity-30 transition-all w-full rounded-md flex flex-row justify-center items-center disabled:opacity-50"
                     onClick={() => downloadResource(ticketInfo.Resource[0].url)}
                     disabled={downloadloading}
                   >
@@ -261,10 +300,10 @@ export default function TicketInfo(props) {
                   </button>
                 ) : (
                   <>
-                    <div className="py-2 mb-4 bg-white bg-opacity-10 transition-all w-full rounded-lg flex flex-row justify-center items-center disabled:opacity-50">
+                    <div className="py-3 mb-2 bg-white bg-opacity-10 transition-all w-full rounded-md flex flex-row justify-center items-center disabled:opacity-50">
                       <BsWindowDock color="white" size={20} />
                       <p className="text-white-600 tex-xl font-bold ml-2">
-                        No resource added!
+                        No resource added
                       </p>
                     </div>
                   </>
@@ -280,7 +319,7 @@ export default function TicketInfo(props) {
                     cancelText="No"
                     placement="top"
                   >
-                    <button className="py-2 bg-red-600 bg-opacity-20 hover:bg-opacity-30 transition-all w-full rounded-lg flex flex-row justify-center items-center">
+                    <button className="py-3 bg-red-600 bg-opacity-20 hover:bg-opacity-30 transition-all w-full rounded-md flex flex-row justify-center items-center">
                       <FiTrash2 color="red" size={20} />
                       <p className="text-red-600 tex-xl font-bold ml-2">
                         Delete Ticket

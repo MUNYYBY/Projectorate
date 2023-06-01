@@ -640,3 +640,60 @@ export async function getAllLogs() {
     console.log("Error While getting projects: ", error);
   }
 }
+
+//** work submission */
+export async function UploadWork(file) {
+  const formData = new FormData();
+  formData.append("file", file);
+  const config = {
+    headers: { "content-type": "multipart/form-data" },
+    onUploadProgress: (event) => {
+      console.log(
+        `Current progress:`,
+        Math.round((event.loaded * 100) / event.total)
+      );
+    },
+  };
+  try {
+    const res = await axios.post(
+      process.env.NEXT_PUBLIC_BASE_URL + `/work-submission/upload`,
+      formData
+    );
+    return res;
+  } catch (error) {
+    console.log("While uploading file:", error);
+    return { error: error.response };
+  }
+}
+export async function DownloadWork(url) {
+  try {
+    axios({
+      url: process.env.NEXT_PUBLIC_BASE_URL + `/work-submission/download`,
+      method: "GET",
+      responseType: "blob", // Important
+      params: {
+        url: url, //which file to download?
+      },
+    }).then((response) => {
+      console.log(response);
+      fileDownload(response.data, `projectorate_work_submission_${url}`); //Change the image name to something usefull (maybe original)
+    });
+    return { data: true };
+  } catch (error) {
+    console.log("While downloading work file:", error);
+    return { error: error.response };
+  }
+}
+
+export async function SetTicketWorkSubmission(payload) {
+  try {
+    const res = await axios.post(
+      process.env.NEXT_PUBLIC_BASE_URL + `/tickets/update-work-submission`,
+      payload
+    );
+    return res;
+  } catch (error) {
+    console.log("Error While updating ticket work submission: ", error);
+    return { error: error.response };
+  }
+}

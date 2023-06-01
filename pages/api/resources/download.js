@@ -22,7 +22,7 @@ export default async function handler(req, res) {
     const dir = serverPath(rootDir);
     var fileUrl = dir + "/" + url;
 
-    console.log("Downloading 🚀: ", url);
+    console.log("Downloading resource 🚀: ", url);
 
     const path = fileUrl;
     const file = fs.createReadStream(path);

@@ -90,13 +90,13 @@ model Teams {
 }
 
 model Tickets {
-  id              Int            @id @default(autoincrement())
-  user            User?          @relation(fields: [ownerId], references: [id], onDelete: SetNull)
-  project         Project        @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  team            Teams          @relation(fields: [teamId], references: [id], onDelete: Cascade)
-  employee        Employee?      @relation(fields: [assigneeId], references: [id], onDelete: SetNull)
-  TicketStatus    TicketStatus?  @relation(fields: [ticketStatusId], references: [id])
-  TicketPiority   TicketPiority? @relation(fields: [ticketPiorityId], references: [id])
+  id              Int              @id @default(autoincrement())
+  user            User?            @relation(fields: [ownerId], references: [id], onDelete: SetNull)
+  project         Project          @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  team            Teams            @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  employee        Employee?        @relation(fields: [assigneeId], references: [id], onDelete: SetNull)
+  TicketStatus    TicketStatus?    @relation(fields: [ticketStatusId], references: [id])
+  TicketPiority   TicketPiority?   @relation(fields: [ticketPiorityId], references: [id])
   ownerId         Int?
   projectId       Int
   teamId          Int
@@ -106,13 +106,23 @@ model Tickets {
   title           String
   description     String
   deadline        String
-  createdAt       DateTime       @default(now())
-  updatedAt       DateTime?      @updatedAt
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime?        @updatedAt
   Resource        Resource[]
   Logs            Logs[]
+  WorkSubmission  WorkSubmission[]
 }
 
 model Resource {
+  id        Int       @id @default(autoincrement())
+  url       String
+  ticket    Tickets?  @relation(fields: [ticketsId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+  ticketsId Int?
+}
+
+model WorkSubmission {
   id        Int       @id @default(autoincrement())
   url       String
   ticket    Tickets?  @relation(fields: [ticketsId], references: [id])

@@ -64,6 +64,7 @@ export default async function handler(req, res) {
             id: true,
           },
         },
+        WorkSubmission: true,
       },
     });
     if (data) {
