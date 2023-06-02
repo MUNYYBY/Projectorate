@@ -1,11 +1,11 @@
-"use strict";
-exports.id = 9637;
-exports.ids = [9637];
+exports.id = 3863;
+exports.ids = [3863];
 exports.modules = {
 
 /***/ 7693:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Z": () => (/* binding */ DashboardHeader)
 /* harmony export */ });
@@ -107,6 +107,7 @@ function DashboardHeader({ title ="Home" , type ="home" , icon =/*#__PURE__*/ re
 /***/ 4514:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "F": () => (/* binding */ useUserDataHandler),
@@ -153,6 +154,7 @@ __webpack_async_result__();
 /***/ 9637:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
@@ -438,6 +440,14 @@ function SuperAdminDashboard() {
 
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
+/***/ 4298:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__(699)
+
 
 /***/ })
 
