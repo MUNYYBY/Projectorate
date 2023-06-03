@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { RiErrorWarningLine } from "react-icons/ri";
+import { AiOutlineUserAdd } from "react-icons/ai";
+import { GoReport } from "react-icons/go";
+
 import {
   AutoComplete,
   Button,
@@ -14,6 +17,7 @@ import {
   Select,
   message,
 } from "antd";
+import { IoIosHelpCircle } from "react-icons/io";
 export default function LoginBox({
   setIsClicked,
   setEmail,
@@ -43,14 +47,43 @@ export default function LoginBox({
   return (
     <div
       className="bg-gray-900 rounded-md shadow-xl m-2 p-4 md:p-9 border-black flex flex-col justify-center items-center"
-      style={{ height: "34rem" }}
+      style={{ height: "36rem" }}
     >
       <div className="Input-container flex flex-col justify-center items-center">
-        <div className="flex flex-col justify-center items-center mb-7">
+        <div className="flex flex-col justify-center items-center mb-4">
           <h1 className="text-4xl font-demo">Login</h1>
-          <p className="pt-2 opacity-60">
-            Please enter your valid Credentials!
+          <p className="pt-2 opacity-60 text-sm w-88 text-center">
+            Please enter your credentials! If you do not have access to the
+            please use the following dummy credentials
           </p>
+        </div>
+        <div className="dummy-credentials mb-2 py-3 px-3 rounded-md border-[1.5px] border-gray-500 bg-gray-700 w-full opacity-70 hover:opacity-100 transition-all">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center">
+              <AiOutlineUserAdd size={18} />
+              <p className="text-[12px] ml-1">
+                <span className="text-blue-400 font-bold">Project Manager</span>{" "}
+                dummy credentials
+              </p>
+            </div>
+            <div className="rounded-full">
+              <IoIosHelpCircle size={20} />
+            </div>
+          </div>
+        </div>
+        <div className="dummy-credentials mb-2 py-3 px-3 rounded-md border-[1.5px] border-gray-500 bg-gray-700 w-full opacity-70 hover:opacity-100 transition-all">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center">
+              <AiOutlineUserAdd size={18} />
+              <p className="text-[12px] ml-1">
+                <span className="text-blue-400 font-bold">Team Member</span>{" "}
+                dummy credentials
+              </p>
+            </div>
+            <div className="rounded-full">
+              <IoIosHelpCircle size={20} />
+            </div>
+          </div>
         </div>
         <Form
           form={form}
