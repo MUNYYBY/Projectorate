@@ -40,7 +40,7 @@ axios__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (awa
 
 async function createEmployee(payload) {
     try {
-        const res = await axios.post("http://projectorate.org:3000/api" + "/employee/add-employee", payload);
+        const res = await axios.post("http://projectorate.org/api" + "/employee/add-employee", payload);
         console.log("hello ", res.data);
         return res.data;
     } catch (error) {
@@ -52,7 +52,7 @@ async function createEmployee(payload) {
 }
 async function UpdateEmployeeAPI(payload) {
     try {
-        const res = await axios.post("http://projectorate.org:3000/api" + "/employee/update-employee", payload);
+        const res = await axios.post("http://projectorate.org/api" + "/employee/update-employee", payload);
         console.log("Updated employee: ", res.data);
         return res.data;
     } catch (error) {
@@ -64,7 +64,7 @@ async function UpdateEmployeeAPI(payload) {
 }
 async function getEmployees() {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + "/employee/get-employees");
+        const res = await axios.get("http://projectorate.org/api" + "/employee/get-employees");
         return res.data;
     } catch (error) {
         console.log("Error While getting employee: ", error);
@@ -72,7 +72,7 @@ async function getEmployees() {
 }
 async function getEmployeeProfile(id) {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + "/employee/get-employee-profile?employeeId=" + id);
+        const res = await axios.get("http://projectorate.org/api" + "/employee/get-employee-profile?employeeId=" + id);
         return res.data;
     } catch (error) {
         console.log("Error While getting Employee Profile: ", error);
@@ -84,7 +84,7 @@ async function getEmployeeProfile(id) {
 async function getEmployeeInfo(id) {
     console.log(id);
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + "/employee/get-employee-info?id=" + id);
+        const res = await axios.get("http://projectorate.org/api" + "/employee/get-employee-info?id=" + id);
         return res.data;
     } catch (error) {
         console.log("Error While getting employee info: ", error);
@@ -92,7 +92,7 @@ async function getEmployeeInfo(id) {
 }
 async function deleteEmployee(id, userId) {
     try {
-        const res = await axios.delete("http://projectorate.org:3000/api" + "/employee/delete-employees?id=" + id + "&userId=" + userId);
+        const res = await axios.delete("http://projectorate.org/api" + "/employee/delete-employees?id=" + id + "&userId=" + userId);
         return res;
     } catch (error) {
         console.log("Error While deleting employee: ", error);
@@ -102,7 +102,7 @@ async function deleteEmployee(id, userId) {
 //get all the designations in the database
 async function getDesignations() {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + "/designations/get-designations");
+        const res = await axios.get("http://projectorate.org/api" + "/designations/get-designations");
         return res.data;
     } catch (error) {
         console.log("Error While getting designations at front-end: ", error);
@@ -111,7 +111,7 @@ async function getDesignations() {
 //get all the roles in the database
 async function getRoles() {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + "/roles/get-roles");
+        const res = await axios.get("http://projectorate.org/api" + "/roles/get-roles");
         return res.data;
     } catch (error) {
         console.log("Error While getting roles at front-end: ", error);
@@ -120,7 +120,7 @@ async function getRoles() {
 //get Analytics
 async function getAllEmployeesAnalytics() {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + "/analytics/all-employees");
+        const res = await axios.get("http://projectorate.org/api" + "/analytics/all-employees");
         return res.data;
     } catch (error) {
         console.log("Error While getting all employees count at front-end: ", error);
@@ -128,7 +128,7 @@ async function getAllEmployeesAnalytics() {
 }
 async function GetAnalytics() {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + "/analytics/analytics");
+        const res = await axios.get("http://projectorate.org/api" + "/analytics/analytics");
         return res.data;
     } catch (error) {
         console.log("Error While getting analytics at front-end: ", error);
@@ -136,7 +136,7 @@ async function GetAnalytics() {
 }
 async function getSeniorEmployeesAnalytics() {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + "/analytics/senior-employees");
+        const res = await axios.get("http://projectorate.org/api" + "/analytics/senior-employees");
         return res.data;
     } catch (error) {
         console.log("Error While getting Senior Count at front-end: ", error);
@@ -144,7 +144,7 @@ async function getSeniorEmployeesAnalytics() {
 }
 async function getAssociateEmployeesAnalytics() {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + "/analytics/associate-employees");
+        const res = await axios.get("http://projectorate.org/api" + "/analytics/associate-employees");
         return res.data;
     } catch (error) {
         console.log("Error While getting associate Count at front-end: ", error);
@@ -152,7 +152,7 @@ async function getAssociateEmployeesAnalytics() {
 }
 async function getInternEmployeesAnalytics() {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + "/analytics/interns-employees");
+        const res = await axios.get("http://projectorate.org/api" + "/analytics/interns-employees");
         return res.data;
     } catch (error) {
         console.log("Error While getting intern Count at front-end: ", error);
@@ -161,7 +161,7 @@ async function getInternEmployeesAnalytics() {
 //get all the project domains in the database
 async function getProjectDomains() {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + "/project-domains/get-project-domains");
+        const res = await axios.get("http://projectorate.org/api" + "/project-domains/get-project-domains");
         return res.data;
     } catch (error) {
         console.log("Error While getting project domains at front-end: ", error);
@@ -173,7 +173,7 @@ async function getProjectDomains() {
 //get all the project status in the database
 async function getProjectStatus() {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + "/projects/get-project-status");
+        const res = await axios.get("http://projectorate.org/api" + "/projects/get-project-status");
         return res.data;
     } catch (error) {
         console.log("Error While getting project status at front-end: ", error);
@@ -185,7 +185,7 @@ async function getProjectStatus() {
 //Projects api calls
 async function createProject(payload) {
     try {
-        const res = await axios.post("http://projectorate.org:3000/api" + "/projects/create-project", payload);
+        const res = await axios.post("http://projectorate.org/api" + "/projects/create-project", payload);
         return res.data;
     } catch (error) {
         console.log("Error While creating project: ", error);
@@ -196,7 +196,7 @@ async function createProject(payload) {
 }
 async function UpdateProjectAPI(payload) {
     try {
-        const res = await axios.post("http://projectorate.org:3000/api" + "/projects/update-project", payload);
+        const res = await axios.post("http://projectorate.org/api" + "/projects/update-project", payload);
         return res;
     } catch (error) {
         console.log("Error While creating project: ", error);
@@ -207,7 +207,7 @@ async function UpdateProjectAPI(payload) {
 }
 async function getAllProjects() {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + "/projects/get-all-projects");
+        const res = await axios.get("http://projectorate.org/api" + "/projects/get-all-projects");
         return res.data;
     } catch (error) {
         console.log("Error While getting projects: ", error);
@@ -215,7 +215,7 @@ async function getAllProjects() {
 }
 async function GetSpecificProject(propjectId) {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + "/projects/get-project?projectId=" + propjectId);
+        const res = await axios.get("http://projectorate.org/api" + "/projects/get-project?projectId=" + propjectId);
         return res.data;
     } catch (error) {
         console.log("Error While getting employee: ", error);
@@ -226,7 +226,7 @@ async function GetSpecificProject(propjectId) {
 }
 async function DeleteProject(projectId, user_id) {
     try {
-        const res = await axios.delete("http://projectorate.org:3000/api" + `/projects/delete-project?projectId=${projectId}&user_id=${user_id}`);
+        const res = await axios.delete("http://projectorate.org/api" + `/projects/delete-project?projectId=${projectId}&user_id=${user_id}`);
         return res;
     } catch (error) {
         console.log("Error While deleting employee from project: ", error);
@@ -237,7 +237,7 @@ async function DeleteProject(projectId, user_id) {
 }
 async function getProjectEmployees(projectId) {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + "/projects/get-project-employees?projectId=" + projectId);
+        const res = await axios.get("http://projectorate.org/api" + "/projects/get-project-employees?projectId=" + projectId);
         return res.data;
     } catch (error) {
         console.log("Error While getting employee: ", error);
@@ -248,7 +248,7 @@ async function getProjectEmployees(projectId) {
 }
 async function getProjectTeams(projectId) {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + "/teams/get-project-teams?projectId=" + projectId);
+        const res = await axios.get("http://projectorate.org/api" + "/teams/get-project-teams?projectId=" + projectId);
         return res.data;
     } catch (error) {
         console.log("Error While getting project teams: ", error);
@@ -259,7 +259,7 @@ async function getProjectTeams(projectId) {
 }
 async function DeleteEmployeeFromProject(employeeId, projectId, ownerId) {
     try {
-        const res = await axios.delete("http://projectorate.org:3000/api" + `/projects/remove-employee-from-project?employeeId=${employeeId}&projectId=${projectId}&ownerId=${ownerId}`);
+        const res = await axios.delete("http://projectorate.org/api" + `/projects/remove-employee-from-project?employeeId=${employeeId}&projectId=${projectId}&ownerId=${ownerId}`);
         return res;
     } catch (error) {
         console.log("Error While deleting employee from project: ", error);
@@ -270,7 +270,7 @@ async function DeleteEmployeeFromProject(employeeId, projectId, ownerId) {
 }
 async function SearchEmployee(search) {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + `/employee/search-employee?search=${search}`);
+        const res = await axios.get("http://projectorate.org/api" + `/employee/search-employee?search=${search}`);
         return res;
     } catch (error) {
         console.log("Error While deleting employee from project: ", error);
@@ -281,7 +281,7 @@ async function SearchEmployee(search) {
 }
 async function AssignEmployeeToProject(projectId, employeeId, ownerId) {
     try {
-        const res = await axios.post("http://projectorate.org:3000/api" + `/projects/assign-project-to-employee?projectId=${projectId}&userId=${employeeId}&ownerId=${ownerId}`);
+        const res = await axios.post("http://projectorate.org/api" + `/projects/assign-project-to-employee?projectId=${projectId}&userId=${employeeId}&ownerId=${ownerId}`);
         return res;
     } catch (error) {
         console.log("Error While assigning employee to project: ", error);
@@ -292,7 +292,7 @@ async function AssignEmployeeToProject(projectId, employeeId, ownerId) {
 }
 async function ChangeProjectStatus(projectId, statusId) {
     try {
-        const res = await axios.post("http://projectorate.org:3000/api" + `/projects/change-project-status?projectId=${projectId}&statusId=${statusId}`);
+        const res = await axios.post("http://projectorate.org/api" + `/projects/change-project-status?projectId=${projectId}&statusId=${statusId}`);
         return res;
     } catch (error) {
         console.log("Error While changing project status: ", error);
@@ -304,7 +304,7 @@ async function ChangeProjectStatus(projectId, statusId) {
 //get all the Team domains in the database
 async function getTeamDomains() {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + "/team-domains/get-team-domains");
+        const res = await axios.get("http://projectorate.org/api" + "/team-domains/get-team-domains");
         return res.data;
     } catch (error) {
         console.log("Error While getting Team domains at front-end: ", error);
@@ -316,7 +316,7 @@ async function getTeamDomains() {
 //get all the team status in the database
 async function getTeamStatus() {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + "/teams/get-team-status");
+        const res = await axios.get("http://projectorate.org/api" + "/teams/get-team-status");
         return res.data;
     } catch (error) {
         console.log("Error While getting team status at front-end: ", error);
@@ -327,7 +327,7 @@ async function getTeamStatus() {
 }
 async function getAllTeams() {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + "/teams/get-all-teams");
+        const res = await axios.get("http://projectorate.org/api" + "/teams/get-all-teams");
         return res.data;
     } catch (error) {
         console.log("Error While getting all teams: ", error);
@@ -338,7 +338,7 @@ async function getAllTeams() {
 }
 async function createTeam(payload) {
     try {
-        const res = await axios.post("http://projectorate.org:3000/api" + "/teams/create-team", payload);
+        const res = await axios.post("http://projectorate.org/api" + "/teams/create-team", payload);
         return res.data;
     } catch (error) {
         console.log("Error While creating team: ", error);
@@ -349,7 +349,7 @@ async function createTeam(payload) {
 }
 async function UpdateTeamAPI(payload) {
     try {
-        const res = await axios.post("http://projectorate.org:3000/api" + "/teams/update-team", payload);
+        const res = await axios.post("http://projectorate.org/api" + "/teams/update-team", payload);
         return res;
     } catch (error) {
         console.log("Error While creating team: ", error);
@@ -360,7 +360,7 @@ async function UpdateTeamAPI(payload) {
 }
 async function GetSpecificTeam(teamId) {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + "/teams/get-team?teamId=" + teamId);
+        const res = await axios.get("http://projectorate.org/api" + "/teams/get-team?teamId=" + teamId);
         return res.data;
     } catch (error) {
         console.log("Error While getting specific team: ", error);
@@ -371,7 +371,7 @@ async function GetSpecificTeam(teamId) {
 }
 async function DeleteTeam(teamId, ownerId) {
     try {
-        const res = await axios.delete("http://projectorate.org:3000/api" + `/teams/delete-team?teamId=${teamId}&user_id=${ownerId}`);
+        const res = await axios.delete("http://projectorate.org/api" + `/teams/delete-team?teamId=${teamId}&user_id=${ownerId}`);
         return res;
     } catch (error) {
         console.log("Error While deleting team: ", error);
@@ -382,7 +382,7 @@ async function DeleteTeam(teamId, ownerId) {
 }
 async function getTeamEmployees(teamId) {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + "/teams/get-team-employees?teamId=" + teamId);
+        const res = await axios.get("http://projectorate.org/api" + "/teams/get-team-employees?teamId=" + teamId);
         return res.data;
     } catch (error) {
         console.log("Error While getting employee: ", error);
@@ -393,7 +393,7 @@ async function getTeamEmployees(teamId) {
 }
 async function DeleteEmployeeFromTeam(employeeId, teamId, ownerId) {
     try {
-        const res = await axios.delete("http://projectorate.org:3000/api" + `/teams/remove-employee-from-team?employeeId=${employeeId}&teamId=${teamId}&ownerId=${ownerId}`);
+        const res = await axios.delete("http://projectorate.org/api" + `/teams/remove-employee-from-team?employeeId=${employeeId}&teamId=${teamId}&ownerId=${ownerId}`);
         return res;
     } catch (error) {
         console.log("Error While deleting employee from teams: ", error);
@@ -404,7 +404,7 @@ async function DeleteEmployeeFromTeam(employeeId, teamId, ownerId) {
 }
 async function AssignEmployeeToTeam(teamId, employeeId, ownerId) {
     try {
-        const res = await axios.post("http://projectorate.org:3000/api" + `/teams/assign-team-to-employee?teamId=${teamId}&userId=${employeeId}&ownerId=${ownerId}`);
+        const res = await axios.post("http://projectorate.org/api" + `/teams/assign-team-to-employee?teamId=${teamId}&userId=${employeeId}&ownerId=${ownerId}`);
         return res;
     } catch (error) {
         console.log("Error While assigning employee to team: ", error);
@@ -415,7 +415,7 @@ async function AssignEmployeeToTeam(teamId, employeeId, ownerId) {
 }
 async function ChangeTeamStatus(teamId, statusId) {
     try {
-        const res = await axios.post("http://projectorate.org:3000/api" + `/teams/change-team-status?teamId=${teamId}&statusId=${statusId}`);
+        const res = await axios.post("http://projectorate.org/api" + `/teams/change-team-status?teamId=${teamId}&statusId=${statusId}`);
         return res;
     } catch (error) {
         console.log("Error While changing project status: ", error);
@@ -426,7 +426,7 @@ async function ChangeTeamStatus(teamId, statusId) {
 }
 async function CreateTicket(payload) {
     try {
-        const res = await axios.post("http://projectorate.org:3000/api" + `/tickets/create-ticket`, payload);
+        const res = await axios.post("http://projectorate.org/api" + `/tickets/create-ticket`, payload);
         return res;
     } catch (error) {
         console.log("Error While creating ticket to team: ", error);
@@ -437,7 +437,7 @@ async function CreateTicket(payload) {
 }
 async function GetTicketInfo(ticketId) {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + `/tickets/get-ticket-info?ticketId=` + ticketId);
+        const res = await axios.get("http://projectorate.org/api" + `/tickets/get-ticket-info?ticketId=` + ticketId);
         return res;
     } catch (error) {
         console.log("Error While getting ticket info at front-end: ", error);
@@ -448,7 +448,7 @@ async function GetTicketInfo(ticketId) {
 }
 async function getTicketsStatus() {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + `/tickets-status/get-tickets-status`);
+        const res = await axios.get("http://projectorate.org/api" + `/tickets-status/get-tickets-status`);
         return res;
     } catch (error) {
         console.log("Error While getting tickets status at front-end: ", error);
@@ -459,7 +459,7 @@ async function getTicketsStatus() {
 }
 async function getTicketsPiority() {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + `/tickets-piority/get-tickets-piority`);
+        const res = await axios.get("http://projectorate.org/api" + `/tickets-piority/get-tickets-piority`);
         return res;
     } catch (error) {
         console.log("Error While getting tickets status at front-end: ", error);
@@ -470,7 +470,7 @@ async function getTicketsPiority() {
 }
 async function getProjectTickets(projectId) {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + `/tickets/get-project-tickets?projectId=` + projectId);
+        const res = await axios.get("http://projectorate.org/api" + `/tickets/get-project-tickets?projectId=` + projectId);
         return res;
     } catch (error) {
         console.log("Error While getting project tickets at front-end: ", error);
@@ -481,7 +481,7 @@ async function getProjectTickets(projectId) {
 }
 async function GetUserTickets(userId) {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + `/tickets/get-user-tickets?userId=` + userId);
+        const res = await axios.get("http://projectorate.org/api" + `/tickets/get-user-tickets?userId=` + userId);
         return res;
     } catch (error) {
         console.log("Error While getting user tickets at front-end: ", error);
@@ -492,7 +492,7 @@ async function GetUserTickets(userId) {
 }
 async function getTeamTickets(teamId) {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + `/tickets/get-team-tickets?teamId=` + teamId);
+        const res = await axios.get("http://projectorate.org/api" + `/tickets/get-team-tickets?teamId=` + teamId);
         return res;
     } catch (error) {
         console.log("Error While getting project tickets at front-end: ", error);
@@ -503,7 +503,7 @@ async function getTeamTickets(teamId) {
 }
 async function getALlTickets() {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + `/tickets/get-all-tickets`);
+        const res = await axios.get("http://projectorate.org/api" + `/tickets/get-all-tickets`);
         return res;
     } catch (error) {
         console.log("Error While getting all tickets at front-end: ", error);
@@ -514,7 +514,7 @@ async function getALlTickets() {
 }
 async function ChangeTicketStatus(ticketId, statusId) {
     try {
-        const res = await axios.post("http://projectorate.org:3000/api" + `/tickets/change-ticket-status?ticketId=${ticketId}&statusId=${statusId}`);
+        const res = await axios.post("http://projectorate.org/api" + `/tickets/change-ticket-status?ticketId=${ticketId}&statusId=${statusId}`);
         return res;
     } catch (error) {
         console.log("Error While getting project tickets at front-end: ", error);
@@ -525,7 +525,7 @@ async function ChangeTicketStatus(ticketId, statusId) {
 }
 async function DeleteTicket(ticketId, ownerId) {
     try {
-        const res = await axios.delete("http://projectorate.org:3000/api" + `/tickets/delete-ticket?ticketId=` + ticketId + `&ownerId=` + ownerId);
+        const res = await axios.delete("http://projectorate.org/api" + `/tickets/delete-ticket?ticketId=` + ticketId + `&ownerId=` + ownerId);
         return res;
     } catch (error) {
         console.log("Error While getting deleting ticket at front-end: ", error);
@@ -546,7 +546,7 @@ async function UploadFile(file) {
         }
     };
     try {
-        const res = await axios.post("http://projectorate.org:3000/api" + `/resources/upload`, formData);
+        const res = await axios.post("http://projectorate.org/api" + `/resources/upload`, formData);
         return res;
     } catch (error) {
         console.log("While uploading file:", error);
@@ -558,7 +558,7 @@ async function UploadFile(file) {
 async function DownloadFile(url) {
     try {
         axios({
-            url: "http://projectorate.org:3000/api" + `/resources/download`,
+            url: "http://projectorate.org/api" + `/resources/download`,
             method: "GET",
             responseType: "blob",
             params: {
@@ -580,7 +580,7 @@ async function DownloadFile(url) {
 }
 async function getAllLogs() {
     try {
-        const res = await axios.get("http://projectorate.org:3000/api" + "/logs/get-all-logs");
+        const res = await axios.get("http://projectorate.org/api" + "/logs/get-all-logs");
         return res.data;
     } catch (error) {
         console.log("Error While getting projects: ", error);
@@ -599,7 +599,7 @@ async function UploadWork(file) {
         }
     };
     try {
-        const res = await axios.post("http://projectorate.org:3000/api" + `/work-submission/upload`, formData);
+        const res = await axios.post("http://projectorate.org/api" + `/work-submission/upload`, formData);
         return res;
     } catch (error) {
         console.log("While uploading file:", error);
@@ -611,7 +611,7 @@ async function UploadWork(file) {
 async function DownloadWork(url) {
     try {
         axios({
-            url: "http://projectorate.org:3000/api" + `/work-submission/download`,
+            url: "http://projectorate.org/api" + `/work-submission/download`,
             method: "GET",
             responseType: "blob",
             params: {
@@ -633,7 +633,7 @@ async function DownloadWork(url) {
 }
 async function SetTicketWorkSubmission(payload) {
     try {
-        const res = await axios.post("http://projectorate.org:3000/api" + `/tickets/update-work-submission`, payload);
+        const res = await axios.post("http://projectorate.org/api" + `/tickets/update-work-submission`, payload);
         return res;
     } catch (error) {
         console.log("Error While updating ticket work submission: ", error);
