@@ -133,7 +133,7 @@ export default function AddEmployee(props) {
                       message: "Please input employee's first name",
                     },
                     {
-                      min: 4,
+                      min: 3,
                       message: "First name must be minimum of 4 characters",
                     },
                     {
@@ -157,7 +157,7 @@ export default function AddEmployee(props) {
                       message: "Please input employee's last name",
                     },
                     {
-                      min: 4,
+                      min: 3,
                       message: "last name must be minimum of 4 characters",
                     },
                     {
@@ -387,6 +387,11 @@ export default function AddEmployee(props) {
                     {
                       min: 8,
                       message: "Password must be 8 characters long!",
+                    },
+                    {
+                      pattern:
+                        /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!#$%\-_=+<>])([a-zA-Z0-9!#$%\-_=+<>]+)$/,
+                      message: `Password must contain atleast, numbers, uppar-case, and characters`,
                     },
                   ]}
                   hasFeedback

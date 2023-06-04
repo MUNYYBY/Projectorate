@@ -103,7 +103,7 @@ export default function LoginBox({
     <>
       <div
         className="bg-gray-900 rounded-md shadow-xl m-2 p-4 md:p-9 border-black flex flex-col justify-center items-center"
-        style={{ height: "36rem" }}
+        style={{ height: "38rem" }}
       >
         <div className="Input-container flex flex-col justify-center items-center">
           <div className="flex flex-col justify-center items-center mb-4">
