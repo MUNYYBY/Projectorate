@@ -90,7 +90,7 @@ export default function Auth() {
       <LoginHeadMeta />
       <div className="h-screen bg-primary">
         <div className="secondry-section h-screen w-screen absolute z-0">
-          <div className="absolute bottom-0 h-full w-full mx-[-15vw]">
+          <div className="absolute bottom-0 h-full w-full mx-[-15vw] sm:visible invisible">
             <Image
               src={BG_IMAGE}
               alt="Projectorate welcome image"
@@ -99,11 +99,12 @@ export default function Auth() {
             />
           </div>
         </div>
-        <div className="primary-section w-full h-full z-1 absolute flex justify-end items-center lg:pr-40 md:pr-20 sm:10 ">
+        <div className="primary-section w-full h-full z-1 absolute flex sm:justify-end justify-center items-center lg:pr-40 md:pr-20 ">
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.2 }}
+            className="w-full flex justify-end"
           >
             <LoginBox
               setIsClicked={setIsClicked}

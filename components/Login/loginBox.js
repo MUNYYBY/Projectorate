@@ -102,13 +102,13 @@ export default function LoginBox({
   return (
     <>
       <div
-        className="bg-gray-900 rounded-md shadow-xl m-2 p-4 md:p-9 border-black flex flex-col justify-center items-center"
-        style={{ height: "38rem" }}
+        className="bg-gray-900 rounded-md shadow-xl mx-2 p-4 md:p-9 border-black flex flex-col justify-center items-center sm:w-96 w-full"
+        style={{ minHeight: "38rem", maxHeight: "42rem" }}
       >
-        <div className="Input-container flex flex-col justify-center items-center">
-          <div className="flex flex-col justify-center items-center mb-4">
+        <div className="Input-container w-full flex flex-col justify-center items-center">
+          <div className="flex w-full flex-col justify-center items-center mb-4">
             <h1 className="text-4xl font-demo">Login</h1>
-            <p className="pt-2 opacity-60 text-sm w-88 text-center">
+            <p className="pt-2 opacity-60 text-xs sm:text-sm sm:w-88 w-full text-center">
               Please enter your credentials! If you do not have access to the
               system please use the following dummy credentials
             </p>
@@ -210,16 +210,16 @@ export default function LoginBox({
             ) : (
               ""
             )}
-            <div className="submission-section flex flex-col mt-5">
-              <p className="text-xs text-center mb-3 opacity-60">
-                By logging in you are agreeing to the company user
-                <br /> terms and conditions
+            <div className="submission-section flex flex-col mt-5 justify-center items-center">
+              <p className="text-xs text-center mb-3 opacity-60 sm:w-64">
+                By logging in you are agreeing to the company user terms and
+                conditions
               </p>
               <button
                 className={
                   !loading
-                    ? "bg-secondry px-5 py-3 rounded-sm"
-                    : "bg-secondry px-5 py-3 rounded-sm opacity-60"
+                    ? "bg-secondry px-5 py-3 rounded-sm w-full"
+                    : "bg-secondry px-5 py-3 rounded-sm opacity-60 w-full"
                 }
                 type="submit"
                 disabled={loading}
