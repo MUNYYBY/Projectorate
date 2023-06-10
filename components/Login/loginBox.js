@@ -103,17 +103,17 @@ export default function LoginBox({
     <>
       <div
         className="bg-gray-900 rounded-md shadow-xl mx-2 p-4 md:p-9 border-black flex flex-col justify-center items-center sm:w-96 w-full"
-        style={{ minHeight: "38rem", maxHeight: "42rem" }}
+        style={{ minHeight: "32rem", maxHeight: "38rem" }}
       >
         <div className="Input-container w-full flex flex-col justify-center items-center">
           <div className="flex w-full flex-col justify-center items-center mb-4">
             <h1 className="text-4xl font-demo">Login</h1>
             <p className="pt-2 opacity-60 text-xs sm:text-sm sm:w-88 w-full text-center">
               Please enter your credentials! If you do not have access to the
-              system please use the following dummy credentials
+              system please contact the adminstration of the system
             </p>
           </div>
-          <div className="dummy-credentials mb-2 py-3 px-3 rounded-md border-[1.5px] border-gray-500 bg-gray-700 w-full opacity-70 hover:opacity-100 transition-all">
+          {/* <div className="dummy-credentials mb-2 py-3 px-3 rounded-md border-[1.5px] border-gray-500 bg-gray-700 w-full opacity-70 hover:opacity-100 transition-all">
             <div className="flex justify-between items-center">
               <div className="flex items-center">
                 <AiOutlineUserAdd size={18} />
@@ -150,7 +150,7 @@ export default function LoginBox({
                 <IoIosHelpCircle size={20} />
               </div>
             </div>
-          </div>
+          </div> */}
           <Form
             form={form}
             name="signin"
